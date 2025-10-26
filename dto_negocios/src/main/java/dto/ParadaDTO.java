@@ -10,4 +10,38 @@ package dto;
  */
 public class ParadaDTO {
     
+    private String dirección;
+    private double precio;
+
+    public ParadaDTO() {
+    }
+
+    public ParadaDTO(String dirección, double precio) {
+        this.dirección = dirección;
+        this.precio = precio;
+    }
+
+    public String getDirección() {
+        return dirección;
+    }
+
+    public void setDirección(String dirección) {
+        this.dirección = dirección;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+
+    @Override
+    public String toString() {
+        return "ParadaDTO:" + 
+                "\ndirecci\u00f3n = " + dirección + 
+                "\nprecio = " + precio;
+    }
+    
 }
