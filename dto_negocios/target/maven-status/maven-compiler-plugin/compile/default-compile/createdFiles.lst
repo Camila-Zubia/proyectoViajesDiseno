@@ -1,0 +1,5 @@
+dto\UsuarioDTO.class
+dto\VehiculoDTO.class
+dto\ConductorDTO.class
+dto\ParadaDTO.class
+dto\ViajeDTO.class
