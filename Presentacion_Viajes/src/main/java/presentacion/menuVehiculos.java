@@ -4,8 +4,12 @@
  */
 package presentacion;
 
+import Control.ControlViaje;
+import dto.VehiculoDTO;
 import java.awt.BorderLayout;
+import java.util.List;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 /**
@@ -14,11 +18,35 @@ import javax.swing.SwingUtilities;
  */
 public class menuVehiculos extends javax.swing.JPanel {
 
+    private static ControlViaje controlViaje;
+    private List<VehiculoDTO> vehiculosDisponibles;
+
     /**
      * Creates new form menuVehiculos
      */
     public menuVehiculos() {
         initComponents();
+        if (controlViaje == null) {
+            controlViaje = new ControlViaje();
+        }
+        cargarVehiculos();
+    }
+
+    private void cargarVehiculos() {
+        try {
+            vehiculosDisponibles = controlViaje.obtenerVehiculosDisponibles();
+            System.out.println("Vehiculos cargados: " + vehiculosDisponibles.size());
+            // Aquí podrías mostrar los vehículos en el jPanel2
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,
+                "Error al cargar vehículos: " + e.getMessage(),
+                "Error",
+                JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    public static ControlViaje getControlViaje() {
+        return controlViaje;
     }
 
     /**

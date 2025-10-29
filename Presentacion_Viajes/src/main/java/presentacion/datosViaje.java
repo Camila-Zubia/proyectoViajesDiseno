@@ -4,8 +4,10 @@
  */
 package presentacion;
 
+import Control.ControlViaje;
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 /**
@@ -14,11 +16,17 @@ import javax.swing.SwingUtilities;
  */
 public class datosViaje extends javax.swing.JPanel {
 
+    private ControlViaje controlViaje;
+
     /**
      * Creates new form datosViaje
      */
     public datosViaje() {
         initComponents();
+        this.controlViaje = menuVehiculos.getControlViaje();
+        if (this.controlViaje == null) {
+            this.controlViaje = new ControlViaje();
+        }
     }
 
     /**
@@ -158,9 +166,24 @@ public class datosViaje extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextField4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        // Validar y guardar los datos del viaje antes de continuar
+        String origen = jTextField1.getText().trim();
+        String destino = jTextField2.getText().trim();
+        String fechaStr = jTextField3.getText().trim();
+        String horaStr = jTextField4.getText().trim();
+
+        if (origen.isEmpty() || destino.isEmpty() || fechaStr.isEmpty() || horaStr.isEmpty()) {
+            JOptionPane.showMessageDialog(this,
+                "Por favor complete todos los campos",
+                "Campos incompletos",
+                JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // Aquí podrías validar el formato de fecha y hora
+        // Por ahora solo navegamos a la siguiente pantalla
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
-        
+
         datosParadas panel = new datosParadas();
         frame.getContentPane().removeAll();
         frame.getContentPane().add(panel, BorderLayout.CENTER);

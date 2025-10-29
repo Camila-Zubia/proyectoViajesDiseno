@@ -10,4 +10,17 @@
         <maven.compiler.release>24</maven.compiler.release>
         <exec.mainClass>com.mycompany.control_viaje.Control_Viaje</exec.mainClass>
     </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>itson</groupId>
+            <artifactId>dto_negocios</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>itson</groupId>
+            <artifactId>negocios_registrarViaje</artifactId>
+            <version>1.0</version>
+        </dependency>
+    </dependencies>
 </project>

@@ -22,9 +22,9 @@
             <version>1.0</version>
         </dependency>
         <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>Pruebas_Viaje</artifactId>
-            <version>${project.version}</version>
+            <groupId>com.mycompany</groupId>
+            <artifactId>Control_Viaje</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
     <properties>

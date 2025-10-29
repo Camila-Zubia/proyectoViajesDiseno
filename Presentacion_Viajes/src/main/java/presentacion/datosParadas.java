@@ -4,8 +4,11 @@
  */
 package presentacion;
 
+import Control.ControlViaje;
+import dto.ParadaDTO;
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 /**
@@ -14,11 +17,17 @@ import javax.swing.SwingUtilities;
  */
 public class datosParadas extends javax.swing.JPanel {
 
+    private ControlViaje controlViaje;
+
     /**
      * Creates new form datosParadas
      */
     public datosParadas() {
         initComponents();
+        this.controlViaje = menuVehiculos.getControlViaje();
+        if (this.controlViaje == null) {
+            this.controlViaje = new ControlViaje();
+        }
     }
 
     /**
@@ -141,9 +150,38 @@ public class datosParadas extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        // Agregar parada y confirmar viaje
+        String direccion = jTextField1.getText().trim();
+        String precioStr = jTextField2.getText().trim();
+
+        // Agregar parada si hay datos
+        if (!direccion.isEmpty() && !precioStr.isEmpty()) {
+            try {
+                double precio = Double.parseDouble(precioStr);
+                controlViaje.agregarParada(direccion, precio);
+                System.out.println("Parada agregada: " + direccion + " - $" + precio);
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this,
+                    "El precio debe ser un número válido",
+                    "Error en precio",
+                    JOptionPane.ERROR_MESSAGE);
+                return;
+            } catch (IllegalArgumentException e) {
+                JOptionPane.showMessageDialog(this,
+                    e.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        }
+
+        JOptionPane.showMessageDialog(this,
+            "Viaje registrado exitosamente con " + controlViaje.obtenerParadasTemporales().size() + " paradas",
+            "Éxito",
+            JOptionPane.INFORMATION_MESSAGE);
+
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
-        
+
         menuPrincipalConductor panel = new menuPrincipalConductor();
         frame.getContentPane().removeAll();
         frame.getContentPane().add(panel, BorderLayout.CENTER);

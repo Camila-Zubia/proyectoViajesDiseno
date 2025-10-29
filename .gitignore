@@ -1,3 +1,51 @@
-/Presentacion_Viajes/target/
-.idea
-/Pruebas_Viaje/target/
+# Directorios de build/compilación
+**/target/
+**/build/
+**/out/
+**/bin/
+
+# IDEs
+.idea/
+*.iml
+*.iws
+*.ipr
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# NetBeans
+**/nbproject/private/
+**/nbbuild/
+**/dist/
+**/nbdist/
+**/.nb-gradle/
+**/nb-configuration.xml
+
+# Maven
+.mvn/
+mvnw
+mvnw.cmd
+
+# Logs
+*.log
+
+# Archivos de configuración local
+*.properties
+!src/main/resources/*.properties
+
+# Archivos compilados
+*.class
+
+# Archivos de empaquetado
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Carpetas de dependencias
+node_modules/
+.m2/
