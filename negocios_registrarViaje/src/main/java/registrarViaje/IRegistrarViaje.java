@@ -53,4 +53,11 @@ public interface IRegistrarViaje {
      * @param parada objeto que tiene la direccion y el precio
      */
     public void crearParada(ParadaDTO parada);
+
+    /**
+     * obtiene los viajes asociados a un conductor específico
+     * @param nombreConductor nombre del conductor
+     * @return lista de viajes del conductor
+     */
+    public List<ViajeDTO> obtenerViajes(String nombreConductor);
 }

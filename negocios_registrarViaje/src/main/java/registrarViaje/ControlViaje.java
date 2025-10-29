@@ -75,6 +75,14 @@ public class ControlViaje {
         return new ArrayList<>(paradasTemporales);
     }
 
+    // Consulta de Viajes
+    public List<ViajeDTO> obtenerViajesPorConductor(String nombreConductor) {
+        if (nombreConductor == null || nombreConductor.isEmpty()) {
+            throw new IllegalArgumentException("El nombre del conductor no puede estar vacío.");
+        }
+        return fachadaRegistrarViaje.obtenerViajes(nombreConductor);
+    }
+
     // Registro del Viaje
     public ViajeDTO registrarViaje(String origen, String destino, double precioBase) {
         if (origen == null || origen.isEmpty() || destino == null || destino.isEmpty()) {

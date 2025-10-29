@@ -18,11 +18,27 @@ public class RegistrarViaje implements IRegistrarViaje{
 
     private List<ParadaDTO> paradasTemp = new ArrayList<>();
     private List<VehiculoDTO> vehiculosMock = new ArrayList<>();
+    private List<ViajeDTO> viajesMock = new ArrayList<>();
 
     public RegistrarViaje() {
         vehiculosMock.add(new VehiculoDTO("Civic 2020", "ABC-123", "Honda", "Blanco", 4));
         vehiculosMock.add(new VehiculoDTO("Corolla 2021", "XYZ-789", "Toyota", "Gris", 4));
         vehiculosMock.add(new VehiculoDTO("Jetta 2019", "DEF-456", "Volkswagen", "Negro", 4));
+
+        inicializarViajesMock();
+    }
+
+    private void inicializarViajesMock() {
+        List<ParadaDTO> paradas1 = new ArrayList<>();
+        paradas1.add(new ParadaDTO("Tutuli", 50.0));
+        viajesMock.add(new ViajeDTO("Obregón", "Navojoa", new java.util.Date(),
+                java.time.LocalTime.of(10, 30), 250.0, paradas1));
+
+        List<ParadaDTO> paradas2 = new ArrayList<>();
+        paradas2.add(new ParadaDTO("ITSON", 30.0));
+        paradas2.add(new ParadaDTO("Central camiones", 40.0));
+        viajesMock.add(new ViajeDTO("Obregon", "Esperanza", new java.util.Date(),
+                java.time.LocalTime.of(14, 0), 320.0, paradas2));
     }
 
     @Override
@@ -66,6 +82,18 @@ public class RegistrarViaje implements IRegistrarViaje{
             paradasTemp.add(parada);
             System.out.println("MOCK: Parada creada - Direccion: " + parada.getDirección() + ", Precio: $" + parada.getPrecio());
         }
+    }
+
+    @Override
+    public List<ViajeDTO> obtenerViajes(String nombreConductor) {
+        if (nombreConductor == null || nombreConductor.isEmpty()) {
+            System.out.println("MOCK: Nombre de conductor inválido");
+            return new ArrayList<>();
+        }
+
+        System.out.println("MOCK: Obteniendo viajes del conductor: " + nombreConductor);
+        System.out.println("MOCK: Retornando " + viajesMock.size() + " viajes");
+        return new ArrayList<>(viajesMock);
     }
 
 }
