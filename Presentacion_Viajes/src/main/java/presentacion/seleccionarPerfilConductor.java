@@ -4,6 +4,12 @@
  */
 package presentacion;
 
+import java.awt.FlowLayout;
+import java.awt.Image;
+import java.io.File;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
 /**
  *
  * @author adell
@@ -15,6 +21,7 @@ public class seleccionarPerfilConductor extends javax.swing.JFrame {
      */
     public seleccionarPerfilConductor() {
         initComponents();
+        ponerImg();
         this.setLocationRelativeTo(null);
 
     }
@@ -29,50 +36,40 @@ public class seleccionarPerfilConductor extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        panelPasajero = new javax.swing.JPanel();
+        panelConductor = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1080, 640));
 
         jPanel1.setBackground(new java.awt.Color(202, 212, 228));
         jPanel1.setPreferredSize(new java.awt.Dimension(1080, 640));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout panelPasajeroLayout = new javax.swing.GroupLayout(panelPasajero);
+        panelPasajero.setLayout(panelPasajeroLayout);
+        panelPasajeroLayout.setHorizontalGroup(
+            panelPasajeroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 256, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelPasajeroLayout.setVerticalGroup(
+            panelPasajeroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 361, Short.MAX_VALUE)
         );
 
-        jPanel3.addMouseListener(new java.awt.event.MouseAdapter() {
+        panelConductor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanel3MouseClicked(evt);
+                panelConductorMouseClicked(evt);
             }
         });
 
-        jLabel1.setText("CONDUCTOR");
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(79, 79, 79)
-                .addComponent(jLabel1)
-                .addContainerGap(86, Short.MAX_VALUE))
+        javax.swing.GroupLayout panelConductorLayout = new javax.swing.GroupLayout(panelConductor);
+        panelConductor.setLayout(panelConductorLayout);
+        panelConductorLayout.setHorizontalGroup(
+            panelConductorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 238, Short.MAX_VALUE)
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(163, 163, 163)
-                .addComponent(jLabel1)
-                .addContainerGap(182, Short.MAX_VALUE))
+        panelConductorLayout.setVerticalGroup(
+            panelConductorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 361, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -81,9 +78,9 @@ public class seleccionarPerfilConductor extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(211, 211, 211)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelPasajero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(117, 117, 117)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelConductor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(258, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -91,8 +88,8 @@ public class seleccionarPerfilConductor extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(91, 91, 91)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(panelConductor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panelPasajero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(188, Short.MAX_VALUE))
         );
 
@@ -120,20 +117,43 @@ public class seleccionarPerfilConductor extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jPanel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseClicked
+    private void panelConductorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelConductorMouseClicked
         // TODO add your handling code here:
         menuPrincipal menu = new menuPrincipal();
         menu.setVisible(true);
         dispose();
 
-    }//GEN-LAST:event_jPanel3MouseClicked
-
+    }//GEN-LAST:event_panelConductorMouseClicked
+    
+    private void ponerImg(){
+        File imagenC = new File("src\\main\\resources\\conductor.png");
+        panelConductor.setLayout(new FlowLayout());
+        ImageIcon icono = new ImageIcon(imagenC.getAbsolutePath());
+        Image imgEscalada = icono.getImage().getScaledInstance(238, 361, Image.SCALE_SMOOTH);
+        JLabel lblImagen = new JLabel(new ImageIcon(imgEscalada));
+        lblImagen.setAlignmentX(CENTER_ALIGNMENT);
+        
+        panelConductor.add(lblImagen);
+        panelConductor.revalidate();
+        panelConductor.repaint();
+        
+        
+        File imagenP = new File("src\\main\\resources\\pasajero.png");
+        panelPasajero.setLayout(new FlowLayout());
+        ImageIcon icono1 = new ImageIcon(imagenP.getAbsolutePath());
+        Image imgEscalada1 = icono1.getImage().getScaledInstance(238, 361, Image.SCALE_SMOOTH);
+        JLabel lblImagen1 = new JLabel(new ImageIcon(imgEscalada1));
+        lblImagen1.setAlignmentX(CENTER_ALIGNMENT);
+        
+        panelPasajero.add(lblImagen1);
+        panelPasajero.revalidate();
+        panelPasajero.repaint();
+    }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel panelConductor;
+    private javax.swing.JPanel panelPasajero;
     // End of variables declaration//GEN-END:variables
 }

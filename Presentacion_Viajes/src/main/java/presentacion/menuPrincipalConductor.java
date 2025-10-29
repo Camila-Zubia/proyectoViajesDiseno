@@ -4,6 +4,18 @@
  */
 package presentacion;
 
+
+import java.awt.BorderLayout;
+import static java.awt.Component.CENTER_ALIGNMENT;
+import java.awt.FlowLayout;
+import java.awt.Image;
+import java.io.File;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.SwingUtilities;
+
+
 /**
  *
  * @author adell
@@ -19,6 +31,7 @@ public class menuPrincipalConductor extends javax.swing.JPanel {
     public menuPrincipalConductor(ControlPantallas controlPantallas) {
         this.controlPantallas = controlPantallas;
         initComponents();
+        ponerImg();
     }
 
     /**
@@ -32,6 +45,7 @@ public class menuPrincipalConductor extends javax.swing.JPanel {
 
         panelPrincipal = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
+        panelFotoPerfil = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         registrarViajeBtn = new javax.swing.JButton();
@@ -48,15 +62,32 @@ public class menuPrincipalConductor extends javax.swing.JPanel {
             }
         });
 
+        javax.swing.GroupLayout panelFotoPerfilLayout = new javax.swing.GroupLayout(panelFotoPerfil);
+        panelFotoPerfil.setLayout(panelFotoPerfilLayout);
+        panelFotoPerfilLayout.setHorizontalGroup(
+            panelFotoPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 176, Short.MAX_VALUE)
+        );
+        panelFotoPerfilLayout.setVerticalGroup(
+            panelFotoPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 181, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 260, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addComponent(panelFotoPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(41, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 605, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addComponent(panelFotoPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(373, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -128,7 +159,7 @@ public class menuPrincipalConductor extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 1086, Short.MAX_VALUE)
+            .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -144,12 +175,25 @@ public class menuPrincipalConductor extends javax.swing.JPanel {
         // TODO add your handling code here:
         controlPantallas.mostrarMenuVehiculos();
     }//GEN-LAST:event_registrarViajeBtnActionPerformed
-
+    
+    private void ponerImg(){
+        File imagenC = new File("src\\main\\resources\\perfil.png");
+        panelFotoPerfil.setLayout(new FlowLayout());
+        ImageIcon icono = new ImageIcon(imagenC.getAbsolutePath());
+        Image imgEscalada = icono.getImage().getScaledInstance(176, 181, Image.SCALE_SMOOTH);
+        JLabel lblImagen = new JLabel(new ImageIcon(imgEscalada));
+        lblImagen.setAlignmentX(CENTER_ALIGNMENT);
+        
+        panelFotoPerfil.add(lblImagen);
+        panelFotoPerfil.revalidate();
+        panelFotoPerfil.repaint();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel panelFotoPerfil;
     private javax.swing.JPanel panelPrincipal;
     private javax.swing.JButton registrarViajeBtn;
     // End of variables declaration//GEN-END:variables
