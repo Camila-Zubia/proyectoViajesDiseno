@@ -4,20 +4,20 @@
  */
 package presentacion;
 
-import java.awt.BorderLayout;
-import javax.swing.JFrame;
-import javax.swing.SwingUtilities;
-
 /**
  *
  * @author adell
  */
 public class menuPrincipalConductor extends javax.swing.JPanel {
 
+     private final ControlPantallas controlPantallas;
+    
     /**
      * Creates new form menuPrincipalConductor
+     * @param controlPantallas
      */
-    public menuPrincipalConductor() {
+    public menuPrincipalConductor(ControlPantallas controlPantallas) {
+        this.controlPantallas = controlPantallas;
         initComponents();
     }
 
@@ -142,14 +142,7 @@ public class menuPrincipalConductor extends javax.swing.JPanel {
 
     private void registrarViajeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarViajeBtnActionPerformed
         // TODO add your handling code here:
-        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
-        
-        menuVehiculos panel = new menuVehiculos();
-        frame.getContentPane().removeAll();
-        frame.getContentPane().add(panel, BorderLayout.CENTER);
-        frame.revalidate();
-        frame.repaint();
-
+        controlPantallas.mostrarMenuVehiculos();
     }//GEN-LAST:event_registrarViajeBtnActionPerformed
 
 

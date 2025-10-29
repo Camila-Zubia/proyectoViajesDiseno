@@ -4,12 +4,8 @@
  */
 package presentacion;
 
-import Control.ControlViaje;
-import dto.ParadaDTO;
-import java.awt.BorderLayout;
-import javax.swing.JFrame;
+import registrarViaje.ControlViaje;
 import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
 
 /**
  *
@@ -17,13 +13,15 @@ import javax.swing.SwingUtilities;
  */
 public class datosParadas extends javax.swing.JPanel {
 
+    private final ControlPantallas controlPantallas;
     private ControlViaje controlViaje;
 
     /**
      * Creates new form datosParadas
      */
-    public datosParadas() {
+    public datosParadas(ControlPantallas controlPantallas) {
         initComponents();
+        this.controlPantallas = controlPantallas;
         this.controlViaje = menuVehiculos.getControlViaje();
         if (this.controlViaje == null) {
             this.controlViaje = new ControlViaje();
@@ -180,13 +178,7 @@ public class datosParadas extends javax.swing.JPanel {
             "Éxito",
             JOptionPane.INFORMATION_MESSAGE);
 
-        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
-
-        menuPrincipalConductor panel = new menuPrincipalConductor();
-        frame.getContentPane().removeAll();
-        frame.getContentPane().add(panel, BorderLayout.CENTER);
-        frame.revalidate();
-        frame.repaint();
+        controlPantallas.mostrarMenuConductor();
 
     }//GEN-LAST:event_jButton1ActionPerformed
 

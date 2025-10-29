@@ -4,11 +4,8 @@
  */
 package presentacion;
 
-import Control.ControlViaje;
-import java.awt.BorderLayout;
-import javax.swing.JFrame;
+import registrarViaje.ControlViaje;
 import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
 
 /**
  *
@@ -16,12 +13,15 @@ import javax.swing.SwingUtilities;
  */
 public class datosViaje extends javax.swing.JPanel {
 
+    private final ControlPantallas controlPantallas;
     private ControlViaje controlViaje;
 
     /**
      * Creates new form datosViaje
+     * @param controlPantallas
      */
-    public datosViaje() {
+    public datosViaje(ControlPantallas controlPantallas) {
+        this.controlPantallas = controlPantallas;
         initComponents();
         this.controlViaje = menuVehiculos.getControlViaje();
         if (this.controlViaje == null) {
@@ -182,24 +182,12 @@ public class datosViaje extends javax.swing.JPanel {
 
         // Aquí podrías validar el formato de fecha y hora
         // Por ahora solo navegamos a la siguiente pantalla
-        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
-
-        datosParadas panel = new datosParadas();
-        frame.getContentPane().removeAll();
-        frame.getContentPane().add(panel, BorderLayout.CENTER);
-        frame.revalidate();
-        frame.repaint();
+        controlPantallas.mostrarDatosParada();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
-        
-        menuVehiculos panel = new menuVehiculos();
-        frame.getContentPane().removeAll();
-        frame.getContentPane().add(panel, BorderLayout.CENTER);
-        frame.revalidate();
-        frame.repaint();
+        controlPantallas.mostrarMenuVehiculos();
     }//GEN-LAST:event_jButton2ActionPerformed
 
 

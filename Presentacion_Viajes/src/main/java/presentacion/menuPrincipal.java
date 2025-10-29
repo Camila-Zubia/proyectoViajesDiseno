@@ -11,17 +11,19 @@ import javax.swing.JPanel;
  *
  * @author adell
  */
-public class menuPrincipal extends javax.swing.JFrame {
+public final class menuPrincipal extends javax.swing.JFrame {
     
-    menuPrincipalConductor panel = new menuPrincipalConductor();
+    private final ControlPantallas controlPantallas;
+    
     /**
      * Creates new form menuPrincipal
      */
     public menuPrincipal() {
         initComponents();
-        configurarPanel(panel);
         this.setLocationRelativeTo(null);
-
+        controlPantallas = new ControlPantallas(this);
+        menuPrincipalConductor panel = new menuPrincipalConductor(controlPantallas);
+        configurarPanel(panel);
     }
 
     /**
@@ -108,7 +110,7 @@ public class menuPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBoxMenuItem1ActionPerformed
 
-    private void configurarPanel(JPanel panel) {
+    public void configurarPanel(JPanel panel) {
         getContentPane().removeAll();
         getContentPane().setLayout(new BorderLayout());
         getContentPane().add(panel, BorderLayout.CENTER);
