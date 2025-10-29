@@ -12,6 +12,7 @@ import registrarViaje.ControlViaje;
  * @author Camila Zubia 00000244825
  */
 public class ControlPantallas {
+    
     private final menuPrincipal frame;
     private ControlViaje controlViaje = new ControlViaje();
 

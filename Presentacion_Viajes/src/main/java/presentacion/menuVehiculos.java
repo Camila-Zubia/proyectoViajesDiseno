@@ -39,7 +39,7 @@ public class menuVehiculos extends javax.swing.JPanel {
         if (controlViaje == null) {
             controlViaje = new ControlViaje();
         }
-        //mostrarVehiculos(vehiculos);
+        mostrarVehiculos(vehiculos);
         cargarVehiculos();
     }
 
@@ -140,37 +140,42 @@ public class menuVehiculos extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void mostrarVehiculos(List listaVehiculos) {
-        JPanel panelInterno = new JPanel();
-        panelInterno.setLayout(new BoxLayout(panelInterno, BoxLayout.Y_AXIS));
-        panelInterno.setPreferredSize(new Dimension(794, listaVehiculos.size() * 50));
+        if (listaVehiculos != null) {
 
-        for (Object vehiculo : listaVehiculos) {
-            JPanel panelElemento = new JPanel();
-            panelElemento.setLayout(new BoxLayout(panelElemento, BoxLayout.X_AXIS));
-            panelElemento.setPreferredSize(new Dimension(750, 50));
-            panelElemento.setMaximumSize(new Dimension(750, 50));
-            panelElemento.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
-            panelElemento.setBackground(new Color(255, 255, 255));
+            JPanel panelInterno = new JPanel();
+            panelInterno.setLayout(new BoxLayout(panelInterno, BoxLayout.Y_AXIS));
+            panelInterno.setPreferredSize(new Dimension(794, listaVehiculos.size() * 50));
 
-            JButton btnInfo = new JButton();
-            btnInfo.setFont(new Font("Arial", Font.PLAIN, 14));
-            btnInfo.setAlignmentX(Component.LEFT_ALIGNMENT);
-            btnInfo.setHorizontalAlignment(SwingConstants.LEFT);
-            btnInfo.setPreferredSize(new Dimension(700, 40));
-            btnInfo.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
-            btnInfo.setText(vehiculo.toString());
+            for (Object vehiculo : listaVehiculos) {
+                JPanel panelElemento = new JPanel();
+                panelElemento.setLayout(new BoxLayout(panelElemento, BoxLayout.X_AXIS));
+                panelElemento.setPreferredSize(new Dimension(750, 50));
+                panelElemento.setMaximumSize(new Dimension(750, 50));
+                panelElemento.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+                panelElemento.setBackground(new Color(255, 255, 255));
 
-            panelElemento.add(btnInfo);
-            panelInterno.add(panelElemento);
+                JButton btnInfo = new JButton();
+                btnInfo.setFont(new Font("Arial", Font.PLAIN, 14));
+                btnInfo.setAlignmentX(Component.LEFT_ALIGNMENT);
+                btnInfo.setHorizontalAlignment(SwingConstants.LEFT);
+                btnInfo.setPreferredSize(new Dimension(700, 40));
+                btnInfo.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
+                btnInfo.setText(vehiculo.toString());
+
+                panelElemento.add(btnInfo);
+                panelInterno.add(panelElemento);
+            }
+            JScrollPane scrollPane = new JScrollPane(panelInterno);
+            scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+            scrollPane.setPreferredSize(new Dimension(770, 362));
+            jPanel2.removeAll();
+            jPanel2.setLayout(new BorderLayout());
+            jPanel2.add(scrollPane, BorderLayout.CENTER);
+            jPanel2.revalidate();
+            jPanel2.repaint();
+        }else{
+            JOptionPane.showMessageDialog(this, "No hay vehiculos registrados");
         }
-        JScrollPane scrollPane = new JScrollPane(panelInterno);
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        scrollPane.setPreferredSize(new Dimension(770, 362));
-        jPanel2.removeAll();
-        jPanel2.setLayout(new BorderLayout());
-        jPanel2.add(scrollPane, BorderLayout.CENTER);
-        jPanel2.revalidate();
-        jPanel2.repaint();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

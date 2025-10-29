@@ -23,11 +23,6 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>Control_Viaje</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
             <artifactId>Pruebas_Viaje</artifactId>
             <version>${project.version}</version>
         </dependency>
