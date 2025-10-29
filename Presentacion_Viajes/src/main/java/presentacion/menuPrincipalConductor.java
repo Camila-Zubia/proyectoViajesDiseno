@@ -5,15 +5,12 @@
 package presentacion;
 
 
-import java.awt.BorderLayout;
 import static java.awt.Component.CENTER_ALIGNMENT;
 import java.awt.FlowLayout;
 import java.awt.Image;
 import java.io.File;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.SwingUtilities;
 
 
 /**

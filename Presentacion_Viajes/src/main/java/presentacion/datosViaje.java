@@ -4,7 +4,6 @@
  */
 package presentacion;
 
-import registrarViaje.ControlViaje;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,8 +13,6 @@ import javax.swing.JOptionPane;
 public class datosViaje extends javax.swing.JPanel {
 
     private final ControlPantallas controlPantallas;
-    private ControlViaje controlViaje;
-
     /**
      * Creates new form datosViaje
      * @param controlPantallas
@@ -23,10 +20,6 @@ public class datosViaje extends javax.swing.JPanel {
     public datosViaje(ControlPantallas controlPantallas) {
         this.controlPantallas = controlPantallas;
         initComponents();
-        this.controlViaje = menuVehiculos.getControlViaje();
-        if (this.controlViaje == null) {
-            this.controlViaje = new ControlViaje();
-        }
     }
 
     /**

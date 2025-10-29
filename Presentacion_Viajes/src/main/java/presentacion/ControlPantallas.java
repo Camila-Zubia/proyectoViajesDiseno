@@ -27,6 +27,7 @@ public class ControlPantallas {
     }
 
     public void mostrarMenuConductor() {
+        //List viajes = controlViaje.obtenerViajes();
         menuPrincipalConductor menuConductor = new menuPrincipalConductor(this);
         frame.configurarPanel(menuConductor);
     }
@@ -37,7 +38,8 @@ public class ControlPantallas {
     }
 
     public void mostrarDatosParada() {
-        datosParadas datosParadas = new datosParadas(this);
+        List paradas = controlViaje.obtenerParadasTemporales();
+        datosParadas datosParadas = new datosParadas(this, paradas);
         frame.configurarPanel(datosParadas);
     }
 }

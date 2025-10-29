@@ -5,18 +5,27 @@
 package presentacion;
 
 
-import registrarViaje.ControlViaje;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
 import javax.swing.JOptionPane;
 
-import java.awt.BorderLayout;
 import static java.awt.Component.CENTER_ALIGNMENT;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.HeadlessException;
 import java.awt.Image;
 import java.io.File;
+import java.util.List;
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
+import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.SwingUtilities;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.SwingConstants;
 
 
 /**
@@ -26,19 +35,15 @@ import javax.swing.SwingUtilities;
 public class datosParadas extends javax.swing.JPanel {
 
     private final ControlPantallas controlPantallas;
-    private ControlViaje controlViaje;
 
     /**
      * Creates new form datosParadas
+     * @param controlPantallas
      */
-    public datosParadas(ControlPantallas controlPantallas) {
+    public datosParadas(ControlPantallas controlPantallas, List paradas) {
         initComponents();
         this.controlPantallas = controlPantallas;
-        this.controlViaje = menuVehiculos.getControlViaje();
-        if (this.controlViaje == null) {
-            this.controlViaje = new ControlViaje();
-        }
-
+        mostrarParadas(paradas);
     }
 
     /**
@@ -171,7 +176,7 @@ public class datosParadas extends javax.swing.JPanel {
         if (!direccion.isEmpty() && !precioStr.isEmpty()) {
             try {
                 double precio = Double.parseDouble(precioStr);
-                controlViaje.agregarParada(direccion, precio);
+                ////controlViaje.agregarParada(direccion, precio);
                 System.out.println("Parada agregada: " + direccion + " - $" + precio);
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(this,
@@ -189,7 +194,8 @@ public class datosParadas extends javax.swing.JPanel {
         }
 
         JOptionPane.showMessageDialog(this,
-            "Viaje registrado exitosamente con " + controlViaje.obtenerParadasTemporales().size() + " paradas",
+            "Viaje registrado exitosamente con " //+ controlViaje.obtenerParadasTemporales().size() 
+                    + " paradas",
             "Éxito",
             JOptionPane.INFORMATION_MESSAGE);
 
@@ -208,6 +214,49 @@ public class datosParadas extends javax.swing.JPanel {
         panelSigno.add(lblImagen);
         panelSigno.revalidate();
         panelSigno.repaint();
+    }
+    
+    private void mostrarParadas(List paradas) {
+        try {
+            
+            JPanel panelInterno = new JPanel();
+            panelInterno.setLayout(new BoxLayout(panelInterno, BoxLayout.Y_AXIS));
+            panelInterno.setPreferredSize(new Dimension(510, paradas.size() * 50)); //[510, 173]
+
+            for (Object parada : paradas) {
+                JPanel panelElemento = new JPanel();
+                panelElemento.setLayout(new BoxLayout(panelElemento, BoxLayout.X_AXIS));
+                panelElemento.setPreferredSize(new Dimension(500, 50));
+                panelElemento.setMaximumSize(new Dimension(500, 50));
+                panelElemento.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+                panelElemento.setBackground(new Color(255, 255, 255));
+
+                JButton btnInfo = new JButton();
+                btnInfo.setFont(new Font("Arial", Font.PLAIN, 14));
+                btnInfo.setAlignmentX(Component.LEFT_ALIGNMENT);
+                btnInfo.setHorizontalAlignment(SwingConstants.LEFT);
+                btnInfo.setPreferredSize(new Dimension(500, 40));
+                btnInfo.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
+                btnInfo.setText(parada.toString());
+
+                panelElemento.add(btnInfo);
+                panelInterno.add(panelElemento);
+            }
+            JScrollPane scrollPane = new JScrollPane(panelInterno);
+            scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+            scrollPane.setPreferredSize(new Dimension(510, 173));
+            jPanel2.removeAll();
+            jPanel2.setLayout(new BorderLayout());
+            jPanel2.add(scrollPane, BorderLayout.CENTER);
+            jPanel2.revalidate();
+            jPanel2.repaint();
+            
+        } catch (HeadlessException e) {
+            JOptionPane.showMessageDialog(this,
+                "Error al cargar paradas: " + e.getMessage(),
+                "Error",
+                JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
