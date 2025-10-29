@@ -4,7 +4,6 @@
  */
 package presentacion;
 
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -26,7 +25,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
-
+import registrarViaje.ControlViaje;
 
 /**
  *
@@ -35,15 +34,22 @@ import javax.swing.SwingConstants;
 public class datosParadas extends javax.swing.JPanel {
 
     private final ControlPantallas controlPantallas;
-
+    private List paradas;
+    private ControlViaje contro;
     /**
      * Creates new form datosParadas
+     *
      * @param controlPantallas
      */
     public datosParadas(ControlPantallas controlPantallas, List paradas) {
         initComponents();
         this.controlPantallas = controlPantallas;
         mostrarParadas(paradas);
+        this.paradas = paradas;
+        
+        if (this.contro ==null) {
+            this.contro = new ControlViaje();
+        }
     }
 
     /**
@@ -86,8 +92,13 @@ public class datosParadas extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel2.setText("Precio:");
 
-        panelSigno.setBackground(new java.awt.Color(202, 212, 228));
+        panelSigno.setBackground(new java.awt.Color(255, 255, 255));
         panelSigno.setPreferredSize(new java.awt.Dimension(100, 100));
+        panelSigno.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                panelSignoMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelSignoLayout = new javax.swing.GroupLayout(panelSigno);
         panelSigno.setLayout(panelSignoLayout);
@@ -168,6 +179,21 @@ public class datosParadas extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        controlPantallas.mostrarMenuConductor();
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void panelSignoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelSignoMouseClicked
+        // TODO add your handling code here:
+        agregarParada();
+        System.out.println("ejempl" + contro.obtenerParadasTemporales());
+        mostrarParadas(contro.obtenerParadasTemporales());
+        jPanel2.revalidate();
+        jPanel2.repaint();
+    }//GEN-LAST:event_panelSignoMouseClicked
+
+    private void agregarParada() {
         // Agregar parada y confirmar viaje
         String direccion = jTextField1.getText().trim();
         String precioStr = jTextField2.getText().trim();
@@ -176,48 +202,48 @@ public class datosParadas extends javax.swing.JPanel {
         if (!direccion.isEmpty() && !precioStr.isEmpty()) {
             try {
                 double precio = Double.parseDouble(precioStr);
-                ////controlViaje.agregarParada(direccion, precio);
+                contro.agregarParada(direccion, precio);
+                
                 System.out.println("Parada agregada: " + direccion + " - $" + precio);
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(this,
-                    "El precio debe ser un número válido",
-                    "Error en precio",
-                    JOptionPane.ERROR_MESSAGE);
+                        "El precio debe ser un número válido",
+                        "Error en precio",
+                        JOptionPane.ERROR_MESSAGE);
                 return;
             } catch (IllegalArgumentException e) {
                 JOptionPane.showMessageDialog(this,
-                    e.getMessage(),
-                    "Error",
-                    JOptionPane.ERROR_MESSAGE);
+                        e.getMessage(),
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
                 return;
             }
         }
 
         JOptionPane.showMessageDialog(this,
-            "Viaje registrado exitosamente con " //+ controlViaje.obtenerParadasTemporales().size() 
-                    + " paradas",
-            "Éxito",
-            JOptionPane.INFORMATION_MESSAGE);
+                "Viaje registrado exitosamente con " + contro.obtenerParadasTemporales().size() 
+                + " paradas",
+                "Éxito",
+                JOptionPane.INFORMATION_MESSAGE);
 
-        controlPantallas.mostrarMenuConductor();
+    }
 
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void ponerImg(){
+    private void ponerImg() {
         File imagenC = new File("src\\main\\resources\\MAS4.png");
         panelSigno.setLayout(new FlowLayout());
         ImageIcon icono = new ImageIcon(imagenC.getAbsolutePath());
         Image imgEscalada = icono.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         JLabel lblImagen = new JLabel(new ImageIcon(imgEscalada));
         lblImagen.setAlignmentX(CENTER_ALIGNMENT);
-        
+
         panelSigno.add(lblImagen);
         panelSigno.revalidate();
         panelSigno.repaint();
     }
-    
+
     private void mostrarParadas(List paradas) {
         try {
+            jPanel2.removeAll();
             
             JPanel panelInterno = new JPanel();
             panelInterno.setLayout(new BoxLayout(panelInterno, BoxLayout.Y_AXIS));
@@ -241,6 +267,7 @@ public class datosParadas extends javax.swing.JPanel {
 
                 panelElemento.add(btnInfo);
                 panelInterno.add(panelElemento);
+                jPanel2.add(panelInterno);
             }
             JScrollPane scrollPane = new JScrollPane(panelInterno);
             scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
@@ -250,12 +277,12 @@ public class datosParadas extends javax.swing.JPanel {
             jPanel2.add(scrollPane, BorderLayout.CENTER);
             jPanel2.revalidate();
             jPanel2.repaint();
-            
+
         } catch (HeadlessException e) {
             JOptionPane.showMessageDialog(this,
-                "Error al cargar paradas: " + e.getMessage(),
-                "Error",
-                JOptionPane.ERROR_MESSAGE);
+                    "Error al cargar paradas: " + e.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }
 
