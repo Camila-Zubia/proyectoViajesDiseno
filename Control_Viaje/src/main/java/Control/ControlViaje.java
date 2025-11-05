@@ -15,6 +15,7 @@ import java.util.Date;
 import java.util.List;
 import registrarViaje.IRegistrarViaje;
 import registrarViaje.RegistrarViaje;
+import utilidades.SesionUsuario;
 
 /**
  *
@@ -23,15 +24,15 @@ import registrarViaje.RegistrarViaje;
 public class ControlViaje {
 
     private final IRegistrarViaje fachadaRegistrarViaje;
+    private final SesionUsuario sesion;
 
-    // Estado temporal
-    private UsuarioDTO usuarioActivo;
-    private ConductorDTO conductorActivo;
+    // Estado temporal del viaje
     private VehiculoDTO vehiculoSeleccionado;
     private final List<ParadaDTO> paradasTemporales;
 
     public ControlViaje() {
         this.fachadaRegistrarViaje = new RegistrarViaje();
+        this.sesion = SesionUsuario.getInstancia();
         this.paradasTemporales = new ArrayList<>();
     }
 
@@ -40,11 +41,33 @@ public class ControlViaje {
         if (nombre == null || nombre.isEmpty() || contraseña == null || contraseña.isEmpty()) {
             throw new IllegalArgumentException("El usuario o la contraseña no pueden estar vacíos.");
         }
-        this.usuarioActivo = new UsuarioDTO(nombre, contraseña);
+        UsuarioDTO usuario = new UsuarioDTO(nombre, contraseña);
+        sesion.iniciarSesionPasajero(usuario);
     }
 
     public void asignarConductor(String nombre, int calificacion) {
-        this.conductorActivo = new ConductorDTO(nombre, calificacion);
+        if (!sesion.haySesionActiva()) {
+            throw new IllegalStateException("Debe iniciar sesión primero.");
+        }
+        ConductorDTO conductor = new ConductorDTO(nombre, calificacion);
+        sesion.iniciarSesionConductor(sesion.getUsuario(), conductor);
+    }
+
+    // Obtener información de la sesión
+    public UsuarioDTO getUsuarioActivo() {
+        return sesion.getUsuario();
+    }
+
+    public ConductorDTO getConductorActivo() {
+        return sesion.getConductor();
+    }
+
+    public boolean haySesionActiva() {
+        return sesion.haySesionActiva();
+    }
+
+    public void cerrarSesion() {
+        sesion.cerrarSesion();
     }
 
     // Gestión de Vehículos
