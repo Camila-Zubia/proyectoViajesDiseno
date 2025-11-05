@@ -5,12 +5,26 @@
 package presentacion;
 
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
 import static java.awt.Component.CENTER_ALIGNMENT;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.HeadlessException;
 import java.awt.Image;
 import java.io.File;
+import java.util.List;
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.SwingConstants;
 
 
 /**
@@ -29,6 +43,7 @@ public class menuPrincipalConductor extends javax.swing.JPanel {
         this.controlPantallas = controlPantallas;
         initComponents();
         ponerImg();
+       // mostrarViajes(viajes); falta agregar al constructor List viajes
     }
 
     /**
@@ -169,6 +184,52 @@ public class menuPrincipalConductor extends javax.swing.JPanel {
         panelFotoPerfil.add(lblImagen);
         panelFotoPerfil.revalidate();
         panelFotoPerfil.repaint();
+    }
+    
+    private void mostrarViajes(List listaViajes) {
+        try {
+            if (listaViajes != null) {
+
+                JPanel panelInterno = new JPanel();
+                panelInterno.setLayout(new BoxLayout(panelInterno, BoxLayout.Y_AXIS));
+                panelInterno.setPreferredSize(new Dimension(794, listaViajes.size() * 50));
+
+                for (Object viaje : listaViajes) {
+                    JPanel panelElemento = new JPanel();
+                    panelElemento.setLayout(new BoxLayout(panelElemento, BoxLayout.X_AXIS));
+                    panelElemento.setPreferredSize(new Dimension(750, 50));
+                    panelElemento.setMaximumSize(new Dimension(750, 50));
+                    panelElemento.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+                    panelElemento.setBackground(new Color(255, 255, 255));
+
+                    JButton btnInfo = new JButton();
+                    btnInfo.setFont(new Font("Arial", Font.PLAIN, 14));
+                    btnInfo.setAlignmentX(Component.LEFT_ALIGNMENT);
+                    btnInfo.setHorizontalAlignment(SwingConstants.LEFT);
+                    btnInfo.setPreferredSize(new Dimension(700, 40));
+                    btnInfo.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
+                    btnInfo.setText(viaje.toString());
+
+                    panelElemento.add(btnInfo);
+                    panelInterno.add(panelElemento);
+                }
+                JScrollPane scrollPane = new JScrollPane(panelInterno);
+                scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+                scrollPane.setPreferredSize(new Dimension(770, 362));
+                jPanel2.removeAll();
+                jPanel2.setLayout(new BorderLayout());
+                jPanel2.add(scrollPane, BorderLayout.CENTER);
+                jPanel2.revalidate();
+                jPanel2.repaint();
+            } else {
+                JOptionPane.showMessageDialog(this, "No hay viajes registrados");
+            }
+        } catch (HeadlessException e) {
+            JOptionPane.showMessageDialog(this,
+                    "Error al cargar viajes: " + e.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

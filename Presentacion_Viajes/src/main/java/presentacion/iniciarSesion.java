@@ -9,6 +9,8 @@ package presentacion;
  * @author adell
  */
 public class iniciarSesion extends javax.swing.JFrame {
+    
+    private final ControlPantallas controlPantallas;
 
     /**
      * Creates new form iniciarSesion
@@ -16,6 +18,7 @@ public class iniciarSesion extends javax.swing.JFrame {
     public iniciarSesion() {
         initComponents();
         this.setLocationRelativeTo(null);
+        controlPantallas = new ControlPantallas(this);
 
     }
 
@@ -126,10 +129,7 @@ public class iniciarSesion extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-
-        seleccionarPerfilConductor frm = new seleccionarPerfilConductor();
-        frm.setVisible(true);
-        dispose();
+        controlPantallas.mostrarSeleccionarPerfil(this);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -160,10 +160,8 @@ public class iniciarSesion extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new iniciarSesion().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new iniciarSesion().setVisible(true);
         });
     }
 

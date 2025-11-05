@@ -4,7 +4,10 @@
  */
 package presentacion;
 
+import java.awt.BorderLayout;
 import java.util.List;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 import registrarViaje.ControlViaje;
 
 /**
@@ -13,33 +16,55 @@ import registrarViaje.ControlViaje;
  */
 public class ControlPantallas {
     
-    private final menuPrincipal frame;
+    private final JFrame frame;
     private ControlViaje controlViaje = new ControlViaje();
 
-    public ControlPantallas(menuPrincipal frame) {
+    public ControlPantallas(JFrame frame) {
         this.frame = frame;
+    }
+    
+    public void configurarPanel(JPanel panel) {
+        frame.getContentPane().removeAll();
+        frame.getContentPane().setLayout(new BorderLayout());
+        frame.getContentPane().add(panel, BorderLayout.CENTER);
+
+        frame.revalidate();
+        frame.repaint();
     }
 
     public void mostrarMenuVehiculos() {
         List vehiculos = controlViaje.obtenerVehiculosDisponibles();
         menuVehiculos menuVehiculos = new menuVehiculos(this, vehiculos);
-        frame.configurarPanel(menuVehiculos);
+        configurarPanel(menuVehiculos);
     }
 
     public void mostrarMenuConductor() {
-        //List viajes = controlViaje.obtenerViajes();
+        //se debe conseguir el nombre del conductor
+        //List viajes = controlViaje.obtenerViajesPorConductor(nombreConductor);
         menuPrincipalConductor menuConductor = new menuPrincipalConductor(this);
-        frame.configurarPanel(menuConductor);
+        configurarPanel(menuConductor);
     }
 
     public void mostrarDatosViaje() {
         datosViaje datosViaje = new datosViaje(this);
-        frame.configurarPanel(datosViaje);
+        configurarPanel(datosViaje);
     }
 
     public void mostrarDatosParada() {
         List paradas = controlViaje.obtenerParadasTemporales();
         datosParadas datosParadas = new datosParadas(this, paradas);
-        frame.configurarPanel(datosParadas);
+        configurarPanel(datosParadas);
+    }
+    
+    public void mostrarSeleccionarPerfil(JFrame frame){
+        seleccionarPerfilConductor frm = new seleccionarPerfilConductor();
+        frm.setVisible(true);
+        frame.dispose();
+    }
+    
+    public void mostrarMenuPrincipalPrincipal(JFrame frame){
+        menuPrincipal frm = new menuPrincipal();
+        frm.setVisible(true);
+        frame.dispose();
     }
 }

@@ -4,17 +4,13 @@
  */
 package presentacion;
 
-import java.awt.FlowLayout;
-import java.awt.Image;
-import java.io.File;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-
 /**
  *
  * @author adell
  */
 public class seleccionarPerfilConductor extends javax.swing.JFrame {
+    
+    private final ControlPantallas controlPantallas;
 
     /**
      * Creates new form seleccionarPerfilConductor
@@ -22,7 +18,7 @@ public class seleccionarPerfilConductor extends javax.swing.JFrame {
     public seleccionarPerfilConductor() {
         initComponents();
         this.setLocationRelativeTo(null);
-
+        controlPantallas = new ControlPantallas(this);
     }
 
     /**
@@ -78,9 +74,7 @@ public class seleccionarPerfilConductor extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        menuPrincipal menu = new menuPrincipal();
-        menu.setVisible(true);
-        dispose();
+        controlPantallas.mostrarMenuPrincipalPrincipal(this);
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

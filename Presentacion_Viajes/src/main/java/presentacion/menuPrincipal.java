@@ -4,9 +4,6 @@
  */
 package presentacion;
 
-import java.awt.BorderLayout;
-import javax.swing.JPanel;
-
 /**
  *
  * @author adell
@@ -23,7 +20,7 @@ public final class menuPrincipal extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         controlPantallas = new ControlPantallas(this);
         menuPrincipalConductor panel = new menuPrincipalConductor(controlPantallas);
-        configurarPanel(panel);
+        controlPantallas.configurarPanel(panel);
     }
 
     /**
@@ -109,14 +106,6 @@ public final class menuPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBoxMenuItem1ActionPerformed
 
-    public void configurarPanel(JPanel panel) {
-        getContentPane().removeAll();
-        getContentPane().setLayout(new BorderLayout());
-        getContentPane().add(panel, BorderLayout.CENTER);
-
-        revalidate();
-        repaint();
-    }
 
     
 
