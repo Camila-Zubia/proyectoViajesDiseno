@@ -21,7 +21,6 @@ public class seleccionarPerfilConductor extends javax.swing.JFrame {
      */
     public seleccionarPerfilConductor() {
         initComponents();
-        ponerImg();
         this.setLocationRelativeTo(null);
 
     }
@@ -36,61 +35,54 @@ public class seleccionarPerfilConductor extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        panelPasajero = new javax.swing.JPanel();
-        panelConductor = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(202, 212, 228));
         jPanel1.setPreferredSize(new java.awt.Dimension(1080, 640));
 
-        javax.swing.GroupLayout panelPasajeroLayout = new javax.swing.GroupLayout(panelPasajero);
-        panelPasajero.setLayout(panelPasajeroLayout);
-        panelPasajeroLayout.setHorizontalGroup(
-            panelPasajeroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 256, Short.MAX_VALUE)
-        );
-        panelPasajeroLayout.setVerticalGroup(
-            panelPasajeroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 361, Short.MAX_VALUE)
-        );
-
-        panelConductor.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                panelConductorMouseClicked(evt);
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/conductor.png"))); // NOI18N
+        jButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout panelConductorLayout = new javax.swing.GroupLayout(panelConductor);
-        panelConductor.setLayout(panelConductorLayout);
-        panelConductorLayout.setHorizontalGroup(
-            panelConductorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 238, Short.MAX_VALUE)
-        );
-        panelConductorLayout.setVerticalGroup(
-            panelConductorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 361, Short.MAX_VALUE)
-        );
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pasajero.png"))); // NOI18N
+        jButton2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        jLabel1.setText("Elija su modalidad");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(211, 211, 211)
-                .addComponent(panelPasajero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(117, 117, 117)
-                .addComponent(panelConductor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(258, Short.MAX_VALUE))
+                .addGap(276, 276, 276)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(284, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(309, 309, 309))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(91, 91, 91)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelConductor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(panelPasajero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(188, Short.MAX_VALUE))
+                .addGap(45, 45, 45)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE))
+                .addContainerGap(148, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -117,43 +109,18 @@ public class seleccionarPerfilConductor extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void panelConductorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelConductorMouseClicked
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         menuPrincipal menu = new menuPrincipal();
         menu.setVisible(true);
         dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
-    }//GEN-LAST:event_panelConductorMouseClicked
-    
-    private void ponerImg(){
-        File imagenC = new File("src\\main\\resources\\conductor.png");
-        panelConductor.setLayout(new FlowLayout());
-        ImageIcon icono = new ImageIcon(imagenC.getAbsolutePath());
-        Image imgEscalada = icono.getImage().getScaledInstance(238, 361, Image.SCALE_SMOOTH);
-        JLabel lblImagen = new JLabel(new ImageIcon(imgEscalada));
-        lblImagen.setAlignmentX(CENTER_ALIGNMENT);
-        
-        panelConductor.add(lblImagen);
-        panelConductor.revalidate();
-        panelConductor.repaint();
-        
-        
-        File imagenP = new File("src\\main\\resources\\pasajero.png");
-        panelPasajero.setLayout(new FlowLayout());
-        ImageIcon icono1 = new ImageIcon(imagenP.getAbsolutePath());
-        Image imgEscalada1 = icono1.getImage().getScaledInstance(238, 361, Image.SCALE_SMOOTH);
-        JLabel lblImagen1 = new JLabel(new ImageIcon(imgEscalada1));
-        lblImagen1.setAlignmentX(CENTER_ALIGNMENT);
-        
-        panelPasajero.add(lblImagen1);
-        panelPasajero.revalidate();
-        panelPasajero.repaint();
-    }
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel panelConductor;
-    private javax.swing.JPanel panelPasajero;
     // End of variables declaration//GEN-END:variables
 }
