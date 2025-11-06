@@ -53,11 +53,10 @@ public class menuVehiculos extends javax.swing.JPanel {
         jButton2 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        fondo = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(202, 212, 228));
         setMinimumSize(new java.awt.Dimension(1080, 648));
-        setPreferredSize(new java.awt.Dimension(1080, 630));
+        setPreferredSize(new java.awt.Dimension(1080, 640));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(166, 189, 227));
@@ -117,10 +116,6 @@ public class menuVehiculos extends javax.swing.JPanel {
         );
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 40, 880, 550));
-
-        fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/eee.jpg"))); // NOI18N
-        fondo.setPreferredSize(new java.awt.Dimension(1200, 700));
-        add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, 1080, 680));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -179,7 +174,6 @@ public class menuVehiculos extends javax.swing.JPanel {
     
   
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel fondo;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

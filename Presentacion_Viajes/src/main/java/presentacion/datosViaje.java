@@ -41,10 +41,9 @@ public class datosViaje extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        fondo = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(202, 212, 228));
-        setPreferredSize(new java.awt.Dimension(1080, 630));
+        setPreferredSize(new java.awt.Dimension(1080, 640));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(166, 189, 227));
@@ -139,10 +138,6 @@ public class datosViaje extends javax.swing.JPanel {
         );
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, 810, 510));
-
-        fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/eee.jpg"))); // NOI18N
-        fondo.setPreferredSize(new java.awt.Dimension(1200, 700));
-        add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 1080, 630));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
@@ -177,7 +172,6 @@ public class datosViaje extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.github.lgooddatepicker.components.DateTimePicker fechaHora;
-    private javax.swing.JLabel fondo;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;

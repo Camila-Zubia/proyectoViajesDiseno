@@ -38,7 +38,6 @@ public class iniciarSesion extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1080, 640));
@@ -48,8 +47,8 @@ public class iniciarSesion extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(166, 189, 227));
         jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         jLabel3.setText("Ingrese sus datos");
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -57,15 +56,15 @@ public class iniciarSesion extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("USUARIO:");
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel2.setText("CONTRASEÑA:");
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 2, 24)); // NOI18N
         jButton1.setText("INICIAR SESION");
         jButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 2, 24)); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -116,10 +115,6 @@ public class iniciarSesion extends javax.swing.JFrame {
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, -1, -1));
 
-        fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/eee.jpg"))); // NOI18N
-        fondo.setPreferredSize(new java.awt.Dimension(1200, 700));
-        getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1080, 630));
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -166,7 +161,6 @@ public class iniciarSesion extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel fondo;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

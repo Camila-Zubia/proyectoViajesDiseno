@@ -34,10 +34,9 @@ public class seleccionarPerfilConductor extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1080, 630));
+        setPreferredSize(new java.awt.Dimension(1080, 640));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -65,10 +64,6 @@ public class seleccionarPerfilConductor extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, 804, 518));
 
-        fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/eee.jpg"))); // NOI18N
-        fondo.setPreferredSize(new java.awt.Dimension(1200, 700));
-        getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1080, 630));
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -79,7 +74,6 @@ public class seleccionarPerfilConductor extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel fondo;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;

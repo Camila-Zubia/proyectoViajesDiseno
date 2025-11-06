@@ -46,7 +46,7 @@ public final class menuPrincipal extends javax.swing.JFrame {
         setResizable(false);
 
         panelPrincipal.setBackground(new java.awt.Color(202, 212, 228));
-        panelPrincipal.setPreferredSize(new java.awt.Dimension(1080, 638));
+        panelPrincipal.setPreferredSize(new java.awt.Dimension(1080, 640));
 
         javax.swing.GroupLayout panelPrincipalLayout = new javax.swing.GroupLayout(panelPrincipal);
         panelPrincipal.setLayout(panelPrincipalLayout);
@@ -56,7 +56,7 @@ public final class menuPrincipal extends javax.swing.JFrame {
         );
         panelPrincipalLayout.setVerticalGroup(
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 638, Short.MAX_VALUE)
+            .addGap(0, 640, Short.MAX_VALUE)
         );
 
         jMenuBar1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
