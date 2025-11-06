@@ -67,11 +67,11 @@ public class menuPrincipalConductor extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(1080, 638));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        panelPrincipal.setBackground(new java.awt.Color(255,255,255));
+        panelPrincipal.setBackground(new java.awt.Color(202, 212, 228));
         panelPrincipal.setPreferredSize(new java.awt.Dimension(1080, 640));
         panelPrincipal.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(12, 160, 204));
+        jPanel2.setBackground(new java.awt.Color(166, 189, 227));
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -111,7 +111,7 @@ public class menuPrincipalConductor extends javax.swing.JPanel {
 
         panelPrincipal.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(14, 14, -1, 610));
 
-        jPanel3.setBackground(new java.awt.Color(12,160,204));
+        jPanel3.setBackground(new java.awt.Color(166, 189, 227));
         jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -128,8 +128,7 @@ public class menuPrincipalConductor extends javax.swing.JPanel {
             .addGap(0, 310, Short.MAX_VALUE)
         );
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setFont(new java.awt.Font("Candara", 1, 48)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Viajes agendandos");
 
@@ -156,9 +155,7 @@ public class menuPrincipalConductor extends javax.swing.JPanel {
 
         panelPrincipal.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 13, -1, 480));
 
-        registrarViajeBtn.setBackground(new java.awt.Color(230, 230, 230)); 
-        registrarViajeBtn.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N    
-        registrarViajeBtn.setForeground(new java.awt.Color(12, 160, 204));
+        registrarViajeBtn.setFont(new java.awt.Font("Candara", 2, 48)); // NOI18N
         registrarViajeBtn.setText("REGISTRAR NUEVO VIAJE");
         registrarViajeBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)));
         registrarViajeBtn.addActionListener(new java.awt.event.ActionListener() {
