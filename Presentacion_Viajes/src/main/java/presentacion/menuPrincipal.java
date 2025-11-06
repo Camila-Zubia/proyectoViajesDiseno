@@ -43,6 +43,7 @@ public final class menuPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu Principal");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setIconImages(null);
         setResizable(false);
 
         panelPrincipal.setBackground(new java.awt.Color(202, 212, 228));
@@ -64,7 +65,7 @@ public final class menuPrincipal extends javax.swing.JFrame {
         jMenu1.setText("MENU");
 
         jCheckBoxMenuItem1.setSelected(true);
-        jCheckBoxMenuItem1.setText("jCheckBoxMenuItem1");
+        jCheckBoxMenuItem1.setText("Menu Principal");
         jCheckBoxMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBoxMenuItem1ActionPerformed(evt);
@@ -73,11 +74,11 @@ public final class menuPrincipal extends javax.swing.JFrame {
         jMenu1.add(jCheckBoxMenuItem1);
 
         jCheckBoxMenuItem2.setSelected(true);
-        jCheckBoxMenuItem2.setText("jCheckBoxMenuItem2");
+        jCheckBoxMenuItem2.setText("Rutas Frecuentes");
         jMenu1.add(jCheckBoxMenuItem2);
 
         jCheckBoxMenuItem3.setSelected(true);
-        jCheckBoxMenuItem3.setText("jCheckBoxMenuItem3");
+        jCheckBoxMenuItem3.setText("Cerrar Sesion");
         jMenu1.add(jCheckBoxMenuItem3);
 
         jMenuBar1.add(jMenu1);
