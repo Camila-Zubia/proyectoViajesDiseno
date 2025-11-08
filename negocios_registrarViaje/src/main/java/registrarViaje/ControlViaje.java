@@ -16,71 +16,45 @@ import java.util.List;
  */
 public class ControlViaje {
     
-    private final IRegistrarViaje fachadaRegistrarViaje;
+    private final IRegistrarViaje fachada;
 
     // Estado temporal
-    private UsuarioDTO usuarioActivo;
-    private ConductorDTO conductorActivo;
     private VehiculoDTO vehiculoSeleccionado;
     private final List<ParadaDTO> paradasTemporales;
 
     public ControlViaje() {
-        this.fachadaRegistrarViaje = new RegistrarViaje();
+        this.fachada = new RegistrarViaje();
         this.paradasTemporales = new ArrayList<>();
     }
 
-    // Gestión de Usuarios y Conductores
-    public void iniciarSesionUsuario(String nombre, String contraseña) {
-        if (nombre == null || nombre.isEmpty() || contraseña == null || contraseña.isEmpty()) {
-            throw new IllegalArgumentException("El usuario o la contraseña no pueden estar vacíos.");
-        }
-        this.usuarioActivo = new UsuarioDTO(nombre, contraseña);
-    }
-
-    public void asignarConductor(String nombre, int calificacion) {
-        this.conductorActivo = new ConductorDTO(nombre, calificacion);
-    }
-
     // Gestión de Vehículos
-    public List<VehiculoDTO> obtenerVehiculosDisponibles() {
-        return fachadaRegistrarViaje.obtenerVehiculos();
+    public List<VehiculoDTO> obtenerVehiculosDisponibles(ConductorDTO conductor) {
+        return fachada.obtenerVehiculos(conductor);
     }
 
-    public void seleccionarVehiculo(VehiculoDTO vehiculo) {
-        if (vehiculo == null) {
-            throw new IllegalArgumentException("Debe seleccionar un vehículo válido.");
-        }
-        this.vehiculoSeleccionado = fachadaRegistrarViaje.obtenerVehiculo(vehiculo);
-    }
-
-    // Gestion de Paradasd
+    // Gestion de Paradas
     public void agregarParada(String direccion, double precio) {
         if (direccion == null || direccion.isEmpty() || precio < 0) {
             throw new IllegalArgumentException("La dirección no puede estar vacía y el precio debe ser positivo.");
         }
         ParadaDTO parada = new ParadaDTO(direccion, precio);
-        fachadaRegistrarViaje.crearParada(parada);
-        paradasTemporales.add(parada);
+        fachada.crearParada(parada);
     }
-
-    public void agregarListaParadas(List<ParadaDTO> paradas) {
-        if (paradas == null || paradas.isEmpty()) {
-            return;
-        }
-        fachadaRegistrarViaje.agregarAListaParadas(paradas);
-        paradasTemporales.addAll(paradas);
+    
+    public List<ParadaDTO> obtenerParadas(ViajeDTO viaje) {
+        return fachada.obtenerParadas(viaje);
     }
 
     public List<ParadaDTO> obtenerParadasTemporales() {
-        return new ArrayList<>(paradasTemporales);
+        return paradasTemporales;
     }
 
     // Consulta de Viajes
-    public List<ViajeDTO> obtenerViajesPorConductor(String nombreConductor) {
-        if (nombreConductor == null || nombreConductor.isEmpty()) {
-            throw new IllegalArgumentException("El nombre del conductor no puede estar vacío.");
+    public List<ViajeDTO> obtenerViajesPorConductor(ConductorDTO conductor) {
+        if (conductor == null) {
+            throw new IllegalArgumentException("El conductor no puede ser null");
         }
-        return fachadaRegistrarViaje.obtenerViajes(nombreConductor);
+        return fachada.obtenerViajes(conductor);
     }
 
     // Registro del Viaje
@@ -91,10 +65,6 @@ public class ControlViaje {
 
         if (vehiculoSeleccionado == null) {
             throw new IllegalStateException("Debe seleccionar un vehículo antes de registrar el viaje.");
-        }
-
-        if (fachadaRegistrarViaje.validarNoExiste()) {
-            throw new IllegalStateException("Ya existe un viaje con los mismos datos.");
         }
 
         // Calculo del precio total
@@ -108,11 +78,10 @@ public class ControlViaje {
                 destino,
                 new Date(),
                 LocalTime.now(),
-                precioTotal,
-                new ArrayList<>(paradasTemporales)
+                precioTotal
         );
 
-        fachadaRegistrarViaje.crearViaje(viaje);
+        fachada.crearViaje(viaje);
         paradasTemporales.clear();
 
         return viaje;

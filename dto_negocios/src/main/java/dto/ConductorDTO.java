@@ -4,6 +4,9 @@
  */
 package dto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Camila Zubia 00000244825
@@ -12,13 +15,17 @@ public class ConductorDTO {
     
     private String nombre;
     private int calificación;
+    private List<VehiculoDTO> vehiculos;
+    private List<ViajeDTO> viajes;
 
     public ConductorDTO() {
     }
 
-    public ConductorDTO(String nombre, int calificación) {
+    public ConductorDTO(String nombre) {
         this.nombre = nombre;
-        this.calificación = calificación;
+        this.calificación = 100;
+        this.vehiculos = new ArrayList<>();
+        this.viajes = new ArrayList<>();
     }
 
     public String getNombre() {
@@ -35,6 +42,22 @@ public class ConductorDTO {
 
     public void setCalificación(int calificación) {
         this.calificación = calificación;
+    }
+
+    public List<VehiculoDTO> getVehiculos() {
+        return vehiculos;
+    }
+
+    public void setVehiculos(List<VehiculoDTO> vehiculos) {
+        this.vehiculos = vehiculos;
+    }
+
+    public List<ViajeDTO> getViajes() {
+        return viajes;
+    }
+
+    public void setViajes(List<ViajeDTO> viajes) {
+        this.viajes = viajes;
     }
 
     @Override

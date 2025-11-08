@@ -10,7 +10,6 @@ package presentacion;
  */
 public final class menuPrincipal extends javax.swing.JFrame {
     
-    private final ControlPantallas controlPantallas;
     
     /**
      * Creates new form menuPrincipal
@@ -18,9 +17,6 @@ public final class menuPrincipal extends javax.swing.JFrame {
     public menuPrincipal() {
         initComponents();
         this.setLocationRelativeTo(null);
-        controlPantallas = new ControlPantallas(this);
-        menuPrincipalConductor panel = new menuPrincipalConductor(controlPantallas);
-        controlPantallas.configurarPanel(panel);
     }
 
     /**

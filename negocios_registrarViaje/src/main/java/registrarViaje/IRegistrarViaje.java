@@ -4,6 +4,7 @@
  */
 package registrarViaje;
 
+import dto.ConductorDTO;
 import dto.ParadaDTO;
 import dto.VehiculoDTO;
 import dto.ViajeDTO;
@@ -28,25 +29,26 @@ public interface IRegistrarViaje {
      * @param vehiculo contiene la marca, color capacidad, etc.
      * @return regresa el vehiculo seleccionado
      */
-    public VehiculoDTO obtenerVehiculo(VehiculoDTO vehiculo);
+    //public VehiculoDTO obtenerVehiculo(VehiculoDTO vehiculo);
     
     /**
      * recibe la lisra de vehiculos que el conductor tiene registrados
+     * @param conductor
      * @return la lista de vehiculos
      */
-    public List<VehiculoDTO> obtenerVehiculos();
+    public List<VehiculoDTO> obtenerVehiculos(ConductorDTO conductor);
     
     /**
      * valida que el viaje que se esta registrando, no exista en el sistema
      * @return un bollean true = existe, false = no existe
      */
-    public boolean validarNoExiste();
+    //public boolean validarNoExiste();
     
     /**
      * agrega las paradas a la lista del viaje que se esta registrando
      * @param paradas lista
      */
-    public void agregarAListaParadas(List<ParadaDTO> paradas);
+    //public void agregarAListaParadas(List<ParadaDTO> paradas);
     
     /**
      * crea una nueva parada y la asocia al viaje actual
@@ -56,8 +58,15 @@ public interface IRegistrarViaje {
 
     /**
      * obtiene los viajes asociados a un conductor específico
-     * @param nombreConductor nombre del conductor
+     * @param conductor
      * @return lista de viajes del conductor
      */
-    public List<ViajeDTO> obtenerViajes(String nombreConductor);
+    public List<ViajeDTO> obtenerViajes(ConductorDTO conductor);
+    
+    /**
+     * 
+     * @param viaje
+     * @return 
+     */
+    public List<ParadaDTO> obtenerParadas(ViajeDTO viaje);
 }

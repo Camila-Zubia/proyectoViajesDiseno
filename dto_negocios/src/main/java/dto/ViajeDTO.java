@@ -5,6 +5,7 @@
 package dto;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -22,15 +23,16 @@ public class ViajeDTO {
     private List<ParadaDTO> paradas;
 
     public ViajeDTO() {
+        this.paradas = new ArrayList<>();
     }
 
-    public ViajeDTO(String origen, String destino, Date fecha, LocalTime hora, double precioTotal, List<ParadaDTO> paradas) {
+    public ViajeDTO(String origen, String destino, Date fecha, LocalTime hora, double precioTotal) {
         this.origen = origen;
         this.destino = destino;
         this.fecha = fecha;
         this.hora = hora;
         this.precioTotal = precioTotal;
-        this.paradas = paradas;
+        this.paradas = new ArrayList<>();
     }
 
     public String getOrigen() {

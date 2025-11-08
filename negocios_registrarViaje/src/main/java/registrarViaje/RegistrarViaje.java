@@ -4,96 +4,54 @@
  */
 package registrarViaje;
 
+import dto.ConductorDTO;
 import dto.ParadaDTO;
 import dto.VehiculoDTO;
 import dto.ViajeDTO;
-import java.util.ArrayList;
 import java.util.List;
+import objetosNegocio.ParadaNegocio;
+import objetosNegocio.VehiculoNegocio;
+import objetosNegocio.ViajeNegocio;
 
 /**
  *
  * @author Camila Zubia 00000244825
  */
 public class RegistrarViaje implements IRegistrarViaje{
-
-    private List<ParadaDTO> paradasTemp = new ArrayList<>();
-    private List<VehiculoDTO> vehiculosMock = new ArrayList<>();
-    private List<ViajeDTO> viajesMock = new ArrayList<>();
+    
+    private ViajeNegocio viajeBO;
+    private ParadaNegocio paradaBO;
+    private VehiculoNegocio vehiculoBO;
 
     public RegistrarViaje() {
-        vehiculosMock.add(new VehiculoDTO("Civic 2020", "ABC-123", "Honda", "Blanco", 4));
-        vehiculosMock.add(new VehiculoDTO("Corolla 2021", "XYZ-789", "Toyota", "Gris", 4));
-        vehiculosMock.add(new VehiculoDTO("Jetta 2019", "DEF-456", "Volkswagen", "Negro", 4));
-
-        inicializarViajesMock();
-    }
-
-    private void inicializarViajesMock() {
-        List<ParadaDTO> paradas1 = new ArrayList<>();
-        paradas1.add(new ParadaDTO("Tutuli", 50.0));
-        viajesMock.add(new ViajeDTO("Obregón", "Navojoa", new java.util.Date(),
-                java.time.LocalTime.of(10, 30), 250.0, paradas1));
-
-        List<ParadaDTO> paradas2 = new ArrayList<>();
-        paradas2.add(new ParadaDTO("ITSON", 30.0));
-        paradas2.add(new ParadaDTO("Central camiones", 40.0));
-        viajesMock.add(new ViajeDTO("Obregon", "Esperanza", new java.util.Date(),
-                java.time.LocalTime.of(14, 0), 320.0, paradas2));
+        this.viajeBO = new ViajeNegocio();
+        this.paradaBO = new ParadaNegocio();
+        this.vehiculoBO = new VehiculoNegocio();
     }
 
     @Override
     public void crearViaje(ViajeDTO viaje) {
-        System.out.println("MOCK: Viaje creado exitosamente");
-        System.out.println("Origen: " + viaje.getOrigen());
-        System.out.println("Destino: " + viaje.getDestino());
-        System.out.println("Fecha: " + viaje.getFecha());
-        System.out.println("Hora: " + viaje.getHora());
+        viajeBO.registrarViaje(viaje);
     }
 
     @Override
-    public VehiculoDTO obtenerVehiculo(VehiculoDTO vehiculo) {
-        System.out.println("MOCK: Vehiculo obtenido: " + vehiculo.getMarca() + " " + vehiculo.getModelo());
-        return vehiculo;
-    }
-
-    @Override
-    public List<VehiculoDTO> obtenerVehiculos() {
-        System.out.println("MOCK: Retornando " + vehiculosMock.size() + " vehiculos");
-        return new ArrayList<>(vehiculosMock);
-    }
-
-    @Override
-    public boolean validarNoExiste() {
-        System.out.println("MOCK: Validacion exitosa - viaje no existe en el sistema");
-        return false;
-    }
-
-    @Override
-    public void agregarAListaParadas(List<ParadaDTO> paradas) {
-        if (paradas != null) {
-            paradasTemp.addAll(paradas);
-            System.out.println("MOCK: Se agregaron " + paradas.size() + " paradas. Total: " + paradasTemp.size());
-        }
+    public List<VehiculoDTO> obtenerVehiculos(ConductorDTO conductor) {
+        return vehiculoBO.obtenerVehiculos();
     }
 
     @Override
     public void crearParada(ParadaDTO parada) {
-        if (parada != null) {
-            paradasTemp.add(parada);
-            System.out.println("MOCK: Parada creada - Direccion: " + parada.getDirección() + ", Precio: $" + parada.getPrecio());
-        }
+        paradaBO.registrarParada(parada);
     }
 
     @Override
-    public List<ViajeDTO> obtenerViajes(String nombreConductor) {
-        if (nombreConductor == null || nombreConductor.isEmpty()) {
-            System.out.println("MOCK: Nombre de conductor inválido");
-            return new ArrayList<>();
-        }
+    public List<ViajeDTO> obtenerViajes(ConductorDTO conductor) {
+        return viajeBO.obtenerViajes(conductor);
+    }
 
-        System.out.println("MOCK: Obteniendo viajes del conductor: " + nombreConductor);
-        System.out.println("MOCK: Retornando " + viajesMock.size() + " viajes");
-        return new ArrayList<>(viajesMock);
+    @Override
+    public List<ParadaDTO> obtenerParadas(ViajeDTO viaje) {
+        return paradaBO.obtenerParadas();
     }
 
 }

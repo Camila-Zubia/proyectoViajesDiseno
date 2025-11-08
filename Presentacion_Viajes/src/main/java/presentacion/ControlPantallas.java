@@ -4,6 +4,8 @@
  */
 package presentacion;
 
+import dto.UsuarioDTO;
+import iniciarSesion.ControlSesion;
 import java.awt.BorderLayout;
 import java.util.List;
 import javax.swing.JFrame;
@@ -18,6 +20,7 @@ public class ControlPantallas {
     
     private final JFrame frame;
     private ControlViaje controlViaje = new ControlViaje();
+    private UsuarioDTO usuario = ControlSesion.getUsuarioActual();
 
     public ControlPantallas(JFrame frame) {
         this.frame = frame;
@@ -33,16 +36,24 @@ public class ControlPantallas {
     }
 
     public void mostrarMenuVehiculos() {
-        List vehiculos = controlViaje.obtenerVehiculosDisponibles();
+        List vehiculos = controlViaje.obtenerVehiculosDisponibles(usuario.getConductor());
         menuVehiculos menuVehiculos = new menuVehiculos(this, vehiculos);
         configurarPanel(menuVehiculos);
     }
 
     public void mostrarMenuConductor() {
-        //se debe conseguir el nombre del conductor
-        //List viajes = controlViaje.obtenerViajesPorConductor(nombreConductor);
-        menuPrincipalConductor menuConductor = new menuPrincipalConductor(this);
+        List viajes = controlViaje.obtenerViajesPorConductor(usuario.getConductor());
+        menuPrincipalConductor menuConductor = new menuPrincipalConductor(this, viajes);
         configurarPanel(menuConductor);
+    }
+    
+    public void mostrarMenuPrincipalConductor(JFrame frame) {
+        List viajes = controlViaje.obtenerViajesPorConductor(usuario.getConductor());
+        menuPrincipalConductor menuConductor = new menuPrincipalConductor(this, viajes);
+        configurarPanel(menuConductor);
+        menuPrincipal frm = new menuPrincipal();
+        frm.setVisible(true);
+        frame.dispose();
     }
 
     public void mostrarDatosViaje() {
@@ -62,9 +73,4 @@ public class ControlPantallas {
         frame.dispose();
     }
     
-    public void mostrarMenuPrincipalPrincipal(JFrame frame){
-        menuPrincipal frm = new menuPrincipal();
-        frm.setVisible(true);
-        frame.dispose();
-    }
 }

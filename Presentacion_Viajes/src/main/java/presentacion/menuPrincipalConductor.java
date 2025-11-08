@@ -5,6 +5,7 @@
 package presentacion;
 
 
+import dto.ViajeDTO;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -39,9 +40,10 @@ public class menuPrincipalConductor extends javax.swing.JPanel {
      * Creates new form menuPrincipalConductor
      * @param controlPantallas
      */
-    public menuPrincipalConductor(ControlPantallas controlPantallas) {
+    public menuPrincipalConductor(ControlPantallas controlPantallas, List<ViajeDTO> viajes) {
         this.controlPantallas = controlPantallas;
         initComponents();
+        mostrarViajes(viajes);
         ponerImg();
         
        // mostrarViajes(viajes); falta agregar al constructor List viajes
