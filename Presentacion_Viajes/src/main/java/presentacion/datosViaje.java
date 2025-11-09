@@ -107,7 +107,7 @@ public class datosViaje extends javax.swing.JPanel {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(fechaHora, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(fechaHora, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(333, 333, 333)
                         .addComponent(jLabel1)))
@@ -129,7 +129,7 @@ public class datosViaje extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(fechaHora, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fechaHora, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -154,6 +154,24 @@ public class datosViaje extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this,
                 "Por favor complete todos los campos",
                 "Campos incompletos",
+                JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // Validar fecha y hora
+        if (fechaHora.getDateTimeStrict() == null) {
+            JOptionPane.showMessageDialog(this,
+                "Por favor seleccione una fecha y hora válida",
+                "Fecha inválida",
+                JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // Validar que la fecha no sea en el pasado
+        if (fechaHora.getDateTimeStrict().isBefore(java.time.LocalDateTime.now())) {
+            JOptionPane.showMessageDialog(this,
+                "La fecha y hora del viaje no puede ser en el pasado",
+                "Fecha inválida",
                 JOptionPane.WARNING_MESSAGE);
             return;
         }
