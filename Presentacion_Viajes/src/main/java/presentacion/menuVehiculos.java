@@ -26,6 +26,7 @@ import javax.swing.SwingConstants;
 public class menuVehiculos extends javax.swing.JPanel {
 
     private final ControlPantallas controlPantallas;
+    private List vehiculos;
 
     /**
      * Creates new form menuVehiculos
@@ -34,10 +35,11 @@ public class menuVehiculos extends javax.swing.JPanel {
      */
     public menuVehiculos(ControlPantallas controlPantallas, List vehiculos) {
         this.controlPantallas = controlPantallas;
-        
+        this.vehiculos = vehiculos;
+
         initComponents();
         mostrarVehiculos(vehiculos);
-        
+
     }
 
     /**
@@ -159,6 +161,10 @@ public class menuVehiculos extends javax.swing.JPanel {
                     btnInfo.setPreferredSize(new Dimension(700, 40));
                     btnInfo.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
                     btnInfo.setText(vehiculo.toString());
+                    btnInfo.addActionListener(e -> {
+                        controlPantallas.seleccionarVehiculo((dto.VehiculoDTO) vehiculo);
+                        controlPantallas.mostrarDatosViaje();
+                    });
 
                     panelElemento.add(btnInfo);
                     panelInterno.add(panelElemento);

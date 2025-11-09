@@ -1,5 +1,5 @@
-objetosNegocio\ViajeNegocio.class
-objetosNegocio\ConductorNegocio.class
-objetosNegocio\UsuarioNegocio.class
-objetosNegocio\VehiculoNegocio.class
-objetosNegocio\ParadaNegocio.class
+objetosNegocio/UsuarioNegocio.class
+objetosNegocio/ViajeNegocio.class
+objetosNegocio/ParadaNegocio.class
+objetosNegocio/VehiculoNegocio.class
+objetosNegocio/ConductorNegocio.class

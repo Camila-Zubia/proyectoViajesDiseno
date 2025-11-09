@@ -32,6 +32,17 @@ public class ControlViaje {
         return fachada.obtenerVehiculos(conductor);
     }
 
+    public void seleccionarVehiculo(VehiculoDTO vehiculo) {
+        if (vehiculo == null) {
+            throw new IllegalArgumentException("Debe seleccionar un vehículo válido.");
+        }
+        this.vehiculoSeleccionado = vehiculo;
+    }
+
+    public VehiculoDTO getVehiculoSeleccionado() {
+        return vehiculoSeleccionado;
+    }
+
     // Gestion de Paradas
     public void agregarParada(String direccion, double precio) {
         if (direccion == null || direccion.isEmpty() || precio < 0) {

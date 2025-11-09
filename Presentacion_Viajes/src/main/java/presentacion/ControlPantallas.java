@@ -117,4 +117,8 @@ public class ControlPantallas {
         frame.dispose();
         mostrarMenuConductor(frm);
     }
+
+    public void seleccionarVehiculo(dto.VehiculoDTO vehiculo) {
+        controlViaje.seleccionarVehiculo(vehiculo);
+    }
 }
