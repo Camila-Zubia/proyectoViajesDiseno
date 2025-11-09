@@ -20,7 +20,6 @@ public class ControlPantallas {
     
     private final JFrame frame;
     private ControlViaje controlViaje = new ControlViaje();
-    private UsuarioDTO usuario = ControlSesion.getUsuarioActual();
 
     public ControlPantallas(JFrame frame) {
         this.frame = frame;
@@ -34,26 +33,35 @@ public class ControlPantallas {
         frame.revalidate();
         frame.repaint();
     }
+    
+    public void configurarPanel(JFrame frame, JPanel panel) {
+        frame.getContentPane().removeAll();
+        frame.getContentPane().setLayout(new BorderLayout());
+        frame.getContentPane().add(panel, BorderLayout.CENTER);
+
+        frame.revalidate();
+        frame.repaint();
+    }
 
     public void mostrarMenuVehiculos() {
+        UsuarioDTO usuario = ControlSesion.getUsuarioActual();
         List vehiculos = controlViaje.obtenerVehiculosDisponibles(usuario.getConductor());
         menuVehiculos menuVehiculos = new menuVehiculos(this, vehiculos);
         configurarPanel(menuVehiculos);
     }
-
+    
     public void mostrarMenuConductor() {
+        UsuarioDTO usuario = ControlSesion.getUsuarioActual();
         List viajes = controlViaje.obtenerViajesPorConductor(usuario.getConductor());
         menuPrincipalConductor menuConductor = new menuPrincipalConductor(this, viajes);
         configurarPanel(menuConductor);
     }
-    
-    public void mostrarMenuPrincipalConductor(JFrame frame) {
+
+    public void mostrarMenuConductor(JFrame frame) {
+        UsuarioDTO usuario = ControlSesion.getUsuarioActual();
         List viajes = controlViaje.obtenerViajesPorConductor(usuario.getConductor());
         menuPrincipalConductor menuConductor = new menuPrincipalConductor(this, viajes);
-        configurarPanel(menuConductor);
-        menuPrincipal frm = new menuPrincipal();
-        frm.setVisible(true);
-        frame.dispose();
+        configurarPanel(frame, menuConductor);
     }
 
     public void mostrarDatosViaje() {
@@ -73,4 +81,10 @@ public class ControlPantallas {
         frame.dispose();
     }
     
+    public void mostrarMenuPrincipal(JFrame frame){
+        menuPrincipal frm = new menuPrincipal();
+        frm.setVisible(true);
+        frame.dispose();
+        mostrarMenuConductor(frm);
+    }
 }

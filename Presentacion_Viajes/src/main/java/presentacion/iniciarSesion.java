@@ -4,6 +4,11 @@
  */
 package presentacion;
 
+import dto.UsuarioDTO;
+import iniciarSesion.IIniciarSesion;
+import iniciarSesion.IniciarSesion;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author adell
@@ -11,6 +16,7 @@ package presentacion;
 public class iniciarSesion extends javax.swing.JFrame {
     
     private final ControlPantallas controlPantallas;
+    private final IIniciarSesion fachada;
 
     /**
      * Creates new form iniciarSesion
@@ -19,7 +25,7 @@ public class iniciarSesion extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         controlPantallas = new ControlPantallas(this);
-
+        this.fachada = new IniciarSesion();
     }
 
     /**
@@ -146,7 +152,21 @@ public class iniciarSesion extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        controlPantallas.mostrarSeleccionarPerfil(this);
+        String usuario = jTextField1.getText();
+        String contraseña = jTextField2.getText();
+
+        if (usuario.isEmpty() || contraseña.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Usuario y contraseña son obligatorios.");
+            return;
+        }
+
+        UsuarioDTO intento = new UsuarioDTO(usuario, contraseña);
+
+        if (fachada.validarUsuario(intento)) {
+            controlPantallas.mostrarSeleccionarPerfil(this);
+        } else {
+            JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

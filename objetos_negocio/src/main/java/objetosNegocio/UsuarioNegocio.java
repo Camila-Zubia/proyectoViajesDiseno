@@ -17,14 +17,16 @@ public class UsuarioNegocio {
 
     public UsuarioNegocio() {
         usuario = new UsuarioDTO("cperez", "1234");
+        ConductorDTO conductor = new ConductorDTO("carlos");
+        usuario.setConductor(conductor);
     }
 
     public UsuarioDTO obtenerUsuario() {
         return usuario;
     }
 
-    public void asignarConductor(ConductorDTO conductor) {
-        this.usuario.setConductor(conductor);
+    public ConductorDTO obtenerConductor() {
+        return usuario.getConductor();
     }
     
 }

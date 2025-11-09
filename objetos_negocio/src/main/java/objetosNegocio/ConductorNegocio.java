@@ -19,8 +19,7 @@ public class ConductorNegocio {
     private ConductorDTO conductor;
 
     public ConductorNegocio() {
-        conductor = new ConductorDTO("carlos");
-        usuarioBO.asignarConductor(conductor);
+        conductor = usuarioBO.obtenerConductor();
     }
     
     public void agregarVehiculo(VehiculoDTO vehiculo){

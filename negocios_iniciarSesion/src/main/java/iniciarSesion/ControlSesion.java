@@ -35,6 +35,9 @@ public class ControlSesion {
     }
 
     public static ConductorDTO getConductor(UsuarioDTO usuario) {
-        return usuarioActual.getConductor();
+        if(usuarioActual != null){
+            return usuarioActual.getConductor();
+        }
+        return null;
     }
 }
