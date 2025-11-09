@@ -72,14 +72,15 @@ public class ControlViaje {
 
     // Gestión de Vehículos
     public List<VehiculoDTO> obtenerVehiculosDisponibles() {
-        return fachadaRegistrarViaje.obtenerVehiculos();
+       
+        return fachadaRegistrarViaje.obtenerVehiculos(sesion.getConductor());
     }
 
     public void seleccionarVehiculo(VehiculoDTO vehiculo) {
         if (vehiculo == null) {
             throw new IllegalArgumentException("Debe seleccionar un vehículo válido.");
         }
-        this.vehiculoSeleccionado = fachadaRegistrarViaje.obtenerVehiculo(vehiculo);
+        this.vehiculoSeleccionado = vehiculo;
     }
 
     // Gestion de Paradasd
@@ -96,7 +97,7 @@ public class ControlViaje {
         if (paradas == null || paradas.isEmpty()) {
             return;
         }
-        fachadaRegistrarViaje.agregarAListaParadas(paradas);
+        //fachadaRegistrarViaje.agregarAListaParadas(paradas);
         paradasTemporales.addAll(paradas);
     }
 
@@ -114,9 +115,9 @@ public class ControlViaje {
             throw new IllegalStateException("Debe seleccionar un vehículo antes de registrar el viaje.");
         }
 
-        if (fachadaRegistrarViaje.validarNoExiste()) {
-            throw new IllegalStateException("Ya existe un viaje con los mismos datos.");
-        }
+       // if (fachadaRegistrarViaje.validarNoExiste()) {
+        //    throw new IllegalStateException("Ya existe un viaje con los mismos datos.");
+        //}
 
         // Calculo del precio total
         double precioTotal = precioBase;

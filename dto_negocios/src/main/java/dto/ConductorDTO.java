@@ -28,6 +28,14 @@ public class ConductorDTO {
         this.viajes = new ArrayList<>();
     }
 
+    public ConductorDTO(String nombre, int calificación) {
+        this.nombre = nombre;
+        this.calificación = calificación;
+    }
+    
+    
+    
+    
     public String getNombre() {
         return nombre;
     }

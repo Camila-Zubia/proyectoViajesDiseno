@@ -4,7 +4,6 @@
  */
 package presentacion;
 
-
 import dto.ViajeDTO;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -26,7 +25,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
-
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -34,20 +33,23 @@ import javax.swing.SwingConstants;
  */
 public class menuPrincipalConductor extends javax.swing.JPanel {
 
-     private final ControlPantallas controlPantallas;
-    
+    private final ControlPantallas controlPantallas;
+
     /**
      * Creates new form menuPrincipalConductor
+     *
      * @param controlPantallas
      * @param viajes
      */
     public menuPrincipalConductor(ControlPantallas controlPantallas, List<ViajeDTO> viajes) {
         this.controlPantallas = controlPantallas;
+        
+        
         initComponents();
         mostrarViajes(viajes);
         ponerImg();
-        
-       // mostrarViajes(viajes); falta agregar al constructor List viajes
+
+        // mostrarViajes(viajes); falta agregar al constructor List viajes
     }
 
     /**
@@ -70,7 +72,6 @@ public class menuPrincipalConductor extends javax.swing.JPanel {
         setBackground(new java.awt.Color(0, 109, 182));
         setMinimumSize(new java.awt.Dimension(1080, 640));
         setPreferredSize(new java.awt.Dimension(1080, 638));
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -130,8 +131,6 @@ public class menuPrincipalConductor extends javax.swing.JPanel {
                 .addGap(40, 40, 40))
         );
 
-        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, 600));
-
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 0, 0)));
 
@@ -172,7 +171,24 @@ public class menuPrincipalConductor extends javax.swing.JPanel {
                 .addContainerGap(39, Short.MAX_VALUE))
         );
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, 720, 600));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
@@ -181,22 +197,24 @@ public class menuPrincipalConductor extends javax.swing.JPanel {
 
     private void registrarViajeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarViajeBtnActionPerformed
         // TODO add your handling code here:
-        controlPantallas.mostrarMenuVehiculos();
+       
+                controlPantallas.mostrarMenuVehiculos();
+         
     }//GEN-LAST:event_registrarViajeBtnActionPerformed
-    
-    private void ponerImg(){
+
+    private void ponerImg() {
         File imagenC = new File("src\\main\\resources\\perfil.png");
         panelFotoPerfil.setLayout(new FlowLayout());
         ImageIcon icono = new ImageIcon(imagenC.getAbsolutePath());
         Image imgEscalada = icono.getImage().getScaledInstance(161, 161, Image.SCALE_SMOOTH);
         JLabel lblImagen = new JLabel(new ImageIcon(imgEscalada));
         lblImagen.setAlignmentX(CENTER_ALIGNMENT);
-        
+
         panelFotoPerfil.add(lblImagen);
         panelFotoPerfil.revalidate();
         panelFotoPerfil.repaint();
     }
-    
+
     private void mostrarViajes(List listaViajes) {
         try {
             if (listaViajes != null) {

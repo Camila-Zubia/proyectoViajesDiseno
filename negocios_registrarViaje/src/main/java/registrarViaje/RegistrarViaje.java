@@ -38,6 +38,10 @@ public class RegistrarViaje implements IRegistrarViaje{
     public List<VehiculoDTO> obtenerVehiculos(ConductorDTO conductor) {
         return vehiculoBO.obtenerVehiculos();
     }
+    
+    public List<VehiculoDTO> obtenerVehiculo(ConductorDTO conductor) {
+        return vehiculoBO.obtenerVehiculos();
+    }
 
     @Override
     public void crearParada(ParadaDTO parada) {

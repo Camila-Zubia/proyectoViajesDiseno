@@ -47,6 +47,8 @@ public class ControlPantallas {
         UsuarioDTO usuario = ControlSesion.getUsuarioActual();
         List vehiculos = controlViaje.obtenerVehiculosDisponibles(usuario.getConductor());
         menuVehiculos menuVehiculos = new menuVehiculos(this, vehiculos);
+        
+        
         configurarPanel(menuVehiculos);
     }
     
