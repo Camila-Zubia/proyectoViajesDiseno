@@ -25,7 +25,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
 
 /**
  *
@@ -48,7 +47,10 @@ public class menuPrincipalConductor extends javax.swing.JPanel {
         initComponents();
         mostrarViajes(viajes);
         ponerImg();
-
+        
+        this.setVisible(true);
+        this.revalidate();
+        this.repaint();
         // mostrarViajes(viajes); falta agregar al constructor List viajes
     }
 
@@ -197,9 +199,9 @@ public class menuPrincipalConductor extends javax.swing.JPanel {
 
     private void registrarViajeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarViajeBtnActionPerformed
         // TODO add your handling code here:
-       
-                controlPantallas.mostrarMenuVehiculos();
-         
+        
+        controlPantallas.mostrarMenuVehiculos();
+
     }//GEN-LAST:event_registrarViajeBtnActionPerformed
 
     private void ponerImg() {

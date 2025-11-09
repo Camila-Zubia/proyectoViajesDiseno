@@ -8,17 +8,17 @@ package presentacion;
  *
  * @author adell
  */
-public class seleccionarPerfilConductor extends javax.swing.JFrame {
+public class seleccionarPerfilConductor extends javax.swing.JPanel {
     
     private final ControlPantallas controlPantallas;
 
     /**
      * Creates new form seleccionarPerfilConductor
      */
-    public seleccionarPerfilConductor() {
+    public seleccionarPerfilConductor(ControlPantallas controlPantallas) {
+        this.controlPantallas = controlPantallas;
         initComponents();
-        this.setLocationRelativeTo(null);
-        controlPantallas = new ControlPantallas(this);
+        
     }
 
     /**
@@ -37,10 +37,7 @@ public class seleccionarPerfilConductor extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1080, 640));
-        setResizable(false);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setLayout(new java.awt.BorderLayout());
 
         jPanel1.setBackground(new java.awt.Color(0, 109, 182));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -76,15 +73,13 @@ public class seleccionarPerfilConductor extends javax.swing.JFrame {
         jLabel3.setText("PASAJERO");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 520, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 630));
-
-        pack();
+        add(jPanel1, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         
-        controlPantallas.mostrarMenuPrincipal(this);
+        controlPantallas.mostrarMenuConductor();
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

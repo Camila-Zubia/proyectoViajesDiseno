@@ -163,7 +163,7 @@ public class iniciarSesion extends javax.swing.JFrame {
         UsuarioDTO intento = new UsuarioDTO(usuario, contraseña);
 
         if (fachada.validarUsuario(intento)) {
-            controlPantallas.mostrarSeleccionarPerfil(this);
+            controlPantallas.mostrarSeleccionarPerfil();
         } else {
             JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
         }
