@@ -154,13 +154,62 @@ public class iniciarSesion extends javax.swing.JFrame {
         // TODO add your handling code here:
         String usuario = jTextField1.getText();
         String contraseña = jTextField2.getText();
-
-        if (usuario.isEmpty() || contraseña.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Usuario y contraseña son obligatorios.");
+        
+        // ejecuta metodo de validacion para los datos de inicio de sesion
+        if (!ValidarEntradas(usuario, contraseña)){
             return;
         }
-
+    
         UsuarioDTO intento = new UsuarioDTO(usuario, contraseña);
+
+        
+        // llamando a la fachada
+        if (fachada.validarUsuario(intento)) {
+            controlPantallas.mostrarSeleccionarPerfil();
+        } else {
+        // Despliegue de notificaciones de error en las entradas
+            JOptionPane.showMessageDialog(this,
+                "Usuario o contraseña incorrectos",
+                "Error de autenticación",
+                JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+        //Metodo de validación donde se aplican todos los filtros a las entradas}
+        private boolean validarEntradas (String usuario, String contraseña)  {
+            if (usuario.isEmpty() || contraseña.isEmpty()){
+                  JOptionPane.showMessageDialog(this,
+                "Usuario y contraseña son obligatorios.",
+                "Campos vacíos",
+                JOptionPane.WARNING_MESSAGE);
+                return false;
+                
+            }
+            // validacion de seguridad: la contraseña solo puede ser mayor a 4 caracteres
+            if (contraseña.lenght()< 4){
+                JOptionPane.showMessageDialog(this,
+                    "La contraseña debe tener al menos 4 caracteres.",
+                    "Contraseña demasiado corta",
+                    JOptionPane.ERROR_MESSAGE);
+                return false;   
+            }
+            // Validación de contraseña:filtración de caracteres para solo carecteres seguros
+            if (!contraseña.matches("[a-zA-Z0-9@#$%^&+=!]*")) {
+                JOptionPane.showMessageDialog(this,
+                    "La contraseña contiene caracteres no permitidos.\n" +
+                    "Solo se permiten letras, números y @ # $ % ^ & + = !",
+                    "Carácter inválido",
+                    JOptionPane.ERROR_MESSAGE);
+                return false;
+        }
+
+            
+
+          return true;  
+        }
+
+    
+
 
         if (fachada.validarUsuario(intento)) {
             controlPantallas.mostrarSeleccionarPerfil();
