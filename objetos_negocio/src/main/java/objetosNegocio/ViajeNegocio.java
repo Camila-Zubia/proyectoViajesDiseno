@@ -35,8 +35,9 @@ public class ViajeNegocio {
     public void registrarViaje(ViajeDTO viaje){
         if (validarNoExiste(viaje)) {
             conductorBO.obtenerViajes().add(viaje);
+        } else {
+            throw new IllegalStateException("Ya existe un viaje con los mismos datos.");
         }
-        throw new IllegalStateException("Ya existe un viaje con los mismos datos.");
     }
     
     public List<ParadaDTO> obtenerParadas(){

@@ -182,9 +182,24 @@ public class datosParadas extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            // Registrar el viaje con todos los datos guardados
+            controlPantallas.confirmarViaje();
 
-        controlPantallas.mostrarMenuConductor();
+            JOptionPane.showMessageDialog(this,
+                    "Viaje registrado exitosamente",
+                    "Éxito",
+                    JOptionPane.INFORMATION_MESSAGE);
 
+            // Mostrar menú conductor
+            controlPantallas.mostrarMenuConductor();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,
+                    "Error al registrar el viaje: " + e.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

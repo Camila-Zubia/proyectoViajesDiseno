@@ -122,4 +122,12 @@ public class ControlPantallas {
     public void seleccionarVehiculo(dto.VehiculoDTO vehiculo) {
         controlViaje.seleccionarVehiculo(vehiculo);
     }
+
+    public void guardarDatosViaje(String origen, String destino, double precioBase) {
+        controlViaje.guardarDatosViaje(origen, destino, precioBase);
+    }
+
+    public void confirmarViaje() {
+        controlViaje.confirmarViaje();
+    }
 }

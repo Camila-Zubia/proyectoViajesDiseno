@@ -21,6 +21,9 @@ public class ControlViaje {
     // Estado temporal
     private VehiculoDTO vehiculoSeleccionado;
     private final List<ParadaDTO> paradasTemporales;
+    private String origenTemporal;
+    private String destinoTemporal;
+    private double precioBaseTemporal;
 
     public ControlViaje() {
         this.fachada = new RegistrarViaje();
@@ -41,6 +44,13 @@ public class ControlViaje {
 
     public VehiculoDTO getVehiculoSeleccionado() {
         return vehiculoSeleccionado;
+    }
+
+    // Gestión de datos del viaje
+    public void guardarDatosViaje(String origen, String destino, double precioBase) {
+        this.origenTemporal = origen;
+        this.destinoTemporal = destino;
+        this.precioBaseTemporal = precioBase;
     }
 
     // Gestion de Paradas
@@ -97,5 +107,13 @@ public class ControlViaje {
         paradasTemporales.clear();
 
         return viaje;
+    }
+
+    // Registrar viaje con datos guardados temporalmente
+    public ViajeDTO confirmarViaje() {
+        if (origenTemporal == null || destinoTemporal == null) {
+            throw new IllegalStateException("Debe guardar los datos del viaje primero.");
+        }
+        return registrarViaje(origenTemporal, destinoTemporal, precioBaseTemporal);
     }
 }

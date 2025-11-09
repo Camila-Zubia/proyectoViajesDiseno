@@ -146,12 +146,11 @@ public class datosViaje extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // Validar y guardar los datos del viaje antes de continuar
-       
-        String destino = jTextField2.getText().trim();
-      
-        String horaStr = jTextField4.getText().trim();
-        
-        if ( destino.isEmpty()  || horaStr.isEmpty()) {
+
+        String origen = jTextField2.getText().trim();
+        String destino = jTextField4.getText().trim();
+
+        if (origen.isEmpty() || destino.isEmpty()) {
             JOptionPane.showMessageDialog(this,
                 "Por favor complete todos los campos",
                 "Campos incompletos",
@@ -159,8 +158,10 @@ public class datosViaje extends javax.swing.JPanel {
             return;
         }
 
-        // Aquí podrías validar el formato de fecha y hora
-        // Por ahora solo navegamos a la siguiente pantalla
+        // Guardar los datos del viaje temporalmente (precio base 0, se calcula después)
+        controlPantallas.guardarDatosViaje(origen, destino, 0.0);
+
+        // Navegar a la siguiente pantalla
         controlPantallas.mostrarDatosParada();
     }//GEN-LAST:event_jButton1ActionPerformed
 
