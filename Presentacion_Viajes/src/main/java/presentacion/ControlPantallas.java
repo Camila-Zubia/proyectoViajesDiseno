@@ -50,6 +50,11 @@ public class ControlPantallas {
         frame.setLocationRelativeTo(null);
     }
 
+    public ControlViaje getControlViaje() {
+        return controlViaje;
+    }
+    
+    
     public void configurarPanel(JFrame frame, JPanel panel) {
         frame.getContentPane().removeAll();
         frame.getContentPane().setLayout(new BorderLayout());
@@ -60,7 +65,7 @@ public class ControlPantallas {
     }
 
     public void mostrarMenuVehiculos() {
-        try {
+        
             UsuarioDTO usuario = ControlSesion.getUsuarioActual();
 
             List vehiculos = controlViaje.obtenerVehiculosDisponibles(usuario.getConductor());
@@ -71,11 +76,7 @@ public class ControlPantallas {
 
             frame.setVisible(true);
 
-        } catch (Exception e) {
-
-            System.err.println("Error en menu vehiculos" + e.getMessage());
-            e.printStackTrace();
-        }
+        
     }
 
     public void mostrarMenuConductor() {
