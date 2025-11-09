@@ -30,6 +30,7 @@ public class datosParadas extends javax.swing.JPanel {
     private final ControlPantallas controlPantallas;
     private List paradas;
     private ControlViaje contro;
+
     /**
      * Creates new form datosParadas
      *
@@ -40,10 +41,9 @@ public class datosParadas extends javax.swing.JPanel {
         this.controlPantallas = controlPantallas;
         mostrarParadas(paradas);
         this.paradas = paradas;
-        
-        if (this.contro ==null) {
-            this.contro = new ControlViaje();
-        }
+
+        this.contro = controlPantallas.getControlViaje();
+
     }
 
     /**
@@ -190,7 +190,7 @@ public class datosParadas extends javax.swing.JPanel {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         agregarParada();
-        System.out.println("ejempl" + contro.obtenerParadasTemporales());
+        System.out.println("ejemplo" + contro.obtenerParadasTemporales());
         mostrarParadas(contro.obtenerParadasTemporales());
         jPanel2.revalidate();
         jPanel2.repaint();
@@ -206,7 +206,7 @@ public class datosParadas extends javax.swing.JPanel {
             try {
                 double precio = Double.parseDouble(precioStr);
                 contro.agregarParada(direccion, precio);
-                
+
                 System.out.println("Parada agregada: " + direccion + " - $" + precio);
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(this,
@@ -224,30 +224,28 @@ public class datosParadas extends javax.swing.JPanel {
         }
 
         JOptionPane.showMessageDialog(this,
-                "Viaje registrado exitosamente con " + contro.obtenerParadasTemporales().size() 
+                "Viaje registrado exitosamente con " + contro.obtenerParadasTemporales().size()
                 + " paradas",
                 "Éxito",
                 JOptionPane.INFORMATION_MESSAGE);
 
     }
 
-   
-
     private void mostrarParadas(List paradas) {
         try {
             jPanel2.removeAll();
-            
+
             JPanel panelInterno = new JPanel();
             panelInterno.setLayout(new BoxLayout(panelInterno, BoxLayout.Y_AXIS));
             panelInterno.setPreferredSize(new Dimension(490, paradas.size() * 50)); //[510, 173]
             panelInterno.setBackground(Color.WHITE);
-            
+
             for (Object parada : paradas) {
                 JPanel panelElemento = new JPanel();
                 panelElemento.setLayout(new BoxLayout(panelElemento, BoxLayout.X_AXIS));
                 panelElemento.setPreferredSize(new Dimension(504, 50));
                 panelElemento.setMaximumSize(new Dimension(504, 50));
-                panelElemento.setBorder(BorderFactory.createEmptyBorder(5,10,5,10));
+                panelElemento.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
                 panelElemento.setBackground(new Color(255, 255, 255));
 
                 JButton btnInfo = new JButton();
@@ -263,7 +261,7 @@ public class datosParadas extends javax.swing.JPanel {
                 jPanel2.add(panelInterno);
             }
             JScrollPane scrollPane = new JScrollPane(panelInterno);
-            
+
             scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
             scrollPane.setPreferredSize(new Dimension(514, 177));
             jPanel2.removeAll();

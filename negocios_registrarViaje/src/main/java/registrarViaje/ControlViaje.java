@@ -39,6 +39,7 @@ public class ControlViaje {
         }
         ParadaDTO parada = new ParadaDTO(direccion, precio);
         fachada.crearParada(parada);
+        paradasTemporales.add(parada);
     }
     
     public List<ParadaDTO> obtenerParadas(ViajeDTO viaje) {
