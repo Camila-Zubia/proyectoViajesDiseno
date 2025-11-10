@@ -215,12 +215,20 @@ public class datosParadas extends javax.swing.JPanel {
         // Agregar parada y confirmar viaje
         String direccion = jTextField1.getText().trim();
         String precioStr = jTextField2.getText().trim();
+        
+        //validacion de campos vacios
+        if (direccion.isEmpty() || precioStr.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Direccion y precio son obligatorios.", "Campos Vacíos", JOptionPane.WARNING_MESSAGE);
+        return;
+    }
 
         // Agregar parada si hay datos
         if (!direccion.isEmpty() && !precioStr.isEmpty()) {
             try {
                 double precio = Double.parseDouble(precioStr);
                 contro.agregarParada(direccion, precio);
+                jTextField1.setText("");
+                jTextField2.setText("");
 
                 System.out.println("Parada agregada: " + direccion + " - $" + precio);
             } catch (NumberFormatException e) {

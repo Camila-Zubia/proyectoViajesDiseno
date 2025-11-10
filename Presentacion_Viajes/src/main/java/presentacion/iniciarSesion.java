@@ -8,6 +8,7 @@ import dto.UsuarioDTO;
 import iniciarSesion.IIniciarSesion;
 import iniciarSesion.IniciarSesion;
 import javax.swing.JOptionPane;
+import presentacion.ControlPantallas;
 
 /**
  *
@@ -156,7 +157,7 @@ public class iniciarSesion extends javax.swing.JFrame {
         String contraseña = jTextField2.getText();
         
         // ejecuta metodo de validacion para los datos de inicio de sesion
-        if (!ValidarEntradas(usuario, contraseña)){
+        if (!validarEntradas(usuario, contraseña)){
             return;
         }
     
@@ -186,7 +187,7 @@ public class iniciarSesion extends javax.swing.JFrame {
                 
             }
             // validacion de seguridad: la contraseña solo puede ser mayor a 4 caracteres
-            if (contraseña.lenght()< 4){
+            if (contraseña.length()< 4){
                 JOptionPane.showMessageDialog(this,
                     "La contraseña debe tener al menos 4 caracteres.",
                     "Contraseña demasiado corta",
@@ -206,16 +207,10 @@ public class iniciarSesion extends javax.swing.JFrame {
             
 
           return true;  
-        }
+
 
     
 
-
-        if (fachada.validarUsuario(intento)) {
-            controlPantallas.mostrarSeleccionarPerfil();
-        } else {
-            JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
-        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

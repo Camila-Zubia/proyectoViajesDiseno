@@ -157,6 +157,12 @@ public class datosViaje extends javax.swing.JPanel {
                 JOptionPane.WARNING_MESSAGE);
             return;
         }
+        
+        // validacion de tipo de dato origen y destino solo con texto
+    if (origen.matches(".*\\d.*") || destino.matches(".*\\d.*")) {
+        JOptionPane.showMessageDialog(this, "El Origen y Destino no deben contener números. Ingrese solo texto.", "Dato Invalido", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
 
         // Validar fecha y hora
         if (fechaHora.getDateTimeStrict() == null) {

@@ -4,6 +4,7 @@
  */
 package presentacion;
 
+import dto.VehiculoDTO;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -27,6 +28,7 @@ public class menuVehiculos extends javax.swing.JPanel {
 
     private final ControlPantallas controlPantallas;
     private List vehiculos;
+    private VehiculoDTO vehiculoSeleccionadoDTO; // almacena el vehiculo seleccionado
 
     /**
      * Creates new form menuVehiculos
@@ -133,8 +135,13 @@ public class menuVehiculos extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+       // validacion, verificar si se selecciono un vehiculo
+        if (this.vehiculoSeleccionadoDTO == null) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un vehiculo para continuar.", "Seleccion Requerida", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         
+        controlPantallas.seleccionarVehiculo(this.vehiculoSeleccionadoDTO);
         controlPantallas.mostrarDatosViaje();
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -162,8 +169,9 @@ public class menuVehiculos extends javax.swing.JPanel {
                     btnInfo.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
                     btnInfo.setText(vehiculo.toString());
                     btnInfo.addActionListener(e -> {
-                        controlPantallas.seleccionarVehiculo((dto.VehiculoDTO) vehiculo);
-                        controlPantallas.mostrarDatosViaje();
+                        this.vehiculoSeleccionadoDTO = (dto.VehiculoDTO) vehiculo;
+                       // controlPantallas.seleccionarVehiculo((dto.VehiculoDTO) vehiculo);
+                       // controlPantallas.mostrarDatosViaje();
                     });
 
                     panelElemento.add(btnInfo);
