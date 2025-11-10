@@ -178,22 +178,32 @@ public class iniciarSesion extends javax.swing.JFrame {
 
         //Metodo de validación donde se aplican todos los filtros a las entradas}
         private boolean validarEntradas (String usuario, String contraseña)  {
-            if (usuario.isEmpty() || contraseña.isEmpty()){
-                  JOptionPane.showMessageDialog(this,
+        if (usuario.isEmpty() || contraseña.isEmpty()) {
+            JOptionPane.showMessageDialog(this,
                 "Usuario y contraseña son obligatorios.",
                 "Campos vacíos",
                 JOptionPane.WARNING_MESSAGE);
-                return false;
-                
-            }
-            // validacion de seguridad: la contraseña solo puede ser mayor a 4 caracteres
-            if (contraseña.length()< 4){
-                JOptionPane.showMessageDialog(this,
-                    "La contraseña debe tener al menos 4 caracteres.",
-                    "Contraseña demasiado corta",
-                    JOptionPane.ERROR_MESSAGE);
-                return false;   
-            }
+            return false;
+        }
+
+        // Solo permite letras y números en el nombre de usuario
+        if (!usuario.matches("[a-zA-Z]+")) {
+            JOptionPane.showMessageDialog(this,
+                "El nombre de usuario solo puede contener letras y números.",
+                "Formato inválido",
+                JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
+        // Contraseña mínima de 4 caracteres
+        if (contraseña.length() < 4) {
+            JOptionPane.showMessageDialog(this,
+                "La contraseña debe tener al menos 4 caracteres.",
+                "Contraseña demasiado corta",
+                JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
             // Validación de contraseña:filtración de caracteres para solo carecteres seguros
             if (!contraseña.matches("[a-zA-Z0-9@#$%^&+=!]*")) {
                 JOptionPane.showMessageDialog(this,
@@ -203,13 +213,10 @@ public class iniciarSesion extends javax.swing.JFrame {
                     JOptionPane.ERROR_MESSAGE);
                 return false;
         }
-
-            
+           
 
           return true;  
-
-
-    
+ 
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
