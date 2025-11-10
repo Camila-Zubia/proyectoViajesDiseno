@@ -221,6 +221,19 @@ public class datosParadas extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(this, "Direccion y precio son obligatorios.", "Campos Vacíos", JOptionPane.WARNING_MESSAGE);
         return;
     }
+        // validacion de parada duplicada
+    List<dto.ParadaDTO> paradasGuardadas = contro.obtenerParadasTemporales(); 
+    
+    for (dto.ParadaDTO paradaExistente : paradasGuardadas) {
+        // comparamos la direccion ingresada con las direcciones existentes
+        if (paradaExistente.getDirección().trim().equalsIgnoreCase(direccion.trim())) {
+            JOptionPane.showMessageDialog(this, 
+                "La parada que quiere registrar ya existe en este viaje, intente con una diferente.",
+                "Parada Duplicada", 
+                JOptionPane.ERROR_MESSAGE);
+            return; 
+        }
+    }
 
         // Agregar parada si hay datos
         if (!direccion.isEmpty() && !precioStr.isEmpty()) {
