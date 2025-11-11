@@ -183,6 +183,15 @@ public class datosParadas extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
+            // Validar que haya al menos una parada registrada
+            if (contro.obtenerParadasTemporales().isEmpty()) {
+                JOptionPane.showMessageDialog(this,
+                        "Debe agregar al menos una parada al viaje",
+                        "Parada requerida",
+                        JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
             // Registrar el viaje con todos los datos guardados
             controlPantallas.confirmarViaje();
 

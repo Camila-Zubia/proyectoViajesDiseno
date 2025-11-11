@@ -114,6 +114,9 @@ public class ControlViaje {
         if (origenTemporal == null || destinoTemporal == null) {
             throw new IllegalStateException("Debe guardar los datos del viaje primero.");
         }
+        if (paradasTemporales.isEmpty()) {
+            throw new IllegalStateException("El viaje debe tener al menos una parada.");
+        }
         return registrarViaje(origenTemporal, destinoTemporal, precioBaseTemporal);
     }
 }
