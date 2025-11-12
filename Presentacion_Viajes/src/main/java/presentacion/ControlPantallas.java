@@ -4,10 +4,12 @@
  */
 package presentacion;
 
+import com.github.lgooddatepicker.components.DatePicker;
 import dto.UsuarioDTO;
 import iniciarSesion.IIniciarSesion;
 import iniciarSesion.IniciarSesion;
 import java.awt.BorderLayout;
+import java.time.LocalDate;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -106,8 +108,8 @@ public class ControlPantallas {
         interfaz.seleccionarVehiculo(vehiculo);
     }
 
-    public void guardarDatosViaje(String origen, String destino, double precioBase) {
-        interfaz.guardarDatosViaje(origen, destino, precioBase);
+    public void guardarDatosViaje(String origen, String destino, double precioBase, LocalDate hora) {
+        interfaz.guardarDatosViaje(origen, destino, precioBase, hora);
     }
 
     public void confirmarViaje() {

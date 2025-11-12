@@ -8,6 +8,7 @@ import dto.ConductorDTO;
 import dto.ParadaDTO;
 import dto.VehiculoDTO;
 import dto.ViajeDTO;
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -33,8 +34,8 @@ public class RegistrarViaje implements IRegistrarViaje{
     }
 
     @Override
-    public void guardarDatosViaje(String origen, String destino, double precioBase) {
-        control.guardarDatosViaje(origen, destino, precioBase);
+    public void guardarDatosViaje(String origen, String destino, double precioBase, LocalDate fecha) {
+        control.guardarDatosViaje(origen, destino, precioBase, fecha);
     }
 
     @Override

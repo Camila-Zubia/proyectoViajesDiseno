@@ -5,6 +5,7 @@
 package registrarViaje;
 
 import dto.*;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
@@ -27,6 +28,7 @@ public class ControlViaje {
     private String origenTemporal;
     private String destinoTemporal;
     private double precioBaseTemporal;
+    private LocalDate horaTemporal;
 
     public ControlViaje() {
         this.viajeBO = new ViajeNegocio();
@@ -58,10 +60,11 @@ public class ControlViaje {
     }
 
     // Gestión de datos del viaje
-    public void guardarDatosViaje(String origen, String destino, double precioBase) {
+    public void guardarDatosViaje(String origen, String destino, double precioBase, LocalDate fecha) {
         this.origenTemporal = origen;
         this.destinoTemporal = destino;
         this.precioBaseTemporal = precioBase;
+        this.horaTemporal = fecha;
     }
     
     // Gestion de Paradas

@@ -8,6 +8,7 @@ import dto.ConductorDTO;
 import dto.ParadaDTO;
 import dto.VehiculoDTO;
 import dto.ViajeDTO;
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -35,7 +36,7 @@ public interface IRegistrarViaje {
      * @param destino
      * @param precioBase 
      */
-    public void guardarDatosViaje(String origen, String destino, double precioBase);
+    public void guardarDatosViaje(String origen, String destino, double precioBase, LocalDate fecha);
     
     /**
      * crea una parada y la agrega a la lista de paradas

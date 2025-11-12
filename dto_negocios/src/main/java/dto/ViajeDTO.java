@@ -99,7 +99,7 @@ public class ViajeDTO {
     public String toString() {
         return "Origen = " + origen + 
                 ", destino = " + destino + 
-                ", fecha = " + fecha.getDay()+ "/" + fecha.getMonth() +
+                ", fecha = " + fecha.getDate()+ "/" + fecha.getMonth() +
                 ", hora = " + hora + 
                 ", precioTotal = " + precioTotal;
     }
