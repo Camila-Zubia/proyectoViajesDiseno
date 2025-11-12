@@ -67,18 +67,18 @@ public class seleccionarPerfilConductor extends javax.swing.JPanel {
         });
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 140, 236, 361));
 
-        jLabel1.setText("Elija su modalidad");
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 40, 430, 68));
+        jLabel1.setText("ELIJA SU MODALIDAD");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 40, 510, 68));
 
-        jLabel2.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("CONDUCTOR");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 520, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("PASAJERO");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 520, -1, -1));

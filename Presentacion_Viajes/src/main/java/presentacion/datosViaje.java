@@ -51,30 +51,47 @@ public class datosViaje extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(1080, 640));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel1.setBackground(new java.awt.Color(0, 109, 182));
 
+        origenTField.setBackground(new java.awt.Color(255, 255, 255));
+        origenTField.setForeground(new java.awt.Color(0, 0, 0));
+
+        destinoTField.setBackground(new java.awt.Color(255, 255, 255));
+        destinoTField.setForeground(new java.awt.Color(0, 0, 0));
         destinoTField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 destinoTFieldActionPerformed(evt);
             }
         });
 
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel3.setText("Destino:");
-        jLabel3.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
 
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("Origen:");
-        jLabel2.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
 
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel4.setText("Fecha y hora:");
-        jLabel4.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
 
+        fechaHora.setBackground(new java.awt.Color(255, 255, 255));
+        fechaHora.setForeground(new java.awt.Color(0, 0, 0));
+
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("VIAJE");
-        jLabel1.setFont(new java.awt.Font("Georgia", 0, 48)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
 
         confirmarViajeBtn.setText("Siguiente");
-        confirmarViajeBtn.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        confirmarViajeBtn.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
+        confirmarViajeBtn.setBackground(new java.awt.Color(255, 255, 255));
+        confirmarViajeBtn.setBorder(null);
+        confirmarViajeBtn.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        confirmarViajeBtn.setForeground(new java.awt.Color(0, 0, 0));
         confirmarViajeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 confirmarViajeBtnActionPerformed(evt);
@@ -82,17 +99,23 @@ public class datosViaje extends javax.swing.JPanel {
         });
 
         regresarMenuVehiculosBtn.setText("Regresar");
-        regresarMenuVehiculosBtn.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        regresarMenuVehiculosBtn.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
+        regresarMenuVehiculosBtn.setBackground(new java.awt.Color(255, 255, 255));
+        regresarMenuVehiculosBtn.setBorder(null);
+        regresarMenuVehiculosBtn.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        regresarMenuVehiculosBtn.setForeground(new java.awt.Color(0, 0, 0));
         regresarMenuVehiculosBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 regresarMenuVehiculosBtnActionPerformed(evt);
             }
         });
 
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel5.setText("Precio:");
-        jLabel5.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
 
+        PrecioTextField.setBackground(new java.awt.Color(255, 255, 255));
+        PrecioTextField.setForeground(new java.awt.Color(0, 0, 0));
         PrecioTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PrecioTextFieldActionPerformed(evt);
@@ -127,7 +150,7 @@ public class datosViaje extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(333, 333, 333)
                         .addComponent(jLabel1)))
-                .addContainerGap(114, Short.MAX_VALUE))
+                .addContainerGap(112, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -143,7 +166,7 @@ public class datosViaje extends javax.swing.JPanel {
                         .addGap(26, 26, 26)
                         .addComponent(destinoTField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(PrecioTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))

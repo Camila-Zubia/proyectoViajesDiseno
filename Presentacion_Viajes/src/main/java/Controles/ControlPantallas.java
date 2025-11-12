@@ -16,7 +16,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import presentacion.datosParadas;
 import presentacion.datosViaje;
-import presentacion.menuPrincipal;
 import presentacion.menuPrincipalConductor;
 import presentacion.menuVehiculos;
 import presentacion.seleccionarPerfilConductor;
@@ -79,13 +78,6 @@ public class ControlPantallas {
         configurarPanel(menuConductor);
     }
 
-    public void mostrarMenuConductor(JFrame frame) {
-        UsuarioDTO usuario = sesion.obtenerUsuario();
-        List viajes = interfaz.obtenerViajesPorConductor(usuario.getConductor());
-        menuPrincipalConductor menuConductor = new menuPrincipalConductor(this, viajes);
-        configurarPanel(frame, menuConductor);
-    }
-
     public void mostrarDatosViaje() {
         datosViaje datosViaje = new datosViaje(this);
         configurarPanel(datosViaje);
@@ -102,13 +94,6 @@ public class ControlPantallas {
         configurarPanel(panel);
         panel.setVisible(true);
         frame.setTitle("Seleccionar Perfil");
-    }
-
-    public void mostrarMenuPrincipal(JFrame frame) {
-        menuPrincipal frm = new menuPrincipal();
-        frm.setVisible(true);
-        frame.dispose();
-        mostrarMenuConductor(frm);
     }
 
     public void seleccionarVehiculo(dto.VehiculoDTO vehiculo) {

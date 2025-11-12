@@ -23,6 +23,7 @@ public class iniciarSesion extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         controlPantallas = new ControlPantallas(this);
+        jMenuBar1.setVisible(false);
     }
 
     /**
@@ -42,6 +43,12 @@ public class iniciarSesion extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         iniciarSesionBtn = new javax.swing.JButton();
         contraseñaField = new javax.swing.JPasswordField();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem3 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 109, 182));
@@ -50,37 +57,46 @@ public class iniciarSesion extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(0, 109, 182));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1080, 700));
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel2.setBackground(new java.awt.Color(0, 109, 182));
 
-        jLabel3.setFont(new java.awt.Font("Arial Narrow", 0, 48)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("INGRESE SUS DATOS");
 
+        usuarioField.setBackground(new java.awt.Color(255, 255, 255));
+        usuarioField.setForeground(new java.awt.Color(0, 0, 0));
         usuarioField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 usuarioFieldActionPerformed(evt);
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Arial Narrow", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("USUARIO:");
 
-        jLabel2.setFont(new java.awt.Font("Arial Narrow", 0, 24)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("CONTRASEÑA:");
 
-        iniciarSesionBtn.setFont(new java.awt.Font("Arial Narrow", 2, 24)); // NOI18N
+        iniciarSesionBtn.setBackground(new java.awt.Color(255, 255, 255));
+        iniciarSesionBtn.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        iniciarSesionBtn.setForeground(new java.awt.Color(0, 0, 0));
         iniciarSesionBtn.setText("INICIAR SESION");
-        iniciarSesionBtn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        iniciarSesionBtn.setBorder(null);
         iniciarSesionBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 iniciarSesionBtnActionPerformed(evt);
             }
         });
 
+        contraseñaField.setBackground(new java.awt.Color(255, 255, 255));
+        contraseñaField.setForeground(new java.awt.Color(0, 0, 0));
         contraseñaField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 contraseñaFieldActionPerformed(evt);
@@ -108,14 +124,14 @@ public class iniciarSesion extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 502, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(120, 120, 120))
+                .addGap(101, 101, 101))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(72, 72, 72)
+                .addGap(56, 56, 56)
                 .addComponent(jLabel3)
-                .addGap(76, 76, 76)
+                .addGap(92, 92, 92)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(usuarioField, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
@@ -135,76 +151,92 @@ public class iniciarSesion extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(160, 160, 160)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(198, Short.MAX_VALUE))
+                .addContainerGap(176, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(63, 63, 63)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(100, Short.MAX_VALUE))
+                .addContainerGap(94, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1080, 640));
 
+        jMenu1.setText("OPCIONES");
+
+        jMenuItem1.setText("Menú Principal");
+        jMenu1.add(jMenuItem1);
+
+        jMenuItem2.setText("jMenuItem2");
+        jMenu1.add(jMenuItem2);
+        jMenu1.add(jSeparator1);
+
+        jMenuItem3.setText("Cerrar Sesión");
+        jMenu1.add(jMenuItem3);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void usuarioFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioFieldActionPerformed
+    private void contraseñaFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contraseñaFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_usuarioFieldActionPerformed
+    }//GEN-LAST:event_contraseñaFieldActionPerformed
 
     private void iniciarSesionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarSesionBtnActionPerformed
         // TODO add your handling code here:
         String usuario = usuarioField.getText();
         String contraseña = contraseñaField.getText();
-        
+
         // ejecuta metodo de validacion para los datos de inicio de sesion
         if (!validarEntradas(usuario, contraseña)){
             return;
         }
-    
+
         UsuarioDTO intento = new UsuarioDTO(usuario, contraseña);
-        
+
         // llamando a la fachada
         if (controlPantallas.validarUsuario(intento)) {
             controlPantallas.mostrarSeleccionarPerfil();
         } else {
-        // Despliegue de notificaciones de error en las entradas
+            // Despliegue de notificaciones de error en las entradas
             JOptionPane.showMessageDialog(this,
                 "Usuario o contraseña incorrectos",
                 "Error de autenticación",
                 JOptionPane.ERROR_MESSAGE);
         }
-    }
+        }
 
         //Metodo de validación donde se aplican todos los filtros a las entradas}
         private boolean validarEntradas (String usuario, String contraseña)  {
-        if (usuario.isEmpty() || contraseña.isEmpty()) {
-            JOptionPane.showMessageDialog(this,
-                "Usuario y contraseña son obligatorios.",
-                "Campos vacíos",
-                JOptionPane.WARNING_MESSAGE);
-            return false;
-        }
+            if (usuario.isEmpty() || contraseña.isEmpty()) {
+                JOptionPane.showMessageDialog(this,
+                    "Usuario y contraseña son obligatorios.",
+                    "Campos vacíos",
+                    JOptionPane.WARNING_MESSAGE);
+                return false;
+            }
 
-        // Solo permite letras y números en el nombre de usuario
-        if (!usuario.matches("[a-zA-Z]+")) {
-            JOptionPane.showMessageDialog(this,
-                "El nombre de usuario solo puede contener letras y números.",
-                "Formato inválido",
-                JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
+            // Solo permite letras y números en el nombre de usuario
+            if (!usuario.matches("[a-zA-Z]+")) {
+                JOptionPane.showMessageDialog(this,
+                    "El nombre de usuario solo puede contener letras y números.",
+                    "Formato inválido",
+                    JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
 
-        // Contraseña mínima de 4 caracteres
-        if (contraseña.length() < 4) {
-            JOptionPane.showMessageDialog(this,
-                "La contraseña debe tener al menos 4 caracteres.",
-                "Contraseña demasiado corta",
-                JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
+            // Contraseña mínima de 4 caracteres
+            if (contraseña.length() < 4) {
+                JOptionPane.showMessageDialog(this,
+                    "La contraseña debe tener al menos 4 caracteres.",
+                    "Contraseña demasiado corta",
+                    JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
 
             // Validación de contraseña:filtración de caracteres para solo carecteres seguros
             if (!contraseña.matches("[a-zA-Z0-9@#$%^&+=!]*")) {
@@ -214,14 +246,14 @@ public class iniciarSesion extends javax.swing.JFrame {
                     "Carácter inválido",
                     JOptionPane.ERROR_MESSAGE);
                 return false;
-        }
-          return true;  
- 
+            }
+            mostrarBarraMenu();
+            return true;
     }//GEN-LAST:event_iniciarSesionBtnActionPerformed
 
-    private void contraseñaFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contraseñaFieldActionPerformed
+    private void usuarioFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_contraseñaFieldActionPerformed
+    }//GEN-LAST:event_usuarioFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -255,6 +287,11 @@ public class iniciarSesion extends javax.swing.JFrame {
             new iniciarSesion().setVisible(true);
         });
     }
+    
+    private void mostrarBarraMenu(){
+        jMenuBar1.setEnabled(true);
+        jMenuBar1.setVisible(true);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPasswordField contraseñaField;
@@ -262,8 +299,14 @@ public class iniciarSesion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JTextField usuarioField;
     // End of variables declaration//GEN-END:variables
 }

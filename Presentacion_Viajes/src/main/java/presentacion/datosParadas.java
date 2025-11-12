@@ -67,10 +67,10 @@ public class datosParadas extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(1080, 640));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(0, 109, 182));
 
         mostrarParadasPanel.setBackground(new java.awt.Color(255, 255, 255));
-        mostrarParadasPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        mostrarParadasPanel.setForeground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout mostrarParadasPanelLayout = new javax.swing.GroupLayout(mostrarParadasPanel);
         mostrarParadasPanel.setLayout(mostrarParadasPanelLayout);
@@ -83,36 +83,47 @@ public class datosParadas extends javax.swing.JPanel {
             .addGap(0, 173, Short.MAX_VALUE)
         );
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("Direccion:");
-        jLabel1.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("Precio:");
-        jLabel2.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
 
-        precioTField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        precioTField.setBackground(new java.awt.Color(255, 255, 255));
+        precioTField.setForeground(new java.awt.Color(0, 0, 0));
+        precioTField.setBorder(null);
 
-        direccionTField.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
+        direccionTField.setBackground(new java.awt.Color(255, 255, 255));
+        direccionTField.setForeground(new java.awt.Color(0, 0, 0));
+        direccionTField.setBorder(null);
 
+        agregarParadaBtn.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         agregarParadaBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MAS1.jpg"))); // NOI18N
         agregarParadaBtn.setBorder(null);
-        agregarParadaBtn.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         agregarParadaBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 agregarParadaBtnActionPerformed(evt);
             }
         });
 
+        confirmarViajeBtn.setBackground(new java.awt.Color(255, 255, 255));
+        confirmarViajeBtn.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        confirmarViajeBtn.setForeground(new java.awt.Color(0, 0, 0));
         confirmarViajeBtn.setText("Confirmar Viaje");
-        confirmarViajeBtn.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        confirmarViajeBtn.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
+        confirmarViajeBtn.setBorder(null);
         confirmarViajeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 confirmarViajeBtnActionPerformed(evt);
             }
         });
 
-        jLabel3.setText("Paradas Registradas");
-        jLabel3.setFont(new java.awt.Font("Georgia", 0, 48)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("PARADAS REGISTRADAS");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -122,10 +133,6 @@ public class datosParadas extends javax.swing.JPanel {
                 .addGap(0, 632, Short.MAX_VALUE)
                 .addComponent(confirmarViajeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(219, 219, 219)
-                .addComponent(jLabel3)
-                .addContainerGap(219, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(207, 207, 207)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -143,8 +150,13 @@ public class datosParadas extends javax.swing.JPanel {
                         .addGap(160, 160, 160))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(mostrarParadasPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(160, 160, 160))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(mostrarParadasPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(160, 160, 160))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(146, 146, 146))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -172,7 +184,7 @@ public class datosParadas extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(48, 48, 48)
                         .addComponent(agregarParadaBtn)
-                        .addContainerGap(68, Short.MAX_VALUE))))
+                        .addContainerGap(62, Short.MAX_VALUE))))
         );
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, 870, 570));
@@ -297,7 +309,8 @@ public class datosParadas extends javax.swing.JPanel {
                 panelElemento.setBackground(new Color(255, 255, 255));
 
                 JButton btnInfo = new JButton();
-                btnInfo.setFont(new Font("Arial", Font.PLAIN, 14));
+                btnInfo.setFont(new Font("Segoe UI", Font.BOLD, 12));
+                btnInfo.setBackground(Color.WHITE);
                 btnInfo.setAlignmentX(Component.LEFT_ALIGNMENT);
                 btnInfo.setHorizontalAlignment(SwingConstants.LEFT);
                 btnInfo.setPreferredSize(new Dimension(500, 40));
