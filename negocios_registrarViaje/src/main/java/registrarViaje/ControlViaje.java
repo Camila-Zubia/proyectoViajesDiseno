@@ -9,7 +9,6 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import objetosNegocio.ParadaNegocio;
 import objetosNegocio.VehiculoNegocio;
 import objetosNegocio.ViajeNegocio;
 
@@ -20,7 +19,6 @@ import objetosNegocio.ViajeNegocio;
 public class ControlViaje {
     
     private ViajeNegocio viajeBO;
-    private ParadaNegocio paradaBO;
     private VehiculoNegocio vehiculoBO;
 
     // Estado temporal
@@ -32,7 +30,6 @@ public class ControlViaje {
 
     public ControlViaje() {
         this.viajeBO = new ViajeNegocio();
-        this.paradaBO = new ParadaNegocio();
         this.vehiculoBO = new VehiculoNegocio();
         this.paradasTemporales = new ArrayList<>();
     }
@@ -45,8 +42,8 @@ public class ControlViaje {
         return new ParadaDTO(origenTemporal, 0.0);
     }
     
-    public void crearParada(ParadaDTO parada) {
-        paradaBO.registrarParada(parada);
+    public void crearParada(ViajeDTO viaje, ParadaDTO parada) {
+        viajeBO.registrarParada(viaje, parada);
     }
     
     public List<VehiculoDTO> obtenerVehiculos(ConductorDTO conductor) {
@@ -73,12 +70,11 @@ public class ControlViaje {
             throw new IllegalArgumentException("La dirección no puede estar vacía y el precio debe ser positivo.");
         }
         ParadaDTO parada = new ParadaDTO(direccion, precio);
-        crearParada(parada);
         paradasTemporales.add(parada);
     }
     
     public List<ParadaDTO> obtenerParadas(ViajeDTO viaje) {
-        return paradaBO.obtenerParadas();
+        return viajeBO.obtenerParadas();
     }
 
     public List<ParadaDTO> obtenerParadasTemporales() {
@@ -117,7 +113,7 @@ public class ControlViaje {
                 LocalTime.now(),
                 precioTotal
         );
-
+        viaje.setParadas(paradasTemporales);
         crearViaje(viaje);
         paradasTemporales.clear();
 

@@ -12,16 +12,16 @@ import java.util.List;
  * @author Camila Zubia 00000244825
  */
 public class VehiculoNegocio {
-
-    ConductorNegocio conductorBO = new ConductorNegocio();
+    
+    List<VehiculoDTO> vehiculos = UsuarioNegocio.obtenerConductor().getVehiculos();
     
     public VehiculoNegocio() {
-        conductorBO.agregarVehiculo(new VehiculoDTO("Civic 2020", "ABC-123", "Honda", "Blanco", 4));
-        conductorBO.agregarVehiculo(new VehiculoDTO("Corolla 2021", "XYZ-789", "Toyota", "Gris", 4));
-        conductorBO.agregarVehiculo(new VehiculoDTO("Jetta 2019", "DEF-456", "Volkswagen", "Negro", 4));
+        vehiculos.add(new VehiculoDTO("Civic 2020", "ABC-123", "Honda", "Blanco", 4));
+        vehiculos.add(new VehiculoDTO("Corolla 2021", "XYZ-789", "Toyota", "Gris", 4));
+        vehiculos.add(new VehiculoDTO("Jetta 2019", "DEF-456", "Volkswagen", "Negro", 4));
     }
     
     public List<VehiculoDTO> obtenerVehiculos(){
-        return conductorBO.obtenerVehiculos();
+        return vehiculos;
     }
 }

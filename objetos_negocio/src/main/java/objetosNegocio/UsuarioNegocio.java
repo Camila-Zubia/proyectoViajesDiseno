@@ -18,6 +18,7 @@ public class UsuarioNegocio {
     private UsuarioNegocio() {
         UsuarioNegocio.usuarioActual = new UsuarioDTO("cperez", "1234");
         UsuarioNegocio.usuarioActual.setConductor(new ConductorDTO("carlos"));
+        
     }
 
     public static UsuarioDTO obtenerUsuario() {

@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class ViajeNegocio {
     
-    ConductorNegocio conductorBO = new ConductorNegocio();
+    List<ViajeDTO> viajes = UsuarioNegocio.obtenerConductor().getViajes();
     private ViajeDTO viaje1;
     private ViajeDTO viaje2;
     
@@ -24,17 +24,20 @@ public class ViajeNegocio {
                 java.time.LocalTime.of(10, 30), 250.0);
         viaje2 = new ViajeDTO("Obregon", "Esperanza", new java.util.Date(),
                 java.time.LocalTime.of(14, 0), 320.0);
-        conductorBO.agregarViaje(viaje1);
-        conductorBO.agregarViaje(viaje2);
+        viajes.add(viaje1);
+        viajes.add(viaje2);
+        viaje1.getParadas().add(new ParadaDTO("Tutuli", 50.0));
+        viaje1.getParadas().add(new ParadaDTO("ITSON", 30.0));
+        viaje2.getParadas().add(new ParadaDTO("Central camiones", 40.0));
     }
     
     public List<ViajeDTO> obtenerViajes(ConductorDTO conductor) {
-        return conductorBO.obtenerViajes();
+        return viajes;
     }
     
     public void registrarViaje(ViajeDTO viaje){
         if (validarNoExiste(viaje)) {
-            conductorBO.obtenerViajes().add(viaje);
+            viajes.add(viaje);
         } else {
             throw new IllegalStateException("Ya existe un viaje con los mismos datos.");
         }
@@ -44,12 +47,11 @@ public class ViajeNegocio {
         return viaje1.getParadas();
     }
     
-    public void registrarParada(ParadaDTO parada){
-        viaje2.getParadas().add(parada);
+    public void registrarParada(ViajeDTO viaje, ParadaDTO parada){
+        viaje.getParadas().add(parada);
     }
     
     private boolean validarNoExiste(ViajeDTO viaje){
-        List<ViajeDTO> viajes = conductorBO.obtenerViajes();
         for (ViajeDTO v : viajes) {
             if (v == viaje) {
                 return false;
