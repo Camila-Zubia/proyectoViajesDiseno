@@ -65,8 +65,8 @@
                           </Group>
                           <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jTextField2" min="-2" pref="279" max="-2" attributes="0"/>
-                              <Component id="jTextField4" min="-2" pref="279" max="-2" attributes="0"/>
+                              <Component id="origenTField" min="-2" pref="279" max="-2" attributes="0"/>
+                              <Component id="destinoTField" min="-2" pref="279" max="-2" attributes="0"/>
                               <Component id="fechaHora" min="-2" pref="350" max="-2" attributes="0"/>
                               <Component id="PrecioTextField" min="-2" pref="279" max="-2" attributes="0"/>
                           </Group>
@@ -89,11 +89,11 @@
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="jTextField2" min="-2" pref="40" max="-2" attributes="0"/>
+                              <Component id="origenTField" min="-2" pref="40" max="-2" attributes="0"/>
                               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                          <Component id="jTextField4" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="destinoTField" min="-2" pref="40" max="-2" attributes="0"/>
                       </Group>
                       <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -118,11 +118,11 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JTextField" name="jTextField2">
+        <Component class="javax.swing.JTextField" name="origenTField">
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField4">
+        <Component class="javax.swing.JTextField" name="destinoTField">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField4ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="destinoTFieldActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">

@@ -47,7 +47,7 @@ public class menuPrincipalConductor extends javax.swing.JPanel {
         initComponents();
         mostrarViajes(viajes);
         ponerImg();
-        
+        nombreConductor.setText("carlos");
         this.setVisible(true);
         this.revalidate();
         this.repaint();
@@ -67,6 +67,7 @@ public class menuPrincipalConductor extends javax.swing.JPanel {
         panelFotoPerfil = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         registrarViajeBtn = new javax.swing.JButton();
+        nombreConductor = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -89,7 +90,7 @@ public class menuPrincipalConductor extends javax.swing.JPanel {
         panelFotoPerfil.setLayout(panelFotoPerfilLayout);
         panelFotoPerfilLayout.setHorizontalGroup(
             panelFotoPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 202, Short.MAX_VALUE)
         );
         panelFotoPerfilLayout.setVerticalGroup(
             panelFotoPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -109,6 +110,8 @@ public class menuPrincipalConductor extends javax.swing.JPanel {
             }
         });
 
+        nombreConductor.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -120,6 +123,10 @@ public class menuPrincipalConductor extends javax.swing.JPanel {
                     .addComponent(panelFotoPerfil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(registrarViajeBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE))
                 .addGap(44, 44, 44))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(105, 105, 105)
+                .addComponent(nombreConductor, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,7 +135,9 @@ public class menuPrincipalConductor extends javax.swing.JPanel {
                 .addComponent(jLabel2)
                 .addGap(48, 48, 48)
                 .addComponent(panelFotoPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 202, Short.MAX_VALUE)
+                .addGap(45, 45, 45)
+                .addComponent(nombreConductor, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
                 .addComponent(registrarViajeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40))
         );
@@ -203,7 +212,8 @@ public class menuPrincipalConductor extends javax.swing.JPanel {
         controlPantallas.mostrarMenuVehiculos();
 
     }//GEN-LAST:event_registrarViajeBtnActionPerformed
-
+    
+    
     private void ponerImg() {
         File imagenC = new File("src\\main\\resources\\perfil.png");
         panelFotoPerfil.setLayout(new FlowLayout());
@@ -269,6 +279,7 @@ public class menuPrincipalConductor extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel nombreConductor;
     private javax.swing.JPanel panelFotoPerfil;
     private javax.swing.JButton registrarViajeBtn;
     // End of variables declaration//GEN-END:variables

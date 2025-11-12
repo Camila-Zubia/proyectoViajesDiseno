@@ -31,7 +31,7 @@ public class seleccionarPerfilConductor extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        conductorBtn = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -44,14 +44,14 @@ public class seleccionarPerfilConductor extends javax.swing.JPanel {
         jPanel1.setPreferredSize(new java.awt.Dimension(1080, 640));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/conductor.png"))); // NOI18N
-        jButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        conductorBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/conductor.png"))); // NOI18N
+        conductorBtn.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        conductorBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                conductorBtnActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 140, 236, 360));
+        jPanel1.add(conductorBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 140, 236, 360));
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pasajero.png"))); // NOI18N
         jButton2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -76,15 +76,15 @@ public class seleccionarPerfilConductor extends javax.swing.JPanel {
         add(jPanel1, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void conductorBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_conductorBtnActionPerformed
         // TODO add your handling code here:
         
         controlPantallas.mostrarMenuConductor();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_conductorBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton conductorBtn;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

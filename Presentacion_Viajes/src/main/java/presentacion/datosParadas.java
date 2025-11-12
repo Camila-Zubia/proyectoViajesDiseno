@@ -52,11 +52,11 @@ public class datosParadas extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
+        mostrarParadasPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField1 = new javax.swing.JTextField();
+        precioTField = new javax.swing.JTextField();
+        direccionTField = new javax.swing.JTextField();
         agregarParadaBtn = new javax.swing.JButton();
         confirmarViajeBtn = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
@@ -68,17 +68,17 @@ public class datosParadas extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        mostrarParadasPanel.setBackground(new java.awt.Color(255, 255, 255));
+        mostrarParadasPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout mostrarParadasPanelLayout = new javax.swing.GroupLayout(mostrarParadasPanel);
+        mostrarParadasPanel.setLayout(mostrarParadasPanelLayout);
+        mostrarParadasPanelLayout.setHorizontalGroup(
+            mostrarParadasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 510, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        mostrarParadasPanelLayout.setVerticalGroup(
+            mostrarParadasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 173, Short.MAX_VALUE)
         );
 
@@ -88,9 +88,9 @@ public class datosParadas extends javax.swing.JPanel {
         jLabel2.setText("Precio:");
         jLabel2.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
 
-        jTextField2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        precioTField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jTextField1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
+        direccionTField.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
 
         agregarParadaBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MAS1.jpg"))); // NOI18N
         agregarParadaBtn.setBorder(null);
@@ -137,12 +137,12 @@ public class datosParadas extends javax.swing.JPanel {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1)
-                            .addComponent(jTextField2))
+                            .addComponent(direccionTField)
+                            .addComponent(precioTField))
                         .addGap(160, 160, 160))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(mostrarParadasPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(160, 160, 160))
         );
         jPanel1Layout.setVerticalGroup(
@@ -151,18 +151,18 @@ public class datosParadas extends javax.swing.JPanel {
                 .addGap(8, 8, 8)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(mostrarParadasPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel2))
+                        .addComponent(jLabel1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(14, 14, 14)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(direccionTField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(precioTField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -218,14 +218,14 @@ public class datosParadas extends javax.swing.JPanel {
         // TODO add your handling code here:
         agregarParada();
         mostrarParadas(paradas);
-        jPanel2.revalidate();
-        jPanel2.repaint();
+        mostrarParadasPanel.revalidate();
+        mostrarParadasPanel.repaint();
     }//GEN-LAST:event_agregarParadaBtnActionPerformed
 
     private void agregarParada() {
         // Agregar parada y confirmar viaje
-        String direccion = jTextField1.getText().trim();
-        String precioStr = jTextField2.getText().trim();
+        String direccion = direccionTField.getText().trim();
+        String precioStr = precioTField.getText().trim();
         
         //validacion de campos vacios
         if (direccion.isEmpty() || precioStr.isEmpty()) {
@@ -251,8 +251,8 @@ public class datosParadas extends javax.swing.JPanel {
             try {
                 double precio = Double.parseDouble(precioStr);
                 controlPantallas.agregarParada(direccion, precio);
-                jTextField1.setText("");
-                jTextField2.setText("");
+                direccionTField.setText("");
+                precioTField.setText("");
 
                 System.out.println("Parada agregada: " + direccion + " - $" + precio);
             } catch (NumberFormatException e) {
@@ -280,7 +280,7 @@ public class datosParadas extends javax.swing.JPanel {
 
     private void mostrarParadas(List paradas) {
         try {
-            jPanel2.removeAll();
+            mostrarParadasPanel.removeAll();
 
             JPanel panelInterno = new JPanel();
             panelInterno.setLayout(new BoxLayout(panelInterno, BoxLayout.Y_AXIS));
@@ -305,17 +305,17 @@ public class datosParadas extends javax.swing.JPanel {
 
                 panelElemento.add(btnInfo);
                 panelInterno.add(panelElemento);
-                jPanel2.add(panelInterno);
+                mostrarParadasPanel.add(panelInterno);
             }
             JScrollPane scrollPane = new JScrollPane(panelInterno);
 
             scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
             scrollPane.setPreferredSize(new Dimension(514, 177));
-            jPanel2.removeAll();
-            jPanel2.setLayout(new BorderLayout());
-            jPanel2.add(scrollPane, BorderLayout.CENTER);
-            jPanel2.revalidate();
-            jPanel2.repaint();
+            mostrarParadasPanel.removeAll();
+            mostrarParadasPanel.setLayout(new BorderLayout());
+            mostrarParadasPanel.add(scrollPane, BorderLayout.CENTER);
+            mostrarParadasPanel.revalidate();
+            mostrarParadasPanel.repaint();
 
         } catch (HeadlessException e) {
             JOptionPane.showMessageDialog(this,
@@ -328,12 +328,12 @@ public class datosParadas extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregarParadaBtn;
     private javax.swing.JButton confirmarViajeBtn;
+    private javax.swing.JTextField direccionTField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JPanel mostrarParadasPanel;
+    private javax.swing.JTextField precioTField;
     // End of variables declaration//GEN-END:variables
 }

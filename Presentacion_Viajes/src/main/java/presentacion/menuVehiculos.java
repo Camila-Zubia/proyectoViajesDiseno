@@ -54,7 +54,7 @@ public class menuVehiculos extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
+        siguienteTField = new javax.swing.JButton();
         panelContenedorVehiculos = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -65,12 +65,12 @@ public class menuVehiculos extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jButton2.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
-        jButton2.setText("Siguiente");
-        jButton2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        siguienteTField.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
+        siguienteTField.setText("Siguiente");
+        siguienteTField.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        siguienteTField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                siguienteTFieldActionPerformed(evt);
             }
         });
 
@@ -99,7 +99,7 @@ public class menuVehiculos extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(siguienteTField, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(panelContenedorVehiculos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(57, 57, 57))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -114,7 +114,7 @@ public class menuVehiculos extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(panelContenedorVehiculos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(siguienteTField, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37))
         );
 
@@ -135,7 +135,7 @@ public class menuVehiculos extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void siguienteTFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguienteTFieldActionPerformed
        // validacion, verificar si se selecciono un vehiculo
         if (this.vehiculoSeleccionadoDTO == null) {
             JOptionPane.showMessageDialog(this, "Debe seleccionar un vehiculo para continuar.", "Seleccion Requerida", JOptionPane.ERROR_MESSAGE);
@@ -144,7 +144,7 @@ public class menuVehiculos extends javax.swing.JPanel {
         
         controlPantallas.seleccionarVehiculo(this.vehiculoSeleccionadoDTO);
         controlPantallas.mostrarDatosViaje();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_siguienteTFieldActionPerformed
 
     private void mostrarVehiculos(List listaVehiculos) {
         try {
@@ -201,9 +201,9 @@ public class menuVehiculos extends javax.swing.JPanel {
     
   
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel panelContenedorVehiculos;
+    private javax.swing.JButton siguienteTField;
     // End of variables declaration//GEN-END:variables
 }
