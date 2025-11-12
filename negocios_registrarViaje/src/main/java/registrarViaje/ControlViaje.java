@@ -41,7 +41,8 @@ public class ControlViaje {
     }
     
     public ParadaDTO getOrigenTemporal(){
-        return new ParadaDTO(origenTemporal, 0.0);
+       // return new ParadaDTO(origenTemporal, 0.0);
+       return null;
     }
     
     public void crearParada(ViajeDTO viaje, ParadaDTO parada) {
@@ -81,7 +82,7 @@ public class ControlViaje {
     }
 
     public List<ParadaDTO> obtenerParadasTemporales() {
-        paradasTemporales.add(getOrigenTemporal());
+        //paradasTemporales.add(getOrigenTemporal());
         return paradasTemporales;
     }
 

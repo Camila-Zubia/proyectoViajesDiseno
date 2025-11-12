@@ -57,7 +57,7 @@ public class datosParadas extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jTextField1 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        agregarParadaBtn = new javax.swing.JButton();
         confirmarViajeBtn = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
@@ -92,12 +92,12 @@ public class datosParadas extends javax.swing.JPanel {
 
         jTextField1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MAS1.jpg"))); // NOI18N
-        jButton2.setBorder(null);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        agregarParadaBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MAS1.jpg"))); // NOI18N
+        agregarParadaBtn.setBorder(null);
+        agregarParadaBtn.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        agregarParadaBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                agregarParadaBtnActionPerformed(evt);
             }
         });
 
@@ -133,7 +133,7 @@ public class datosParadas extends javax.swing.JPanel {
                 .addGap(66, 66, 66)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton2)
+                        .addComponent(agregarParadaBtn)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -170,7 +170,7 @@ public class datosParadas extends javax.swing.JPanel {
                         .addGap(29, 29, 29))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(48, 48, 48)
-                        .addComponent(jButton2)
+                        .addComponent(agregarParadaBtn)
                         .addContainerGap(68, Short.MAX_VALUE))))
         );
 
@@ -214,13 +214,13 @@ public class datosParadas extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_confirmarViajeBtnActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void agregarParadaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarParadaBtnActionPerformed
         // TODO add your handling code here:
         agregarParada();
         mostrarParadas(paradas);
         jPanel2.revalidate();
         jPanel2.repaint();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_agregarParadaBtnActionPerformed
 
     private void agregarParada() {
         // Agregar parada y confirmar viaje
@@ -326,8 +326,8 @@ public class datosParadas extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton agregarParadaBtn;
     private javax.swing.JButton confirmarViajeBtn;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
