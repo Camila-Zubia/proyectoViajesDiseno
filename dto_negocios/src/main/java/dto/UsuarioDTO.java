@@ -48,9 +48,8 @@ public class UsuarioDTO {
 
     @Override
     public String toString() {
-        return "UsuarioDTO" + 
-                "\nusuario = " + usuario + 
-                "\ncontrase\u00f1a = " + contraseña;
+        return "Usuario = " + usuario + 
+                ", contrase\u00f1a = " + contraseña;
     }
     
 }

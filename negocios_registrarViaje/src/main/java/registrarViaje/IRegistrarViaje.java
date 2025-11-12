@@ -17,56 +17,50 @@ import java.util.List;
 public interface IRegistrarViaje {
     
     /**
-     * crea un nuevo viaje en el sistema
-     * @param viaje objeto que contiene la info como origen, destino, fecha, etc.
-     */
-    public void crearViaje(ViajeDTO viaje);
-    
-    
-    /**
-     * permite obtener el objeto vehiculo que fue seleccionado, para agregarlo
-     * al viaje
-     * @param vehiculo contiene la marca, color capacidad, etc.
-     * @return regresa el vehiculo seleccionado
-     */
-    //public VehiculoDTO obtenerVehiculo(VehiculoDTO vehiculo);
-    
-    /**
-     * recibe la lisra de vehiculos que el conductor tiene registrados
+     * obtiene los vehiculos relacionados a un conductor
      * @param conductor
-     * @return la lista de vehiculos
-     */
-    public List<VehiculoDTO> obtenerVehiculos(ConductorDTO conductor);
-    
-    /**
-     * valida que el viaje que se esta registrando, no exista en el sistema
-     * @return un bollean true = existe, false = no existe
-     */
-    //public boolean validarNoExiste();
-    
-    /**
-     * agrega las paradas a la lista del viaje que se esta registrando
-     * @param paradas lista
-     */
-    //public void agregarAListaParadas(List<ParadaDTO> paradas);
-    
-    /**
-     * crea una nueva parada y la asocia al viaje actual
-     * @param parada objeto que tiene la direccion y el precio
-     */
-    public void crearParada(ParadaDTO parada);
-
-    /**
-     * obtiene los viajes asociados a un conductor específico
-     * @param conductor
-     * @return lista de viajes del conductor
-     */
-    public List<ViajeDTO> obtenerViajes(ConductorDTO conductor);
-    
-    /**
-     * 
-     * @param viaje
      * @return 
      */
-    public List<ParadaDTO> obtenerParadas(ViajeDTO viaje);
+    public List<VehiculoDTO> obtenerVehiculosDisponibles(ConductorDTO conductor);
+    
+    /**
+     * obtiene un vehiculo que fue seleccionado de una lista
+     * @param vehiculo 
+     */
+    public void seleccionarVehiculo(VehiculoDTO vehiculo);
+    
+    /**
+     * almacena los datos del viaje
+     * @param origen
+     * @param destino
+     * @param precioBase 
+     */
+    public void guardarDatosViaje(String origen, String destino, double precioBase);
+    
+    /**
+     * crea una parada y la agrega a la lista de paradas
+     * @param direccion
+     * @param precio 
+     */
+    public void agregarParada(String direccion, double precio);
+    
+    /**
+     * obtiene las paradas relacionadas con un viaje
+     * @return 
+     */
+    public List<ParadaDTO> obtenerParadasTemporales();
+    
+    /**
+     * obtiene los viajes relacionados al conductor
+     * @param conductor
+     * @return 
+     */
+    public List<ViajeDTO> obtenerViajesPorConductor(ConductorDTO conductor);
+    
+    /**
+     * valida todos los datos del viaje y registra el viaje completo
+     * @return 
+     */
+    public ViajeDTO confirmarViaje();
+
 }

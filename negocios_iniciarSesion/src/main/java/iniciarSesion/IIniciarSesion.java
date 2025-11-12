@@ -12,6 +12,16 @@ import dto.UsuarioDTO;
  */
 public interface IIniciarSesion {
     
+    /**
+     * valida que el usuario proporcionado coincida con un usuario y contraseña valida
+     * @param usuario
+     * @return 
+     */
     public boolean validarUsuario(UsuarioDTO usuario);
     
+    /**
+     * obtiene el usuario actual
+     * @return 
+     */
+    public UsuarioDTO obtenerUsuario();
 }

@@ -15,11 +15,10 @@ import java.util.List;
  */
 public class ConductorNegocio {
     
-    private UsuarioNegocio usuarioBO = new UsuarioNegocio();
     private ConductorDTO conductor;
 
     public ConductorNegocio() {
-        conductor = usuarioBO.obtenerConductor();
+        conductor =  UsuarioNegocio.obtenerConductor();
     }
     
     public void agregarVehiculo(VehiculoDTO vehiculo){

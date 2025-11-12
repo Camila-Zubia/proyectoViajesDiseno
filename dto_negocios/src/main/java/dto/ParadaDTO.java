@@ -39,9 +39,8 @@ public class ParadaDTO {
 
     @Override
     public String toString() {
-        return "ParadaDTO:" + 
-                "\ndirecci\u00f3n = " + dirección + 
-                "\nprecio = " + precio;
+        return "Direcci\u00f3n = " + dirección + 
+                ", precio = " + precio;
     }
     
 }

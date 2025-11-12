@@ -5,7 +5,6 @@
 package iniciarSesion;
 
 import dto.UsuarioDTO;
-import objetosNegocio.UsuarioNegocio;
 
 /**
  *
@@ -13,22 +12,20 @@ import objetosNegocio.UsuarioNegocio;
  */
 public class IniciarSesion implements IIniciarSesion{
     
-    private UsuarioNegocio usuarioBO;
+    private final ControlSesion control;
 
     public IniciarSesion() {
-        this.usuarioBO = new UsuarioNegocio();
+        this.control = new ControlSesion();
     }
 
     @Override
     public boolean validarUsuario(UsuarioDTO usuario) {
-        UsuarioDTO usuarioMock = usuarioBO.obtenerUsuario();
-        boolean usuarioValido = usuarioMock.getUsuario().equals(usuario.getUsuario());
-        boolean contraseñaValida = usuarioMock.getContraseña().equals(usuario.getContraseña());
-        if (contraseñaValida && usuarioValido) {
-            ControlSesion.iniciarSesion(usuarioMock);
-            return true;
-        }
-        return false;
+        return control.validarUsuario(usuario);
     }
-    
+
+    @Override
+    public UsuarioDTO obtenerUsuario() {
+        return control.obtenerUsuario();
+    }
+
 }

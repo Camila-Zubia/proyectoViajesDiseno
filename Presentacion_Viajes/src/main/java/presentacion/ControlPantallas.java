@@ -5,12 +5,14 @@
 package presentacion;
 
 import dto.UsuarioDTO;
-import iniciarSesion.ControlSesion;
+import iniciarSesion.IIniciarSesion;
+import iniciarSesion.IniciarSesion;
 import java.awt.BorderLayout;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import registrarViaje.ControlViaje;
+import registrarViaje.IRegistrarViaje;
+import registrarViaje.RegistrarViaje;
 
 /**
  *
@@ -19,21 +21,14 @@ import registrarViaje.ControlViaje;
 public class ControlPantallas {
 
     private final JFrame frame;
-    private ControlViaje controlViaje = new ControlViaje();
+    private final IIniciarSesion sesion = new IniciarSesion();
+    private final IRegistrarViaje interfaz = new RegistrarViaje();
 
     public ControlPantallas(JFrame frame) {
         this.frame = frame;
-        
-        System.out.println("titulo:" + frame.getTitle());
-        System.out.println("Frame:" + frame.hashCode());
-        
-        
     }
 
     public void configurarPanel(JPanel panel) {
-
-        System.out.println("Frame actual: " + frame.hashCode());
-        System.out.println("Frame title: " + frame.getTitle());
 
         frame.getContentPane().removeAll();
         frame.getContentPane().setLayout(new BorderLayout());
@@ -49,11 +44,6 @@ public class ControlPantallas {
         frame.pack();
         frame.setLocationRelativeTo(null);
     }
-
-    public ControlViaje getControlViaje() {
-        return controlViaje;
-    }
-    
     
     public void configurarPanel(JFrame frame, JPanel panel) {
         frame.getContentPane().removeAll();
@@ -65,31 +55,24 @@ public class ControlPantallas {
     }
 
     public void mostrarMenuVehiculos() {
-        
-            UsuarioDTO usuario = ControlSesion.getUsuarioActual();
-
-            List vehiculos = controlViaje.obtenerVehiculosDisponibles(usuario.getConductor());
-
-            menuVehiculos menuVehiculos = new menuVehiculos(this, vehiculos);
-
-            configurarPanel(menuVehiculos);
-
-            frame.setVisible(true);
-
-        
+        UsuarioDTO usuario = sesion.obtenerUsuario();
+        List vehiculos = interfaz.obtenerVehiculosDisponibles(usuario.getConductor());
+        menuVehiculos menuVehiculos = new menuVehiculos(this, vehiculos);
+        configurarPanel(menuVehiculos);
+        frame.setVisible(true);
     }
 
     public void mostrarMenuConductor() {
-        UsuarioDTO usuario = ControlSesion.getUsuarioActual();
-        List viajes = controlViaje.obtenerViajesPorConductor(usuario.getConductor());
+        UsuarioDTO usuario = sesion.obtenerUsuario();
+        List viajes = interfaz.obtenerViajesPorConductor(usuario.getConductor());
 
         menuPrincipalConductor menuConductor = new menuPrincipalConductor(this, viajes);
         configurarPanel(menuConductor);
     }
 
     public void mostrarMenuConductor(JFrame frame) {
-        UsuarioDTO usuario = ControlSesion.getUsuarioActual();
-        List viajes = controlViaje.obtenerViajesPorConductor(usuario.getConductor());
+        UsuarioDTO usuario = sesion.obtenerUsuario();
+        List viajes = interfaz.obtenerViajesPorConductor(usuario.getConductor());
         menuPrincipalConductor menuConductor = new menuPrincipalConductor(this, viajes);
         configurarPanel(frame, menuConductor);
     }
@@ -100,7 +83,7 @@ public class ControlPantallas {
     }
 
     public void mostrarDatosParada() {
-        List paradas = controlViaje.obtenerParadasTemporales();
+        List paradas = interfaz.obtenerParadasTemporales();
         datosParadas datosParadas = new datosParadas(this, paradas);
         configurarPanel(datosParadas);
     }
@@ -120,14 +103,22 @@ public class ControlPantallas {
     }
 
     public void seleccionarVehiculo(dto.VehiculoDTO vehiculo) {
-        controlViaje.seleccionarVehiculo(vehiculo);
+        interfaz.seleccionarVehiculo(vehiculo);
     }
 
     public void guardarDatosViaje(String origen, String destino, double precioBase) {
-        controlViaje.guardarDatosViaje(origen, destino, precioBase);
+        interfaz.guardarDatosViaje(origen, destino, precioBase);
     }
 
     public void confirmarViaje() {
-        controlViaje.confirmarViaje();
+        interfaz.confirmarViaje();
+    }
+    
+    public void agregarParada(String direccion, double precio){
+        interfaz.agregarParada(direccion, precio);
+    }
+    
+    public boolean validarUsuario(UsuarioDTO usuario){
+        return sesion.validarUsuario(usuario);
     }
 }

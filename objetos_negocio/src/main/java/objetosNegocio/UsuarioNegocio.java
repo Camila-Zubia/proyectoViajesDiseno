@@ -12,21 +12,49 @@ import dto.UsuarioDTO;
  * @author Camila Zubia 00000244825
  */
 public class UsuarioNegocio {
+    private static UsuarioNegocio instancia = new UsuarioNegocio();
+    private static UsuarioDTO usuarioActual;
+
+    private UsuarioNegocio() {
+        UsuarioNegocio.usuarioActual = new UsuarioDTO("cperez", "1234");
+        UsuarioNegocio.usuarioActual.setConductor(new ConductorDTO("carlos"));
+    }
+
+    public static UsuarioDTO obtenerUsuario() {
+        return usuarioActual;
+    }
+
+    public static ConductorDTO obtenerConductor() {
+        return usuarioActual.getConductor();
+    }
     
-    private UsuarioDTO usuario;
-
-    public UsuarioNegocio() {
-        usuario = new UsuarioDTO("cperez", "1234");
-        ConductorDTO conductor = new ConductorDTO("carlos");
-        usuario.setConductor(conductor);
-    }
-
-    public UsuarioDTO obtenerUsuario() {
-        return usuario;
-    }
-
-    public ConductorDTO obtenerConductor() {
-        return usuario.getConductor();
+    public static UsuarioNegocio obtenerInstancia(){
+        if (instancia == null) {
+            instancia = new UsuarioNegocio();
+        }
+        return instancia;
     }
     
+    public static void iniciarSesion(UsuarioDTO usuario) {
+        UsuarioNegocio.usuarioActual = usuario;
+    }
+
+    public static void cerrarSesion() {
+        usuarioActual = null;
+    }
+
+    public static boolean haySesionActiva() {
+        return usuarioActual != null;
+    }
+
+    public static boolean validarUsuario(UsuarioDTO usuario) {
+        UsuarioDTO usuarioMock = usuarioActual;
+        boolean usuarioValido = usuarioMock.getUsuario().equals(usuario.getUsuario());
+        boolean contraseñaValida = usuarioMock.getContraseña().equals(usuario.getContraseña());
+        if (contraseñaValida && usuarioValido) {
+            UsuarioNegocio.iniciarSesion(usuarioMock);
+            return true;
+        }
+        return false;
+    }
 }

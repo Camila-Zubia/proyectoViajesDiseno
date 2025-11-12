@@ -4,8 +4,8 @@
  */
 package iniciarSesion;
 
-import dto.ConductorDTO;
 import dto.UsuarioDTO;
+import objetosNegocio.UsuarioNegocio;
 
 /**
  *
@@ -13,31 +13,14 @@ import dto.UsuarioDTO;
  */
 public class ControlSesion {
     
-    private static volatile UsuarioDTO usuarioActual;
-
-    private ControlSesion(){
+    public  ControlSesion(){
     }
-
-    public static synchronized void iniciarSesion(UsuarioDTO usuario) {
-        ControlSesion.usuarioActual = usuario;
+    
+    public boolean validarUsuario(UsuarioDTO usuario) {
+        return UsuarioNegocio.obtenerInstancia().validarUsuario(usuario);
     }
-
-    public static UsuarioDTO getUsuarioActual() {
-        return usuarioActual;
-    }
-
-    public static void cerrarSesion() {
-        usuarioActual = null;
-    }
-
-    public static boolean haySesionActiva() {
-        return usuarioActual != null;
-    }
-
-    public static ConductorDTO getConductor(UsuarioDTO usuario) {
-        if(usuarioActual != null){
-            return usuarioActual.getConductor();
-        }
-        return null;
+    
+    public UsuarioDTO obtenerUsuario(){
+        return UsuarioNegocio.obtenerInstancia().obtenerUsuario();
     }
 }

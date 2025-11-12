@@ -70,12 +70,11 @@ public class VehiculoDTO {
 
     @Override
     public String toString() {
-        return "VehiculoDTO:" + 
-                "\nmodelo = " + modelo + 
-                "\nplacas = " + placas + 
-                "\nmarca = " + marca + 
-                "\ncolor = " + color + 
-                "\ncapacidad = " + capacidad;
+        return "Modelo = " + modelo + 
+                ", placas = " + placas + 
+                ", marca = " + marca + 
+                ", color = " + color + 
+                ", capacidad = " + capacidad;
     }
     
 }

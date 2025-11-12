@@ -9,6 +9,9 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import objetosNegocio.ParadaNegocio;
+import objetosNegocio.VehiculoNegocio;
+import objetosNegocio.ViajeNegocio;
 
 /**
  *
@@ -16,7 +19,9 @@ import java.util.List;
  */
 public class ControlViaje {
     
-    private final IRegistrarViaje fachada;
+    private ViajeNegocio viajeBO;
+    private ParadaNegocio paradaBO;
+    private VehiculoNegocio vehiculoBO;
 
     // Estado temporal
     private VehiculoDTO vehiculoSeleccionado;
@@ -26,13 +31,26 @@ public class ControlViaje {
     private double precioBaseTemporal;
 
     public ControlViaje() {
-        this.fachada = new RegistrarViaje();
+        this.viajeBO = new ViajeNegocio();
+        this.paradaBO = new ParadaNegocio();
+        this.vehiculoBO = new VehiculoNegocio();
         this.paradasTemporales = new ArrayList<>();
     }
-
-    // Gestión de Vehículos
-    public List<VehiculoDTO> obtenerVehiculosDisponibles(ConductorDTO conductor) {
-        return fachada.obtenerVehiculos(conductor);
+    
+    public void crearViaje(ViajeDTO viaje) {
+        viajeBO.registrarViaje(viaje);
+    }
+    
+    public ParadaDTO getOrigenTemporal(){
+        return new ParadaDTO(origenTemporal, 0.0);
+    }
+    
+    public void crearParada(ParadaDTO parada) {
+        paradaBO.registrarParada(parada);
+    }
+    
+    public List<VehiculoDTO> obtenerVehiculos(ConductorDTO conductor) {
+        return vehiculoBO.obtenerVehiculos();
     }
 
     public void seleccionarVehiculo(VehiculoDTO vehiculo) {
@@ -42,32 +60,29 @@ public class ControlViaje {
         this.vehiculoSeleccionado = vehiculo;
     }
 
-    public VehiculoDTO getVehiculoSeleccionado() {
-        return vehiculoSeleccionado;
-    }
-
     // Gestión de datos del viaje
     public void guardarDatosViaje(String origen, String destino, double precioBase) {
         this.origenTemporal = origen;
         this.destinoTemporal = destino;
         this.precioBaseTemporal = precioBase;
     }
-
+    
     // Gestion de Paradas
     public void agregarParada(String direccion, double precio) {
         if (direccion == null || direccion.isEmpty() || precio < 0) {
             throw new IllegalArgumentException("La dirección no puede estar vacía y el precio debe ser positivo.");
         }
         ParadaDTO parada = new ParadaDTO(direccion, precio);
-        fachada.crearParada(parada);
+        crearParada(parada);
         paradasTemporales.add(parada);
     }
     
     public List<ParadaDTO> obtenerParadas(ViajeDTO viaje) {
-        return fachada.obtenerParadas(viaje);
+        return paradaBO.obtenerParadas();
     }
 
     public List<ParadaDTO> obtenerParadasTemporales() {
+        paradasTemporales.add(getOrigenTemporal());
         return paradasTemporales;
     }
 
@@ -76,7 +91,7 @@ public class ControlViaje {
         if (conductor == null) {
             throw new IllegalArgumentException("El conductor no puede ser null");
         }
-        return fachada.obtenerViajes(conductor);
+        return viajeBO.obtenerViajes(conductor);
     }
 
     // Registro del Viaje
@@ -103,7 +118,7 @@ public class ControlViaje {
                 precioTotal
         );
 
-        fachada.crearViaje(viaje);
+        crearViaje(viaje);
         paradasTemporales.clear();
 
         return viaje;

@@ -97,13 +97,11 @@ public class ViajeDTO {
 
     @Override
     public String toString() {
-        return "Viaje:" + 
-                "\norigen = " + origen + 
-                "\ndestino = " + destino + 
-                "\nfecha = " + fecha + 
-                "\nhora = " + hora + 
-                "\nprecioTotal = " + precioTotal + 
-                "\nparadas = " + paradas;
+        return "Origen = " + origen + 
+                ", destino = " + destino + 
+                ", fecha = " + fecha.getDay()+ "/" + fecha.getMonth() + "/" +
+                ", hora = " + hora + 
+                ", precioTotal = " + precioTotal;
     }
 
 }

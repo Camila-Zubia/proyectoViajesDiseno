@@ -9,9 +9,6 @@ import dto.ParadaDTO;
 import dto.VehiculoDTO;
 import dto.ViajeDTO;
 import java.util.List;
-import objetosNegocio.ParadaNegocio;
-import objetosNegocio.VehiculoNegocio;
-import objetosNegocio.ViajeNegocio;
 
 /**
  *
@@ -19,43 +16,45 @@ import objetosNegocio.ViajeNegocio;
  */
 public class RegistrarViaje implements IRegistrarViaje{
     
-    private ViajeNegocio viajeBO;
-    private ParadaNegocio paradaBO;
-    private VehiculoNegocio vehiculoBO;
+    private final ControlViaje control;
 
     public RegistrarViaje() {
-        this.viajeBO = new ViajeNegocio();
-        this.paradaBO = new ParadaNegocio();
-        this.vehiculoBO = new VehiculoNegocio();
+        control = new ControlViaje();
     }
 
     @Override
-    public void crearViaje(ViajeDTO viaje) {
-        viajeBO.registrarViaje(viaje);
+    public List<VehiculoDTO> obtenerVehiculosDisponibles(ConductorDTO conductor) {
+        return control.obtenerVehiculos(conductor);
     }
 
     @Override
-    public List<VehiculoDTO> obtenerVehiculos(ConductorDTO conductor) {
-        return vehiculoBO.obtenerVehiculos();
-    }
-    
-    public List<VehiculoDTO> obtenerVehiculo(ConductorDTO conductor) {
-        return vehiculoBO.obtenerVehiculos();
+    public void seleccionarVehiculo(VehiculoDTO vehiculo) {
+        control.seleccionarVehiculo(vehiculo);
     }
 
     @Override
-    public void crearParada(ParadaDTO parada) {
-        paradaBO.registrarParada(parada);
+    public void guardarDatosViaje(String origen, String destino, double precioBase) {
+        control.guardarDatosViaje(origen, destino, precioBase);
     }
 
     @Override
-    public List<ViajeDTO> obtenerViajes(ConductorDTO conductor) {
-        return viajeBO.obtenerViajes(conductor);
+    public void agregarParada(String direccion, double precio) {
+        control.agregarParada(direccion, precio);
     }
 
     @Override
-    public List<ParadaDTO> obtenerParadas(ViajeDTO viaje) {
-        return paradaBO.obtenerParadas();
+    public List<ViajeDTO> obtenerViajesPorConductor(ConductorDTO conductor) {
+        return control.obtenerViajesPorConductor(conductor);
+    }
+
+    @Override
+    public ViajeDTO confirmarViaje() {
+        return control.confirmarViaje();
+    }
+
+    @Override
+    public List<ParadaDTO> obtenerParadasTemporales() {
+        return control.obtenerParadasTemporales();
     }
 
 }

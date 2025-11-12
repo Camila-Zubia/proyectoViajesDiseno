@@ -19,7 +19,6 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
-import registrarViaje.ControlViaje;
 
 /**
  *
@@ -29,21 +28,18 @@ public class datosParadas extends javax.swing.JPanel {
 
     private final ControlPantallas controlPantallas;
     private List paradas;
-    private ControlViaje contro;
 
     /**
      * Creates new form datosParadas
      *
      * @param controlPantallas
+     * @param paradas
      */
     public datosParadas(ControlPantallas controlPantallas, List paradas) {
         initComponents();
         this.controlPantallas = controlPantallas;
-        mostrarParadas(paradas);
         this.paradas = paradas;
-
-        this.contro = controlPantallas.getControlViaje();
-
+        mostrarParadas(paradas);
     }
 
     /**
@@ -184,7 +180,7 @@ public class datosParadas extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
             // Validar que haya al menos una parada registrada
-            if (contro.obtenerParadasTemporales().isEmpty()) {
+            if (paradas.isEmpty()) {
                 JOptionPane.showMessageDialog(this,
                         "Debe agregar al menos una parada al viaje",
                         "Parada requerida",
@@ -193,17 +189,24 @@ public class datosParadas extends javax.swing.JPanel {
             }
 
             // Registrar el viaje con todos los datos guardados
-            controlPantallas.confirmarViaje();
+                if (!paradas.isEmpty()) {
+                controlPantallas.confirmarViaje();
 
-            JOptionPane.showMessageDialog(this,
-                    "Viaje registrado exitosamente",
-                    "Éxito",
-                    JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this,
+                        "Viaje registrado exitosamente",
+                        "Éxito",
+                        JOptionPane.INFORMATION_MESSAGE);
 
-            // Mostrar menú conductor
-            controlPantallas.mostrarMenuConductor();
+                // Mostrar menú conductor
+                controlPantallas.mostrarMenuConductor();
+            }else{
+                    JOptionPane.showMessageDialog(this,
+                            "Error no hay paradas registradas",
+                            "Error",
+                            JOptionPane.ERROR_MESSAGE);
+                }
 
-        } catch (Exception e) {
+        } catch (HeadlessException e) {
             JOptionPane.showMessageDialog(this,
                     "Error al registrar el viaje: " + e.getMessage(),
                     "Error",
@@ -214,8 +217,8 @@ public class datosParadas extends javax.swing.JPanel {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         agregarParada();
-        System.out.println("ejemplo" + contro.obtenerParadasTemporales());
-        mostrarParadas(contro.obtenerParadasTemporales());
+        System.out.println("ejemplo" + paradas);
+        mostrarParadas(paradas);
         jPanel2.revalidate();
         jPanel2.repaint();
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -231,7 +234,7 @@ public class datosParadas extends javax.swing.JPanel {
         return;
     }
         // validacion de parada duplicada
-    List<dto.ParadaDTO> paradasGuardadas = contro.obtenerParadasTemporales(); 
+    List<dto.ParadaDTO> paradasGuardadas = paradas; 
     
     for (dto.ParadaDTO paradaExistente : paradasGuardadas) {
         // comparamos la direccion ingresada con las direcciones existentes
@@ -248,7 +251,7 @@ public class datosParadas extends javax.swing.JPanel {
         if (!direccion.isEmpty() && !precioStr.isEmpty()) {
             try {
                 double precio = Double.parseDouble(precioStr);
-                contro.agregarParada(direccion, precio);
+                controlPantallas.agregarParada(direccion, precio);
                 jTextField1.setText("");
                 jTextField2.setText("");
 
@@ -269,7 +272,7 @@ public class datosParadas extends javax.swing.JPanel {
         }
 
         JOptionPane.showMessageDialog(this,
-                "Viaje registrado exitosamente con " + contro.obtenerParadasTemporales().size()
+                "Viaje registrado exitosamente con " + paradas.size()
                 + " paradas",
                 "Éxito",
                 JOptionPane.INFORMATION_MESSAGE);
