@@ -4,6 +4,7 @@
  */
 package presentacion;
 
+import Controles.ControlPantallas;
 import dto.UsuarioDTO;
 import javax.swing.JOptionPane;
 

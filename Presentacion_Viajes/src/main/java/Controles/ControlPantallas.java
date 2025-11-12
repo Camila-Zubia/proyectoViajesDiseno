@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package presentacion;
+package Controles;
 
 import com.github.lgooddatepicker.components.DatePicker;
 import dto.UsuarioDTO;
@@ -13,6 +13,12 @@ import java.time.LocalDate;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import presentacion.datosParadas;
+import presentacion.datosViaje;
+import presentacion.menuPrincipal;
+import presentacion.menuPrincipalConductor;
+import presentacion.menuVehiculos;
+import presentacion.seleccionarPerfilConductor;
 import registrarViaje.IRegistrarViaje;
 import registrarViaje.RegistrarViaje;
 

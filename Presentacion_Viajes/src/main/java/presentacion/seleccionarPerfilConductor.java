@@ -4,6 +4,8 @@
  */
 package presentacion;
 
+import Controles.ControlPantallas;
+
 /**
  *
  * @author adell

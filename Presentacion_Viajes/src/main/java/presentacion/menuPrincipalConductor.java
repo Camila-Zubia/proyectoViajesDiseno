@@ -4,6 +4,7 @@
  */
 package presentacion;
 
+import Controles.ControlPantallas;
 import dto.ViajeDTO;
 import java.awt.BorderLayout;
 import java.awt.Color;

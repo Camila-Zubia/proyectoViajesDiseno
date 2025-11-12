@@ -4,6 +4,7 @@
  */
 package presentacion;
 
+import Controles.ControlPantallas;
 import com.github.lgooddatepicker.components.DatePicker;
 import java.time.LocalDate;
 import javax.swing.JOptionPane;
