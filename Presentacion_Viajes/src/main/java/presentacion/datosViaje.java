@@ -5,8 +5,8 @@
 package presentacion;
 
 import Controles.ControlPantallas;
-import com.github.lgooddatepicker.components.DatePicker;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import javax.swing.JOptionPane;
 
 /**
@@ -170,8 +170,8 @@ public class datosViaje extends javax.swing.JPanel {
 
         String origen = origenTField.getText().trim();
         String destino = destinoTField.getText().trim();
-        DatePicker fecha = fechaHora.getDatePicker();
-        LocalDate fechaSelecc= fecha.getDate();
+        LocalDate fecha = fechaHora.getDatePicker().getDate();
+        LocalTime hora = fechaHora.getTimePicker().getTime();
         double precioBase = Double.parseDouble(PrecioTextField.getText());
         
         if (origen.isEmpty() || destino.isEmpty()) {
@@ -213,7 +213,7 @@ public class datosViaje extends javax.swing.JPanel {
         }
 
         // Guardar los datos del viaje temporalmente (precio base 0, se calcula después)
-        controlPantallas.guardarDatosViaje(origen, destino,precioBase, fechaSelecc);
+        controlPantallas.guardarDatosViaje(origen, destino, fecha, hora);
 
         // Navegar a la siguiente pantalla
         controlPantallas.agregarParada(origen, precioBase);

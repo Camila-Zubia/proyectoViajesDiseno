@@ -8,7 +8,6 @@ import dto.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import objetosNegocio.VehiculoNegocio;
 import objetosNegocio.ViajeNegocio;
@@ -27,8 +26,9 @@ public class ControlViaje {
     private final List<ParadaDTO> paradasTemporales;
     private String origenTemporal;
     private String destinoTemporal;
-    private double precioBaseTemporal;
-    private LocalDate horaTemporal;
+    private double precioTemporal;
+    private LocalDate fechaTemporal;
+    private LocalTime horaTemporal;
 
     public ControlViaje() {
         this.viajeBO = new ViajeNegocio();
@@ -41,7 +41,6 @@ public class ControlViaje {
     }
     
     public ParadaDTO getOrigenTemporal(){
-       // return new ParadaDTO(origenTemporal, 0.0);
        return null;
     }
     
@@ -61,11 +60,12 @@ public class ControlViaje {
     }
 
     // Gestión de datos del viaje
-    public void guardarDatosViaje(String origen, String destino, double precioBase, LocalDate fecha) {
+    public void guardarDatosViaje(String origen, String destino, LocalDate fecha, LocalTime hora) {
         this.origenTemporal = origen;
         this.destinoTemporal = destino;
-        this.precioBaseTemporal = precioBase;
-        this.horaTemporal = fecha;
+        this.precioTemporal = 0;
+        this.fechaTemporal = fecha;
+        this.horaTemporal = hora;
     }
     
     // Gestion de Paradas
@@ -82,7 +82,6 @@ public class ControlViaje {
     }
 
     public List<ParadaDTO> obtenerParadasTemporales() {
-        //paradasTemporales.add(getOrigenTemporal());
         return paradasTemporales;
     }
 
@@ -95,7 +94,7 @@ public class ControlViaje {
     }
 
     // Registro del Viaje
-    public ViajeDTO registrarViaje(String origen, String destino, double precioBase) {
+    public ViajeDTO registrarViaje(String origen, String destino) {
         if (origen == null || origen.isEmpty() || destino == null || destino.isEmpty()) {
             throw new IllegalArgumentException("El origen y destino son obligatorios.");
         }
@@ -105,17 +104,16 @@ public class ControlViaje {
         }
 
         // Calculo del precio total
-        double precioTotal = precioBase;
         for (ParadaDTO parada : paradasTemporales) {
-            precioTotal += parada.getPrecio();
+            precioTemporal += parada.getPrecio();
         }
 
         ViajeDTO viaje = new ViajeDTO(
                 origen,
                 destino,
-                new Date(),
-                LocalTime.now(),
-                precioTotal
+                fechaTemporal,
+                horaTemporal,
+                precioTemporal
         );
         viaje.setParadas(paradasTemporales);
         crearViaje(viaje);
@@ -132,6 +130,6 @@ public class ControlViaje {
         if (paradasTemporales.isEmpty()) {
             throw new IllegalStateException("El viaje debe tener al menos una parada.");
         }
-        return registrarViaje(origenTemporal, destinoTemporal, precioBaseTemporal);
+        return registrarViaje(origenTemporal, destinoTemporal);
     }
 }

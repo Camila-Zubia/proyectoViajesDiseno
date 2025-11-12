@@ -16,6 +16,7 @@ public class seleccionarPerfilConductor extends javax.swing.JPanel {
 
     /**
      * Creates new form seleccionarPerfilConductor
+     * @param controlPantallas
      */
     public seleccionarPerfilConductor(ControlPantallas controlPantallas) {
         this.controlPantallas = controlPantallas;
@@ -47,7 +48,8 @@ public class seleccionarPerfilConductor extends javax.swing.JPanel {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         conductorBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/conductor.png"))); // NOI18N
-        conductorBtn.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        conductorBtn.setBackground(new java.awt.Color(255, 255, 255));
+        conductorBtn.setBorder(null);
         conductorBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 conductorBtnActionPerformed(evt);
@@ -56,7 +58,13 @@ public class seleccionarPerfilConductor extends javax.swing.JPanel {
         jPanel1.add(conductorBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 140, 236, 360));
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pasajero.png"))); // NOI18N
-        jButton2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton2.setBackground(new java.awt.Color(255, 255, 255));
+        jButton2.setBorder(null);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 140, 236, 361));
 
         jLabel1.setText("Elija su modalidad");
@@ -83,6 +91,10 @@ public class seleccionarPerfilConductor extends javax.swing.JPanel {
         
         controlPantallas.mostrarMenuConductor();
     }//GEN-LAST:event_conductorBtnActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

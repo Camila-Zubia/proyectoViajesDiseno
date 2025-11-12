@@ -4,10 +4,12 @@
  */
 package dto;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.TextStyle;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 /**
  *
@@ -17,7 +19,7 @@ public class ViajeDTO {
     
     private String origen;
     private String destino;
-    private Date fecha;
+    private LocalDate fecha;
     private LocalTime hora;
     private double precioTotal;
     private List<ParadaDTO> paradas;
@@ -26,7 +28,7 @@ public class ViajeDTO {
         this.paradas = new ArrayList<>();
     }
 
-    public ViajeDTO(String origen, String destino, Date fecha, LocalTime hora, double precioTotal) {
+    public ViajeDTO(String origen, String destino, LocalDate fecha, LocalTime hora, double precioTotal) {
         this.origen = origen;
         this.destino = destino;
         this.fecha = fecha;
@@ -35,7 +37,7 @@ public class ViajeDTO {
         this.paradas = new ArrayList<>();
     }
 
-    public ViajeDTO(String origen, String destino, Date fecha, LocalTime hora, double precioTotal, List<ParadaDTO> paradas) {
+    public ViajeDTO(String origen, String destino, LocalDate fecha, LocalTime hora, double precioTotal, List<ParadaDTO> paradas) {
         this.origen = origen;
         this.destino = destino;
         this.fecha = fecha;
@@ -63,11 +65,11 @@ public class ViajeDTO {
         this.destino = destino;
     }
 
-    public Date getFecha() {
+    public LocalDate getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
 
@@ -99,8 +101,8 @@ public class ViajeDTO {
     public String toString() {
         return "Origen = " + origen + 
                 ", destino = " + destino + 
-                ", fecha = " + fecha.getDay()+ "/" + fecha.getMonth() +
-                ", hora = " + hora + 
+                ", fecha = " + fecha.getDayOfMonth() + "/" + fecha.getMonth().getDisplayName(TextStyle.SHORT, Locale.ITALY)+
+                ", hora = " + hora +
                 ", precioTotal = " + precioTotal;
     }
 

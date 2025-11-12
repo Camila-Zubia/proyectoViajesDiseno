@@ -7,6 +7,8 @@ package objetosNegocio;
 import dto.ConductorDTO;
 import dto.ParadaDTO;
 import dto.ViajeDTO;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 /**
@@ -20,10 +22,10 @@ public class ViajeNegocio {
     private ViajeDTO viaje2;
     
     public ViajeNegocio() {
-        viaje1 = new ViajeDTO("Obregón", "Navojoa", new java.util.Date(),
-                java.time.LocalTime.of(10, 30), 250.0);
-        viaje2 = new ViajeDTO("Obregon", "Esperanza", new java.util.Date(),
-                java.time.LocalTime.of(14, 0), 320.0);
+        viaje1 = new ViajeDTO("Obregón", "Navojoa", LocalDate.now(),
+                LocalTime.of(10, 30), 250.0);
+        viaje2 = new ViajeDTO("Obregon", "Esperanza", LocalDate.now(),
+                LocalTime.of(14, 0), 320.0);
         viajes.add(viaje1);
         viajes.add(viaje2);
         viaje1.getParadas().add(new ParadaDTO("Tutuli", 50.0));

@@ -312,6 +312,7 @@ public class datosParadas extends javax.swing.JPanel {
 
             scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
             scrollPane.setPreferredSize(new Dimension(514, 177));
+            scrollPane.setBackground(Color.WHITE);
             mostrarParadasPanel.removeAll();
             mostrarParadasPanel.setLayout(new BorderLayout());
             mostrarParadasPanel.add(scrollPane, BorderLayout.CENTER);

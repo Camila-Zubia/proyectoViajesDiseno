@@ -182,6 +182,7 @@ public class menuVehiculos extends javax.swing.JPanel {
                 JScrollPane scrollPane = new JScrollPane(panelInterno);
                 scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
                 scrollPane.setPreferredSize(new Dimension(770, 362));
+                scrollPane.setBackground(Color.WHITE);
                 panelContenedorVehiculos.removeAll();
                 panelContenedorVehiculos.setLayout(new BorderLayout());
                 panelContenedorVehiculos.add(scrollPane, BorderLayout.CENTER);
