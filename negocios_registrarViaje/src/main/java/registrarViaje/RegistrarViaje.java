@@ -21,7 +21,7 @@ public class RegistrarViaje implements IRegistrarViaje{
     private final ControlViaje control;
 
     public RegistrarViaje() {
-        control = new ControlViaje();
+        control = ControlViaje.getInstancia();
     }
 
     @Override

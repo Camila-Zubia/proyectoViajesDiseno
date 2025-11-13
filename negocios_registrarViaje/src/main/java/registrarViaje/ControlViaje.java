@@ -18,10 +18,9 @@ import objetosNegocio.ViajeNegocio;
  */
 public class ControlViaje {
     
+    private static ControlViaje instancia;
     private ViajeNegocio viajeBO;
     private VehiculoNegocio vehiculoBO;
-
-    // Estado temporal
     private VehiculoDTO vehiculoSeleccionado;
     private final List<ParadaDTO> paradasTemporales;
     private String origenTemporal;
@@ -30,10 +29,17 @@ public class ControlViaje {
     private LocalDate fechaTemporal;
     private LocalTime horaTemporal;
 
-    public ControlViaje() {
+    private ControlViaje() {
         this.viajeBO = new ViajeNegocio();
         this.vehiculoBO = new VehiculoNegocio();
         this.paradasTemporales = new ArrayList<>();
+    }
+    
+    public static ControlViaje getInstancia(){
+        if (instancia == null) {
+            instancia = new ControlViaje();
+        }
+        return instancia;
     }
     
     public void crearViaje(ViajeDTO viaje) {

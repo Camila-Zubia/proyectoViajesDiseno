@@ -14,7 +14,16 @@ import objetosNegocio.UsuarioNegocio;
  */
 public class ControlSesion {
     
-    public  ControlSesion(){
+    private static ControlSesion instancia;
+    
+    private  ControlSesion(){
+    }
+    
+    public static ControlSesion getInstancia(){
+        if (instancia == null) {
+            instancia = new ControlSesion();
+        }
+        return instancia;
     }
     
     public boolean validarUsuario(UsuarioDTO usuario) {

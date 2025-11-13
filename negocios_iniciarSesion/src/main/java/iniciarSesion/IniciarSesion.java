@@ -15,7 +15,7 @@ public class IniciarSesion implements IIniciarSesion{
     private final ControlSesion control;
 
     public IniciarSesion() {
-        this.control = new ControlSesion();
+        this.control = ControlSesion.getInstancia();
     }
 
     @Override
