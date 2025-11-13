@@ -4,7 +4,7 @@
  */
 package presentacion;
 
-import Controles.ControlPantallas;
+import Controles.IControlPantallas;
 import dto.ViajeDTO;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -33,7 +33,7 @@ import javax.swing.SwingConstants;
  */
 public class menuPrincipalConductor extends javax.swing.JPanel {
 
-    private final ControlPantallas controlPantallas;
+    private final IControlPantallas controlPantallas;
 
     /**
      * Creates new form menuPrincipalConductor
@@ -41,7 +41,7 @@ public class menuPrincipalConductor extends javax.swing.JPanel {
      * @param controlPantallas
      * @param viajes
      */
-    public menuPrincipalConductor(ControlPantallas controlPantallas, List<ViajeDTO> viajes) {
+    public menuPrincipalConductor(IControlPantallas controlPantallas, List<ViajeDTO> viajes) {
         this.controlPantallas = controlPantallas;
         
         

@@ -13,14 +13,14 @@ import Controles.ControlPantallas;
 public class FramePrincipal extends javax.swing.JFrame {
     
     private final ControlPantallas controlPantallas;
-
+    
     /**
      * Creates new form iniciarSesion
      */
     public FramePrincipal() {
         initComponents();
         this.setLocationRelativeTo(null);
-        controlPantallas = new ControlPantallas(this, jMenu1);
+        controlPantallas = ControlPantallas.getInstancia(this, jMenu1);
         controlPantallas.mostrarInicioSesion();
     }
 

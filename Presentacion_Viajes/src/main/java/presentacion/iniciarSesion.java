@@ -4,7 +4,7 @@
  */
 package presentacion;
 
-import Controles.ControlPantallas;
+import Controles.IControlPantallas;
 import dto.UsuarioDTO;
 import javax.swing.JOptionPane;
 
@@ -14,12 +14,13 @@ import javax.swing.JOptionPane;
  */
 public class iniciarSesion extends javax.swing.JPanel {
 
-    private final ControlPantallas controlPantallas;
+    private final IControlPantallas controlPantallas;
     
     /**
      * Creates new form iniciarSesion
+     * @param controlPantallas
      */
-    public iniciarSesion(ControlPantallas controlPantallas) {
+    public iniciarSesion(IControlPantallas controlPantallas) {
         initComponents();
         this.controlPantallas = controlPantallas;
     }

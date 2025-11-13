@@ -4,7 +4,7 @@
  */
 package presentacion;
 
-import Controles.ControlPantallas;
+import Controles.IControlPantallas;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import javax.swing.JOptionPane;
@@ -15,12 +15,12 @@ import javax.swing.JOptionPane;
  */
 public class datosViaje extends javax.swing.JPanel {
 
-    private final ControlPantallas controlPantallas;
+    private final IControlPantallas controlPantallas;
     /**
      * Creates new form datosViaje
      * @param controlPantallas
      */
-    public datosViaje(ControlPantallas controlPantallas) {
+    public datosViaje(IControlPantallas controlPantallas) {
         this.controlPantallas = controlPantallas;
         initComponents();
     }

@@ -4,7 +4,7 @@
  */
 package presentacion;
 
-import Controles.ControlPantallas;
+import Controles.IControlPantallas;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -27,7 +27,7 @@ import javax.swing.SwingConstants;
  */
 public class datosParadas extends javax.swing.JPanel {
 
-    private final ControlPantallas controlPantallas;
+    private final IControlPantallas controlPantallas;
     private List paradas;
 
     /**
@@ -36,7 +36,7 @@ public class datosParadas extends javax.swing.JPanel {
      * @param controlPantallas
      * @param paradas
      */
-    public datosParadas(ControlPantallas controlPantallas, List paradas) {
+    public datosParadas(IControlPantallas controlPantallas, List paradas) {
         initComponents();
         this.controlPantallas = controlPantallas;
         this.paradas = paradas;

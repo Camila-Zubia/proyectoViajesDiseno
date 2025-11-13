@@ -28,18 +28,27 @@ import registrarViaje.RegistrarViaje;
  *
  * @author Camila Zubia 00000244825
  */
-public class ControlPantallas {
+ public class ControlPantallas implements IControlPantallas{
 
+    private static ControlPantallas instancia;
     private final JFrame frame;
     private final JMenu menu;
     private final IIniciarSesion sesion = new IniciarSesion();
     private final IRegistrarViaje interfaz = new RegistrarViaje();
 
-    public ControlPantallas(JFrame frame, JMenu menu) {
+    private ControlPantallas(JFrame frame, JMenu menu) {
         this.frame = frame;
         this.menu = menu;
     }
+    
+    public static ControlPantallas getInstancia(JFrame frame, JMenu menu){
+        if (instancia == null) {
+            instancia = new ControlPantallas(frame, menu);
+        }
+        return instancia;
+    }
 
+    @Override
     public void configurarPanel(JPanel panel) {
 
         frame.getContentPane().removeAll();
@@ -57,6 +66,7 @@ public class ControlPantallas {
         frame.setLocationRelativeTo(null);
     }
 
+    @Override
     public void mostrarMenuVehiculos() {
         UsuarioDTO usuario = sesion.obtenerUsuario();
         List vehiculos = interfaz.obtenerVehiculosDisponibles(usuario.getConductor());
@@ -64,11 +74,13 @@ public class ControlPantallas {
         configurarPanel(menuVehiculos);
     }
     
+    @Override
     public void mostrarInicioSesion(){
         iniciarSesion inicioSesion = new iniciarSesion(this);
         configurarPanel(inicioSesion);
     }
 
+    @Override
     public void mostrarMenuConductor() {
         UsuarioDTO usuario = sesion.obtenerUsuario();
         List viajes = interfaz.obtenerViajesPorConductor(usuario.getConductor());
@@ -77,17 +89,20 @@ public class ControlPantallas {
         configurarPanel(menuConductor);
     }
 
+    @Override
     public void mostrarDatosViaje() {
         datosViaje datosViaje = new datosViaje(this);
         configurarPanel(datosViaje);
     }
 
+    @Override
     public void mostrarDatosParada() {
         List paradas = interfaz.obtenerParadasTemporales();
         datosParadas datosParadas = new datosParadas(this, paradas);
         configurarPanel(datosParadas);
     }
 
+    @Override
     public void mostrarSeleccionarPerfil() {
         seleccionarPerfilConductor panel = new seleccionarPerfilConductor(this);
         configurarPanel(panel);
@@ -95,6 +110,7 @@ public class ControlPantallas {
         frame.setTitle("Seleccionar Perfil");
     }
 
+    @Override
     public void seleccionarVehiculo(dto.VehiculoDTO vehiculo) {
         interfaz.seleccionarVehiculo(vehiculo);
     }
@@ -103,22 +119,27 @@ public class ControlPantallas {
         interfaz.guardarDatosViaje(origen, destino, fecha, hora);
     }
 
+    @Override
     public void confirmarViaje() {
         interfaz.confirmarViaje();
     }
     
+    @Override
     public void agregarParada(String direccion, double precio){
         interfaz.agregarParada(direccion, precio);
     }
     
+    @Override
     public boolean validarUsuario(UsuarioDTO usuario){
         return sesion.validarUsuario(usuario);
     }
     
+    @Override
     public ConductorDTO nombreConductor(){
         return sesion.obtenerUsuario().getConductor();
     }
     
+    @Override
     public void cerrarSesion(){
         sesion.cerrarSesion();
         menu.setEnabled(false);

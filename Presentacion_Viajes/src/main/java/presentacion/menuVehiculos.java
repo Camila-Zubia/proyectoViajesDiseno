@@ -4,7 +4,7 @@
  */
 package presentacion;
 
-import Controles.ControlPantallas;
+import Controles.IControlPantallas;
 import dto.VehiculoDTO;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -27,7 +27,7 @@ import javax.swing.SwingConstants;
  */
 public class menuVehiculos extends javax.swing.JPanel {
 
-    private final ControlPantallas controlPantallas;
+    private final IControlPantallas controlPantallas;
     private List vehiculos;
     private VehiculoDTO vehiculoSeleccionadoDTO; // almacena el vehiculo seleccionado
 
@@ -36,7 +36,7 @@ public class menuVehiculos extends javax.swing.JPanel {
      * @param controlPantallas
      * @param vehiculos
      */
-    public menuVehiculos(ControlPantallas controlPantallas, List vehiculos) {
+    public menuVehiculos(IControlPantallas controlPantallas, List vehiculos) {
         this.controlPantallas = controlPantallas;
         this.vehiculos = vehiculos;
 

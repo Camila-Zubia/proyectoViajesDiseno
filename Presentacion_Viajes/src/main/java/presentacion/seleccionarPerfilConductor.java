@@ -4,7 +4,7 @@
  */
 package presentacion;
 
-import Controles.ControlPantallas;
+import Controles.IControlPantallas;
 
 /**
  *
@@ -12,13 +12,13 @@ import Controles.ControlPantallas;
  */
 public class seleccionarPerfilConductor extends javax.swing.JPanel {
     
-    private final ControlPantallas controlPantallas;
+    private final IControlPantallas controlPantallas;
 
     /**
      * Creates new form seleccionarPerfilConductor
      * @param controlPantallas
      */
-    public seleccionarPerfilConductor(ControlPantallas controlPantallas) {
+    public seleccionarPerfilConductor(IControlPantallas controlPantallas) {
         this.controlPantallas = controlPantallas;
         initComponents();
         
