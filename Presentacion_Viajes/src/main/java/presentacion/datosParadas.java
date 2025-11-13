@@ -95,14 +95,12 @@ public class datosParadas extends javax.swing.JPanel {
 
         precioTField.setBackground(new java.awt.Color(255, 255, 255));
         precioTField.setForeground(new java.awt.Color(0, 0, 0));
-        precioTField.setBorder(null);
 
         direccionTField.setBackground(new java.awt.Color(255, 255, 255));
         direccionTField.setForeground(new java.awt.Color(0, 0, 0));
-        direccionTField.setBorder(null);
 
         agregarParadaBtn.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
-        agregarParadaBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MAS1.jpg"))); // NOI18N
+        agregarParadaBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/boton.jpg"))); // NOI18N
         agregarParadaBtn.setBorder(null);
         agregarParadaBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -309,10 +307,10 @@ public class datosParadas extends javax.swing.JPanel {
                 panelElemento.setBackground(new Color(255, 255, 255));
 
                 JButton btnInfo = new JButton();
-                btnInfo.setFont(new Font("Segoe UI", Font.BOLD, 12));
+                btnInfo.setFont(new Font("Segoe UI", Font.PLAIN, 12));
                 btnInfo.setBackground(Color.WHITE);
-                btnInfo.setAlignmentX(Component.LEFT_ALIGNMENT);
-                btnInfo.setHorizontalAlignment(SwingConstants.LEFT);
+                btnInfo.setAlignmentX(Component.CENTER_ALIGNMENT);
+                btnInfo.setHorizontalAlignment(SwingConstants.CENTER);
                 btnInfo.setPreferredSize(new Dimension(500, 40));
                 btnInfo.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
                 btnInfo.setText(parada.toString());
@@ -323,7 +321,7 @@ public class datosParadas extends javax.swing.JPanel {
             }
             JScrollPane scrollPane = new JScrollPane(panelInterno);
 
-            scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+            scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
             scrollPane.setPreferredSize(new Dimension(514, 177));
             scrollPane.setBackground(Color.WHITE);
             mostrarParadasPanel.removeAll();

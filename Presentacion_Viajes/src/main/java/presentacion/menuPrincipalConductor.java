@@ -49,6 +49,8 @@ public class menuPrincipalConductor extends javax.swing.JPanel {
         mostrarViajes(viajes);
         ponerImg();
         datosConductor.setText(controlPantallas.nombreConductor().toString());
+        datosConductor.setEditable(false);
+        datosConductor.getCaret().setVisible(false);
         this.setVisible(true);
         this.revalidate();
         this.repaint();
@@ -86,12 +88,13 @@ public class menuPrincipalConductor extends javax.swing.JPanel {
         });
 
         panelFotoPerfil.setBackground(new java.awt.Color(255, 255, 255));
+        panelFotoPerfil.setName(""); // NOI18N
 
         javax.swing.GroupLayout panelFotoPerfilLayout = new javax.swing.GroupLayout(panelFotoPerfil);
         panelFotoPerfil.setLayout(panelFotoPerfilLayout);
         panelFotoPerfilLayout.setHorizontalGroup(
             panelFotoPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 202, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         panelFotoPerfilLayout.setVerticalGroup(
             panelFotoPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -104,30 +107,30 @@ public class menuPrincipalConductor extends javax.swing.JPanel {
         datosConductor.setEditable(false);
         datosConductor.setBackground(new java.awt.Color(255, 255, 255));
         datosConductor.setColumns(20);
-        datosConductor.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        datosConductor.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         datosConductor.setForeground(new java.awt.Color(0, 0, 0));
         datosConductor.setRows(5);
         datosConductor.setBorder(null);
+        datosConductor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        datosConductor.setFocusable(false);
         jScrollPane1.setViewportView(datosConductor);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(panelFotoPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addGap(44, 44, 44)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panelFotoPerfil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(34, 34, 34)
-                .addComponent(panelFotoPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelFotoPerfil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(35, Short.MAX_VALUE))
@@ -161,7 +164,7 @@ public class menuPrincipalConductor extends javax.swing.JPanel {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 682, Short.MAX_VALUE)
+            .addGap(0, 680, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -184,9 +187,9 @@ public class menuPrincipalConductor extends javax.swing.JPanel {
                             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(26, 26, 26))
+                    .addComponent(jLabel1)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -249,10 +252,10 @@ public class menuPrincipalConductor extends javax.swing.JPanel {
                     panelElemento.setBackground(new Color(255, 255, 255));
 
                     JButton btnInfo = new JButton();
-                    btnInfo.setFont(new Font("Segoe UI", Font.BOLD, 12));
+                    btnInfo.setFont(new Font("Segoe UI", Font.PLAIN, 12));
                     btnInfo.setBackground(Color.WHITE);
-                    btnInfo.setAlignmentX(Component.LEFT_ALIGNMENT);
-                    btnInfo.setHorizontalAlignment(SwingConstants.LEFT);
+                    btnInfo.setAlignmentX(Component.CENTER_ALIGNMENT);
+                    btnInfo.setHorizontalAlignment(SwingConstants.CENTER);
                     btnInfo.setPreferredSize(new Dimension(650, 40));
                     btnInfo.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
                     btnInfo.setText(viaje.toString());
@@ -262,7 +265,8 @@ public class menuPrincipalConductor extends javax.swing.JPanel {
                 }
                 JScrollPane scrollPane = new JScrollPane(panelInterno);
                 scrollPane.setBackground(Color.WHITE);
-                scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+                scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+                scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
                 scrollPane.setPreferredSize(new Dimension(680, 458));
                 jPanel3.removeAll();
                 jPanel3.setLayout(new BorderLayout());

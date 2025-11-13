@@ -13,9 +13,11 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 import javax.swing.JFrame;
+import javax.swing.JMenu;
 import javax.swing.JPanel;
 import presentacion.datosParadas;
 import presentacion.datosViaje;
+import presentacion.iniciarSesion;
 import presentacion.menuPrincipalConductor;
 import presentacion.menuVehiculos;
 import presentacion.seleccionarPerfilConductor;
@@ -29,11 +31,13 @@ import registrarViaje.RegistrarViaje;
 public class ControlPantallas {
 
     private final JFrame frame;
+    private final JMenu menu;
     private final IIniciarSesion sesion = new IniciarSesion();
     private final IRegistrarViaje interfaz = new RegistrarViaje();
 
-    public ControlPantallas(JFrame frame) {
+    public ControlPantallas(JFrame frame, JMenu menu) {
         this.frame = frame;
+        this.menu = menu;
     }
 
     public void configurarPanel(JPanel panel) {
@@ -52,28 +56,23 @@ public class ControlPantallas {
         frame.pack();
         frame.setLocationRelativeTo(null);
     }
-    
-    public void configurarPanel(JFrame frame, JPanel panel) {
-        frame.getContentPane().removeAll();
-        frame.getContentPane().setLayout(new BorderLayout());
-        frame.getContentPane().add(panel, BorderLayout.CENTER);
-
-        frame.revalidate();
-        frame.repaint();
-    }
 
     public void mostrarMenuVehiculos() {
         UsuarioDTO usuario = sesion.obtenerUsuario();
         List vehiculos = interfaz.obtenerVehiculosDisponibles(usuario.getConductor());
         menuVehiculos menuVehiculos = new menuVehiculos(this, vehiculos);
         configurarPanel(menuVehiculos);
-        frame.setVisible(true);
+    }
+    
+    public void mostrarInicioSesion(){
+        iniciarSesion inicioSesion = new iniciarSesion(this);
+        configurarPanel(inicioSesion);
     }
 
     public void mostrarMenuConductor() {
         UsuarioDTO usuario = sesion.obtenerUsuario();
         List viajes = interfaz.obtenerViajesPorConductor(usuario.getConductor());
-
+        menu.setEnabled(true);
         menuPrincipalConductor menuConductor = new menuPrincipalConductor(this, viajes);
         configurarPanel(menuConductor);
     }
@@ -118,5 +117,11 @@ public class ControlPantallas {
     
     public ConductorDTO nombreConductor(){
         return sesion.obtenerUsuario().getConductor();
+    }
+    
+    public void cerrarSesion(){
+        sesion.cerrarSesion();
+        menu.setEnabled(false);
+        mostrarInicioSesion();
     }
 }

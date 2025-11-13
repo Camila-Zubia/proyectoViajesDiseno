@@ -28,4 +28,9 @@ public class IniciarSesion implements IIniciarSesion{
         return control.obtenerUsuario();
     }
 
+    @Override
+    public void cerrarSesion() {
+        control.cerrarSesion();
+    }
+
 }

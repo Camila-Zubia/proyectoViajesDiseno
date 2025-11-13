@@ -24,4 +24,9 @@ public interface IIniciarSesion {
      * @return 
      */
     public UsuarioDTO obtenerUsuario();
+    
+    /**
+     * cierra la sesion de usuario
+     */
+    public void cerrarSesion();
 }

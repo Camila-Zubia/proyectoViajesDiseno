@@ -4,6 +4,7 @@
  */
 package iniciarSesion;
 
+import dto.ConductorDTO;
 import dto.UsuarioDTO;
 import objetosNegocio.UsuarioNegocio;
 
@@ -22,5 +23,13 @@ public class ControlSesion {
     
     public UsuarioDTO obtenerUsuario(){
         return UsuarioNegocio.obtenerInstancia().obtenerUsuario();
+    }
+    
+    public ConductorDTO obtenerConductor(){
+        return obtenerUsuario().getConductor();
+    }
+    
+    public void cerrarSesion(){
+        UsuarioNegocio.cerrarSesion();
     }
 }

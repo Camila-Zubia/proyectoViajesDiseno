@@ -40,7 +40,7 @@ public class ParadaDTO {
     @Override
     public String toString() {
         return "Direcci\u00f3n = " + dirección + 
-                ", precio = " + precio;
+                ", $" + precio;
     }
     
 }

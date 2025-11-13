@@ -62,21 +62,21 @@ public class menuVehiculos extends javax.swing.JPanel {
         setMinimumSize(new java.awt.Dimension(1080, 648));
         setPreferredSize(new java.awt.Dimension(1080, 640));
 
+        siguienteTField.setText("Siguiente");
         siguienteTField.setBackground(new java.awt.Color(255, 255, 255));
+        siguienteTField.setBorder(null);
         siguienteTField.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         siguienteTField.setForeground(new java.awt.Color(0, 0, 0));
-        siguienteTField.setText("Siguiente");
-        siguienteTField.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         siguienteTField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 siguienteTFieldActionPerformed(evt);
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("VEHICULOS GUARDADOS");
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
 
         panelContenedorVehiculos.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -142,30 +142,29 @@ public class menuVehiculos extends javax.swing.JPanel {
                 for (Object vehiculo : listaVehiculos) {
                     JPanel panelElemento = new JPanel();
                     panelElemento.setLayout(new BoxLayout(panelElemento, BoxLayout.X_AXIS));
-                    panelElemento.setPreferredSize(new Dimension(750, 50));
-                    panelElemento.setMaximumSize(new Dimension(750, 50));
+                    panelElemento.setPreferredSize(new Dimension(740, 50));
+                    panelElemento.setMaximumSize(new Dimension(740, 50));
                     panelElemento.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
                     panelElemento.setBackground(new Color(255, 255, 255));
 
                     JButton btnInfo = new JButton();
-                    btnInfo.setFont(new Font("Segoe UI", Font.BOLD, 12));
+                    btnInfo.setFont(new Font("Segoe UI", Font.PLAIN, 12));
                     btnInfo.setBackground(Color.WHITE);
-                    btnInfo.setAlignmentX(Component.LEFT_ALIGNMENT);
-                    btnInfo.setHorizontalAlignment(SwingConstants.LEFT);
+                    btnInfo.setAlignmentX(Component.CENTER_ALIGNMENT);
+                    btnInfo.setHorizontalAlignment(SwingConstants.CENTER);
                     btnInfo.setPreferredSize(new Dimension(700, 40));
                     btnInfo.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
                     btnInfo.setText(vehiculo.toString());
                     btnInfo.addActionListener(e -> {
                         this.vehiculoSeleccionadoDTO = (dto.VehiculoDTO) vehiculo;
-                       // controlPantallas.seleccionarVehiculo((dto.VehiculoDTO) vehiculo);
-                       // controlPantallas.mostrarDatosViaje();
                     });
 
                     panelElemento.add(btnInfo);
                     panelInterno.add(panelElemento);
                 }
                 JScrollPane scrollPane = new JScrollPane(panelInterno);
-                scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+                scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+                scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
                 scrollPane.setPreferredSize(new Dimension(770, 362));
                 scrollPane.setBackground(Color.WHITE);
                 panelContenedorVehiculos.removeAll();

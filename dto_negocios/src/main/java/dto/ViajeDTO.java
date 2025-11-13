@@ -99,11 +99,10 @@ public class ViajeDTO {
 
     @Override
     public String toString() {
-        return "Origen = " + origen + 
-                ", destino = " + destino + 
+        return origen + "-->" + destino + 
                 ", fecha = " + fecha.getDayOfMonth() + "/" + fecha.getMonth().getDisplayName(TextStyle.SHORT, Locale.ITALY)+
                 ", hora = " + hora +
-                ", precioTotal = " + precioTotal;
+                ", $" + precioTotal;
     }
 
 }
