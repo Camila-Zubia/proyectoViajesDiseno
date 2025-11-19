@@ -5,12 +5,14 @@
 package registrarViaje;
 
 import dto.*;
+import factory.FabricaBOs;
+import factory.IFabricaBOs;
+import interfaces.IConductorNegocio;
+import interfaces.IViajeNegocio;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
-import objetosNegocio.VehiculoNegocio;
-import objetosNegocio.ViajeNegocio;
 
 /**
  *
@@ -18,9 +20,8 @@ import objetosNegocio.ViajeNegocio;
  */
 public class ControlViaje {
     
-    private static ControlViaje instancia;
-    private ViajeNegocio viajeBO;
-    private VehiculoNegocio vehiculoBO;
+    private IViajeNegocio viajeBO;
+    private IConductorNegocio conductorBO;
     private VehiculoDTO vehiculoSeleccionado;
     private final List<ParadaDTO> paradasTemporales;
     private String origenTemporal;
@@ -29,25 +30,16 @@ public class ControlViaje {
     private LocalDate fechaTemporal;
     private LocalTime horaTemporal;
 
-    private ControlViaje() {
-        this.viajeBO = new ViajeNegocio();
-        this.vehiculoBO = new VehiculoNegocio();
+    public ControlViaje() {
+        IFabricaBOs fabrica = new FabricaBOs();
+        this.viajeBO = fabrica.crearViajeNegocio();
+        this.conductorBO = fabrica.crearConductorNegocio();
         this.paradasTemporales = new ArrayList<>();
-    }
-    
-    public static ControlViaje getInstancia(){
-        if (instancia == null) {
-            instancia = new ControlViaje();
-        }
-        return instancia;
+        
     }
     
     public void crearViaje(ViajeDTO viaje) {
         viajeBO.registrarViaje(viaje);
-    }
-    
-    public ParadaDTO getOrigenTemporal(){
-       return null;
     }
     
     public void crearParada(ViajeDTO viaje, ParadaDTO parada) {
@@ -55,7 +47,7 @@ public class ControlViaje {
     }
     
     public List<VehiculoDTO> obtenerVehiculos(ConductorDTO conductor) {
-        return vehiculoBO.obtenerVehiculos();
+        return conductorBO.obtenerVehiculos();
     }
 
     public void seleccionarVehiculo(VehiculoDTO vehiculo) {
@@ -84,7 +76,7 @@ public class ControlViaje {
     }
     
     public List<ParadaDTO> obtenerParadas(ViajeDTO viaje) {
-        return viajeBO.obtenerParadas();
+        return viajeBO.obtenerParadas(viaje);
     }
 
     public List<ParadaDTO> obtenerParadasTemporales() {
@@ -96,7 +88,7 @@ public class ControlViaje {
         if (conductor == null) {
             throw new IllegalArgumentException("El conductor no puede ser null");
         }
-        return viajeBO.obtenerViajes(conductor);
+        return conductorBO.obtenerViajes();
     }
 
     // Registro del Viaje
@@ -124,7 +116,8 @@ public class ControlViaje {
         viaje.setParadas(paradasTemporales);
         crearViaje(viaje);
         paradasTemporales.clear();
-
+        viaje.setVehiculo(vehiculoSeleccionado);
+        
         return viaje;
     }
 

@@ -4,10 +4,18 @@
  */
 package interfaces;
 
+import dto.UsuarioDTO;
+
 /**
  *
  * @author Camila Zubia 00000244825
  */
-public interface IVehiculoNegocio {
+public interface IUsuarioNegocio {
+    
+    public void cerrarSesion();
+    
+    public UsuarioDTO obtenerUsuarioActivo();
+
+    public boolean validarUsuario(UsuarioDTO usuario);
     
 }

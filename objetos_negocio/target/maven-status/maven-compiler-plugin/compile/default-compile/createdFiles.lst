@@ -1,4 +1,9 @@
-objetosNegocio\ViajeNegocio.class
+factory\FabricaBOs.class
+interfaces\IViajeNegocio.class
 objetosNegocio\ConductorNegocio.class
+objetosNegocio\ViajeNegocio.class
+utilidades\SesionUsuario.class
 objetosNegocio\UsuarioNegocio.class
-objetosNegocio\VehiculoNegocio.class
+factory\IFabricaBOs.class
+interfaces\IConductorNegocio.class
+interfaces\IUsuarioNegocio.class

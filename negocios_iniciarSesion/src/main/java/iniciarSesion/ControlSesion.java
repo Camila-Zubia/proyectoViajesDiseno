@@ -6,7 +6,9 @@ package iniciarSesion;
 
 import dto.ConductorDTO;
 import dto.UsuarioDTO;
-import objetosNegocio.UsuarioNegocio;
+import factory.FabricaBOs;
+import factory.IFabricaBOs;
+import interfaces.IUsuarioNegocio;
 
 /**
  *
@@ -14,31 +16,26 @@ import objetosNegocio.UsuarioNegocio;
  */
 public class ControlSesion {
     
-    private static ControlSesion instancia;
+    private final IUsuarioNegocio usuarioBO;
     
-    private  ControlSesion(){
-    }
-    
-    public static ControlSesion getInstancia(){
-        if (instancia == null) {
-            instancia = new ControlSesion();
-        }
-        return instancia;
+    public  ControlSesion(){
+        IFabricaBOs fabrica = new FabricaBOs();
+        this.usuarioBO = fabrica.crearUsuarioNegocio();
     }
     
     public boolean validarUsuario(UsuarioDTO usuario) {
-        return UsuarioNegocio.obtenerInstancia().validarUsuario(usuario);
+        return usuarioBO.validarUsuario(usuario);
     }
     
     public UsuarioDTO obtenerUsuario(){
-        return UsuarioNegocio.obtenerInstancia().obtenerUsuario();
+        return usuarioBO.obtenerUsuarioActivo();
     }
     
     public ConductorDTO obtenerConductor(){
-        return obtenerUsuario().getConductor();
+        return usuarioBO.obtenerUsuarioActivo().getConductor();
     }
     
     public void cerrarSesion(){
-        UsuarioNegocio.cerrarSesion();
+        usuarioBO.cerrarSesion();
     }
 }

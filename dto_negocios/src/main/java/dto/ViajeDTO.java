@@ -23,6 +23,7 @@ public class ViajeDTO {
     private LocalTime hora;
     private double precioTotal;
     private List<ParadaDTO> paradas;
+    private VehiculoDTO vehiculo;
 
     public ViajeDTO() {
         this.paradas = new ArrayList<>();
@@ -45,8 +46,16 @@ public class ViajeDTO {
         this.precioTotal = precioTotal;
         this.paradas = paradas;
     }
-    
-    
+
+    public ViajeDTO(String origen, String destino, LocalDate fecha, LocalTime hora, double precioTotal, List<ParadaDTO> paradas, VehiculoDTO vehiculo) {
+        this.origen = origen;
+        this.destino = destino;
+        this.fecha = fecha;
+        this.hora = hora;
+        this.precioTotal = precioTotal;
+        this.paradas = paradas;
+        this.vehiculo = vehiculo;
+    }
     
     
     public String getOrigen() {
@@ -95,6 +104,14 @@ public class ViajeDTO {
 
     public void setParadas(List<ParadaDTO> paradas) {
         this.paradas = paradas;
+    }
+
+    public VehiculoDTO getVehiculo() {
+        return vehiculo;
+    }
+
+    public void setVehiculo(VehiculoDTO vehiculo) {
+        this.vehiculo = vehiculo;
     }
 
     @Override

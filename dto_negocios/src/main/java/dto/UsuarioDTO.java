@@ -11,15 +11,21 @@ package dto;
 public class UsuarioDTO {
     
     private String usuario;
-    private String contraseña;
+    private String contraseñaHaseada;
+    private char[] contraseña;
     private ConductorDTO conductor;
 
     public UsuarioDTO() {
     }
 
-    public UsuarioDTO(String usuario, String contraseña) {
+    public UsuarioDTO(String usuario, char[] contraseña) {
         this.usuario = usuario;
         this.contraseña = contraseña;
+    }
+
+    public UsuarioDTO(String usuario, String contraseñaHaseada) {
+        this.usuario = usuario;
+        this.contraseñaHaseada = contraseñaHaseada;
     }
 
     public String getUsuario() {
@@ -30,11 +36,19 @@ public class UsuarioDTO {
         this.usuario = usuario;
     }
 
-    public String getContraseña() {
+    public String getContraseñaHaseada() {
+        return contraseñaHaseada;
+    }
+
+    public void setContraseñaHaseada(String contraseñaHaseada) {
+        this.contraseñaHaseada = contraseñaHaseada;
+    }
+
+    public char[] getContraseña() {
         return contraseña;
     }
 
-    public void setContraseña(String contraseña) {
+    public void setContraseña(char[] contraseña) {
         this.contraseña = contraseña;
     }
 

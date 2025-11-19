@@ -4,10 +4,20 @@
  */
 package interfaces;
 
+import dto.ParadaDTO;
+import dto.ViajeDTO;
+import java.util.List;
+
 /**
  *
  * @author Camila Zubia 00000244825
  */
 public interface IViajeNegocio {
+    
+    public void registrarViaje(ViajeDTO viaje);
+    
+    public List<ParadaDTO> obtenerParadas(ViajeDTO viaje);
+    
+    public void registrarParada(ViajeDTO viaje, ParadaDTO parada);
     
 }

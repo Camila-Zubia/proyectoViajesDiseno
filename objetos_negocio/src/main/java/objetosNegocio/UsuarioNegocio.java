@@ -5,57 +5,62 @@
 package objetosNegocio;
 
 import dto.ConductorDTO;
+import dto.ParadaDTO;
 import dto.UsuarioDTO;
+import dto.VehiculoDTO;
+import dto.ViajeDTO;
+import interfaces.IUsuarioNegocio;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
+import utilidades.SesionUsuario;
 
 /**
  *
  * @author Camila Zubia 00000244825
  */
-public class UsuarioNegocio {
-    private static UsuarioNegocio instancia = new UsuarioNegocio();
-    private static UsuarioDTO usuarioActual;
+public class UsuarioNegocio implements IUsuarioNegocio{
 
-    private UsuarioNegocio() {
-        UsuarioNegocio.usuarioActual = new UsuarioDTO("cperez", "1234");
-        UsuarioNegocio.usuarioActual.setConductor(new ConductorDTO("Carlos Pérez"));
-        
+    public UsuarioNegocio() {
     }
 
-    public static UsuarioDTO obtenerUsuario() {
-        return usuarioActual;
+    @Override
+    public void cerrarSesion() {
+        SesionUsuario.cerrarSesion();
     }
 
-    public static ConductorDTO obtenerConductor() {
-        return usuarioActual.getConductor();
-    }
-    
-    public static UsuarioNegocio obtenerInstancia(){
-        if (instancia == null) {
-            instancia = new UsuarioNegocio();
-        }
-        return instancia;
-    }
-    
-    public static void iniciarSesion(UsuarioDTO usuario) {
-        UsuarioNegocio.usuarioActual = usuario;
-    }
-
-    public static void cerrarSesion() {
-        usuarioActual = null;
-    }
-
-    public static boolean haySesionActiva() {
-        return usuarioActual != null;
-    }
-
-    public static boolean validarUsuario(UsuarioDTO usuario) {
-        UsuarioDTO usuarioMock = usuarioActual;
+    @Override
+    public boolean validarUsuario(UsuarioDTO usuario) {
+        UsuarioDTO usuarioMock = new UsuarioDTO("cperez", "1234");
+        ConductorDTO conductor =  new ConductorDTO("Carlos Pérez");
+        List<VehiculoDTO> vehiculos = new ArrayList<>();
+        vehiculos.add(new VehiculoDTO("Civic 2020", "ABC-123", "Honda", "Blanco", 4));
+        vehiculos.add(new VehiculoDTO("Corolla 2021", "XYZ-789", "Toyota", "Gris", 4));
+        vehiculos.add(new VehiculoDTO("Jetta 2019", "DEF-456", "Volkswagen", "Negro", 4));
+        conductor.setVehiculos(vehiculos);
+        List<ViajeDTO> viajes = new ArrayList<>();
+        ViajeDTO viaje1 = new ViajeDTO("Obregon", "Navojoa", LocalDate.now(), LocalTime.of(10, 30), 250.0);
+        ViajeDTO viaje2 = new ViajeDTO("Obregon", "Esperanza", LocalDate.now(), LocalTime.of(14, 0), 70.0);
+        viaje1.getParadas().add(new ParadaDTO("Tutuli", 50.0));
+        viaje1.getParadas().add(new ParadaDTO("ITSON", 30.0));
+        viaje2.getParadas().add(new ParadaDTO("Central Camiones", 40.0));
+        viajes.add(viaje1);
+        viajes.add(viaje2);
+        conductor.setViajes(viajes);
+        usuario = usuarioMock;
+        usuario.setConductor(conductor);
         boolean usuarioValido = usuarioMock.getUsuario().equals(usuario.getUsuario());
-        boolean contraseñaValida = usuarioMock.getContraseña().equals(usuario.getContraseña());
+        boolean contraseñaValida = usuarioMock.getContraseñaHaseada().equals(usuario.getContraseñaHaseada());
         if (contraseñaValida && usuarioValido) {
-            UsuarioNegocio.iniciarSesion(usuarioMock);
+            SesionUsuario.iniciarSesion(usuarioMock);
             return true;
         }
         return false;
+    }
+
+    @Override
+    public UsuarioDTO obtenerUsuarioActivo() {
+        return SesionUsuario.obtenerUsuario();
     }
 }

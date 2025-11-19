@@ -4,36 +4,39 @@
  */
 package objetosNegocio;
 
-import dto.ConductorDTO;
 import dto.VehiculoDTO;
 import dto.ViajeDTO;
+import interfaces.IConductorNegocio;
 import java.util.List;
+import utilidades.SesionUsuario;
 
 /**
  *
  * @author Camila Zubia 00000244825
  */
-public class ConductorNegocio {
+public class ConductorNegocio implements IConductorNegocio{
     
-    private ConductorDTO conductor;
-
     public ConductorNegocio() {
-        conductor =  UsuarioNegocio.obtenerConductor();
+        
     }
     
+    @Override
     public void agregarVehiculo(VehiculoDTO vehiculo){
-        this.conductor.getVehiculos().add(vehiculo);
+        SesionUsuario.obtenerConductor().getVehiculos().add(vehiculo);
     }
     
+    @Override
     public List<VehiculoDTO> obtenerVehiculos(){
-        return this.conductor.getVehiculos();
+        return SesionUsuario.obtenerConductor().getVehiculos();
     }
     
+    @Override
     public void agregarViaje(ViajeDTO viaje){
-        this.conductor.getViajes().add(viaje);
+        SesionUsuario.obtenerConductor().getViajes().add(viaje);
     }
     
+    @Override
     public List<ViajeDTO> obtenerViajes(){
-        return this.conductor.getViajes();
+        return SesionUsuario.obtenerConductor().getViajes();
     }
 }
