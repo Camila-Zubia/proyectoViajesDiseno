@@ -148,13 +148,13 @@ public class menuVehiculos extends javax.swing.JPanel {
                     panelElemento.setBackground(new Color(255, 255, 255));
 
                     JButton btnInfo = new JButton();
-                    btnInfo.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+                    btnInfo.setFont(new Font("Dialog", Font.PLAIN, 14));
                     btnInfo.setBackground(Color.WHITE);
                     btnInfo.setAlignmentX(Component.CENTER_ALIGNMENT);
                     btnInfo.setHorizontalAlignment(SwingConstants.CENTER);
                     btnInfo.setPreferredSize(new Dimension(700, 40));
                     btnInfo.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
-                    btnInfo.setText(vehiculo.toString());
+                    btnInfo.setText(vehiculo.toString().formatted());
                     btnInfo.addActionListener(e -> {
                         this.vehiculoSeleccionadoDTO = (dto.VehiculoDTO) vehiculo;
                     });

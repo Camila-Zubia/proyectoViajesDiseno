@@ -307,7 +307,7 @@ public class datosParadas extends javax.swing.JPanel {
                 panelElemento.setBackground(new Color(255, 255, 255));
 
                 JButton btnInfo = new JButton();
-                btnInfo.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+                btnInfo.setFont(new Font("Dialog", Font.PLAIN, 14));
                 btnInfo.setBackground(Color.WHITE);
                 btnInfo.setAlignmentX(Component.CENTER_ALIGNMENT);
                 btnInfo.setHorizontalAlignment(SwingConstants.CENTER);

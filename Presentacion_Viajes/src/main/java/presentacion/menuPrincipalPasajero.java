@@ -31,7 +31,7 @@ import javax.swing.SwingConstants;
  *
  * @author adell
  */
-public class menuPrincipalConductor extends javax.swing.JPanel {
+public class menuPrincipalPasajero extends javax.swing.JPanel {
 
     private final IControlPantallas controlPantallas;
 
@@ -41,7 +41,7 @@ public class menuPrincipalConductor extends javax.swing.JPanel {
      * @param controlPantallas
      * @param viajes
      */
-    public menuPrincipalConductor(IControlPantallas controlPantallas, List<ViajeDTO> viajes) {
+    public menuPrincipalPasajero(IControlPantallas controlPantallas, List<ViajeDTO> viajes) {
         this.controlPantallas = controlPantallas;
         
         
@@ -70,7 +70,6 @@ public class menuPrincipalConductor extends javax.swing.JPanel {
         panelFotoPerfil = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         datosConductor = new javax.swing.JTextArea();
-        registrarViajeBtn = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -133,19 +132,8 @@ public class menuPrincipalConductor extends javax.swing.JPanel {
                 .addComponent(panelFotoPerfil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        registrarViajeBtn.setBackground(new java.awt.Color(255, 255, 255));
-        registrarViajeBtn.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        registrarViajeBtn.setForeground(new java.awt.Color(0, 0, 0));
-        registrarViajeBtn.setText("Registrar Viaje");
-        registrarViajeBtn.setBorder(null);
-        registrarViajeBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                registrarViajeBtnActionPerformed(evt);
-            }
-        });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -156,7 +144,7 @@ public class menuPrincipalConductor extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("TUS VIAJES:");
+        jLabel1.setText("VIAJES DISPONIBLES:");
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -168,7 +156,7 @@ public class menuPrincipalConductor extends javax.swing.JPanel {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 479, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -182,9 +170,7 @@ public class menuPrincipalConductor extends javax.swing.JPanel {
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(36, 36, 36)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(registrarViajeBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
@@ -200,11 +186,8 @@ public class menuPrincipalConductor extends javax.swing.JPanel {
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(registrarViajeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(52, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -212,13 +195,6 @@ public class menuPrincipalConductor extends javax.swing.JPanel {
     private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jPanel2MouseClicked
-
-    private void registrarViajeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarViajeBtnActionPerformed
-        // TODO add your handling code here:
-        
-        controlPantallas.mostrarMenuVehiculos();
-
-    }//GEN-LAST:event_registrarViajeBtnActionPerformed
     
     
     private void ponerImg() {
@@ -292,6 +268,5 @@ public class menuPrincipalConductor extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel panelFotoPerfil;
-    private javax.swing.JButton registrarViajeBtn;
     // End of variables declaration//GEN-END:variables
 }
