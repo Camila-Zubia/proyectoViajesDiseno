@@ -15,7 +15,7 @@ public class PasajeroDTO {
     
     private String nombre;
     private double calificacion;
-    private List<SolicitudDTO> reservaciones;
+    private List<ReservacionDTO> reservaciones;
 
     public PasajeroDTO() {
     }
@@ -42,11 +42,11 @@ public class PasajeroDTO {
         this.calificacion = calificacion;
     }
 
-    public List<SolicitudDTO> getReservaciones() {
+    public List<ReservacionDTO> getReservaciones() {
         return reservaciones;
     }
 
-    public void setReservaciones(List<SolicitudDTO> reservaciones) {
+    public void setReservaciones(List<ReservacionDTO> reservaciones) {
         this.reservaciones = reservaciones;
     }
 
