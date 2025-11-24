@@ -2,14 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package presentacion;
+package presentacion_SolicitarReservacion;
 
 import Controles.IControlPantallas;
 import dto.ViajeDTO;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
-import static java.awt.Component.CENTER_ALIGNMENT;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
