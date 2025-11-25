@@ -93,7 +93,7 @@ public class seleccionarPerfilConductor extends javax.swing.JPanel {
     }//GEN-LAST:event_conductorBtnActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        controlPantallas.mostrarMenuPasajero();
     }//GEN-LAST:event_jButton2ActionPerformed
 
 

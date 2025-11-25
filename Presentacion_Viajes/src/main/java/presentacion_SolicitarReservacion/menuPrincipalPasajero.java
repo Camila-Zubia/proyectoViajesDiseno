@@ -42,8 +42,6 @@ public class menuPrincipalPasajero extends javax.swing.JPanel {
      */
     public menuPrincipalPasajero(IControlPantallas controlPantallas, List<ViajeDTO> viajes) {
         this.controlPantallas = controlPantallas;
-        
-        
         initComponents();
         mostrarViajes(viajes);
         ponerImg();
@@ -53,7 +51,6 @@ public class menuPrincipalPasajero extends javax.swing.JPanel {
         this.setVisible(true);
         this.revalidate();
         this.repaint();
-        // mostrarViajes(viajes); falta agregar al constructor List viajes
     }
 
     /**

@@ -6,6 +6,7 @@ package Controles;
 
 import dto.ConductorDTO;
 import dto.UsuarioDTO;
+import dto.ViajeDTO;
 import iniciarSesion.IIniciarSesion;
 import iniciarSesion.IniciarSesion;
 import java.awt.BorderLayout;
@@ -21,6 +22,7 @@ import presentacion.iniciarSesion;
 import presentacion.menuPrincipalConductor;
 import presentacion.menuVehiculos;
 import presentacion.seleccionarPerfilConductor;
+import presentacion_SolicitarReservacion.menuPrincipalPasajero;
 import registrarViaje.IRegistrarViaje;
 import registrarViaje.RegistrarViaje;
 
@@ -104,6 +106,7 @@ import registrarViaje.RegistrarViaje;
 
     @Override
     public void mostrarSeleccionarPerfil() {
+        menu.setEnabled(true);
         seleccionarPerfilConductor panel = new seleccionarPerfilConductor(this);
         configurarPanel(panel);
         panel.setVisible(true);
@@ -145,4 +148,15 @@ import registrarViaje.RegistrarViaje;
         menu.setEnabled(false);
         mostrarInicioSesion();
     }
+    
+    
+   //Estos son los metodos del subsitema "Solicitar Reservacion"
+    public void mostrarMenuPasajero() {
+        UsuarioDTO usuario = sesion.obtenerUsuario();
+        List viajes = interfaz.obtenerViajesPorConductor(usuario.getConductor());
+        menuPrincipalPasajero menuPasajero = new menuPrincipalPasajero(this, viajes);
+        configurarPanel(menuPasajero);
+    }
+    
+    
 }
