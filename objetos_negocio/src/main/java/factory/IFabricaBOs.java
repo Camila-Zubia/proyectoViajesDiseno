@@ -5,6 +5,8 @@
 package factory;
 
 import interfaces.IConductorNegocio;
+import interfaces_solicitarReservacion.IPasajeroNegocio;
+import interfaces_solicitarReservacion.IReservacionNegocio;
 import interfaces.IUsuarioNegocio;
 import interfaces.IViajeNegocio;
 
@@ -20,5 +22,10 @@ public interface IFabricaBOs {
     
     public IViajeNegocio crearViajeNegocio();
     
+    
+    //metodos del caso de uso "Solicitar Reservacion"
+    public IReservacionNegocio crearReservacionNegocio();
+    
+    public IPasajeroNegocio crearPasajeroNegocio();
     
 }

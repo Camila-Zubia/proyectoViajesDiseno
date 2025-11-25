@@ -6,6 +6,7 @@ package Controles;
 
 import dto.ConductorDTO;
 import dto.UsuarioDTO;
+import dto.ViajeDTO;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import javax.swing.JPanel;
@@ -43,4 +44,7 @@ public interface IControlPantallas {
     public ConductorDTO nombreConductor();
     
     public void cerrarSesion();
+    
+    //Estos son los metodos del subsitema "Solicitar Reservacion"
+    public void mostrarMenuPasajero();
 }

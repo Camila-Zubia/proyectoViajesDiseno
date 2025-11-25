@@ -14,6 +14,7 @@ public class UsuarioDTO {
     private String contraseñaHaseada;
     private char[] contraseña;
     private ConductorDTO conductor;
+    private PasajeroDTO pasajero;
 
     public UsuarioDTO() {
     }
@@ -58,6 +59,14 @@ public class UsuarioDTO {
 
     public void setConductor(ConductorDTO conductor) {
         this.conductor = conductor;
+    }
+
+    public PasajeroDTO getPasajero() {
+        return pasajero;
+    }
+
+    public void setPasajero(PasajeroDTO pasajero) {
+        this.pasajero = pasajero;
     }
 
     @Override
