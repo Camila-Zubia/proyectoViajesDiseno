@@ -122,13 +122,30 @@ public class ControlViaje {
     }
 
     // Registrar viaje con datos guardados temporalmente
-    public ViajeDTO confirmarViaje() {
-        if (origenTemporal == null || destinoTemporal == null) {
+    public ViajeDTO confirmarViaje(ViajeDTO viaje) {
+        if (viaje.getOrigen() == null || viaje.getDestino() == null) {
             throw new IllegalStateException("Debe guardar los datos del viaje primero.");
         }
         if (paradasTemporales.isEmpty()) {
             throw new IllegalStateException("El viaje debe tener al menos una parada.");
         }
-        return registrarViaje(origenTemporal, destinoTemporal);
+
+        if (vehiculoSeleccionado == null) {
+            throw new IllegalStateException("Debe seleccionar un vehiiculo antes de registrar el viaje.");
+        }
+
+        double precioTotal = 0;
+        for (ParadaDTO parada : paradasTemporales) {
+            precioTotal += parada.getPrecio();
+        }
+
+        viaje.setPrecioTotal(precioTotal);
+        viaje.setParadas(paradasTemporales);
+        viaje.setVehiculo(vehiculoSeleccionado);
+
+        crearViaje(viaje);
+        paradasTemporales.clear();
+
+        return viaje;
     }
 }

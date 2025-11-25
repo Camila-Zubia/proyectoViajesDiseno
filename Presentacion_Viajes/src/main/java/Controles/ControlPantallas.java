@@ -37,10 +37,12 @@ import registrarViaje.RegistrarViaje;
     private final JMenu menu;
     private final IIniciarSesion sesion = new IniciarSesion();
     private final IRegistrarViaje interfaz = new RegistrarViaje();
+    private ViajeDTO viajeTemporal;
 
     private ControlPantallas(JFrame frame, JMenu menu) {
         this.frame = frame;
         this.menu = menu;
+        this.viajeTemporal = new ViajeDTO();
     }
     
     public static ControlPantallas getInstancia(JFrame frame, JMenu menu){
@@ -119,12 +121,17 @@ import registrarViaje.RegistrarViaje;
     }
 
     public void guardarDatosViaje(String origen, String destino, LocalDate fecha, LocalTime hora) {
-        interfaz.guardarDatosViaje(origen, destino, fecha, hora);
+        viajeTemporal.setOrigen(origen);
+        viajeTemporal.setDestino(destino);
+        viajeTemporal.setFecha(fecha);
+        viajeTemporal.setHora(hora);
     }
 
     @Override
     public void confirmarViaje() {
-        interfaz.confirmarViaje();
+        interfaz.confirmarViaje(viajeTemporal);
+        // Reiniciar el viaje temporal para el próximo viaje
+        viajeTemporal = new ViajeDTO();
     }
     
     @Override

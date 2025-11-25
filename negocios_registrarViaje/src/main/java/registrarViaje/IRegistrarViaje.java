@@ -62,8 +62,9 @@ public interface IRegistrarViaje {
     
     /**
      * valida todos los datos del viaje y registra el viaje completo
-     * @return 
+     * @param viaje el viaje temporal con todos los datos
+     * @return
      */
-    public ViajeDTO confirmarViaje();
+    public ViajeDTO confirmarViaje(ViajeDTO viaje);
 
 }
