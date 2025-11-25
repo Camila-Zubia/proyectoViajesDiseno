@@ -33,6 +33,7 @@ public class ReservacionDTO {
         this.precioTotal = 0;
         LocalDateTime tiempo = LocalDateTime.of(viaje.getFecha(), viaje.getHora());
         this.tiempoRestante = Duration.between(now(), tiempo);
+        this.estatus = Estatus.ESPERA;
     }
 
     public ViajeDTO getViaje() {

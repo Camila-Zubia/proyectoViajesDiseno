@@ -4,23 +4,10 @@
  */
 package presentacion_SolicitarReservacion;
 
-import presentacion.*;
 import Controles.IControlPantallas;
-import dto.VehiculoDTO;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Font;
+import dto.ReservacionDTO;
 import java.awt.HeadlessException;
-import java.util.List;
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.SwingConstants;
 
 /**
  *
@@ -28,21 +15,20 @@ import javax.swing.SwingConstants;
  */
 public class datosReservacion extends javax.swing.JPanel {
 
-    private final IControlPantallas controlPantallas;
-    private List vehiculos;
-    private VehiculoDTO vehiculoSeleccionadoDTO; // almacena el vehiculo seleccionado
-
+    private final IControlPantallas controlPantallas;// almacena el vehiculo seleccionado
+    private final ReservacionDTO reservacion;
+    
     /**
      * Creates new form menuVehiculos
      * @param controlPantallas
-     * @param vehiculos
+     * @param reservacion
      */
-    public datosReservacion(IControlPantallas controlPantallas, List vehiculos) {
+    public datosReservacion(IControlPantallas controlPantallas, ReservacionDTO reservacion) {
         this.controlPantallas = controlPantallas;
-        this.vehiculos = vehiculos;
+        this.reservacion = reservacion;
 
         initComponents();
-        mostrarVehiculos(vehiculos);
+        mostrarDatosReservacion(reservacion);
 
     }
 
@@ -55,125 +41,140 @@ public class datosReservacion extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        siguienteTField = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        panelContenedorVehiculos = new javax.swing.JPanel();
+        destino = new javax.swing.JLabel();
+        btnCancelar = new javax.swing.JButton();
+        titulo = new javax.swing.JLabel();
+        origen = new javax.swing.JLabel();
+        origen1 = new javax.swing.JLabel();
+        origen2 = new javax.swing.JLabel();
+        destinoTField = new javax.swing.JTextField();
+        costoTField = new javax.swing.JTextField();
+        tiempoTField = new javax.swing.JTextField();
+        origenTField = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(0, 109, 182));
         setMinimumSize(new java.awt.Dimension(1080, 648));
         setPreferredSize(new java.awt.Dimension(1080, 640));
 
-        siguienteTField.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        siguienteTField.setText("Siguiente");
-        siguienteTField.setBorder(null);
-        siguienteTField.addActionListener(new java.awt.event.ActionListener() {
+        destino.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        destino.setForeground(new java.awt.Color(255, 255, 255));
+        destino.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        destino.setText("Destino:");
+        destino.setToolTipText("");
+
+        btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        btnCancelar.setText("Cancelar");
+        btnCancelar.setBorder(null);
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                siguienteTFieldActionPerformed(evt);
+                btnCancelarActionPerformed(evt);
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("DATOS RESERVACIÓN");
+        titulo.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        titulo.setForeground(new java.awt.Color(255, 255, 255));
+        titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titulo.setText("CANCELAR RESERVACIÓN");
 
-        panelContenedorVehiculos.setBackground(new java.awt.Color(255, 255, 255));
+        origen.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        origen.setForeground(new java.awt.Color(255, 255, 255));
+        origen.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        origen.setText("Costo:");
 
-        javax.swing.GroupLayout panelContenedorVehiculosLayout = new javax.swing.GroupLayout(panelContenedorVehiculos);
-        panelContenedorVehiculos.setLayout(panelContenedorVehiculosLayout);
-        panelContenedorVehiculosLayout.setHorizontalGroup(
-            panelContenedorVehiculosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 740, Short.MAX_VALUE)
-        );
-        panelContenedorVehiculosLayout.setVerticalGroup(
-            panelContenedorVehiculosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 310, Short.MAX_VALUE)
-        );
+        origen1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        origen1.setForeground(new java.awt.Color(255, 255, 255));
+        origen1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        origen1.setText("Origen:");
+
+        origen2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        origen2.setForeground(new java.awt.Color(255, 255, 255));
+        origen2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        origen2.setText("Tiempo restante:");
+
+        tiempoTField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tiempoTFieldActionPerformed(evt);
+            }
+        });
+
+        origenTField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                origenTFieldActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(188, Short.MAX_VALUE)
+                .addContainerGap(211, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(panelContenedorVehiculos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(siguienteTField, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(152, 152, 152))
+                            .addComponent(origen2)
+                            .addComponent(origen1)
+                            .addComponent(destino)
+                            .addComponent(origen))
+                        .addGap(88, 88, 88)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tiempoTField, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(destinoTField, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(costoTField, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(origenTField, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(175, 175, 175))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 596, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(232, 232, 232))))
+                        .addComponent(titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 596, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(232, 232, 232))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(454, 454, 454))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(56, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
-                .addComponent(panelContenedorVehiculos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(siguienteTField, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(111, 111, 111))
+                .addContainerGap(47, Short.MAX_VALUE)
+                .addComponent(titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(origenTField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(origen1))
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(destinoTField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(destino))
+                .addGap(38, 38, 38)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(costoTField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(origen))
+                .addGap(37, 37, 37)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tiempoTField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(origen2))
+                .addGap(88, 88, 88)
+                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(97, 97, 97))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void siguienteTFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguienteTFieldActionPerformed
-       // validacion, verificar si se selecciono un vehiculo
-        if (this.vehiculoSeleccionadoDTO == null) {
-            JOptionPane.showMessageDialog(this, "Debe seleccionar un vehiculo para continuar.", "Seleccion Requerida", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        
-        controlPantallas.seleccionarVehiculo(this.vehiculoSeleccionadoDTO);
-        controlPantallas.mostrarDatosViaje();
-    }//GEN-LAST:event_siguienteTFieldActionPerformed
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+       
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void mostrarVehiculos(List listaVehiculos) {
+    private void tiempoTFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tiempoTFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tiempoTFieldActionPerformed
+
+    private void origenTFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_origenTFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_origenTFieldActionPerformed
+
+    private void mostrarDatosReservacion(ReservacionDTO reservacion) {
         try {
-            if (listaVehiculos != null) {
-
-                JPanel panelInterno = new JPanel();
-                panelInterno.setLayout(new BoxLayout(panelInterno, BoxLayout.Y_AXIS));
-                panelInterno.setPreferredSize(new Dimension(740, listaVehiculos.size() * 50));
-                panelInterno.setBackground(Color.WHITE);
-                for (Object vehiculo : listaVehiculos) {
-                    JPanel panelElemento = new JPanel();
-                    panelElemento.setLayout(new BoxLayout(panelElemento, BoxLayout.X_AXIS));
-                    panelElemento.setPreferredSize(new Dimension(740, 50));
-                    panelElemento.setMaximumSize(new Dimension(740, 50));
-                    panelElemento.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
-                    panelElemento.setBackground(new Color(255, 255, 255));
-
-                    JButton btnInfo = new JButton();
-                    btnInfo.setFont(new Font("Dialog", Font.PLAIN, 14));
-                    btnInfo.setBackground(Color.WHITE);
-                    btnInfo.setAlignmentX(Component.CENTER_ALIGNMENT);
-                    btnInfo.setHorizontalAlignment(SwingConstants.CENTER);
-                    btnInfo.setPreferredSize(new Dimension(700, 40));
-                    btnInfo.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
-                    btnInfo.setText(vehiculo.toString().formatted());
-                    btnInfo.addActionListener(e -> {
-                        this.vehiculoSeleccionadoDTO = (dto.VehiculoDTO) vehiculo;
-                    });
-
-                    panelElemento.add(btnInfo);
-                    panelInterno.add(panelElemento);
-                }
-                JScrollPane scrollPane = new JScrollPane(panelInterno);
-                scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-                scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-                scrollPane.setPreferredSize(new Dimension(770, 362));
-                scrollPane.setBackground(Color.WHITE);
-                panelContenedorVehiculos.removeAll();
-                panelContenedorVehiculos.setLayout(new BorderLayout());
-                panelContenedorVehiculos.add(scrollPane, BorderLayout.CENTER);
-                panelContenedorVehiculos.revalidate();
-                panelContenedorVehiculos.repaint();
-            }else{
-                JOptionPane.showMessageDialog(this, "No hay vehiculos registrados");
-            }
+            costoTField.setText("$" + reservacion.getPrecioTotal());
+            destinoTField.setText(reservacion.getViaje().getDestino());
+            //tiempoTField.setText(reservacion.getTiempoRestante().toString());
+            origenTField.setText(reservacion.getViaje().getOrigen());
         } catch (HeadlessException e) {
             JOptionPane.showMessageDialog(this,
                 "Error al cargar vehículos: " + e.getMessage(),
@@ -186,8 +187,15 @@ public class datosReservacion extends javax.swing.JPanel {
     
   
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel panelContenedorVehiculos;
-    private javax.swing.JButton siguienteTField;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JTextField costoTField;
+    private javax.swing.JLabel destino;
+    private javax.swing.JTextField destinoTField;
+    private javax.swing.JLabel origen;
+    private javax.swing.JLabel origen1;
+    private javax.swing.JLabel origen2;
+    private javax.swing.JTextField origenTField;
+    private javax.swing.JTextField tiempoTField;
+    private javax.swing.JLabel titulo;
     // End of variables declaration//GEN-END:variables
 }

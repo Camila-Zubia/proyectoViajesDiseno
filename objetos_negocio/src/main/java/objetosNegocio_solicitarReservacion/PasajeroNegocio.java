@@ -20,7 +20,20 @@ public class PasajeroNegocio implements IPasajeroNegocio{
 
     @Override
     public void agregarReservacion(ReservacionDTO reservacion) {
-        SesionUsuario.obtenerPasajero().getReservaciones().add(reservacion);
+        if (validarNoExiste(SesionUsuario.obtenerPasajero().getReservaciones(), reservacion)) {
+            SesionUsuario.obtenerPasajero().getReservaciones().add(reservacion);
+        } else {
+            throw new IllegalStateException("Ya existe una reservacion con los mismos datos.");
+        }
+    }
+
+    private boolean validarNoExiste(List<ReservacionDTO> reservaciones, ReservacionDTO reservacion) {
+        for (ReservacionDTO r : reservaciones) {
+            if (r == reservacion) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override

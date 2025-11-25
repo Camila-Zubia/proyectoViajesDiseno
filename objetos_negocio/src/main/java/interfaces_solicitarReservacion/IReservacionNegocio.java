@@ -12,6 +12,5 @@ import dto.ReservacionDTO;
  */
 public interface IReservacionNegocio {
     
-    public void registrarReservacion(ReservacionDTO reservacion);
     
 }

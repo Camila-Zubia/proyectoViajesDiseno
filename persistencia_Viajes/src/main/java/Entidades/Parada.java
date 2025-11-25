@@ -8,13 +8,22 @@ package Entidades;
  *
  * @author adell
  */
-public class paradas {
-    String direccion;
-    double precio;
+public class Parada {
+    private String id;
+    private String direccion;
+    private double precio;
 
-    public paradas(String direccion, double precio) {
+    public Parada(String direccion, double precio) {
         this.direccion = direccion;
         this.precio = precio;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getDireccion() {
@@ -32,7 +41,5 @@ public class paradas {
     public void setPrecio(double precio) {
         this.precio = precio;
     }
-    
-    
     
 }

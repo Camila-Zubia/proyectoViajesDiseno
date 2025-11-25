@@ -5,8 +5,9 @@
 package Controles;
 
 import dto.ConductorDTO;
+import dto.PasajeroDTO;
+import dto.ReservacionDTO;
 import dto.UsuarioDTO;
-import dto.ViajeDTO;
 import iniciarSesion.IIniciarSesion;
 import iniciarSesion.IniciarSesion;
 import java.awt.BorderLayout;
@@ -22,9 +23,15 @@ import presentacion.iniciarSesion;
 import presentacion.menuPrincipalConductor;
 import presentacion.menuVehiculos;
 import presentacion.seleccionarPerfilConductor;
+import presentacion_SolicitarReservacion.datosReservacion;
 import presentacion_SolicitarReservacion.menuPrincipalPasajero;
+import presentacion_SolicitarReservacion.seleccionarParada;
+import presentacion_cancelarReservacion.cancelarReservacion;
+import presentacion_cancelarReservacion.seleccionarReservacion;
 import registrarViaje.IRegistrarViaje;
 import registrarViaje.RegistrarViaje;
+import solicitarReservacion.ISolicitarReservacion;
+import solicitarReservacion.SolicitarReservacion;
 
 /**
  *
@@ -36,13 +43,12 @@ import registrarViaje.RegistrarViaje;
     private final JFrame frame;
     private final JMenu menu;
     private final IIniciarSesion sesion = new IniciarSesion();
-    private final IRegistrarViaje interfaz = new RegistrarViaje();
-    private ViajeDTO viajeTemporal;
+    private final IRegistrarViaje interfazRegistrarViaje = new RegistrarViaje();
+    private final ISolicitarReservacion interfazSolicitarReservacion = new SolicitarReservacion();
 
     private ControlPantallas(JFrame frame, JMenu menu) {
         this.frame = frame;
         this.menu = menu;
-        this.viajeTemporal = new ViajeDTO();
     }
     
     public static ControlPantallas getInstancia(JFrame frame, JMenu menu){
@@ -73,7 +79,7 @@ import registrarViaje.RegistrarViaje;
     @Override
     public void mostrarMenuVehiculos() {
         UsuarioDTO usuario = sesion.obtenerUsuario();
-        List vehiculos = interfaz.obtenerVehiculosDisponibles(usuario.getConductor());
+        List vehiculos = interfazRegistrarViaje.obtenerVehiculosDisponibles(usuario.getConductor());
         menuVehiculos menuVehiculos = new menuVehiculos(this, vehiculos);
         configurarPanel(menuVehiculos);
     }
@@ -87,7 +93,7 @@ import registrarViaje.RegistrarViaje;
     @Override
     public void mostrarMenuConductor() {
         UsuarioDTO usuario = sesion.obtenerUsuario();
-        List viajes = interfaz.obtenerViajesPorConductor(usuario.getConductor());
+        List viajes = interfazRegistrarViaje.obtenerViajesPorConductor(usuario.getConductor());
         menu.setEnabled(true);
         menuPrincipalConductor menuConductor = new menuPrincipalConductor(this, viajes);
         configurarPanel(menuConductor);
@@ -101,7 +107,7 @@ import registrarViaje.RegistrarViaje;
 
     @Override
     public void mostrarDatosParada() {
-        List paradas = interfaz.obtenerParadasTemporales();
+        List paradas = interfazRegistrarViaje.obtenerParadasTemporales();
         datosParadas datosParadas = new datosParadas(this, paradas);
         configurarPanel(datosParadas);
     }
@@ -117,26 +123,22 @@ import registrarViaje.RegistrarViaje;
 
     @Override
     public void seleccionarVehiculo(dto.VehiculoDTO vehiculo) {
-        interfaz.seleccionarVehiculo(vehiculo);
+        interfazRegistrarViaje.seleccionarVehiculo(vehiculo);
     }
 
+    @Override
     public void guardarDatosViaje(String origen, String destino, LocalDate fecha, LocalTime hora) {
-        viajeTemporal.setOrigen(origen);
-        viajeTemporal.setDestino(destino);
-        viajeTemporal.setFecha(fecha);
-        viajeTemporal.setHora(hora);
+        interfazRegistrarViaje.guardarDatosViaje(origen, destino, fecha, hora);
     }
 
     @Override
     public void confirmarViaje() {
-        interfaz.confirmarViaje(viajeTemporal);
-        // Reiniciar el viaje temporal para el próximo viaje
-        viajeTemporal = new ViajeDTO();
+        interfazRegistrarViaje.confirmarViaje();
     }
     
     @Override
     public void agregarParada(String direccion, double precio){
-        interfaz.agregarParada(direccion, precio);
+        interfazRegistrarViaje.agregarParada(direccion, precio);
     }
     
     @Override
@@ -158,11 +160,46 @@ import registrarViaje.RegistrarViaje;
     
     
    //Estos son los metodos del subsitema "Solicitar Reservacion"
+    @Override
     public void mostrarMenuPasajero() {
-        UsuarioDTO usuario = sesion.obtenerUsuario();
-        List viajes = interfaz.obtenerViajesPorConductor(usuario.getConductor());
+        List viajes = interfazSolicitarReservacion.obtenerViajesDisponibles();
         menuPrincipalPasajero menuPasajero = new menuPrincipalPasajero(this, viajes);
         configurarPanel(menuPasajero);
+    }
+    
+    @Override
+    public void mostrarParadasViaje() {
+         List paradas = interfazSolicitarReservacion.obtenerParadas();
+         seleccionarParada menuParadas = new seleccionarParada(this, paradas);
+         configurarPanel(menuParadas);
+    }
+    
+    @Override
+    public void mostrarDatosReservacion() {
+         ReservacionDTO reservacion = interfazSolicitarReservacion.obtenerReservacionTemporal();
+         datosReservacion datos = new datosReservacion(this, reservacion);
+         configurarPanel(datos);
+    }
+    
+     @Override
+    public PasajeroDTO nombrePasajero() {
+         return sesion.obtenerUsuario().getPasajero();
+    }
+    
+    //metodos subsistema "CancelarReservacion"
+    @Override
+    public void mostrarReservaciones() {
+         UsuarioDTO usuario = sesion.obtenerUsuario();
+         //List reservaciones = interfaz.obtenerViajesPorConductor(usuario.getConductor());
+         //seleccionarReservacion reservaciones = new seleccionarReservacion(this, viajes);
+         //configurarPanel(reservaciones);
+    }
+    
+    @Override
+    public void mostrarCancelarReservacion() {
+         ReservacionDTO reservacion = new ReservacionDTO();
+         cancelarReservacion cancelar = new cancelarReservacion(this, reservacion);
+         configurarPanel(cancelar);
     }
     
     

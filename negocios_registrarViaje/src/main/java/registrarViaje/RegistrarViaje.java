@@ -50,8 +50,8 @@ public class RegistrarViaje implements IRegistrarViaje{
     }
 
     @Override
-    public ViajeDTO confirmarViaje(ViajeDTO viaje) {
-        return control.confirmarViaje(viaje);
+    public ViajeDTO confirmarViaje() {
+        return control.confirmarViaje();
     }
 
     @Override
