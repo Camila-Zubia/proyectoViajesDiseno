@@ -12,16 +12,16 @@ import java.util.List;
  *
  * @author adell
  */
-public class viaje {
+public class Viaje {
     String nombre;
     String destino;
     String origen;
     Date fecha;
     Time hora;
     double precioTotal;
-    List<paradas> paradas;
+    List<Parada> paradas;
 
-    public viaje(String nombre, String destino, String origen, Date fecha, Time hora, double precioTotal) {
+    public Viaje(String nombre, String destino, String origen, Date fecha, Time hora, double precioTotal) {
         this.nombre = nombre;
         this.destino = destino;
         this.origen = origen;
@@ -33,7 +33,7 @@ public class viaje {
     
     
     
-    public viaje(String nombre, String destino, String origen, Date fecha, Time hora, double precioTotal, List<paradas> paradas) {
+    public Viaje(String nombre, String destino, String origen, Date fecha, Time hora, double precioTotal, List<Parada> paradas) {
         this.nombre = nombre;
         this.destino = destino;
         this.origen = origen;
@@ -94,11 +94,11 @@ public class viaje {
         this.precioTotal = precioTotal;
     }
 
-    public List<paradas> getParadas() {
+    public List<Parada> getParadas() {
         return paradas;
     }
 
-    public void setParadas(List<paradas> paradas) {
+    public void setParadas(List<Parada> paradas) {
         this.paradas = paradas;
     }
     

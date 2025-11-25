@@ -8,16 +8,16 @@ package Entidades;
  *
  * @author adell
  */
-public class usuario {
+public class Usuario {
     String usuario;
     String contraseña;
 
-    public usuario(String usuario, String contraseña) {
+    public Usuario(String usuario, String contraseña) {
         this.usuario = usuario;
         this.contraseña = contraseña;
     }
 
-    public usuario(String usuario) {
+    public Usuario(String usuario) {
         this.usuario = usuario;
     }
 

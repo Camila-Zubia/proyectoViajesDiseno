@@ -6,21 +6,8 @@ package presentacion_cancelarReservacion;
 
 import Controles.IControlPantallas;
 import dto.ReservacionDTO;
-import dto.VehiculoDTO;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.HeadlessException;
-import java.util.List;
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.SwingConstants;
 
 /**
  *
@@ -75,7 +62,9 @@ public class cancelarReservacion extends javax.swing.JPanel {
         destino.setText("Destino:");
         destino.setToolTipText("");
 
+        btnCancelar.setBackground(new java.awt.Color(255, 255, 255));
         btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        btnCancelar.setForeground(new java.awt.Color(0, 0, 0));
         btnCancelar.setText("Cancelar");
         btnCancelar.setBorder(null);
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -89,10 +78,10 @@ public class cancelarReservacion extends javax.swing.JPanel {
         titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titulo.setText("CANCELAR RESERVACIÓN");
 
-        origen.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        origen.setText("Costo:");
         origen.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         origen.setForeground(new java.awt.Color(255, 255, 255));
+        origen.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        origen.setText("Costo:");
 
         origen1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         origen1.setForeground(new java.awt.Color(255, 255, 255));
@@ -104,12 +93,22 @@ public class cancelarReservacion extends javax.swing.JPanel {
         origen2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         origen2.setText("Tiempo restante:");
 
+        destinoTField.setBackground(new java.awt.Color(255, 255, 255));
+        destinoTField.setForeground(new java.awt.Color(0, 0, 0));
+
+        costoTField.setBackground(new java.awt.Color(255, 255, 255));
+        costoTField.setForeground(new java.awt.Color(0, 0, 0));
+
+        tiempoTField.setBackground(new java.awt.Color(255, 255, 255));
+        tiempoTField.setForeground(new java.awt.Color(0, 0, 0));
         tiempoTField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tiempoTFieldActionPerformed(evt);
             }
         });
 
+        origenTField.setBackground(new java.awt.Color(255, 255, 255));
+        origenTField.setForeground(new java.awt.Color(0, 0, 0));
         origenTField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 origenTFieldActionPerformed(evt);
@@ -186,7 +185,7 @@ public class cancelarReservacion extends javax.swing.JPanel {
         try {
             costoTField.setText("$" + reservacion.getPrecioTotal());
             destinoTField.setText(reservacion.getViaje().getDestino());
-            tiempoTField.setText(reservacion.getTiempoRestante().toString());
+            //tiempoTField.setText(reservacion.getTiempoRestante().toString());
             origenTField.setText(reservacion.getViaje().getOrigen());
         } catch (HeadlessException e) {
             JOptionPane.showMessageDialog(this,

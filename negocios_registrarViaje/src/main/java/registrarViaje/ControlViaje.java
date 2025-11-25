@@ -24,18 +24,14 @@ public class ControlViaje {
     private final IConductorNegocio conductorBO;
     private VehiculoDTO vehiculoSeleccionado;
     private final List<ParadaDTO> paradasTemporales;
-    private String origenTemporal;
-    private String destinoTemporal;
-    private double precioTemporal;
-    private LocalDate fechaTemporal;
-    private LocalTime horaTemporal;
+    private final ViajeDTO viajeTemporal;
 
     public ControlViaje() {
         IFabricaBOs fabrica = new FabricaBOs();
         this.viajeBO = fabrica.crearViajeNegocio();
         this.conductorBO = fabrica.crearConductorNegocio();
         this.paradasTemporales = new ArrayList<>();
-        
+        this.viajeTemporal = new ViajeDTO();
     }
     
     public void crearViaje(ViajeDTO viaje) {
@@ -59,11 +55,10 @@ public class ControlViaje {
 
     // Gestión de datos del viaje
     public void guardarDatosViaje(String origen, String destino, LocalDate fecha, LocalTime hora) {
-        this.origenTemporal = origen;
-        this.destinoTemporal = destino;
-        this.precioTemporal = 0;
-        this.fechaTemporal = fecha;
-        this.horaTemporal = hora;
+        this.viajeTemporal.setOrigen(origen);
+        this.viajeTemporal.setDestino(destino);
+        this.viajeTemporal.setFecha(fecha);
+        this.viajeTemporal.setHora(hora);
     }
     
     // Gestion de Paradas
@@ -91,39 +86,9 @@ public class ControlViaje {
         return conductorBO.obtenerViajes();
     }
 
-    // Registro del Viaje
-    public ViajeDTO registrarViaje(String origen, String destino) {
-        if (origen == null || origen.isEmpty() || destino == null || destino.isEmpty()) {
-            throw new IllegalArgumentException("El origen y destino son obligatorios.");
-        }
-
-        if (vehiculoSeleccionado == null) {
-            throw new IllegalStateException("Debe seleccionar un vehículo antes de registrar el viaje.");
-        }
-
-        // Calculo del precio total
-        for (ParadaDTO parada : paradasTemporales) {
-            precioTemporal += parada.getPrecio();
-        }
-
-        ViajeDTO viaje = new ViajeDTO(
-                origen,
-                destino,
-                fechaTemporal,
-                horaTemporal,
-                precioTemporal
-        );
-        viaje.setParadas(paradasTemporales);
-        crearViaje(viaje);
-        paradasTemporales.clear();
-        viaje.setVehiculo(vehiculoSeleccionado);
-        
-        return viaje;
-    }
-
     // Registrar viaje con datos guardados temporalmente
-    public ViajeDTO confirmarViaje(ViajeDTO viaje) {
-        if (viaje.getOrigen() == null || viaje.getDestino() == null) {
+    public ViajeDTO confirmarViaje() {
+        if (viajeTemporal.getOrigen() == null || viajeTemporal.getDestino() == null) {
             throw new IllegalStateException("Debe guardar los datos del viaje primero.");
         }
         if (paradasTemporales.isEmpty()) {
@@ -134,18 +99,15 @@ public class ControlViaje {
             throw new IllegalStateException("Debe seleccionar un vehiiculo antes de registrar el viaje.");
         }
 
-        double precioTotal = 0;
-        for (ParadaDTO parada : paradasTemporales) {
-            precioTotal += parada.getPrecio();
-        }
+        double precioTotal = paradasTemporales.get(0).getPrecio();
+        
+        viajeTemporal.setPrecioTotal(precioTotal);
+        viajeTemporal.setParadas(paradasTemporales);
+        viajeTemporal.setVehiculo(vehiculoSeleccionado);
 
-        viaje.setPrecioTotal(precioTotal);
-        viaje.setParadas(paradasTemporales);
-        viaje.setVehiculo(vehiculoSeleccionado);
-
-        crearViaje(viaje);
+        crearViaje(viajeTemporal);
         paradasTemporales.clear();
 
-        return viaje;
+        return viajeTemporal;
     }
 }

@@ -6,6 +6,8 @@ package objetosNegocio;
 
 import dto.ConductorDTO;
 import dto.ParadaDTO;
+import dto.PasajeroDTO;
+import dto.ReservacionDTO;
 import dto.UsuarioDTO;
 import dto.VehiculoDTO;
 import dto.ViajeDTO;
@@ -34,6 +36,7 @@ public class UsuarioNegocio implements IUsuarioNegocio{
     public boolean validarUsuario(UsuarioDTO usuario) {
         UsuarioDTO usuarioMock = new UsuarioDTO("cperez", "1234");
         ConductorDTO conductor =  new ConductorDTO("Carlos Pérez");
+        PasajeroDTO pasajero = new PasajeroDTO("Carlos Perez");
         List<VehiculoDTO> vehiculos = new ArrayList<>();
         vehiculos.add(new VehiculoDTO("Civic 2020", "ABC-123", "Honda", "Blanco", 4));
         vehiculos.add(new VehiculoDTO("Corolla 2021", "XYZ-789", "Toyota", "Gris", 4));
@@ -48,8 +51,13 @@ public class UsuarioNegocio implements IUsuarioNegocio{
         viajes.add(viaje1);
         viajes.add(viaje2);
         conductor.setViajes(viajes);
+        List<ReservacionDTO> reservaciones = new ArrayList<>();
+        reservaciones.add(new ReservacionDTO(viaje1, viaje1.getParadas().get(0)));
+        reservaciones.add(new ReservacionDTO(viaje2, viaje1.getParadas().get(0)));
+        pasajero.setReservaciones(reservaciones);
         usuario = usuarioMock;
         usuario.setConductor(conductor);
+        usuario.setPasajero(pasajero);
         boolean usuarioValido = usuarioMock.getUsuario().equals(usuario.getUsuario());
         boolean contraseñaValida = usuarioMock.getContraseñaHaseada().equals(usuario.getContraseñaHaseada());
         if (contraseñaValida && usuarioValido) {

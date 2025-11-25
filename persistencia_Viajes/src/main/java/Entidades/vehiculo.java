@@ -8,7 +8,7 @@ package Entidades;
  *
  * @author adell
  */
-class vehiculo {
+class Vehiculo {
     String marca;
     String modelo;
     String color;
@@ -16,7 +16,7 @@ class vehiculo {
     String placas;
     int capacidad;
 
-    public vehiculo(String marca, String modelo, String color, String numeroSerie, String placas, int capacidad) {
+    public Vehiculo(String marca, String modelo, String color, String numeroSerie, String placas, int capacidad) {
         this.marca = marca;
         this.modelo = modelo;
         this.color = color;

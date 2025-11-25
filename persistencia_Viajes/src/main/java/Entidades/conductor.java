@@ -10,13 +10,13 @@ import java.util.List;
  *
  * @author adell
  */
-public class conductor {
+public class Conductor {
     String nombre;
     double calificacion;
-    List<viaje> viajes;
-    List<vehiculo> vehiculos;
+    List<Viaje> viajes;
+    List<Vehiculo> vehiculos;
 
-    public conductor(String nombre, double calificacion, List<viaje> viajes, List<vehiculo> vehiculos) {
+    public Conductor(String nombre, double calificacion, List<Viaje> viajes, List<Vehiculo> vehiculos) {
         this.nombre = nombre;
         this.calificacion = calificacion;
         this.viajes = viajes;
@@ -39,19 +39,19 @@ public class conductor {
         this.calificacion = calificacion;
     }
 
-    public List<viaje> getViajes() {
+    public List<Viaje> getViajes() {
         return viajes;
     }
 
-    public void setViajes(List<viaje> viajes) {
+    public void setViajes(List<Viaje> viajes) {
         this.viajes = viajes;
     }
 
-    public List<vehiculo> getVehiculos() {
+    public List<Vehiculo> getVehiculos() {
         return vehiculos;
     }
 
-    public void setVehiculos(List<vehiculo> vehiculos) {
+    public void setVehiculos(List<Vehiculo> vehiculos) {
         this.vehiculos = vehiculos;
     }
     
