@@ -20,8 +20,8 @@ import java.util.List;
  */
 public class ControlViaje {
     
-    private IViajeNegocio viajeBO;
-    private IConductorNegocio conductorBO;
+    private final IViajeNegocio viajeBO;
+    private final IConductorNegocio conductorBO;
     private VehiculoDTO vehiculoSeleccionado;
     private final List<ParadaDTO> paradasTemporales;
     private String origenTemporal;

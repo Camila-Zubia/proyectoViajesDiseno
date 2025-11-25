@@ -4,13 +4,17 @@
  */
 package dto;
 
+import java.time.Duration;
+import static java.time.LocalDate.now;
+import java.time.LocalDateTime;
+
 /**
  *
  * @author Camila Zubia 00000244825
  */
 public class ReservacionDTO {
     
-    enum Estatus{
+    public enum Estatus{
         ESPERA, ACEPTADA, RECHAZADA, CANCELADA, TERMINADA;
     }
     
@@ -18,6 +22,7 @@ public class ReservacionDTO {
     private double precioTotal;
     private ParadaDTO parada;
     private Estatus estatus;
+    private Duration tiempoRestante;
 
     public ReservacionDTO() {
     }
@@ -26,6 +31,8 @@ public class ReservacionDTO {
         this.viaje = viaje;
         this.parada = parada;
         this.precioTotal = 0;
+        LocalDateTime tiempo = LocalDateTime.of(viaje.getFecha(), viaje.getHora());
+        this.tiempoRestante = Duration.between(now(), tiempo);
     }
 
     public ViajeDTO getViaje() {
@@ -60,6 +67,14 @@ public class ReservacionDTO {
         this.estatus = estatus;
     }
 
+    public Duration getTiempoRestante() {
+        return tiempoRestante;
+    }
+
+    public void setTiempoRestante(Duration tiempoRestante) {
+        this.tiempoRestante = tiempoRestante;
+    }
+    
     @Override
     public String toString() {
         return "ReservacionDTO{" + "viaje=" + viaje + ", precioTotal=" + precioTotal + ", parada=" + parada + ", estatus=" + estatus + '}';

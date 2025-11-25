@@ -5,6 +5,7 @@
 package utilidades;
 
 import dto.ConductorDTO;
+import dto.PasajeroDTO;
 import dto.UsuarioDTO;
 
 /**
@@ -44,6 +45,11 @@ public class SesionUsuario {
     
     public static void cerrarSesion() {
         usuarioActual = null;
+    }
+    
+    //metodos para solicitar reservacion
+    public static PasajeroDTO obtenerPasajero(){
+        return usuarioActual.getPasajero();
     }
     
 }
