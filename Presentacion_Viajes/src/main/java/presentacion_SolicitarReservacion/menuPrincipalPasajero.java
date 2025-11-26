@@ -24,7 +24,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.SwingConstants;
 
 /**
  *
@@ -51,6 +50,7 @@ public class menuPrincipalPasajero extends javax.swing.JPanel {
         this.setVisible(true);
         this.revalidate();
         this.repaint();
+        mostrarViajes(controlPantallas.obtenerViajes());
     }
 
     /**
@@ -69,6 +69,7 @@ public class menuPrincipalPasajero extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
+        registrarViajeBtn = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(0, 109, 182));
         setMinimumSize(new java.awt.Dimension(1080, 640));
@@ -103,7 +104,6 @@ public class menuPrincipalPasajero extends javax.swing.JPanel {
         datosConductor.setBackground(new java.awt.Color(255, 255, 255));
         datosConductor.setColumns(20);
         datosConductor.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        datosConductor.setForeground(new java.awt.Color(0, 0, 0));
         datosConductor.setRows(5);
         datosConductor.setBorder(null);
         datosConductor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -126,7 +126,7 @@ public class menuPrincipalPasajero extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addComponent(panelFotoPerfil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -155,6 +155,16 @@ public class menuPrincipalPasajero extends javax.swing.JPanel {
             .addGap(0, 479, Short.MAX_VALUE)
         );
 
+        registrarViajeBtn.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        registrarViajeBtn.setText("Ver Reservaciones");
+        registrarViajeBtn.setActionCommand("Ver Reservaciones");
+        registrarViajeBtn.setBorder(null);
+        registrarViajeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registrarViajeBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -166,7 +176,9 @@ public class menuPrincipalPasajero extends javax.swing.JPanel {
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(36, 36, 36)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(registrarViajeBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
@@ -182,8 +194,11 @@ public class menuPrincipalPasajero extends javax.swing.JPanel {
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(registrarViajeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(52, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -191,6 +206,10 @@ public class menuPrincipalPasajero extends javax.swing.JPanel {
     private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jPanel2MouseClicked
+
+    private void registrarViajeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarViajeBtnActionPerformed
+        controlPantallas.mostrarReservaciones();
+    }//GEN-LAST:event_registrarViajeBtnActionPerformed
     
     
     private void ponerImg() {
@@ -227,10 +246,14 @@ public class menuPrincipalPasajero extends javax.swing.JPanel {
                     btnInfo.setFont(new Font("Dialog", Font.PLAIN, 14));
                     btnInfo.setBackground(Color.WHITE);
                     btnInfo.setAlignmentX(Component.CENTER_ALIGNMENT);
-                    btnInfo.setHorizontalAlignment(SwingConstants.CENTER);
                     btnInfo.setPreferredSize(new Dimension(650, 40));
                     btnInfo.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
                     btnInfo.setText(viaje.toString());
+                    
+                    btnInfo.addActionListener(e -> {
+                        controlPantallas.seleccionarViaje((ViajeDTO) viaje);
+                        controlPantallas.mostrarParadasViaje();
+                    });
 
                     panelElemento.add(btnInfo);
                     panelInterno.add(panelElemento);
@@ -264,5 +287,6 @@ public class menuPrincipalPasajero extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel panelFotoPerfil;
+    private javax.swing.JButton registrarViajeBtn;
     // End of variables declaration//GEN-END:variables
 }

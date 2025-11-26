@@ -5,7 +5,7 @@
 package dto;
 
 import java.time.Duration;
-import static java.time.LocalDate.now;
+import static java.time.LocalDateTime.now;
 import java.time.LocalDateTime;
 
 /**
@@ -80,7 +80,5 @@ public class ReservacionDTO {
     public String toString() {
         return "ReservacionDTO{" + "viaje=" + viaje + ", precioTotal=" + precioTotal + ", parada=" + parada + ", estatus=" + estatus + '}';
     }
-    
-    
     
 }

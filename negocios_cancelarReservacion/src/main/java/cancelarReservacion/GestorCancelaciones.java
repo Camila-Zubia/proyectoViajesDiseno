@@ -32,6 +32,10 @@ public class GestorCancelaciones {
         return reservacionSeleccionada = reservacion;
     }
     
+    public ReservacionDTO obtenerReservacion(){
+        return reservacionSeleccionada;
+    }
+    
     public ReservacionDTO confirmarCancelacion(){
         if (reservacionSeleccionada == null) {
             throw new IllegalStateException("Debe seleccionar una reservacion antes de realizar la cancelación");

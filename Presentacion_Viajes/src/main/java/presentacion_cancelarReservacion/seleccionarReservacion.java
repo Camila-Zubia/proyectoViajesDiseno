@@ -28,8 +28,6 @@ import javax.swing.SwingConstants;
 public class seleccionarReservacion extends javax.swing.JPanel {
 
     private final IControlPantallas controlPantallas;
-    private List reservaciones;
-    private ReservacionDTO reservacionSeleccionada;
 
     /**
      * Creates new form menuVehiculos
@@ -38,10 +36,8 @@ public class seleccionarReservacion extends javax.swing.JPanel {
      */
     public seleccionarReservacion(IControlPantallas controlPantallas, List reservaciones) {
         this.controlPantallas = controlPantallas;
-        this.reservaciones = reservaciones;
-        mostrarParadas(reservaciones);
         initComponents();
-
+        mostrarParadas(reservaciones);
     }
 
     /**
@@ -53,24 +49,12 @@ public class seleccionarReservacion extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        siguienteTField = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         panelContenedorVehiculos = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(0, 109, 182));
         setMinimumSize(new java.awt.Dimension(1080, 648));
         setPreferredSize(new java.awt.Dimension(1080, 640));
-
-        siguienteTField.setBackground(new java.awt.Color(255, 255, 255));
-        siguienteTField.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        siguienteTField.setForeground(new java.awt.Color(0, 0, 0));
-        siguienteTField.setText("Cancelar");
-        siguienteTField.setBorder(null);
-        siguienteTField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                siguienteTFieldActionPerformed(evt);
-            }
-        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -98,11 +82,7 @@ public class seleccionarReservacion extends javax.swing.JPanel {
                 .addContainerGap(188, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(panelContenedorVehiculos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(siguienteTField, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(278, 278, 278)))
+                        .addComponent(panelContenedorVehiculos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(152, 152, 152))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -111,23 +91,13 @@ public class seleccionarReservacion extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(60, Short.MAX_VALUE)
+                .addContainerGap(52, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
                 .addComponent(panelContenedorVehiculos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
-                .addComponent(siguienteTField, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(94, 94, 94))
+                .addGap(203, 203, 203))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void siguienteTFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguienteTFieldActionPerformed
-       // validacion, verificar si se selecciono un vehiculo
-        if (this.reservacionSeleccionada == null) {
-            JOptionPane.showMessageDialog(this, "Debe seleccionar una parada para continuar.", "Selección Requerida", JOptionPane.ERROR_MESSAGE);
-        }
-        
-    }//GEN-LAST:event_siguienteTFieldActionPerformed
 
     private void mostrarParadas(List listaReservaciones) {
         try {
@@ -154,7 +124,8 @@ public class seleccionarReservacion extends javax.swing.JPanel {
                     btnInfo.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
                     btnInfo.setText(reservacion.toString().formatted());
                     btnInfo.addActionListener(e -> {
-                        this.reservacionSeleccionada = (ReservacionDTO) reservacion;
+                        controlPantallas.seleccionarReservacion((ReservacionDTO) reservacion);
+                        controlPantallas.mostrarCancelarReservacion();
                     });
 
                     panelElemento.add(btnInfo);
@@ -187,6 +158,5 @@ public class seleccionarReservacion extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel panelContenedorVehiculos;
-    private javax.swing.JButton siguienteTField;
     // End of variables declaration//GEN-END:variables
 }

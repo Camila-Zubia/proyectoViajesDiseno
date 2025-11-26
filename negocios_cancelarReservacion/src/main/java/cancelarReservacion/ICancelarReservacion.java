@@ -17,6 +17,8 @@ public interface ICancelarReservacion {
     
     public ReservacionDTO seleccionarReservacion(ReservacionDTO reservacion);
     
-    public boolean confirmarCancelacion();
+    public ReservacionDTO confirmarCancelacion();
+    
+    public ReservacionDTO obtenerReservacion();
     
 }

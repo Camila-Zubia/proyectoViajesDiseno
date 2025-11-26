@@ -28,8 +28,6 @@ import javax.swing.SwingConstants;
 public class seleccionarParada extends javax.swing.JPanel {
 
     private final IControlPantallas controlPantallas;
-    private List paradas;
-    private ParadaDTO paradaSeleccionada;
 
     /**
      * Creates new form menuVehiculos
@@ -38,10 +36,8 @@ public class seleccionarParada extends javax.swing.JPanel {
      */
     public seleccionarParada(IControlPantallas controlPantallas, List paradas) {
         this.controlPantallas = controlPantallas;
-        this.paradas = paradas;
-        mostrarParadas(paradas);
         initComponents();
-
+        mostrarParadas(controlPantallas.obtenerParadas());
     }
 
     /**
@@ -53,24 +49,12 @@ public class seleccionarParada extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        siguienteTField = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         panelContenedorVehiculos = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(0, 109, 182));
         setMinimumSize(new java.awt.Dimension(1080, 648));
         setPreferredSize(new java.awt.Dimension(1080, 640));
-
-        siguienteTField.setBackground(new java.awt.Color(255, 255, 255));
-        siguienteTField.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        siguienteTField.setForeground(new java.awt.Color(0, 0, 0));
-        siguienteTField.setText("Siguiente");
-        siguienteTField.setBorder(null);
-        siguienteTField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                siguienteTFieldActionPerformed(evt);
-            }
-        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -98,9 +82,7 @@ public class seleccionarParada extends javax.swing.JPanel {
                 .addContainerGap(188, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(panelContenedorVehiculos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(siguienteTField, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(panelContenedorVehiculos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(152, 152, 152))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 596, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -109,23 +91,13 @@ public class seleccionarParada extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(56, Short.MAX_VALUE)
+                .addContainerGap(48, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41)
                 .addComponent(panelContenedorVehiculos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(siguienteTField, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(111, 111, 111))
+                .addGap(203, 203, 203))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void siguienteTFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguienteTFieldActionPerformed
-       // validacion, verificar si se selecciono un vehiculo
-        if (this.paradaSeleccionada == null) {
-            JOptionPane.showMessageDialog(this, "Debe seleccionar una parada para continuar.", "Selección Requerida", JOptionPane.ERROR_MESSAGE);
-        }
-        
-    }//GEN-LAST:event_siguienteTFieldActionPerformed
 
     private void mostrarParadas(List listaParadas) {
         try {
@@ -150,9 +122,10 @@ public class seleccionarParada extends javax.swing.JPanel {
                     btnInfo.setHorizontalAlignment(SwingConstants.CENTER);
                     btnInfo.setPreferredSize(new Dimension(700, 40));
                     btnInfo.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
-                    btnInfo.setText(parada.toString().formatted());
+                    btnInfo.setText(parada.toString());
                     btnInfo.addActionListener(e -> {
-                        this.paradaSeleccionada = (ParadaDTO) parada;
+                        controlPantallas.seleccionarParada((ParadaDTO) parada);
+                        controlPantallas.mostrarDatosReservacion();
                     });
 
                     panelElemento.add(btnInfo);
@@ -185,6 +158,5 @@ public class seleccionarParada extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel panelContenedorVehiculos;
-    private javax.swing.JButton siguienteTField;
     // End of variables declaration//GEN-END:variables
 }
