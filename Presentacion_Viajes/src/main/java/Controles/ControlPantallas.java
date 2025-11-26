@@ -4,10 +4,14 @@
  */
 package Controles;
 
+import cancelarReservacion.CancelarReservacion;
+import cancelarReservacion.ICancelarReservacion;
 import dto.ConductorDTO;
+import dto.ParadaDTO;
 import dto.PasajeroDTO;
 import dto.ReservacionDTO;
 import dto.UsuarioDTO;
+import dto.ViajeDTO;
 import iniciarSesion.IIniciarSesion;
 import iniciarSesion.IniciarSesion;
 import java.awt.BorderLayout;
@@ -45,6 +49,7 @@ import solicitarReservacion.SolicitarReservacion;
     private final IIniciarSesion sesion = new IniciarSesion();
     private final IRegistrarViaje interfazRegistrarViaje = new RegistrarViaje();
     private final ISolicitarReservacion interfazSolicitarReservacion = new SolicitarReservacion();
+    private final ICancelarReservacion interfazCancelarReservacion = new CancelarReservacion();
 
     private ControlPantallas(JFrame frame, JMenu menu) {
         this.frame = frame;
@@ -94,7 +99,6 @@ import solicitarReservacion.SolicitarReservacion;
     public void mostrarMenuConductor() {
         UsuarioDTO usuario = sesion.obtenerUsuario();
         List viajes = interfazRegistrarViaje.obtenerViajesPorConductor(usuario.getConductor());
-        menu.setEnabled(true);
         menuPrincipalConductor menuConductor = new menuPrincipalConductor(this, viajes);
         configurarPanel(menuConductor);
     }
@@ -176,9 +180,44 @@ import solicitarReservacion.SolicitarReservacion;
     
     @Override
     public void mostrarDatosReservacion() {
-         ReservacionDTO reservacion = interfazSolicitarReservacion.obtenerReservacionTemporal();
-         datosReservacion datos = new datosReservacion(this, reservacion);
-         configurarPanel(datos);
+        ReservacionDTO reservacion = interfazSolicitarReservacion.obtenerReservacionTemporal();
+        datosReservacion datos = new datosReservacion(this, reservacion);
+        configurarPanel(datos);
+    }
+    
+    @Override
+    public List<ViajeDTO> obtenerViajes() {
+        return interfazSolicitarReservacion.obtenerViajesDisponibles();
+    }
+    
+    @Override
+    public List<ParadaDTO> obtenerParadas() {
+        return interfazSolicitarReservacion.obtenerParadas();
+    }
+    
+    @Override
+    public void seleccionarViaje(ViajeDTO viaje){
+        interfazSolicitarReservacion.seleccionarViaje(viaje);
+    }
+    
+    @Override
+    public void seleccionarParada(ParadaDTO parada) {
+        interfazSolicitarReservacion.seleccionarParada(parada);
+    }
+    
+    @Override
+    public void solicitarParada(String direccion) {
+        interfazSolicitarReservacion.solicitarParada(direccion);
+    }
+    
+    @Override
+    public ReservacionDTO confirmarReservacion() {
+        return interfazSolicitarReservacion.confirmarReservacion();
+    }
+    
+    @Override
+    public ReservacionDTO obtenerReservacionTemporal() {
+        return interfazSolicitarReservacion.obtenerReservacionTemporal();
     }
     
      @Override
@@ -189,18 +228,36 @@ import solicitarReservacion.SolicitarReservacion;
     //metodos subsistema "CancelarReservacion"
     @Override
     public void mostrarReservaciones() {
-         UsuarioDTO usuario = sesion.obtenerUsuario();
-         //List reservaciones = interfaz.obtenerViajesPorConductor(usuario.getConductor());
-         //seleccionarReservacion reservaciones = new seleccionarReservacion(this, viajes);
-         //configurarPanel(reservaciones);
+         List reservaciones = interfazCancelarReservacion.obtenerReservacionesDisponibles();
+         seleccionarReservacion menuReservaciones = new seleccionarReservacion(this, reservaciones);
+         configurarPanel(menuReservaciones);
     }
     
     @Override
     public void mostrarCancelarReservacion() {
-         ReservacionDTO reservacion = new ReservacionDTO();
+         ReservacionDTO reservacion = interfazCancelarReservacion.obtenerReservacion();
          cancelarReservacion cancelar = new cancelarReservacion(this, reservacion);
          configurarPanel(cancelar);
     }
     
+    @Override
+    public List<ReservacionDTO> obtenerReservacionesDisponibles() {
+        return interfazCancelarReservacion.obtenerReservacionesDisponibles();
+    }
+    
+    @Override
+    public ReservacionDTO seleccionarReservacion(ReservacionDTO reservacion){
+        return interfazCancelarReservacion.seleccionarReservacion(reservacion);
+    }
+    
+    @Override
+    public ReservacionDTO confirmarCancelacion() {
+        return interfazCancelarReservacion.confirmarCancelacion();
+    }
+    
+    @Override
+    public ReservacionDTO obtenerReservacion() {
+        return interfazCancelarReservacion.obtenerReservacion();
+    }
     
 }

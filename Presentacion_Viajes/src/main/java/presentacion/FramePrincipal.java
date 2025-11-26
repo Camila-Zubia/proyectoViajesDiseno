@@ -57,7 +57,12 @@ public class FramePrincipal extends javax.swing.JFrame {
         });
         jMenu1.add(opcionMenuPrincipal);
 
-        jMenuItem2.setText("jMenuItem2");
+        jMenuItem2.setText("CambiarPerfil");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem2);
         jMenu1.add(jSeparator1);
 
@@ -84,6 +89,10 @@ public class FramePrincipal extends javax.swing.JFrame {
         jMenu1.setEnabled(false);
         controlPantallas.cerrarSesion();
     }//GEN-LAST:event_opcionCerrarSesiónActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        controlPantallas.mostrarSeleccionarPerfil();
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -11,6 +11,9 @@ import factory.FabricaBOs;
 import factory.IFabricaBOs;
 import interfaces_solicitarReservacion.IPasajeroNegocio;
 import interfaces_solicitarReservacion.IReservacionNegocio;
+import java.time.Duration;
+import java.time.LocalDateTime;
+import static java.time.LocalDateTime.now;
 import java.util.List;
 import utilidades.SesionUsuario;
 
@@ -64,6 +67,9 @@ public class GestorSolicitud {
         } else {
             reservacionTemporal.setPrecioTotal(viajeSeleccionado.getPrecioTotal());
         }
+        LocalDateTime tiempo = LocalDateTime.of(viajeSeleccionado.getFecha(), viajeSeleccionado.getHora());
+        reservacionTemporal.setTiempoRestante(Duration.between(now(), tiempo));
+        reservacionTemporal.setEstatus(ReservacionDTO.Estatus.ESPERA);
         return reservacionTemporal;
     }
     

@@ -21,17 +21,22 @@ public class CancelarReservacion implements ICancelarReservacion{
     
     @Override
     public List<ReservacionDTO> obtenerReservacionesDisponibles() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return gestor.obtenerReservacionesDisponibles();
     }
 
     @Override
     public ReservacionDTO seleccionarReservacion(ReservacionDTO reservacion) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       return gestor.seleccionarReservacion(reservacion);
     }
 
     @Override
-    public boolean confirmarCancelacion() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public ReservacionDTO confirmarCancelacion() {
+        return gestor.confirmarCancelacion();
+    }
+
+    @Override
+    public ReservacionDTO obtenerReservacion() {
+        return gestor.obtenerReservacion();
     }
     
 }

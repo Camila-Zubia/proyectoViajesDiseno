@@ -15,8 +15,7 @@ import javax.swing.JOptionPane;
  */
 public class cancelarReservacion extends javax.swing.JPanel {
 
-    private final IControlPantallas controlPantallas;// almacena el vehiculo seleccionado
-    private final ReservacionDTO reservacion;
+    private final IControlPantallas controlPantallas;
     
     /**
      * Creates new form menuVehiculos
@@ -25,7 +24,6 @@ public class cancelarReservacion extends javax.swing.JPanel {
      */
     public cancelarReservacion(IControlPantallas controlPantallas, ReservacionDTO reservacion) {
         this.controlPantallas = controlPantallas;
-        this.reservacion = reservacion;
 
         initComponents();
         mostrarDatosReservacion(reservacion);
@@ -62,9 +60,7 @@ public class cancelarReservacion extends javax.swing.JPanel {
         destino.setText("Destino:");
         destino.setToolTipText("");
 
-        btnCancelar.setBackground(new java.awt.Color(255, 255, 255));
         btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        btnCancelar.setForeground(new java.awt.Color(0, 0, 0));
         btnCancelar.setText("Cancelar");
         btnCancelar.setBorder(null);
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -93,22 +89,30 @@ public class cancelarReservacion extends javax.swing.JPanel {
         origen2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         origen2.setText("Tiempo restante:");
 
-        destinoTField.setBackground(new java.awt.Color(255, 255, 255));
-        destinoTField.setForeground(new java.awt.Color(0, 0, 0));
+        destinoTField.setBackground(new java.awt.Color(0, 109, 182));
+        destinoTField.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        destinoTField.setForeground(new java.awt.Color(255, 255, 255));
+        destinoTField.setBorder(null);
 
-        costoTField.setBackground(new java.awt.Color(255, 255, 255));
-        costoTField.setForeground(new java.awt.Color(0, 0, 0));
+        costoTField.setBackground(new java.awt.Color(0, 109, 182));
+        costoTField.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        costoTField.setForeground(new java.awt.Color(255, 255, 255));
+        costoTField.setBorder(null);
 
-        tiempoTField.setBackground(new java.awt.Color(255, 255, 255));
-        tiempoTField.setForeground(new java.awt.Color(0, 0, 0));
+        tiempoTField.setBackground(new java.awt.Color(0, 109, 182));
+        tiempoTField.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        tiempoTField.setForeground(new java.awt.Color(255, 255, 255));
+        tiempoTField.setBorder(null);
         tiempoTField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tiempoTFieldActionPerformed(evt);
             }
         });
 
-        origenTField.setBackground(new java.awt.Color(255, 255, 255));
-        origenTField.setForeground(new java.awt.Color(0, 0, 0));
+        origenTField.setBackground(new java.awt.Color(0, 109, 182));
+        origenTField.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        origenTField.setForeground(new java.awt.Color(255, 255, 255));
+        origenTField.setBorder(null);
         origenTField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 origenTFieldActionPerformed(evt);
@@ -145,7 +149,7 @@ public class cancelarReservacion extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(47, Short.MAX_VALUE)
+                .addContainerGap(51, Short.MAX_VALUE)
                 .addComponent(titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -170,7 +174,21 @@ public class cancelarReservacion extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-       
+        try {
+            
+            controlPantallas.confirmarCancelacion();
+            JOptionPane.showMessageDialog(this,
+                    "Reservación cancelada exitosamente",
+                    "Éxito",
+                    JOptionPane.INFORMATION_MESSAGE);
+            controlPantallas.mostrarMenuPasajero();
+
+        } catch (HeadlessException e) {
+            JOptionPane.showMessageDialog(this,
+                    "Error al cancelar la reservación: " + e.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void tiempoTFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tiempoTFieldActionPerformed
@@ -185,7 +203,7 @@ public class cancelarReservacion extends javax.swing.JPanel {
         try {
             costoTField.setText("$" + reservacion.getPrecioTotal());
             destinoTField.setText(reservacion.getViaje().getDestino());
-            //tiempoTField.setText(reservacion.getTiempoRestante().toString());
+            tiempoTField.setText(reservacion.getTiempoRestante().toString());
             origenTField.setText(reservacion.getViaje().getOrigen());
         } catch (HeadlessException e) {
             JOptionPane.showMessageDialog(this,
