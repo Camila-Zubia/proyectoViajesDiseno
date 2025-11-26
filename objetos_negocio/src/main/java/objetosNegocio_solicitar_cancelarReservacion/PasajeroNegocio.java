@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package objetosNegocio_solicitarReservacion;
+package objetosNegocio_solicitar_cancelarReservacion;
 
+import interfaces_solicitarReservacion.IReservacionNegocio;
 import dto.ReservacionDTO;
 import interfaces_solicitarReservacion.IPasajeroNegocio;
 import java.util.List;
@@ -18,6 +19,7 @@ public class PasajeroNegocio implements IPasajeroNegocio{
     public PasajeroNegocio() {
     }
 
+    
     @Override
     public void agregarReservacion(ReservacionDTO reservacion) {
         if (validarNoExiste(SesionUsuario.obtenerPasajero().getReservaciones(), reservacion)) {
@@ -41,11 +43,9 @@ public class PasajeroNegocio implements IPasajeroNegocio{
         return SesionUsuario.obtenerPasajero().getReservaciones();
     }
     
-    @Override
-    public List<ReservacionDTO> removerReservacion(ReservacionDTO reservacion) {
+    public List<ReservacionDTO> removerReservacion(ReservacionDTO reservacion){
         reservacion.setEstatus(ReservacionDTO.Estatus.CANCELADA);
         SesionUsuario.obtenerPasajero().getReservaciones().remove(reservacion);
         return SesionUsuario.obtenerPasajero().getReservaciones();
     }
-    
 }

@@ -5,7 +5,6 @@
 package interfaces_solicitarReservacion;
 
 import dto.ReservacionDTO;
-import dto.ViajeDTO;
 import java.util.List;
 
 /**
@@ -17,5 +16,7 @@ public interface IPasajeroNegocio {
     public void agregarReservacion(ReservacionDTO reservacion);
     
     public List<ReservacionDTO> obtenerReservaciones();
+    
+    public List<ReservacionDTO> removerReservacion(ReservacionDTO reservacion);
     
 }
