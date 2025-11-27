@@ -17,6 +17,7 @@ import java.util.Locale;
  */
 public class ViajeDTO {
     
+    private String id;
     private String origen;
     private String destino;
     private LocalDate fecha;
@@ -113,6 +114,15 @@ public class ViajeDTO {
     public void setVehiculo(VehiculoDTO vehiculo) {
         this.vehiculo = vehiculo;
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+    
 
     @Override
     public String toString() {

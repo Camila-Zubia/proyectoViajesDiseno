@@ -10,6 +10,7 @@ package dto;
  */
 public class VehiculoDTO {
     
+    private String id;
     private String modelo;
     private String placas;
     private String marca;
@@ -68,6 +69,15 @@ public class VehiculoDTO {
         this.capacidad = capacidad;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    
     @Override
     public String toString() {
         return String.format(marca + ", " + modelo + ", " + color

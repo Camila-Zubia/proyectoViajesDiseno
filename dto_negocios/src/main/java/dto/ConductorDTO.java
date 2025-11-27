@@ -13,6 +13,7 @@ import java.util.List;
  */
 public class ConductorDTO {
     
+    private String id;
     private String nombre;
     private int calificación;
     private List<VehiculoDTO> vehiculos;
@@ -67,6 +68,15 @@ public class ConductorDTO {
     public void setViajes(List<ViajeDTO> viajes) {
         this.viajes = viajes;
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+    
 
     @Override
     public String toString() {

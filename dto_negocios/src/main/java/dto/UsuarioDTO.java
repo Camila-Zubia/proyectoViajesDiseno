@@ -10,6 +10,7 @@ package dto;
  */
 public class UsuarioDTO {
     
+    private String id;
     private String usuario;
     private String contraseñaHaseada;
     private char[] contraseña;
@@ -68,6 +69,15 @@ public class UsuarioDTO {
     public void setPasajero(PasajeroDTO pasajero) {
         this.pasajero = pasajero;
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+    
 
     @Override
     public String toString() {
