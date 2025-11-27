@@ -34,10 +34,6 @@ public class ControlViaje {
         this.viajeTemporal = new ViajeDTO();
     }
     
-    public void crearViaje(ViajeDTO viaje) {
-        viajeBO.registrarViaje(viaje);
-    }
-    
     public void crearParada(ViajeDTO viaje, ParadaDTO parada) {
         viajeBO.registrarParada(viaje, parada);
     }
@@ -105,7 +101,7 @@ public class ControlViaje {
         viajeTemporal.setParadas(paradasTemporales);
         viajeTemporal.setVehiculo(vehiculoSeleccionado);
 
-        crearViaje(viajeTemporal);
+        viajeBO.registrarViaje(viajeTemporal);
         paradasTemporales.clear();
 
         return viajeTemporal;
