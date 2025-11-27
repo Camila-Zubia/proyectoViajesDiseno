@@ -1,0 +1,23 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
+ */
+package interfaces;
+
+import dto.ParadaDTO;
+import dto.ViajeDTO;
+import java.util.List;
+
+/**
+ *
+ * @author Camila Zubia 00000244825
+ */
+public interface IViajeNegocio {
+    
+    public void registrarViaje(ViajeDTO viaje);
+    
+    public List<ParadaDTO> obtenerParadas(ViajeDTO viaje);
+    
+    public void registrarParada(ViajeDTO viaje, ParadaDTO parada);
+    
+}

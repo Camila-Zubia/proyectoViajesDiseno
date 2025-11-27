@@ -4,17 +4,43 @@
  */
 package presentacion;
 
+import Controles.IControlPantallas;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import javax.swing.JOptionPane;
+
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.HeadlessException;
+import java.util.List;
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.SwingConstants;
+
 /**
  *
  * @author adell
  */
 public class datosParadas extends javax.swing.JPanel {
 
+    private final IControlPantallas controlPantallas;
+    private List paradas;
+
     /**
      * Creates new form datosParadas
+     *
+     * @param controlPantallas
+     * @param paradas
      */
-    public datosParadas() {
+    public datosParadas(IControlPantallas controlPantallas, List paradas) {
         initComponents();
+        this.controlPantallas = controlPantallas;
+        this.paradas = paradas;
+        mostrarParadas(paradas);
     }
 
     /**
@@ -27,42 +53,300 @@ public class datosParadas extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        mostrarParadasPanel = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        precioTField = new javax.swing.JTextField();
+        direccionTField = new javax.swing.JTextField();
+        agregarParadaBtn = new javax.swing.JButton();
+        confirmarViajeBtn = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
-        setPreferredSize(new java.awt.Dimension(1080, 648));
+        setBackground(new java.awt.Color(0, 109, 182));
+        setMinimumSize(new java.awt.Dimension(1167, 630));
+        setPreferredSize(new java.awt.Dimension(1080, 640));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(0, 255, 204));
+        jPanel1.setBackground(new java.awt.Color(0, 109, 182));
+
+        mostrarParadasPanel.setBackground(new java.awt.Color(255, 255, 255));
+        mostrarParadasPanel.setForeground(new java.awt.Color(0, 0, 0));
+
+        javax.swing.GroupLayout mostrarParadasPanelLayout = new javax.swing.GroupLayout(mostrarParadasPanel);
+        mostrarParadasPanel.setLayout(mostrarParadasPanelLayout);
+        mostrarParadasPanelLayout.setHorizontalGroup(
+            mostrarParadasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 510, Short.MAX_VALUE)
+        );
+        mostrarParadasPanelLayout.setVerticalGroup(
+            mostrarParadasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 173, Short.MAX_VALUE)
+        );
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel1.setText("Direccion:");
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel2.setText("Precio:");
+
+        precioTField.setBackground(new java.awt.Color(255, 255, 255));
+        precioTField.setForeground(new java.awt.Color(0, 0, 0));
+
+        direccionTField.setBackground(new java.awt.Color(255, 255, 255));
+        direccionTField.setForeground(new java.awt.Color(0, 0, 0));
+
+        agregarParadaBtn.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        agregarParadaBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/boton.jpg"))); // NOI18N
+        agregarParadaBtn.setBorder(null);
+        agregarParadaBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregarParadaBtnActionPerformed(evt);
+            }
+        });
+
+        confirmarViajeBtn.setBackground(new java.awt.Color(255, 255, 255));
+        confirmarViajeBtn.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        confirmarViajeBtn.setForeground(new java.awt.Color(0, 0, 0));
+        confirmarViajeBtn.setText("Confirmar Viaje");
+        confirmarViajeBtn.setBorder(null);
+        confirmarViajeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmarViajeBtnActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("PARADAS REGISTRADAS");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1001, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 632, Short.MAX_VALUE)
+                .addComponent(confirmarViajeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(207, 207, 207)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
+                .addGap(66, 66, 66)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(agregarParadaBtn)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(direccionTField)
+                            .addComponent(precioTField))
+                        .addGap(160, 160, 160))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(mostrarParadasPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(160, 160, 160))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(146, 146, 146))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 634, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(8, 8, 8)
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
+                .addComponent(mostrarParadasPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(direccionTField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(precioTField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(confirmarViajeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(48, 48, 48)
+                        .addComponent(agregarParadaBtn)
+                        .addContainerGap(62, Short.MAX_VALUE))))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(73, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(8, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, 870, 570));
     }// </editor-fold>//GEN-END:initComponents
 
+    private void confirmarViajeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarViajeBtnActionPerformed
+        try {
+            // Validar que haya al menos una parada registrada
+            if (paradas.isEmpty()) {
+                JOptionPane.showMessageDialog(this,
+                        "Debe agregar al menos una parada al viaje",
+                        "Parada requerida",
+                        JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            // Registrar el viaje con todos los datos guardados
+                if (!paradas.isEmpty()) {
+                controlPantallas.confirmarViaje();
+
+                JOptionPane.showMessageDialog(this,
+                        "Viaje registrado exitosamente",
+                        "Éxito",
+                        JOptionPane.INFORMATION_MESSAGE);
+
+                // Mostrar menú conductor
+                controlPantallas.mostrarMenuConductor();
+            }else{
+                    JOptionPane.showMessageDialog(this,
+                            "Error no hay paradas registradas",
+                            "Error",
+                            JOptionPane.ERROR_MESSAGE);
+                }
+
+        } catch (HeadlessException e) {
+            JOptionPane.showMessageDialog(this,
+                    "Error al registrar el viaje: " + e.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_confirmarViajeBtnActionPerformed
+
+    private void agregarParadaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarParadaBtnActionPerformed
+        // TODO add your handling code here:
+        agregarParada();
+        mostrarParadas(paradas);
+        mostrarParadasPanel.revalidate();
+        mostrarParadasPanel.repaint();
+    }//GEN-LAST:event_agregarParadaBtnActionPerformed
+
+    private void agregarParada() {
+        // Agregar parada y confirmar viaje
+        String direccion = direccionTField.getText().trim();
+        String precioStr = precioTField.getText().trim();
+        
+        //validacion de campos vacios
+        if (direccion.isEmpty() || precioStr.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Direccion y precio son obligatorios.", "Campos Vacíos", JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+        // validacion de parada duplicada
+    List<dto.ParadaDTO> paradasGuardadas = paradas; 
+    
+    for (dto.ParadaDTO paradaExistente : paradasGuardadas) {
+        // comparamos la direccion ingresada con las direcciones existentes
+        if (paradaExistente.getDirección().trim().equalsIgnoreCase(direccion.trim())) {
+            JOptionPane.showMessageDialog(this, 
+                "La parada que quiere registrar ya existe en este viaje, intente con una diferente.",
+                "Parada Duplicada", 
+                JOptionPane.ERROR_MESSAGE);
+            return; 
+        }
+    }
+
+        // Agregar parada si hay datos
+        if (!direccion.isEmpty() && !precioStr.isEmpty()) {
+            try {
+                double precio = Double.parseDouble(precioStr);
+                controlPantallas.agregarParada(direccion, precio);
+                direccionTField.setText("");
+                precioTField.setText("");
+
+                System.out.println("Parada agregada: " + direccion + " - $" + precio);
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this,
+                        "El precio debe ser un número válido",
+                        "Error en precio",
+                        JOptionPane.ERROR_MESSAGE);
+                return;
+            } catch (IllegalArgumentException e) {
+                JOptionPane.showMessageDialog(this,
+                        e.getMessage(),
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        }
+
+        JOptionPane.showMessageDialog(this,
+                "Viaje registrado exitosamente con " + paradas.size()
+                + " paradas",
+                "Éxito",
+                JOptionPane.INFORMATION_MESSAGE);
+
+    }
+
+    private void mostrarParadas(List paradas) {
+        try {
+            mostrarParadasPanel.removeAll();
+
+            JPanel panelInterno = new JPanel();
+            panelInterno.setLayout(new BoxLayout(panelInterno, BoxLayout.Y_AXIS));
+            panelInterno.setPreferredSize(new Dimension(490, paradas.size() * 50)); //[510, 173]
+            panelInterno.setBackground(Color.WHITE);
+
+            for (Object parada : paradas) {
+                JPanel panelElemento = new JPanel();
+                panelElemento.setLayout(new BoxLayout(panelElemento, BoxLayout.X_AXIS));
+                panelElemento.setPreferredSize(new Dimension(504, 50));
+                panelElemento.setMaximumSize(new Dimension(504, 50));
+                panelElemento.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+                panelElemento.setBackground(new Color(255, 255, 255));
+
+                JButton btnInfo = new JButton();
+                btnInfo.setFont(new Font("Dialog", Font.PLAIN, 14));
+                btnInfo.setBackground(Color.WHITE);
+                btnInfo.setAlignmentX(Component.CENTER_ALIGNMENT);
+                btnInfo.setHorizontalAlignment(SwingConstants.CENTER);
+                btnInfo.setPreferredSize(new Dimension(500, 40));
+                btnInfo.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
+                btnInfo.setText(parada.toString());
+
+                panelElemento.add(btnInfo);
+                panelInterno.add(panelElemento);
+                mostrarParadasPanel.add(panelInterno);
+            }
+            JScrollPane scrollPane = new JScrollPane(panelInterno);
+
+            scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+            scrollPane.setPreferredSize(new Dimension(514, 177));
+            scrollPane.setBackground(Color.WHITE);
+            mostrarParadasPanel.removeAll();
+            mostrarParadasPanel.setLayout(new BorderLayout());
+            mostrarParadasPanel.add(scrollPane, BorderLayout.CENTER);
+            mostrarParadasPanel.revalidate();
+            mostrarParadasPanel.repaint();
+
+        } catch (HeadlessException e) {
+            JOptionPane.showMessageDialog(this,
+                    "Error al cargar paradas: " + e.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton agregarParadaBtn;
+    private javax.swing.JButton confirmarViajeBtn;
+    private javax.swing.JTextField direccionTField;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel mostrarParadasPanel;
+    private javax.swing.JTextField precioTField;
     // End of variables declaration//GEN-END:variables
 }

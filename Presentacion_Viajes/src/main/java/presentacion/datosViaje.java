@@ -4,16 +4,24 @@
  */
 package presentacion;
 
+import Controles.IControlPantallas;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author adell
  */
 public class datosViaje extends javax.swing.JPanel {
 
+    private final IControlPantallas controlPantallas;
     /**
      * Creates new form datosViaje
+     * @param controlPantallas
      */
-    public datosViaje() {
+    public datosViaje(IControlPantallas controlPantallas) {
+        this.controlPantallas = controlPantallas;
         initComponents();
     }
 
@@ -26,21 +34,237 @@ public class datosViaje extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setPreferredSize(new java.awt.Dimension(1080, 648));
+        jPanel1 = new javax.swing.JPanel();
+        origenTField = new javax.swing.JTextField();
+        destinoTField = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        fechaHora = new com.github.lgooddatepicker.components.DateTimePicker();
+        jLabel1 = new javax.swing.JLabel();
+        confirmarViajeBtn = new javax.swing.JButton();
+        regresarMenuVehiculosBtn = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        PrecioTextField = new javax.swing.JTextField();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+        setBackground(new java.awt.Color(0, 109, 182));
+        setPreferredSize(new java.awt.Dimension(1080, 640));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel1.setBackground(new java.awt.Color(0, 109, 182));
+
+        origenTField.setBackground(new java.awt.Color(255, 255, 255));
+        origenTField.setForeground(new java.awt.Color(0, 0, 0));
+
+        destinoTField.setBackground(new java.awt.Color(255, 255, 255));
+        destinoTField.setForeground(new java.awt.Color(0, 0, 0));
+        destinoTField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                destinoTFieldActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel3.setText("Destino:");
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel2.setText("Origen:");
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel4.setText("Fecha y hora:");
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+
+        fechaHora.setBackground(new java.awt.Color(255, 255, 255));
+        fechaHora.setForeground(new java.awt.Color(0, 0, 0));
+
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("VIAJE");
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+
+        confirmarViajeBtn.setText("Siguiente");
+        confirmarViajeBtn.setBackground(new java.awt.Color(255, 255, 255));
+        confirmarViajeBtn.setBorder(null);
+        confirmarViajeBtn.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        confirmarViajeBtn.setForeground(new java.awt.Color(0, 0, 0));
+        confirmarViajeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmarViajeBtnActionPerformed(evt);
+            }
+        });
+
+        regresarMenuVehiculosBtn.setText("Regresar");
+        regresarMenuVehiculosBtn.setBackground(new java.awt.Color(255, 255, 255));
+        regresarMenuVehiculosBtn.setBorder(null);
+        regresarMenuVehiculosBtn.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        regresarMenuVehiculosBtn.setForeground(new java.awt.Color(0, 0, 0));
+        regresarMenuVehiculosBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                regresarMenuVehiculosBtnActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel5.setText("Precio:");
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+
+        PrecioTextField.setBackground(new java.awt.Color(255, 255, 255));
+        PrecioTextField.setForeground(new java.awt.Color(0, 0, 0));
+        PrecioTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PrecioTextFieldActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(regresarMenuVehiculosBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(confirmarViajeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(165, 165, 165)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel5))
+                        .addGap(33, 33, 33)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(origenTField, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(destinoTField, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(fechaHora, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(PrecioTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(333, 333, 333)
+                        .addComponent(jLabel1)))
+                .addContainerGap(112, Short.MAX_VALUE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(jLabel1)
+                .addGap(41, 41, 41)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(origenTField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addGap(26, 26, 26)
+                        .addComponent(destinoTField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(PrecioTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(fechaHora, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addGap(64, 64, 64)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(confirmarViajeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(regresarMenuVehiculosBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30))
         );
+
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, 810, 510));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void destinoTFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_destinoTFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_destinoTFieldActionPerformed
+
+    private void confirmarViajeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarViajeBtnActionPerformed
+        // Validar y guardar los datos del viaje antes de continuar
+
+        String origen = origenTField.getText().trim();
+        String destino = destinoTField.getText().trim();
+        LocalDate fecha = fechaHora.getDatePicker().getDate();
+        LocalTime hora = fechaHora.getTimePicker().getTime();
+        double precioBase = Double.parseDouble(PrecioTextField.getText());
+        
+        if (origen.isEmpty() || destino.isEmpty()) {
+            JOptionPane.showMessageDialog(this,
+                "Por favor complete todos los campos",
+                "Campos incompletos",
+                JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        //validacion, origen y destino iguales
+        if (origen.equalsIgnoreCase(destino)) {
+        JOptionPane.showMessageDialog(this, "El Origen y el Destino no pueden ser la misma ubicacion.", "Dato Invalido", JOptionPane.ERROR_MESSAGE);
+        return; 
+    }
+        
+        // validacion de tipo de dato origen y destino solo con texto
+    if (origen.matches(".*\\d.*") || destino.matches(".*\\d.*")) {
+        JOptionPane.showMessageDialog(this, "El Origen y Destino no deben contener números. Ingrese solo texto.", "Dato Invalido", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+        // Validar fecha y hora
+        if (fechaHora.getDateTimeStrict() == null) {
+            JOptionPane.showMessageDialog(this,
+                "Por favor seleccione una fecha y hora válida",
+                "Fecha inválida",
+                JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // Validar que la fecha no sea en el pasado
+        if (fechaHora.getDateTimeStrict().isBefore(java.time.LocalDateTime.now())) {
+            JOptionPane.showMessageDialog(this,
+                "La fecha y hora del viaje no puede ser en el pasado",
+                "Fecha inválida",
+                JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // Guardar los datos del viaje temporalmente (precio base 0, se calcula después)
+        controlPantallas.guardarDatosViaje(origen, destino, fecha, hora);
+
+        // Navegar a la siguiente pantalla
+        controlPantallas.agregarParada(origen, precioBase);
+        controlPantallas.mostrarDatosParada();
+    }//GEN-LAST:event_confirmarViajeBtnActionPerformed
+
+    private void regresarMenuVehiculosBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarMenuVehiculosBtnActionPerformed
+        // TODO add your handling code here:
+        controlPantallas.mostrarMenuVehiculos();
+    }//GEN-LAST:event_regresarMenuVehiculosBtnActionPerformed
+
+    private void PrecioTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PrecioTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PrecioTextFieldActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField PrecioTextField;
+    private javax.swing.JButton confirmarViajeBtn;
+    private javax.swing.JTextField destinoTField;
+    private com.github.lgooddatepicker.components.DateTimePicker fechaHora;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField origenTField;
+    private javax.swing.JButton regresarMenuVehiculosBtn;
     // End of variables declaration//GEN-END:variables
 }

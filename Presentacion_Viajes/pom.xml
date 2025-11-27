@@ -11,6 +11,36 @@
             <artifactId>LGoodDatePicker</artifactId>
             <version>11.2.1</version>
         </dependency>
+        <dependency>
+            <groupId>itson</groupId>
+            <artifactId>dto_negocios</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>itson</groupId>
+            <artifactId>negocios_registrarViaje</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.netbeans.external</groupId>
+            <artifactId>AbsoluteLayout</artifactId>
+            <version>RELEASE250</version>
+        </dependency>
+        <dependency>
+            <groupId>itson</groupId>
+            <artifactId>negocios_iniciarSesion</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>negocios_solicitarReservacion</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>negocios_cancelarReservacion</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
