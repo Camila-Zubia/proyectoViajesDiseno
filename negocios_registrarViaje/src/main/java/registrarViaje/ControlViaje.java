@@ -34,9 +34,12 @@ public class ControlViaje {
         this.viajeTemporal = new ViajeDTO();
     }
     
-    public void crearParada(ViajeDTO viaje, ParadaDTO parada) {
+    /**
+     * public void crearParada(ViajeDTO viaje, ParadaDTO parada) {
         viajeBO.registrarParada(viaje, parada);
     }
+   
+     */
     
     public List<VehiculoDTO> obtenerVehiculos(ConductorDTO conductor) {
         return conductorBO.obtenerVehiculos();

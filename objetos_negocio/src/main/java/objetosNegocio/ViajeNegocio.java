@@ -4,10 +4,19 @@
  */
 package objetosNegocio;
 
+import adaptadores.adaptadorViaje;
 import dto.ParadaDTO;
 import dto.ViajeDTO;
 import interfaces.IViajeNegocio;
 import java.util.List;
+import java.util.Optional;
+import org.base_datos_viajes.dao.impl.ViajeDAO;
+import org.base_datos_viajes.dao.interfaces.IConductorDAO;
+import org.base_datos_viajes.exception.DatabaseException;
+import org.base_datos_viajes.model.Conductor;
+import org.base_datos_viajes.model.Vehiculo;
+import org.base_datos_viajes.model.Viaje;
+import org.bson.types.ObjectId;
 import utilidades.SesionUsuario;
 
 /**
@@ -15,17 +24,47 @@ import utilidades.SesionUsuario;
  * @author Camila Zubia 00000244825
  */
 public class ViajeNegocio implements IViajeNegocio{
+    private final ViajeDAO viajeDAO;  
+    private final IConductorDAO conductorDAO;
     
-    public ViajeNegocio() {
-        
+    public ViajeNegocio(ViajeDAO viajeDAO, IConductorDAO conductorDAO) {
+        this.viajeDAO = viajeDAO;
+        this.conductorDAO = conductorDAO;
     }
     
     @Override
     public void registrarViaje(ViajeDTO viaje){
-        if (validarNoExiste(SesionUsuario.obtenerConductor().getViajes(), viaje)) {
-            SesionUsuario.obtenerConductor().getViajes().add(viaje);
-        } else {
-            throw new IllegalStateException("Ya existe un viaje con los mismos datos.");
+        try {
+            ObjectId idConductor = new ObjectId(SesionUsuario.obtenerConductor().getId());
+            String placasVehiculo = viaje.getVehiculo().getPlacas();
+            
+            // Buscar Conductor en BD para obtener el id del vehiculo 
+            Optional<Conductor> optionalConductor = conductorDAO.findById(idConductor);
+            if (!optionalConductor.isPresent()) {
+                throw new IllegalStateException("Conductor activo no encontrado.");
+            }
+
+            // Filtra y obtiene el ObjectId del vehiculo
+            ObjectId idVehiculo = optionalConductor.get().getVehiculos().stream()
+             
+                    .filter(v -> v.getPlacas().equals(viaje.getVehiculo().getPlacas()))
+                    .findFirst()
+                    .map(Vehiculo::getId) // usa el ID del Vehiculo Eque fue persistido
+                    .orElseThrow(() -> new IllegalStateException("Vehiculo seleccionado no tiene ID de persistencia."));
+
+            // Validar no existencia
+            if (!validarNoExisteBD(viaje, idConductor)) {
+                throw new IllegalStateException("Ya existe un viaje con los mismos datos (ruta y hora).");
+            }
+
+            // Mapear DTO a entidad
+            Viaje viajeEntidad = adaptadorViaje.toEntity(viaje, idConductor, idVehiculo);
+            
+            // Guardar la entidad en la BD 
+            viajeDAO.save(viajeEntidad); 
+            
+        } catch (DatabaseException | IllegalStateException e) {
+            throw new IllegalStateException("Error al registrar viaje: " + e.getMessage());
         }
     }
     
@@ -46,6 +85,18 @@ public class ViajeNegocio implements IViajeNegocio{
             }
         }
         return true;
+    }
+    
+    private boolean validarNoExisteBD(ViajeDTO viaje, ObjectId idConductor) throws DatabaseException {
+
+        List<Viaje> viajesExistentes = conductorDAO.obtenerViajes(idConductor.toHexString());
+
+        return viajesExistentes.stream().noneMatch(v -> {
+            return v.getOrigen().equals(viaje.getOrigen())
+                && v.getDestino().equals(viaje.getDestino())
+                && v.getFecha().equals(viaje.getFecha()) 
+                && v.getHora().equals(viaje.getHora());
+        });
     }
 
 }

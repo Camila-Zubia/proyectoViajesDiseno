@@ -14,6 +14,9 @@ import objetosNegocio.UsuarioNegocio;
 import objetosNegocio.ViajeNegocio;
 import objetosNegocio_solicitarReservacion.PasajeroNegocio;
 import objetosNegocio_solicitarReservacion.ReservacionNegocio;
+import org.base_datos_viajes.dao.impl.ConductorDAO;
+import org.base_datos_viajes.dao.impl.UsuarioDAO;
+import org.base_datos_viajes.dao.impl.ViajeDAO;
 
 /**
  *
@@ -21,27 +24,26 @@ import objetosNegocio_solicitarReservacion.ReservacionNegocio;
  */
 public class FabricaBOs implements IFabricaBOs{
     
-    private static IUsuarioNegocio instancia;
+    private final UsuarioDAO usuarioDAO = new UsuarioDAO();
+    private final ViajeDAO viajeDAO = new ViajeDAO();
+    private final ConductorDAO conductorDAO = new ConductorDAO();
 
     public FabricaBOs() {
     }
 
     @Override
     public IUsuarioNegocio crearUsuarioNegocio() {
-        if (instancia == null) {
-            instancia = new UsuarioNegocio();
-        }
-        return instancia;
+          return new UsuarioNegocio(usuarioDAO, conductorDAO);
     }
 
     @Override
     public IConductorNegocio crearConductorNegocio() {
-        return new ConductorNegocio();
+        return new ConductorNegocio(conductorDAO, usuarioDAO, viajeDAO);
     }
 
     @Override
     public IViajeNegocio crearViajeNegocio() {
-        return new ViajeNegocio();
+        return new ViajeNegocio(viajeDAO, conductorDAO);
     }
 
     //metodos del caso de uso "Solicitar Reservacion"

@@ -44,7 +44,6 @@ public class adaptadorConductor {
         Conductor entidad = new Conductor(
             dto.getNombre(), 
             dto.getCalificación(), 
-            null, 
             vehiculosEntidad
         );
         
