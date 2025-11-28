@@ -4,11 +4,13 @@
  */
 package factory;
 
+import interface_crearRutaFrecuente.ICrearRutaFrecuente;
 import interfaces.IConductorNegocio;
 import interfaces_solicitarReservacion.IPasajeroNegocio;
 import interfaces_solicitarReservacion.IReservacionNegocio;
 import interfaces.IUsuarioNegocio;
 import interfaces.IViajeNegocio;
+import objetoNegocio_crearRutaFrecuente.RutaFrecuenteNegocio;
 import objetosNegocio.ConductorNegocio;
 import objetosNegocio.UsuarioNegocio;
 import objetosNegocio.ViajeNegocio;
@@ -55,5 +57,10 @@ public class FabricaBOs implements IFabricaBOs{
     @Override
     public IPasajeroNegocio crearPasajeroNegocio() {
         return new PasajeroNegocio();
+    }
+    
+    //metodos del caso de uso registrar ruta frecuente
+    public ICrearRutaFrecuente crearRutaFrecuenteNegocio(){
+        return new  RutaFrecuenteNegocio();
     }
 }
