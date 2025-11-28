@@ -4,6 +4,7 @@
  */
 package Controles;
 
+import org.base_datos_viajes.initializer.InicializadorDatosPrueba;
 import cancelarReservacion.CancelarReservacion;
 import cancelarReservacion.ICancelarReservacion;
 import dto.ConductorDTO;
@@ -54,6 +55,8 @@ import solicitarReservacion.SolicitarReservacion;
     private ControlPantallas(JFrame frame, JMenu menu) {
         this.frame = frame;
         this.menu = menu;
+        
+        InicializadorDatosPrueba.inicializarSiEsNecesario();
     }
     
     public static ControlPantallas getInstancia(JFrame frame, JMenu menu){

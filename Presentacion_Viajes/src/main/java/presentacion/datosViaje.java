@@ -200,7 +200,7 @@ public class datosViaje extends javax.swing.JPanel {
         double precioBase;
         if (precioStr.isEmpty()) {
             JOptionPane.showMessageDialog(this,
-                    "Por favor ingrese un precio base.",
+                    "Por favor ingrese un precio.",
                     "Campo Requerido",
                     JOptionPane.WARNING_MESSAGE);
             return;

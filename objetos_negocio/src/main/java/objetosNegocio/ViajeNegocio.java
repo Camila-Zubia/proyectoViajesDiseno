@@ -90,13 +90,11 @@ public class ViajeNegocio implements IViajeNegocio{
     private boolean validarNoExisteBD(ViajeDTO viaje, ObjectId idConductor) throws DatabaseException {
 
         List<Viaje> viajesExistentes = conductorDAO.obtenerViajes(idConductor.toHexString());
-
+        //comparamos la fecha y hora del viaje
         return viajesExistentes.stream().noneMatch(v -> {
-            return v.getOrigen().equals(viaje.getOrigen())
-                && v.getDestino().equals(viaje.getDestino())
-                && v.getFecha().equals(viaje.getFecha()) 
-                && v.getHora().equals(viaje.getHora());
-        });
+        return v.getFecha().equals(viaje.getFecha()) 
+            && v.getHora().equals(viaje.getHora());
+    });
     }
 
 }

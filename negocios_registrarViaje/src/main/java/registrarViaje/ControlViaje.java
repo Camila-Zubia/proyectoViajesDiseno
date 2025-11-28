@@ -85,7 +85,6 @@ public class ControlViaje {
         return conductorBO.obtenerViajes();
     }
 
-    // Registrar viaje con datos guardados temporalmente
     public ViajeDTO confirmarViaje() {
         if (viajeTemporal.getOrigen() == null || viajeTemporal.getDestino() == null) {
             throw new IllegalStateException("Debe guardar los datos del viaje primero.");
@@ -98,7 +97,9 @@ public class ControlViaje {
             throw new IllegalStateException("Debe seleccionar un vehiiculo antes de registrar el viaje.");
         }
 
-        double precioTotal = paradasTemporales.get(0).getPrecio();
+        double precioTotal = paradasTemporales.stream()
+            .mapToDouble(ParadaDTO::getPrecio)
+            .sum(); // calcula la suma total de los precios de todas las paradas
         
         viajeTemporal.setPrecioTotal(precioTotal);
         viajeTemporal.setParadas(paradasTemporales);
