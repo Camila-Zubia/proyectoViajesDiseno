@@ -206,7 +206,7 @@ public class datosViaje extends javax.swing.JPanel {
             return;
         }
         try {
-            precioBase = Double.parseDouble(precioStr); // Línea 198
+            precioBase = Double.parseDouble(precioStr); 
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this,
                     "El precio debe ser un numero valido.",
