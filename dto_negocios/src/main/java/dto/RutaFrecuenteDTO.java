@@ -22,6 +22,9 @@ public class RutaFrecuenteDTO {
     private double precioTotal;
     private List<ParadaDTO> paradas;
 
+    public RutaFrecuenteDTO() {
+    }
+
     public RutaFrecuenteDTO(List<ParadaDTO> paradas) {
         this.paradas = paradas;
     }
@@ -100,6 +103,5 @@ public class RutaFrecuenteDTO {
     public void setParadas(List<ParadaDTO> paradas) {
         this.paradas = paradas;
     }
-    
-    
+
 }
