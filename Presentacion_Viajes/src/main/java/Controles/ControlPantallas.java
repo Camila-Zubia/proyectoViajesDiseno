@@ -24,6 +24,7 @@ import javax.swing.JMenu;
 import javax.swing.JPanel;
 import presentacion.datosParadas;
 import presentacion.datosViaje;
+import presentacion.detallesViaje;
 import presentacion.iniciarSesion;
 import presentacion.menuPrincipalConductor;
 import presentacion.menuVehiculos;
@@ -51,6 +52,8 @@ import solicitarReservacion.SolicitarReservacion;
     private final IRegistrarViaje interfazRegistrarViaje = new RegistrarViaje();
     private final ISolicitarReservacion interfazSolicitarReservacion = new SolicitarReservacion();
     private final ICancelarReservacion interfazCancelarReservacion = new CancelarReservacion();
+
+    private ViajeDTO viajeTemporal;
 
     private ControlPantallas(JFrame frame, JMenu menu) {
         this.frame = frame;
@@ -201,6 +204,7 @@ import solicitarReservacion.SolicitarReservacion;
     @Override
     public void seleccionarViaje(ViajeDTO viaje){
         interfazSolicitarReservacion.seleccionarViaje(viaje);
+        this.viajeTemporal = viaje;
     }
     
     @Override
@@ -262,5 +266,22 @@ import solicitarReservacion.SolicitarReservacion;
     public ReservacionDTO obtenerReservacion() {
         return interfazCancelarReservacion.obtenerReservacion();
     }
-    
+
+    // Métodos para cancelar viaje
+    @Override
+    public void mostrarDetallesViaje() {
+        ViajeDTO viaje = obtenerViajeTemporal();
+        detallesViaje detalles = new detallesViaje(this, viaje);
+        configurarPanel(detalles);
+    }
+
+    @Override
+    public ViajeDTO obtenerViajeTemporal() {
+        return viajeTemporal;
+    }
+
+    @Override
+    public void confirmarCancelacionViaje() {
+    }
+
 }

@@ -84,5 +84,12 @@ public interface IControlPantallas {
     public ReservacionDTO confirmarCancelacion();
 
     public ReservacionDTO obtenerReservacion();
-    
+
+    // Métodos para cancelar viaje
+    public void mostrarDetallesViaje();
+
+    public ViajeDTO obtenerViajeTemporal();
+
+    public void confirmarCancelacionViaje();
+
 }
