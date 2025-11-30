@@ -6,8 +6,10 @@ package objetosNegocio;
 
 import adaptadores.adaptadorViaje;
 import dto.ParadaDTO;
+import dto.PasajeroDTO;
 import dto.ViajeDTO;
 import interfaces.IViajeNegocio;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.base_datos_viajes.dao.impl.ViajeDAO;
@@ -92,9 +94,63 @@ public class ViajeNegocio implements IViajeNegocio{
         List<Viaje> viajesExistentes = conductorDAO.obtenerViajes(idConductor.toHexString());
         //comparamos la fecha y hora del viaje
         return viajesExistentes.stream().noneMatch(v -> {
-        return v.getFecha().equals(viaje.getFecha()) 
+        return v.getFecha().equals(viaje.getFecha())
             && v.getHora().equals(viaje.getHora());
     });
+    }
+
+    @Override
+    public boolean eliminarViaje(String idViaje) {
+        try {
+            // Obtener el viaje de la base de datos
+            Optional<Viaje> optionalViaje = viajeDAO.findById(new ObjectId(idViaje));
+
+            if (!optionalViaje.isPresent()) {
+                return false;
+            }
+
+            Viaje viaje = optionalViaje.get();
+
+            // Marcar como inactivo en lugar de eliminar
+            viaje.setEstaActivo(false);
+            viajeDAO.update(viaje);
+
+            return true;
+        } catch (Exception e) {
+            throw new RuntimeException("Error al eliminar viaje: " + e.getMessage(), e);
+        }
+    }
+
+    @Override
+    public ViajeDTO obtenerDetalleViaje(String idViaje) {
+        try {
+            Optional<Viaje> optionalViaje = viajeDAO.findById(new ObjectId(idViaje));
+
+            if (!optionalViaje.isPresent()) {
+                return null;
+            }
+
+            return adaptadorViaje.toDTO(optionalViaje.get());
+        } catch (Exception e) {
+            throw new RuntimeException("Error al obtener detalles del viaje: " + e.getMessage(), e);
+        }
+    }
+
+    @Override
+    public List<PasajeroDTO> obtenerPasajeros(String idViaje) {
+        try {
+            Optional<Viaje> optionalViaje = viajeDAO.findById(new ObjectId(idViaje));
+
+            if (!optionalViaje.isPresent() || optionalViaje.get().getParadas() == null) {
+                return new ArrayList<>();
+            }
+
+            // Por ahora retornar lista vacía
+            // En el futuro, cuando exista relación Viaje->Reservaciones->Pasajeros
+            return new ArrayList<>();
+        } catch (Exception e) {
+            throw new RuntimeException("Error al obtener pasajeros: " + e.getMessage(), e);
+        }
     }
 
 }

@@ -7,6 +7,8 @@ package Controles;
 import org.base_datos_viajes.initializer.InicializadorDatosPrueba;
 import cancelarReservacion.CancelarReservacion;
 import cancelarReservacion.ICancelarReservacion;
+import cancelarViaje.CancelarViaje;
+import cancelarViaje.ICancelarViaje;
 import dto.ConductorDTO;
 import dto.ParadaDTO;
 import dto.PasajeroDTO;
@@ -52,6 +54,7 @@ import solicitarReservacion.SolicitarReservacion;
     private final IRegistrarViaje interfazRegistrarViaje = new RegistrarViaje();
     private final ISolicitarReservacion interfazSolicitarReservacion = new SolicitarReservacion();
     private final ICancelarReservacion interfazCancelarReservacion = new CancelarReservacion();
+    private final ICancelarViaje interfazCancelarViaje = new CancelarViaje();
 
     private ViajeDTO viajeTemporal;
 
@@ -282,6 +285,25 @@ import solicitarReservacion.SolicitarReservacion;
 
     @Override
     public void confirmarCancelacionViaje() {
+        try {
+            ViajeDTO viaje = obtenerViajeTemporal();
+
+            if (viaje == null || viaje.getId() == null) {
+                throw new IllegalStateException("No hay un viaje seleccionado para cancelar");
+            }
+
+            boolean cancelado = interfazCancelarViaje.cancelarViaje(viaje.getId());
+
+            if (!cancelado) {
+                throw new RuntimeException("No se pudo cancelar el viaje");
+            }
+
+            // Limpiar viaje temporal
+            viajeTemporal = null;
+
+        } catch (Exception e) {
+            throw new RuntimeException("Error al cancelar viaje: " + e.getMessage(), e);
+        }
     }
 
 }

@@ -9,11 +9,13 @@ import interfaces_solicitarReservacion.IPasajeroNegocio;
 import interfaces_solicitarReservacion.IReservacionNegocio;
 import interfaces.IUsuarioNegocio;
 import interfaces.IViajeNegocio;
+import interfaces_cancelarViaje.IAdeudoNegocio;
 import objetosNegocio.ConductorNegocio;
 import objetosNegocio.UsuarioNegocio;
 import objetosNegocio.ViajeNegocio;
 import objetosNegocio_solicitarReservacion.PasajeroNegocio;
 import objetosNegocio_solicitarReservacion.ReservacionNegocio;
+import objetosNegocio_cancelarViaje.AdeudoNegocio;
 import org.base_datos_viajes.dao.impl.ConductorDAO;
 import org.base_datos_viajes.dao.impl.UsuarioDAO;
 import org.base_datos_viajes.dao.impl.ViajeDAO;
@@ -55,5 +57,11 @@ public class FabricaBOs implements IFabricaBOs{
     @Override
     public IPasajeroNegocio crearPasajeroNegocio() {
         return new PasajeroNegocio();
+    }
+
+    //metodos del caso de uso "Cancelar Viaje"
+    @Override
+    public IAdeudoNegocio crearAdeudoNegocio() {
+        return new AdeudoNegocio();
     }
 }

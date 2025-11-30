@@ -9,6 +9,7 @@ import interfaces_solicitarReservacion.IPasajeroNegocio;
 import interfaces_solicitarReservacion.IReservacionNegocio;
 import interfaces.IUsuarioNegocio;
 import interfaces.IViajeNegocio;
+import interfaces_cancelarViaje.IAdeudoNegocio;
 
 /**
  *
@@ -25,7 +26,10 @@ public interface IFabricaBOs {
     
     //metodos del caso de uso "Solicitar Reservacion"
     public IReservacionNegocio crearReservacionNegocio();
-    
+
     public IPasajeroNegocio crearPasajeroNegocio();
-    
+
+    //metodos del caso de uso "Cancelar Viaje"
+    public IAdeudoNegocio crearAdeudoNegocio();
+
 }
