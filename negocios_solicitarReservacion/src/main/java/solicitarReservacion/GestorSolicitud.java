@@ -4,13 +4,13 @@
  */
 package solicitarReservacion;
 
+import dto.EstatusReservacion;
 import dto.ParadaDTO;
 import dto.ReservacionDTO;
 import dto.ViajeDTO;
 import factory.FabricaBOs;
 import factory.IFabricaBOs;
 import interfaces_solicitarReservacion.IPasajeroNegocio;
-import interfaces_solicitarReservacion.IReservacionNegocio;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import static java.time.LocalDateTime.now;
@@ -25,13 +25,11 @@ public class GestorSolicitud {
     
     private ViajeDTO viajeSeleccionado;
     private ParadaDTO paradaSeleccionada;
-    private final IReservacionNegocio reservacionBO;
     private final IPasajeroNegocio pasajeroBO;
     private final ReservacionDTO reservacionTemporal;
 
     public GestorSolicitud() {
         IFabricaBOs fabrica = new FabricaBOs();
-        this.reservacionBO = fabrica.crearReservacionNegocio();
         this.pasajeroBO = fabrica.crearPasajeroNegocio();
         this.reservacionTemporal = new ReservacionDTO();
     }
@@ -61,7 +59,7 @@ public class GestorSolicitud {
     public ReservacionDTO obtenerReservacionTemporal(){
         reservacionTemporal.setViaje(viajeSeleccionado);
         reservacionTemporal.setParada(paradaSeleccionada);
-        if (viajeSeleccionado.getParadas().get(0) != paradaSeleccionada) {
+        if (viajeSeleccionado.getParadas().get(0).getDirección() == null ? paradaSeleccionada.getDirección() != null : !viajeSeleccionado.getParadas().get(0).getDirección().equals(paradaSeleccionada.getDirección())) {
             double precio = viajeSeleccionado.getPrecioTotal() + paradaSeleccionada.getPrecio();
             reservacionTemporal.setPrecioTotal(precio);
         } else {
@@ -69,7 +67,7 @@ public class GestorSolicitud {
         }
         LocalDateTime tiempo = LocalDateTime.of(viajeSeleccionado.getFecha(), viajeSeleccionado.getHora());
         reservacionTemporal.setTiempoRestante(Duration.between(now(), tiempo));
-        reservacionTemporal.setEstatus(ReservacionDTO.Estatus.ESPERA);
+        reservacionTemporal.setEstatus(EstatusReservacion.ESPERA);
         return reservacionTemporal;
     }
     
