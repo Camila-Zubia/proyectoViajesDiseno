@@ -10,6 +10,7 @@ package dto;
  */
 public class ParadaDTO {
     
+    private String Id;
     private String dirección;
     private double precio;
 
@@ -35,6 +36,14 @@ public class ParadaDTO {
 
     public void setPrecio(double precio) {
         this.precio = precio;
+    }
+
+    public String getId() {
+        return Id;
+    }
+
+    public void setId(String Id) {
+        this.Id = Id;
     }
 
     @Override

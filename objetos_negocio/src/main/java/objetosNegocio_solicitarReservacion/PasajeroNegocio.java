@@ -4,6 +4,7 @@
  */
 package objetosNegocio_solicitarReservacion;
 
+import dto.EstatusReservacion;
 import dto.ReservacionDTO;
 import interfaces_solicitarReservacion.IPasajeroNegocio;
 import java.util.List;
@@ -43,8 +44,7 @@ public class PasajeroNegocio implements IPasajeroNegocio{
     
     @Override
     public List<ReservacionDTO> removerReservacion(ReservacionDTO reservacion) {
-        reservacion.setEstatus(ReservacionDTO.Estatus.CANCELADA);
-        SesionUsuario.obtenerPasajero().getReservaciones().remove(reservacion);
+        reservacion.setEstatus(EstatusReservacion.CANCELADA);
         return SesionUsuario.obtenerPasajero().getReservaciones();
     }
     

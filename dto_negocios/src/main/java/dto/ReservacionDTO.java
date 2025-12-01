@@ -14,14 +14,11 @@ import java.time.LocalDateTime;
  */
 public class ReservacionDTO {
     
-    public enum Estatus{
-        ESPERA, ACEPTADA, RECHAZADA, CANCELADA, TERMINADA;
-    }
-    
+    private String Id;
     private ViajeDTO viaje;
     private double precioTotal;
     private ParadaDTO parada;
-    private Estatus estatus;
+    private EstatusReservacion estatus;
     private Duration tiempoRestante;
 
     public ReservacionDTO() {
@@ -33,7 +30,7 @@ public class ReservacionDTO {
         this.precioTotal = 0;
         LocalDateTime tiempo = LocalDateTime.of(viaje.getFecha(), viaje.getHora());
         this.tiempoRestante = Duration.between(now(), tiempo);
-        this.estatus = Estatus.ESPERA;
+        this.estatus = EstatusReservacion.ESPERA;
     }
 
     public ViajeDTO getViaje() {
@@ -60,11 +57,11 @@ public class ReservacionDTO {
         this.parada = parada;
     }
 
-    public Estatus getEstatus() {
+    public EstatusReservacion getEstatus() {
         return estatus;
     }
 
-    public void setEstatus(Estatus estatus) {
+    public void setEstatus(EstatusReservacion estatus) {
         this.estatus = estatus;
     }
 
@@ -74,6 +71,14 @@ public class ReservacionDTO {
 
     public void setTiempoRestante(Duration tiempoRestante) {
         this.tiempoRestante = tiempoRestante;
+    }
+
+    public String getId() {
+        return Id;
+    }
+
+    public void setId(String Id) {
+        this.Id = Id;
     }
     
     @Override
