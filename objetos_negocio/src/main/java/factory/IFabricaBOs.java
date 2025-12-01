@@ -9,6 +9,7 @@ import interfaces_solicitarReservacion.IPasajeroNegocio;
 import interfaces_solicitarReservacion.IReservacionNegocio;
 import interfaces.IUsuarioNegocio;
 import interfaces.IViajeNegocio;
+import interface_crearRutaFrecuente.ICrearRutaFrecuenteNegocio;
 
 /**
  *
@@ -28,4 +29,6 @@ public interface IFabricaBOs {
     
     public IPasajeroNegocio crearPasajeroNegocio();
     
+    //metodo para el caso de uso crear ruta frecuente
+    public ICrearRutaFrecuenteNegocio crearRutaFrecuenteNegocio();
 }

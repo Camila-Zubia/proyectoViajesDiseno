@@ -9,6 +9,7 @@ import interfaces_solicitarReservacion.IPasajeroNegocio;
 import interfaces_solicitarReservacion.IReservacionNegocio;
 import interfaces.IUsuarioNegocio;
 import interfaces.IViajeNegocio;
+import objetoNegocio_crearRutaFrecuente.RutaFrecuenteNegocio;
 import objetosNegocio.ConductorNegocio;
 import objetosNegocio.UsuarioNegocio;
 import objetosNegocio.ViajeNegocio;
@@ -17,6 +18,7 @@ import objetosNegocio_solicitarReservacion.ReservacionNegocio;
 import org.base_datos_viajes.dao.impl.ConductorDAO;
 import org.base_datos_viajes.dao.impl.UsuarioDAO;
 import org.base_datos_viajes.dao.impl.ViajeDAO;
+import interface_crearRutaFrecuente.ICrearRutaFrecuenteNegocio;
 
 /**
  *
@@ -55,5 +57,11 @@ public class FabricaBOs implements IFabricaBOs{
     @Override
     public IPasajeroNegocio crearPasajeroNegocio() {
         return new PasajeroNegocio();
+    }
+    
+    //metodos del caso de uso registrar ruta frecuente
+    @Override
+    public ICrearRutaFrecuenteNegocio crearRutaFrecuenteNegocio(){
+        return new  RutaFrecuenteNegocio();
     }
 }
