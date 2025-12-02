@@ -10,12 +10,12 @@ import dto.ReservacionDTO;
 import dto.ViajeDTO;
 import factory.FabricaBOs;
 import factory.IFabricaBOs;
+import interfaces.IViajeNegocio;
 import interfaces_solicitarReservacion.IPasajeroNegocio;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import static java.time.LocalDateTime.now;
 import java.util.List;
-import utilidades.SesionUsuario;
 
 /**
  *
@@ -26,16 +26,18 @@ public class GestorSolicitud {
     private ViajeDTO viajeSeleccionado;
     private ParadaDTO paradaSeleccionada;
     private final IPasajeroNegocio pasajeroBO;
+    private final IViajeNegocio viajeBO;
     private final ReservacionDTO reservacionTemporal;
 
     public GestorSolicitud() {
         IFabricaBOs fabrica = new FabricaBOs();
         this.pasajeroBO = fabrica.crearPasajeroNegocio();
+        this.viajeBO = fabrica.crearViajeNegocio();
         this.reservacionTemporal = new ReservacionDTO();
     }
     
     public List<ViajeDTO> obtenerViajes(){
-        return SesionUsuario.obtenerConductor().getViajes();
+        return viajeBO.obtenerTodosLosViajesDisponibles();
     }
     
     public List<ParadaDTO> obtenerParadas() {

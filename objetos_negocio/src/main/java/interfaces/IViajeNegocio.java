@@ -20,4 +20,6 @@ public interface IViajeNegocio {
     
     public void registrarParada(ViajeDTO viaje, ParadaDTO parada);
     
+    public List<ViajeDTO> obtenerTodosLosViajesDisponibles();
+    
 }
