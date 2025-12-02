@@ -5,24 +5,17 @@
 package objetosNegocio;
 
 import adaptadores.adaptadorConductor;
+import adaptadores.adaptadorPasajero;
 import adaptadores.adaptadorUsuario;
-import dto.ConductorDTO;
-import dto.ParadaDTO;
-import dto.PasajeroDTO;
-import dto.ReservacionDTO;
 import dto.UsuarioDTO;
-import dto.VehiculoDTO;
-import dto.ViajeDTO;
 import interfaces.IUsuarioNegocio;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 import org.base_datos_viajes.dao.impl.UsuarioDAO;
 import org.base_datos_viajes.dao.interfaces.IConductorDAO;
+import org.base_datos_viajes.dao.interfaces.IPasajeroDAO;
 import org.base_datos_viajes.exception.DatabaseException;
 import org.base_datos_viajes.model.Conductor;
+import org.base_datos_viajes.model.Pasajero;
 import org.base_datos_viajes.model.Usuario;
 import utilidades.SesionUsuario;
 
@@ -34,10 +27,12 @@ public class UsuarioNegocio implements IUsuarioNegocio{
 
     private final UsuarioDAO usuarioDAO; 
     private final IConductorDAO conductorDAO;
+    private final IPasajeroDAO pasajeroDAO;
     
-    public UsuarioNegocio(UsuarioDAO usuarioDAO, IConductorDAO conductorDAO) { 
+    public UsuarioNegocio(UsuarioDAO usuarioDAO, IConductorDAO conductorDAO, IPasajeroDAO pasajeroDAO) { 
         this.usuarioDAO = usuarioDAO;
         this.conductorDAO = conductorDAO;
+        this.pasajeroDAO = pasajeroDAO;
     }
 
     @Override
@@ -65,6 +60,14 @@ public class UsuarioNegocio implements IUsuarioNegocio{
                     Optional<Conductor> optionalConductor = conductorDAO.findById(entidad.getConductorId());
                     if (optionalConductor.isPresent()) {
                          usuarioLogueado.setConductor(adaptadorConductor.toDTO(optionalConductor.get()));
+                    }
+                }
+                
+                //Carga Perfil Conductor
+                if (entidad.getPasajeroId() != null) {
+                    Optional<Pasajero> optionalPasajero = pasajeroDAO.findById(entidad.getPasajeroId());
+                    if (optionalPasajero.isPresent()) {
+                        usuarioLogueado.setPasajero(adaptadorPasajero.toDTO(optionalPasajero.get()));
                     }
                 }
 

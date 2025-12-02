@@ -5,20 +5,15 @@
 package objetosNegocio_solicitarReservacion;
 
 import adaptadores.adaptadorReservacion;
-import adaptadores.adaptadorVehiculo;
-import adaptadores.adaptadorViaje;
 import dto.EstatusReservacion;
 import dto.ReservacionDTO;
-import dto.ViajeDTO;
 import interfaces_solicitarReservacion.IPasajeroNegocio;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
-import org.base_datos_viajes.dao.impl.PasajeroDAO;
 import org.base_datos_viajes.dao.interfaces.IPasajeroDAO;
+import org.base_datos_viajes.dao.interfaces.IReservacionDAO;
 import org.base_datos_viajes.model.Reservacion;
 import org.base_datos_viajes.model.Reservacion.Estatus;
-import org.base_datos_viajes.model.Viaje;
 import org.bson.types.ObjectId;
 import utilidades.SesionUsuario;
 
@@ -29,21 +24,27 @@ import utilidades.SesionUsuario;
 public class PasajeroNegocio implements IPasajeroNegocio{
 
     private final IPasajeroDAO pasajeroDAO;
+    private final IReservacionDAO reservacionDAO;
     
-    public PasajeroNegocio() {
-        this.pasajeroDAO = new PasajeroDAO();
+    public PasajeroNegocio(IPasajeroDAO pasajeroDAO, IReservacionDAO reservacionDAO) {
+        this.pasajeroDAO = pasajeroDAO;
+        this.reservacionDAO = reservacionDAO;
     }
 
     @Override
     public void agregarReservacion(ReservacionDTO reservacion) {
         if (validarNoExiste(SesionUsuario.obtenerPasajero().getReservaciones(), reservacion)) {
-            SesionUsuario.obtenerPasajero().getReservaciones().add(reservacion);
+            Reservacion r = adaptadorReservacion.toEntity(reservacion);
+            reservacionDAO.save(r);
         } else {
             throw new IllegalStateException("Ya existe una reservacion con los mismos datos.");
         }
     }
 
     private boolean validarNoExiste(List<ReservacionDTO> reservaciones, ReservacionDTO reservacion) {
+        if (reservaciones == null) {
+            return true;
+        }
         for (ReservacionDTO r : reservaciones) {
             if (r == reservacion) {
                 return false;
@@ -69,7 +70,7 @@ public class PasajeroNegocio implements IPasajeroNegocio{
     @Override
     public List<ReservacionDTO> removerReservacion(ReservacionDTO reservacion) {
         reservacion.setEstatus(EstatusReservacion.CANCELADA);
-        return SesionUsuario.obtenerPasajero().getReservaciones();
+        return obtenerReservaciones();
     }
     
 }

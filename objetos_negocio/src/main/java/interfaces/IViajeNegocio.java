@@ -5,6 +5,7 @@
 package interfaces;
 
 import dto.ParadaDTO;
+import dto.ReservacionDTO;
 import dto.ViajeDTO;
 import java.util.List;
 
@@ -21,5 +22,7 @@ public interface IViajeNegocio {
     public void registrarParada(ViajeDTO viaje, ParadaDTO parada);
     
     public List<ViajeDTO> obtenerTodosLosViajesDisponibles();
+    
+    public List<ReservacionDTO> obtenerReservacionesPorViaje(String viajeId);
     
 }
