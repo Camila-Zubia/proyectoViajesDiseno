@@ -184,7 +184,7 @@ public class datosReservacion extends javax.swing.JPanel {
 
         } catch (HeadlessException e) {
             JOptionPane.showMessageDialog(this,
-                    "Error al cancelar la reservación: " + e.getMessage(),
+                    "Error al solicitar la reservación: " + e.getMessage(),
                     "Error",
                     JOptionPane.ERROR_MESSAGE);
         }

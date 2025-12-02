@@ -68,7 +68,7 @@ public class GestorSolicitud {
             reservacionTemporal.setPrecioTotal(viajeSeleccionado.getPrecioTotal());
         }
         LocalDateTime tiempo = LocalDateTime.of(viajeSeleccionado.getFecha(), viajeSeleccionado.getHora());
-        reservacionTemporal.setTiempoRestante(Duration.between(now(), tiempo));
+        reservacionTemporal.setTiempoRestante(Duration.between(now(), tiempo).toSeconds());
         reservacionTemporal.setEstatus(EstatusReservacion.ESPERA);
         return reservacionTemporal;
     }

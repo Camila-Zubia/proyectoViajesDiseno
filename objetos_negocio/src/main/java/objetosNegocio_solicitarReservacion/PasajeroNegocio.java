@@ -19,7 +19,7 @@ import utilidades.SesionUsuario;
 
 /**
  *
- * @author Usuario
+ * @author Camila Zubia 00000244825
  */
 public class PasajeroNegocio implements IPasajeroNegocio{
 
@@ -33,24 +33,43 @@ public class PasajeroNegocio implements IPasajeroNegocio{
 
     @Override
     public void agregarReservacion(ReservacionDTO reservacion) {
-        if (validarNoExiste(SesionUsuario.obtenerPasajero().getReservaciones(), reservacion)) {
+        if (validarNoExiste(reservacion)) {
             Reservacion r = adaptadorReservacion.toEntity(reservacion);
+            ObjectId pasajeroId = new ObjectId(SesionUsuario.obtenerPasajero().getId());
+            r.setPasajeroId(pasajeroId);
             reservacionDAO.save(r);
         } else {
-            throw new IllegalStateException("Ya existe una reservacion con los mismos datos.");
+            throw new IllegalStateException("Ya tienes una reservación activa o pendiente para el viaje con ID seleccionado");
         }
     }
 
-    private boolean validarNoExiste(List<ReservacionDTO> reservaciones, ReservacionDTO reservacion) {
-        if (reservaciones == null) {
+    private boolean validarNoExiste(ReservacionDTO reservacion) {
+
+        if (reservacion.getViaje() == null || reservacion.getViaje().getId() == null) {
             return true;
         }
-        for (ReservacionDTO r : reservaciones) {
-            if (r == reservacion) {
-                return false;
-            }
+
+        String viajeIdNuevo = reservacion.getViaje().getId();
+        ObjectId pasajeroId = new ObjectId(SesionUsuario.obtenerPasajero().getId());
+        List<Reservacion> todasLasReservaciones = pasajeroDAO.obtenerReservaciones(pasajeroId.toHexString());
+
+        if (todasLasReservaciones == null || todasLasReservaciones.isEmpty()) {
+            return true;
         }
-        return true;
+
+        boolean yaExisteReservacionActiva = todasLasReservaciones.stream()
+                .map(adaptadorReservacion::toDTO)
+                .anyMatch(r -> {
+                    if (r == null || r.getViaje() == null || r.getViaje().getId() == null || r.getEstatus() == null) {
+                        return false;
+                    }
+                    boolean mismoViaje = viajeIdNuevo.equals(r.getViaje().getId());
+                    boolean estaActivaOPendiente = (r.getEstatus() == EstatusReservacion.ACEPTADA || r.getEstatus() == EstatusReservacion.ESPERA);
+
+                    return mismoViaje && estaActivaOPendiente;
+                });
+
+        return !yaExisteReservacionActiva;
     }
 
     @Override
@@ -60,7 +79,7 @@ public class PasajeroNegocio implements IPasajeroNegocio{
         List<Reservacion> todasLasReservaciones = pasajeroDAO.obtenerReservaciones(pasajeroId.toHexString());
 
         List<ReservacionDTO> reservacionesDisponibles = todasLasReservaciones.stream()
-                .filter(r -> r.getEstatus() == Estatus.ACEPTADA)
+                .filter(r -> r.getEstatus() == Estatus.ACEPTADA || r.getEstatus() == Estatus.ESPERA)
                 .map(adaptadorReservacion::toDTO)
                 .collect(Collectors.toList());
 
