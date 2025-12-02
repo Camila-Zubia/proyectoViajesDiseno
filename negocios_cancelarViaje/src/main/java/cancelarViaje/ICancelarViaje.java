@@ -31,4 +31,11 @@ public interface ICancelarViaje {
      * @return ViajeDTO del viaje seleccionado
      */
     public ViajeDTO obtenerViajeSeleccionado();
+
+    /**
+     * Obtiene el monto del adeudo pendiente por cancelar un viaje
+     * @param idViaje ID del viaje
+     * @return monto del adeudo en pesos
+     */
+    public int obtenerAdeudoPendiente(String idViaje);
 }

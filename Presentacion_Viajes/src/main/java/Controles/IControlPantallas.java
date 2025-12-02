@@ -92,4 +92,6 @@ public interface IControlPantallas {
 
     public void confirmarCancelacionViaje();
 
+    public int obtenerAdeudoPendiente(String idViaje);
+
 }

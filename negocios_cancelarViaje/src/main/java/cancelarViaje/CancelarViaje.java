@@ -32,4 +32,9 @@ public class CancelarViaje implements ICancelarViaje {
     public ViajeDTO obtenerViajeSeleccionado() {
         return control.obtenerViajeSeleccionado();
     }
+
+    @Override
+    public int obtenerAdeudoPendiente(String idViaje) {
+        return control.obtenerAdeudoPendiente(idViaje);
+    }
 }

@@ -200,26 +200,56 @@ public class detallesViaje extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarViajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarViajeActionPerformed
-        int confirmacion = JOptionPane.showConfirmDialog(this,
-            "¿Está seguro de que desea cancelar este viaje?",
-            "Confirmar Cancelación",
-            JOptionPane.YES_NO_OPTION,
-            JOptionPane.WARNING_MESSAGE);
-
-        if (confirmacion == JOptionPane.YES_OPTION) {
-            try {
-                controlPantallas.confirmarCancelacionViaje();
+        try {
+            ViajeDTO viaje = controlPantallas.obtenerViajeTemporal();
+            if (viaje == null || viaje.getId() == null) {
                 JOptionPane.showMessageDialog(this,
-                    "Viaje cancelado exitosamente",
-                    "Éxito",
-                    JOptionPane.INFORMATION_MESSAGE);
-                controlPantallas.mostrarMenuConductor();
-            } catch (HeadlessException e) {
-                JOptionPane.showMessageDialog(this,
-                    "Error al cancelar el viaje: " + e.getMessage(),
+                    "No hay un viaje seleccionado",
                     "Error",
                     JOptionPane.ERROR_MESSAGE);
+                return;
             }
+
+            int montoAdeudo = controlPantallas.obtenerAdeudoPendiente(viaje.getId());
+
+            String mensaje;
+            if (montoAdeudo > 0) {
+                mensaje = String.format(
+                    "Al cancelar este viaje se le cobrará un adeudo de $%d pesos.\n\n¿Está seguro de que desea cancelar este viaje?",
+                    montoAdeudo
+                );
+            } else {
+                mensaje = "¿Está seguro de que desea cancelar este viaje?\n\nNo se generará ningún adeudo.";
+            }
+
+            int confirmacion = JOptionPane.showConfirmDialog(this,
+                mensaje,
+                "Confirmar Cancelación",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.WARNING_MESSAGE);
+
+            if (confirmacion == JOptionPane.YES_OPTION) {
+                controlPantallas.confirmarCancelacionViaje();
+
+                if (montoAdeudo > 0) {
+                    JOptionPane.showMessageDialog(this,
+                        String.format("Viaje cancelado exitosamente.\n\nSe ha registrado un adeudo de $%d pesos.", montoAdeudo),
+                        "Viaje Cancelado",
+                        JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(this,
+                        "Viaje cancelado exitosamente.",
+                        "Éxito",
+                        JOptionPane.INFORMATION_MESSAGE);
+                }
+
+                controlPantallas.mostrarMenuConductor();
+            }
+        } catch (HeadlessException e) {
+            JOptionPane.showMessageDialog(this,
+                "Error al cancelar el viaje: " + e.getMessage(),
+                "Error",
+                JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnCancelarViajeActionPerformed
 
@@ -233,9 +263,8 @@ public class detallesViaje extends javax.swing.JPanel {
             txtDestino.setText(viaje.getDestino());
             txtFecha.setText(viaje.getFecha().toString());
             txtHora.setText(viaje.getHora().toString());
-            txtClientes.setText(String.valueOf(viaje.getParadas().size()));
+            txtClientes.setText(String.valueOf(viaje.getCantidadPasajeros()));
 
-            // Hacer campos no editables
             txtOrigen.setEditable(false);
             txtDestino.setEditable(false);
             txtFecha.setEditable(false);

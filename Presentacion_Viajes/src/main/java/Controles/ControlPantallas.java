@@ -298,12 +298,16 @@ import solicitarReservacion.SolicitarReservacion;
                 throw new RuntimeException("No se pudo cancelar el viaje");
             }
 
-            // Limpiar viaje temporal
             viajeTemporal = null;
 
         } catch (Exception e) {
             throw new RuntimeException("Error al cancelar viaje: " + e.getMessage(), e);
         }
+    }
+
+    @Override
+    public int obtenerAdeudoPendiente(String idViaje) {
+        return interfazCancelarViaje.obtenerAdeudoPendiente(idViaje);
     }
 
 }
