@@ -132,10 +132,6 @@ public class ControlCancelaciones {
             throw new IllegalStateException("No se encontró el viaje con ID: " + idViaje);
         }
 
-        // Aquí asumiríamos que ViajeDTO tiene un campo conductorId o conductor
-        // Por ahora, esta validación se puede omitir si no existe el campo
-        // TODO: Verificar viaje.getConductorId() == conductorSesion.getId()
-
         // Calcular adeudo antes de cancelar
         int montoAdeudo = calcularAdeudo();
 
