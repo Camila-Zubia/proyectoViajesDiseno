@@ -5,51 +5,71 @@
 package objetosNegocio_solicitarReservacion;
 
 import adaptadores.adaptadorReservacion;
-import adaptadores.adaptadorVehiculo;
-import adaptadores.adaptadorViaje;
 import dto.EstatusReservacion;
 import dto.ReservacionDTO;
-import dto.ViajeDTO;
 import interfaces_solicitarReservacion.IPasajeroNegocio;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
-import org.base_datos_viajes.dao.impl.PasajeroDAO;
 import org.base_datos_viajes.dao.interfaces.IPasajeroDAO;
+import org.base_datos_viajes.dao.interfaces.IReservacionDAO;
 import org.base_datos_viajes.model.Reservacion;
 import org.base_datos_viajes.model.Reservacion.Estatus;
-import org.base_datos_viajes.model.Viaje;
 import org.bson.types.ObjectId;
 import utilidades.SesionUsuario;
 
 /**
  *
- * @author Usuario
+ * @author Camila Zubia 00000244825
  */
 public class PasajeroNegocio implements IPasajeroNegocio{
 
     private final IPasajeroDAO pasajeroDAO;
+    private final IReservacionDAO reservacionDAO;
     
-    public PasajeroNegocio() {
-        this.pasajeroDAO = new PasajeroDAO();
+    public PasajeroNegocio(IPasajeroDAO pasajeroDAO, IReservacionDAO reservacionDAO) {
+        this.pasajeroDAO = pasajeroDAO;
+        this.reservacionDAO = reservacionDAO;
     }
 
     @Override
     public void agregarReservacion(ReservacionDTO reservacion) {
-        if (validarNoExiste(SesionUsuario.obtenerPasajero().getReservaciones(), reservacion)) {
-            SesionUsuario.obtenerPasajero().getReservaciones().add(reservacion);
+        if (validarNoExiste(reservacion)) {
+            Reservacion r = adaptadorReservacion.toEntity(reservacion);
+            ObjectId pasajeroId = new ObjectId(SesionUsuario.obtenerPasajero().getId());
+            r.setPasajeroId(pasajeroId);
+            reservacionDAO.save(r);
         } else {
-            throw new IllegalStateException("Ya existe una reservacion con los mismos datos.");
+            throw new IllegalStateException("Ya tienes una reservación activa o pendiente para el viaje con ID seleccionado");
         }
     }
 
-    private boolean validarNoExiste(List<ReservacionDTO> reservaciones, ReservacionDTO reservacion) {
-        for (ReservacionDTO r : reservaciones) {
-            if (r == reservacion) {
-                return false;
-            }
+    private boolean validarNoExiste(ReservacionDTO reservacion) {
+
+        if (reservacion.getViaje() == null || reservacion.getViaje().getId() == null) {
+            return true;
         }
-        return true;
+
+        String viajeIdNuevo = reservacion.getViaje().getId();
+        ObjectId pasajeroId = new ObjectId(SesionUsuario.obtenerPasajero().getId());
+        List<Reservacion> todasLasReservaciones = pasajeroDAO.obtenerReservaciones(pasajeroId.toHexString());
+
+        if (todasLasReservaciones == null || todasLasReservaciones.isEmpty()) {
+            return true;
+        }
+
+        boolean yaExisteReservacionActiva = todasLasReservaciones.stream()
+                .map(adaptadorReservacion::toDTO)
+                .anyMatch(r -> {
+                    if (r == null || r.getViaje() == null || r.getViaje().getId() == null || r.getEstatus() == null) {
+                        return false;
+                    }
+                    boolean mismoViaje = viajeIdNuevo.equals(r.getViaje().getId());
+                    boolean estaActivaOPendiente = (r.getEstatus() == EstatusReservacion.ACEPTADA || r.getEstatus() == EstatusReservacion.ESPERA);
+
+                    return mismoViaje && estaActivaOPendiente;
+                });
+
+        return !yaExisteReservacionActiva;
     }
 
     @Override
@@ -59,7 +79,7 @@ public class PasajeroNegocio implements IPasajeroNegocio{
         List<Reservacion> todasLasReservaciones = pasajeroDAO.obtenerReservaciones(pasajeroId.toHexString());
 
         List<ReservacionDTO> reservacionesDisponibles = todasLasReservaciones.stream()
-                .filter(r -> r.getEstatus() == Estatus.ACEPTADA)
+                .filter(r -> r.getEstatus() == Estatus.ACEPTADA || r.getEstatus() == Estatus.ESPERA)
                 .map(adaptadorReservacion::toDTO)
                 .collect(Collectors.toList());
 
@@ -69,7 +89,7 @@ public class PasajeroNegocio implements IPasajeroNegocio{
     @Override
     public List<ReservacionDTO> removerReservacion(ReservacionDTO reservacion) {
         reservacion.setEstatus(EstatusReservacion.CANCELADA);
-        return SesionUsuario.obtenerPasajero().getReservaciones();
+        return obtenerReservaciones();
     }
     
 }

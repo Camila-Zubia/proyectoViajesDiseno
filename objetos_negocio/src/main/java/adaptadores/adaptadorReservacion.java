@@ -1,7 +1,9 @@
 package adaptadores;
 
 import dto.EstatusReservacion;
+import dto.ParadaDTO;
 import dto.ReservacionDTO;
+import dto.ViajeDTO;
 import org.base_datos_viajes.model.Reservacion;
 import org.bson.types.ObjectId;
 
@@ -12,7 +14,7 @@ import org.bson.types.ObjectId;
 public class adaptadorReservacion {
 
     public static Reservacion toEntity(ReservacionDTO dto) {
-        
+
         Reservacion.Estatus estatusEntidad
                 = Reservacion.Estatus.valueOf(dto.getEstatus().name());
 
@@ -25,12 +27,22 @@ public class adaptadorReservacion {
         if (dto.getId() != null) {
             entidad.setId(new ObjectId(dto.getId()));
         }
-        entidad.setViajeId(new ObjectId(dto.getViaje().getId()));
-        entidad.setParadaId(new ObjectId(dto.getParada().getId()));
+        
+        if (dto.getViaje() != null && dto.getViaje().getId() != null) {
+            entidad.setViajeId(new ObjectId(dto.getViaje().getId()));
+        } else {
+            
+        }
+        
+        if (dto.getParada() != null && dto.getParada().getId() != null) {
+            entidad.setParadaId(new ObjectId(dto.getParada().getId()));
+        } else {
+             
+        }
 
         return entidad;
     }
-
+    
     public static ReservacionDTO toDTO(Reservacion entidad) {
         ReservacionDTO dto = new ReservacionDTO();
 
@@ -40,10 +52,22 @@ public class adaptadorReservacion {
 
         EstatusReservacion estatusDTO
                 = EstatusReservacion.valueOf(entidad.getEstatus().name());
-        
+
         dto.setEstatus(estatusDTO);
         dto.setPrecioTotal(entidad.getPrecioTotal());
         dto.setTiempoRestante(entidad.getTiempoRestante());
+        
+        if (entidad.getViajeId() != null) {
+            ViajeDTO viajeDTO = new ViajeDTO();
+            viajeDTO.setId(entidad.getViajeId().toString());
+            dto.setViaje(viajeDTO);
+        }
+
+        if (entidad.getParadaId() != null) {
+            ParadaDTO paradaDTO = new ParadaDTO();
+            paradaDTO.setId(entidad.getParadaId().toString());
+            dto.setParada(paradaDTO);
+        }
 
         return dto;
     }

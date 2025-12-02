@@ -19,7 +19,7 @@ public class ReservacionDTO {
     private double precioTotal;
     private ParadaDTO parada;
     private EstatusReservacion estatus;
-    private Duration tiempoRestante;
+    private Long tiempoRestante;
 
     public ReservacionDTO() {
     }
@@ -29,7 +29,8 @@ public class ReservacionDTO {
         this.parada = parada;
         this.precioTotal = 0;
         LocalDateTime tiempo = LocalDateTime.of(viaje.getFecha(), viaje.getHora());
-        this.tiempoRestante = Duration.between(now(), tiempo);
+        Duration diferencia = Duration.between(now(), tiempo);
+        this.tiempoRestante = diferencia.toSeconds();
         this.estatus = EstatusReservacion.ESPERA;
     }
 
@@ -65,11 +66,11 @@ public class ReservacionDTO {
         this.estatus = estatus;
     }
 
-    public Duration getTiempoRestante() {
+    public Long getTiempoRestante() {
         return tiempoRestante;
     }
 
-    public void setTiempoRestante(Duration tiempoRestante) {
+    public void setTiempoRestante(Long tiempoRestante) {
         this.tiempoRestante = tiempoRestante;
     }
 

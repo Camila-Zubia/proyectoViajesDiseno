@@ -6,16 +6,20 @@ package objetosNegocio;
 
 import adaptadores.adaptadorViaje;
 import dto.ParadaDTO;
+import dto.ReservacionDTO;
 import dto.ViajeDTO;
 import interfaces.IViajeNegocio;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import org.base_datos_viajes.dao.impl.ReservacionDAO;
 import org.base_datos_viajes.dao.impl.ViajeDAO;
 import org.base_datos_viajes.dao.interfaces.IConductorDAO;
+import org.base_datos_viajes.dao.interfaces.IReservacionDAO;
 import org.base_datos_viajes.exception.DatabaseException;
 import org.base_datos_viajes.model.Conductor;
+import org.base_datos_viajes.model.Reservacion;
 import org.base_datos_viajes.model.Vehiculo;
 import org.base_datos_viajes.model.Viaje;
 import org.bson.types.ObjectId;
@@ -28,10 +32,12 @@ import utilidades.SesionUsuario;
 public class ViajeNegocio implements IViajeNegocio{
     private final ViajeDAO viajeDAO;  
     private final IConductorDAO conductorDAO;
+    private final IReservacionDAO reservacionDAO;  
     
     public ViajeNegocio(ViajeDAO viajeDAO, IConductorDAO conductorDAO) {
         this.viajeDAO = viajeDAO;
         this.conductorDAO = conductorDAO;
+        this.reservacionDAO = new ReservacionDAO();
     }
     
     @Override
@@ -117,6 +123,24 @@ public class ViajeNegocio implements IViajeNegocio{
                 .collect(Collectors.toList());
 
         return viajesDisponibles;
+    }
+
+    @Override
+    public List<ReservacionDTO> obtenerReservacionesPorViaje(String viajeId) {
+        try {
+            ObjectId idViaje = new ObjectId(viajeId);
+            List<Reservacion> reservacionesEntidad = reservacionDAO.encuentraPorIdViaje(idViaje);
+
+            List<ReservacionDTO> solicitudesPendientes = reservacionesEntidad.stream()
+                    .filter(r -> r.getEstatus() == Reservacion.Estatus.ESPERA)
+                    .map(adaptadores.adaptadorReservacion::toDTO)
+                    .collect(Collectors.toList());
+
+            return solicitudesPendientes;
+
+        } catch (Exception e) {
+            throw new IllegalStateException("Error al obtener reservaciones del viaje: " + e.getMessage());
+        }
     }
 
 }
