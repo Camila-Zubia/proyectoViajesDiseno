@@ -8,8 +8,10 @@ import adaptadores.adaptadorViaje;
 import dto.ParadaDTO;
 import dto.ViajeDTO;
 import interfaces.IViajeNegocio;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import org.base_datos_viajes.dao.impl.ViajeDAO;
 import org.base_datos_viajes.dao.interfaces.IConductorDAO;
 import org.base_datos_viajes.exception.DatabaseException;
@@ -95,6 +97,26 @@ public class ViajeNegocio implements IViajeNegocio{
         return v.getFecha().equals(viaje.getFecha()) 
             && v.getHora().equals(viaje.getHora());
     });
+    }
+    
+    // metodos para el caso de Solicitar Reservación
+    @Override
+    public List<ViajeDTO> obtenerTodosLosViajesDisponibles() {
+        final LocalDateTime ahora = LocalDateTime.now();
+
+        List<Viaje> todosLosViajes = viajeDAO.findAll();
+
+        List<ViajeDTO> viajesDisponibles = todosLosViajes.stream()
+                .filter(viaje -> {
+                    LocalDateTime fechaHoraViaje = LocalDateTime.of(
+                            viaje.getFecha(),
+                            viaje.getHora());
+                    return fechaHoraViaje.isAfter(ahora);
+                })
+                .map(v -> adaptadorViaje.toDTO(v))
+                .collect(Collectors.toList());
+
+        return viajesDisponibles;
     }
 
 }
