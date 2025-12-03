@@ -7,6 +7,8 @@ package Controles;
 import org.base_datos_viajes.initializer.InicializadorDatosPrueba;
 import cancelarReservacion.CancelarReservacion;
 import cancelarReservacion.ICancelarReservacion;
+import crearRutaFrecuente.FCrearRutaFrecuente;
+import crearRutaFrecuente.ICrearRutaFrecuente;
 import dto.ConductorDTO;
 import dto.ParadaDTO;
 import dto.PasajeroDTO;
@@ -33,6 +35,9 @@ import presentacion_SolicitarReservacion.menuPrincipalPasajero;
 import presentacion_SolicitarReservacion.seleccionarParada;
 import presentacion_cancelarReservacion.cancelarReservacion;
 import presentacion_cancelarReservacion.seleccionarReservacion;
+import presentacion_crearRutaFrecuente.DatosParadas;
+import presentacion_crearRutaFrecuente.DatosRutaFrec;
+import presentacion_crearRutaFrecuente.MenuRutasFrecuentes;
 import registrarViaje.IRegistrarViaje;
 import registrarViaje.RegistrarViaje;
 import solicitarReservacion.ISolicitarReservacion;
@@ -42,7 +47,7 @@ import solicitarReservacion.SolicitarReservacion;
  *
  * @author Camila Zubia 00000244825
  */
- public class ControlPantallas implements IControlPantallas{
+public class ControlPantallas implements IControlPantallas {
 
     private static ControlPantallas instancia;
     private final JFrame frame;
@@ -51,15 +56,16 @@ import solicitarReservacion.SolicitarReservacion;
     private final IRegistrarViaje interfazRegistrarViaje = new RegistrarViaje();
     private final ISolicitarReservacion interfazSolicitarReservacion = new SolicitarReservacion();
     private final ICancelarReservacion interfazCancelarReservacion = new CancelarReservacion();
+    private final ICrearRutaFrecuente interfazCrearRutaFrecuente = new FCrearRutaFrecuente();
 
     private ControlPantallas(JFrame frame, JMenu menu) {
         this.frame = frame;
         this.menu = menu;
-        
+
         InicializadorDatosPrueba.inicializarSiEsNecesario();
     }
-    
-    public static ControlPantallas getInstancia(JFrame frame, JMenu menu){
+
+    public static ControlPantallas getInstancia(JFrame frame, JMenu menu) {
         if (instancia == null) {
             instancia = new ControlPantallas(frame, menu);
         }
@@ -91,9 +97,9 @@ import solicitarReservacion.SolicitarReservacion;
         menuVehiculos menuVehiculos = new menuVehiculos(this, vehiculos);
         configurarPanel(menuVehiculos);
     }
-    
+
     @Override
-    public void mostrarInicioSesion(){
+    public void mostrarInicioSesion() {
         iniciarSesion inicioSesion = new iniciarSesion(this);
         configurarPanel(inicioSesion);
     }
@@ -142,125 +148,147 @@ import solicitarReservacion.SolicitarReservacion;
     public void confirmarViaje() {
         interfazRegistrarViaje.confirmarViaje();
     }
-    
+
     @Override
-    public void agregarParada(String direccion, double precio){
+    public void agregarParada(String direccion, double precio) {
         interfazRegistrarViaje.agregarParada(direccion, precio);
     }
-    
+
     @Override
-    public boolean validarUsuario(UsuarioDTO usuario){
+    public boolean validarUsuario(UsuarioDTO usuario) {
         return sesion.validarUsuario(usuario);
     }
-    
+
     @Override
-    public ConductorDTO nombreConductor(){
+    public ConductorDTO nombreConductor() {
         return sesion.obtenerUsuario().getConductor();
     }
-    
+
     @Override
-    public void cerrarSesion(){
+    public void cerrarSesion() {
         sesion.cerrarSesion();
         menu.setEnabled(false);
         mostrarInicioSesion();
     }
-    
-    
-   //Estos son los metodos del subsitema "Solicitar Reservacion"
+
+    //Estos son los metodos del subsitema "Solicitar Reservacion"
     @Override
     public void mostrarMenuPasajero() {
         List viajes = interfazSolicitarReservacion.obtenerViajesDisponibles();
         menuPrincipalPasajero menuPasajero = new menuPrincipalPasajero(this, viajes);
         configurarPanel(menuPasajero);
     }
-    
+
     @Override
     public void mostrarParadasViaje() {
-         List paradas = interfazSolicitarReservacion.obtenerParadas();
-         seleccionarParada menuParadas = new seleccionarParada(this, paradas);
-         configurarPanel(menuParadas);
+        List paradas = interfazSolicitarReservacion.obtenerParadas();
+        seleccionarParada menuParadas = new seleccionarParada(this, paradas);
+        configurarPanel(menuParadas);
     }
-    
+
     @Override
     public void mostrarDatosReservacion() {
         ReservacionDTO reservacion = interfazSolicitarReservacion.obtenerReservacionTemporal();
         datosReservacion datos = new datosReservacion(this, reservacion);
         configurarPanel(datos);
     }
-    
+
     @Override
     public List<ViajeDTO> obtenerViajes() {
         return interfazSolicitarReservacion.obtenerViajesDisponibles();
     }
-    
+
     @Override
     public List<ParadaDTO> obtenerParadas() {
         return interfazSolicitarReservacion.obtenerParadas();
     }
-    
+
     @Override
-    public void seleccionarViaje(ViajeDTO viaje){
+    public void seleccionarViaje(ViajeDTO viaje) {
         interfazSolicitarReservacion.seleccionarViaje(viaje);
     }
-    
+
     @Override
     public void seleccionarParada(ParadaDTO parada) {
         interfazSolicitarReservacion.seleccionarParada(parada);
     }
-    
+
     @Override
     public void solicitarParada(String direccion) {
         interfazSolicitarReservacion.solicitarParada(direccion);
     }
-    
+
     @Override
     public ReservacionDTO confirmarReservacion() {
         return interfazSolicitarReservacion.confirmarReservacion();
     }
-    
+
     @Override
     public ReservacionDTO obtenerReservacionTemporal() {
         return interfazSolicitarReservacion.obtenerReservacionTemporal();
     }
-    
-     @Override
+
+    @Override
     public PasajeroDTO nombrePasajero() {
-         return sesion.obtenerUsuario().getPasajero();
+        return sesion.obtenerUsuario().getPasajero();
     }
-    
+
     //metodos subsistema "CancelarReservacion"
     @Override
     public void mostrarReservaciones() {
-         List reservaciones = interfazCancelarReservacion.obtenerReservacionesDisponibles();
-         seleccionarReservacion menuReservaciones = new seleccionarReservacion(this, reservaciones);
-         configurarPanel(menuReservaciones);
+        List reservaciones = interfazCancelarReservacion.obtenerReservacionesDisponibles();
+        seleccionarReservacion menuReservaciones = new seleccionarReservacion(this, reservaciones);
+        configurarPanel(menuReservaciones);
     }
-    
+
     @Override
     public void mostrarCancelarReservacion() {
-         ReservacionDTO reservacion = interfazCancelarReservacion.obtenerReservacion();
-         cancelarReservacion cancelar = new cancelarReservacion(this, reservacion);
-         configurarPanel(cancelar);
+        ReservacionDTO reservacion = interfazCancelarReservacion.obtenerReservacion();
+        cancelarReservacion cancelar = new cancelarReservacion(this, reservacion);
+        configurarPanel(cancelar);
     }
-    
+
     @Override
     public List<ReservacionDTO> obtenerReservacionesDisponibles() {
         return interfazCancelarReservacion.obtenerReservacionesDisponibles();
     }
-    
+
     @Override
-    public ReservacionDTO seleccionarReservacion(ReservacionDTO reservacion){
+    public ReservacionDTO seleccionarReservacion(ReservacionDTO reservacion) {
         return interfazCancelarReservacion.seleccionarReservacion(reservacion);
     }
-    
+
     @Override
     public ReservacionDTO confirmarCancelacion() {
         return interfazCancelarReservacion.confirmarCancelacion();
     }
-    
+
     @Override
     public ReservacionDTO obtenerReservacion() {
         return interfazCancelarReservacion.obtenerReservacion();
     }
-    
+
+    //metodos subsistema crear ruta frecuente
+    @Override
+    public void mostrarDatosRutasFrecuente() {
+
+        DatosRutaFrec datosRuta = new DatosRutaFrec(this);
+        configurarPanel(datosRuta);
+    }
+
+    @Override
+    public void mostrarParadasRuta() {
+        List paradasRuta = interfazCrearRutaFrecuente.obtenerParadasTemp();
+        DatosParadas datosParadasRutas = new DatosParadas(this, paradasRuta);
+        configurarPanel(datosParadasRutas);
+    }
+
+    //@Override
+    public void mostrarMenuRutasFrecuentes() {
+        UsuarioDTO usuario = sesion.obtenerUsuario();
+        List RutasFrecuentes = interfazCrearRutaFrecuente.obtenerRutaPorConductor(usuario.getConductor());
+        MenuRutasFrecuentes menuRutas = new MenuRutasFrecuentes(this, RutasFrecuentes);
+        configurarPanel(menuRutas);
+    }
+
 }

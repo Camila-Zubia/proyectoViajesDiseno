@@ -85,4 +85,9 @@ public interface IControlPantallas {
 
     public ReservacionDTO obtenerReservacion();
     
+    //metodos susbsitema crear ruta frecuente
+    
+    public void mostrarDatosRutasFrecuente();
+    public void mostrarParadasRuta();
+    
 }
