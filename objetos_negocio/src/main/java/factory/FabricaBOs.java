@@ -21,6 +21,7 @@ import org.base_datos_viajes.dao.impl.ViajeDAO;
 import interface_crearRutaFrecuente.ICrearRutaFrecuenteNegocio;
 import org.base_datos_viajes.dao.impl.PasajeroDAO;
 import org.base_datos_viajes.dao.impl.ReservacionDAO;
+import org.base_datos_viajes.dao.impl.RutasFrecuentesDAO;
 
 /**
  *
@@ -33,6 +34,7 @@ public class FabricaBOs implements IFabricaBOs{
     private final ConductorDAO conductorDAO = new ConductorDAO();
     private final PasajeroDAO pasajeroDAO = new PasajeroDAO();
     private final ReservacionDAO reservacionDAO = new ReservacionDAO();
+    private final RutasFrecuentesDAO rutaDAO = new RutasFrecuentesDAO();
 
     public FabricaBOs() {
     }
@@ -66,6 +68,6 @@ public class FabricaBOs implements IFabricaBOs{
     //metodos del caso de uso registrar ruta frecuente
     @Override
     public ICrearRutaFrecuenteNegocio crearRutaFrecuenteNegocio(){
-        return new  RutaFrecuenteNegocio();
+        return new  RutaFrecuenteNegocio(rutaDAO);
     }
 }
