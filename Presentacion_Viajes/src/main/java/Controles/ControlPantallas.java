@@ -13,6 +13,7 @@ import dto.ConductorDTO;
 import dto.ParadaDTO;
 import dto.PasajeroDTO;
 import dto.ReservacionDTO;
+import dto.RutaFrecuenteDTO;
 import dto.UsuarioDTO;
 import dto.ViajeDTO;
 import iniciarSesion.IIniciarSesion;
@@ -283,7 +284,7 @@ public class ControlPantallas implements IControlPantallas {
         configurarPanel(datosParadasRutas);
     }
 
-    //@Override
+    @Override
     public void mostrarMenuRutasFrecuentes() {
         UsuarioDTO usuario = sesion.obtenerUsuario();
         List RutasFrecuentes = interfazCrearRutaFrecuente.obtenerRutaPorConductor(usuario.getConductor());
@@ -291,4 +292,30 @@ public class ControlPantallas implements IControlPantallas {
         configurarPanel(menuRutas);
     }
 
+    @Override
+    public void GuardarDatosRutaFrec(String origen, String destino, LocalDate fecha, LocalTime hora) {
+        interfazCrearRutaFrecuente.GuardarDatosRutaFrec(origen, destino, fecha, hora);
+    }
+
+    @Override
+    public void agregarParadaRuta(String direccion, double precio) {
+
+        interfazCrearRutaFrecuente.agregarParada(direccion, precio);
+    }
+
+    @Override
+    public List<ParadaDTO> obtenerParadasRuta(RutaFrecuenteDTO ruta) {
+
+        return interfazCrearRutaFrecuente.obtenerParadas(ruta);
+    }
+
+    @Override
+    public List<ParadaDTO> obtenerParadasTempoRuta() {
+        return interfazCrearRutaFrecuente.obtenerParadasTemp();
+    }
+
+    @Override
+    public RutaFrecuenteDTO ConfirmarRuta() {
+        return interfazCrearRutaFrecuente.confirmaRuta();
+    }
 }
