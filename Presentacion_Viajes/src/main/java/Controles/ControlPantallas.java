@@ -146,8 +146,8 @@ public class ControlPantallas implements IControlPantallas {
     }
 
     @Override
-    public void guardarDatosViaje(String origen, String destino, LocalDate fecha, LocalTime hora) {
-        interfazRegistrarViaje.guardarDatosViaje(origen, destino, fecha, hora);
+    public void guardarDatosViaje(String origen, String destino, LocalDate fecha, LocalTime hora, double precioBase) {
+        interfazRegistrarViaje.guardarDatosViaje(origen, destino, fecha, hora, precioBase);
     }
 
     @Override
@@ -327,7 +327,7 @@ public class ControlPantallas implements IControlPantallas {
 
             viajeTemporal = null;
 
-        } catch (Exception e) {
+        } catch (RuntimeException e) {
             throw new RuntimeException("Error al cancelar viaje: " + e.getMessage(), e);
         }
     }

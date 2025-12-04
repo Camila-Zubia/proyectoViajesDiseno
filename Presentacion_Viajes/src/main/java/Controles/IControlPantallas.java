@@ -37,7 +37,7 @@ public interface IControlPantallas {
     
     public void seleccionarVehiculo(dto.VehiculoDTO vehiculo);
     
-    public void guardarDatosViaje(String origen, String destino, LocalDate fecha, LocalTime hora);
+    public void guardarDatosViaje(String origen, String destino, LocalDate fecha, LocalTime hora, double precioBase);
     
     public void confirmarViaje();
     
@@ -86,11 +86,10 @@ public interface IControlPantallas {
     public ReservacionDTO obtenerReservacion();
     
     //metodos susbsitema crear ruta frecuente
-    
     public void mostrarDatosRutasFrecuente();
-    public void mostrarParadasRuta();
     
-
+    public void mostrarParadasRuta();
+ 
     // Métodos para cancelar viaje
     public void mostrarDetallesViaje();
 

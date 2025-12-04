@@ -26,7 +26,7 @@ public class adaptadorViaje {
         );
 
         if (dto.getId() != null) {
-            entidad.setId(new ObjectId(dto.getId())); // id del viaje
+            entidad.setId(new ObjectId(dto.getId()));
         }
 
         entidad.setConductorId(idConductor);
