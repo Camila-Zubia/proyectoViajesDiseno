@@ -15,6 +15,7 @@ import java.util.List;
 public class RutaFrecuenteDTO {
 
     private String id;
+    private String nombre;
     private String origen;
     private String destino;
     private LocalDate fecha;
@@ -29,6 +30,17 @@ public class RutaFrecuenteDTO {
         this.paradas = paradas;
     }
 
+    public RutaFrecuenteDTO(String id, String nombre, String origen, String destino, LocalDate fecha, LocalTime hora, double precioTotal, List<ParadaDTO> paradas) {
+        this.id = id;
+        this.nombre = nombre;
+        this.origen = origen;
+        this.destino = destino;
+        this.fecha = fecha;
+        this.hora = hora;
+        this.precioTotal = precioTotal;
+        this.paradas = paradas;
+    }
+    
     public RutaFrecuenteDTO(String origen, String destino, LocalDate fecha, LocalTime hora, double precioTotal, List<ParadaDTO> paradas) {
         this.origen = origen;
         this.destino = destino;
@@ -103,5 +115,15 @@ public class RutaFrecuenteDTO {
     public void setParadas(List<ParadaDTO> paradas) {
         this.paradas = paradas;
     }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    
+    
 
 }
