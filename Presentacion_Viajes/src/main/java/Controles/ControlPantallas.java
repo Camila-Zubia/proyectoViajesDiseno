@@ -297,14 +297,13 @@ public class ControlPantallas implements IControlPantallas {
         MenuRutasFrecuentes menuRutas = new MenuRutasFrecuentes(this, RutasFrecuentes);
         configurarPanel(menuRutas);
     }
-        
     // Métodos para cancelar viaje
     @Override
     public void mostrarDetallesViaje() {
         ViajeDTO viaje = obtenerViajeTemporal();
         detallesViaje detalles = new detallesViaje(this, viaje);
         configurarPanel(detalles);
-    }
+    };
 
     @Override
     public ViajeDTO obtenerViajeTemporal() {
