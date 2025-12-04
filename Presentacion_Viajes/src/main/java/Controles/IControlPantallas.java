@@ -90,4 +90,14 @@ public interface IControlPantallas {
     public void mostrarDatosRutasFrecuente();
     public void mostrarParadasRuta();
     
+
+    // Métodos para cancelar viaje
+    public void mostrarDetallesViaje();
+
+    public ViajeDTO obtenerViajeTemporal();
+
+    public void confirmarCancelacionViaje();
+
+    public int obtenerAdeudoPendiente(String idViaje);
+
 }
