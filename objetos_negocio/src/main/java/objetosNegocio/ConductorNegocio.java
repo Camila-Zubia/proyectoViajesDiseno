@@ -6,6 +6,7 @@ package objetosNegocio;
 
 import adaptadores.adaptadorVehiculo;
 import adaptadores.adaptadorViaje;
+import dto.RutaFrecuenteDTO;
 import dto.VehiculoDTO;
 import dto.ViajeDTO;
 import interfaces.IConductorNegocio;
@@ -66,5 +67,19 @@ public class ConductorNegocio implements IConductorNegocio{
         } catch (DatabaseException e) {
             throw new IllegalStateException("Error al obtener viajes de la base de datos: " + e.getMessage());
         }
+    }
+    
+    public List<RutaFrecuenteDTO> obtenerRutas(){
+         try {
+            ObjectId conductorId = new ObjectId(SesionUsuario.obtenerConductor().getId());
+            
+            // 2. Consulta en la BD para obtener la lista de viajes guardados
+            return  conductorDAO.obtenerRutasFrecuentes(conductorId.toHexString()).stream()
+                   // .map(adaptadorViaje::toDTO)
+                    //.collect(Collectors.toList());
+        } catch (DatabaseException e) {
+            throw new IllegalStateException("Error al obtener viajes de la base de datos: " + e.getMessage());
+        }
+    
     }
 }
