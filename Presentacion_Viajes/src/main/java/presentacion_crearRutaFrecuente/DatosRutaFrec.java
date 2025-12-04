@@ -263,10 +263,9 @@ public class DatosRutaFrec extends javax.swing.JPanel {
         }
 
         // Guardar los datos del viaje temporalmente (precio base 0, se calcula después)
-        controlPantallas.guardarDatosViaje(origen, destino, fecha, hora);
+        controlPantallas.guardarDatosViaje(origen, destino, fecha, hora, precioBase);
 
         // Navegar a la siguiente pantalla
-        controlPantallas.agregarParada(origen, precioBase);
         controlPantallas.mostrarDatosParada();
     }//GEN-LAST:event_confirmarViajeBtnActionPerformed
 
