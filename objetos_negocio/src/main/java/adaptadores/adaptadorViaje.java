@@ -60,6 +60,7 @@ public class adaptadorViaje {
         // Copiar los campos nuevos
         dto.setEstaActivo(entidad.isEstaActivo());
         dto.setCantidadPasajeros(entidad.getCantidadPasajeros());
+        
 
         if (entidad.getParadas() != null) {
             List<ParadaDTO> paradasDTO = entidad.getParadas().stream()
