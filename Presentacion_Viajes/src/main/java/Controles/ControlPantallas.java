@@ -17,6 +17,7 @@ import iniciarSesion.IniciarSesion;
 import java.awt.BorderLayout;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -259,5 +260,135 @@ import solicitarReservacion.SolicitarReservacion;
     public ReservacionDTO obtenerReservacion() {
         return interfazCancelarReservacion.obtenerReservacion();
     }
+<<<<<<< Updated upstream
     
+=======
+
+    //metodos subsistema crear ruta frecuente
+    @Override
+    public void mostrarDatosRutasFrecuente() {
+
+        DatosRutaFrec datosRuta = new DatosRutaFrec(this);
+        configurarPanel(datosRuta);
+    }
+
+    @Override
+    public void mostrarParadasRuta() {
+        List paradasRuta = interfazCrearRutaFrecuente.obtenerParadasTemp();
+        DatosParadas datosParadasRutas = new DatosParadas(this, paradasRuta);
+        configurarPanel(datosParadasRutas);
+    }
+
+    //@Override
+    public void mostrarMenuRutasFrecuentes() {
+        UsuarioDTO usuario = sesion.obtenerUsuario();
+        List RutasFrecuentes = interfazCrearRutaFrecuente.obtenerRutaPorConductor(usuario.getConductor());
+        MenuRutasFrecuentes menuRutas = new MenuRutasFrecuentes(this, RutasFrecuentes);
+        configurarPanel(menuRutas);
+    }
+    // Métodos para cancelar viaje
+    @Override
+    public void mostrarDetallesViaje() {
+        ViajeDTO viaje = obtenerViajeTemporal();
+        detallesViaje detalles = new detallesViaje(this, viaje);
+        configurarPanel(detalles);
+    };
+
+    @Override
+    public ViajeDTO obtenerViajeTemporal() {
+        return viajeTemporal;
+    }
+
+    @Override
+    public void confirmarCancelacionViaje() {
+        try {
+            ViajeDTO viaje = obtenerViajeTemporal();
+
+            if (viaje == null || viaje.getId() == null) {
+                throw new IllegalStateException("No hay un viaje seleccionado para cancelar");
+            }
+
+            boolean cancelado = interfazCancelarViaje.cancelarViaje(viaje.getId());
+
+            if (!cancelado) {
+                throw new RuntimeException("No se pudo cancelar el viaje");
+            }
+
+            viajeTemporal = null;
+
+        } catch (RuntimeException e) {
+            throw new RuntimeException("Error al cancelar viaje: " + e.getMessage(), e);
+        }
+    }
+
+    @Override
+    public int obtenerAdeudoPendiente(String idViaje) {
+        return interfazCancelarViaje.obtenerAdeudoPendiente(idViaje);
+    }
+
+    //metodos del subsitema editarViaje
+    @Override
+    public void mostrarEditarViaje() {
+        ViajeDTO viaje = obtenerViajeParaEdicion();
+        presentacion_editarViaje.editarViaje panel = new presentacion_editarViaje.editarViaje(this);
+        configurarPanel(panel);
+    }
+
+    @Override
+    public void mostrarEditarParadas() {
+       ViajeDTO viaje = obtenerViajeParaEdicion();
+        presentacion_editarViaje.editarParada panel = new presentacion_editarViaje.editarParada(this);
+        configurarPanel(panel);
+    }
+
+    @Override
+    public void mostrarAgregarParada() {
+        presentacion_editarViaje.agregarParada panel = new presentacion_editarViaje.agregarParada(this);
+        configurarPanel(panel);
+    }
+
+    @Override
+    public ViajeDTO obtenerViajeParaEdicion() {
+        return viajeTemporal;
+    }
+
+    @Override
+    public void actualizarParadasViaje(List<ParadaDTO> paradas) {
+        if (viajeTemporal != null) {
+            viajeTemporal.setParadas(new ArrayList<>(paradas));
+            
+            // Aquí va la llamada a tu capa de negocio real:
+            // interfazEditarViaje.actualizarParadas(viajeTemporal.getId(), paradas);
+        }
+    }
+
+    @Override
+    public void agregarParadaEnEdicionTemporal(String direccion, double precio) {
+        // Agrega una nueva parada al DTO 
+        if (viajeTemporal != null) {
+            ParadaDTO nuevaParada = new ParadaDTO(direccion, precio);
+
+            if (viajeTemporal.getParadas() == null) {
+                viajeTemporal.setParadas(new ArrayList<>());
+            }
+
+            // Agregamos la parada al final del DTO
+            viajeTemporal.getParadas().add(nuevaParada);
+        }
+    }
+
+    @Override
+    public void guardarCambiosViaje(ViajeDTO viajeModificado) {
+        if (this.viajeTemporal != null && this.viajeTemporal.getId().equals(viajeModificado.getId())) {
+            this.viajeTemporal.setDestino(viajeModificado.getDestino());
+            this.viajeTemporal.setFecha(viajeModificado.getFecha());
+            this.viajeTemporal.setHora(viajeModificado.getHora());
+            this.viajeTemporal.setPrecioTotal(viajeModificado.getPrecioTotal());
+            
+            // Aquí va la llamada a la capa de negocio real:
+            // interfazEditarViaje.actualizarDatosGenerales(viajeModificado);
+        }
+    }
+
+>>>>>>> Stashed changes
 }
