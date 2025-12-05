@@ -84,7 +84,7 @@ public interface IControlPantallas {
     public ReservacionDTO confirmarCancelacion();
 
     public ReservacionDTO obtenerReservacion();
-    
+
     //metodos susbsitema crear ruta frecuente
     public void mostrarDatosRutasFrecuente();
     
@@ -98,5 +98,20 @@ public interface IControlPantallas {
     public void confirmarCancelacionViaje();
 
     public int obtenerAdeudoPendiente(String idViaje);
+
+    //metodos para editarViaje
+    public void mostrarEditarViaje();
+
+    public void mostrarEditarParadas();
+
+    public void mostrarAgregarParada();
+
+    public ViajeDTO obtenerViajeParaEdicion();
+
+    public void actualizarParadasViaje(List<dto.ParadaDTO> paradas);
+    
+    public void guardarCambiosViaje(ViajeDTO viajeModificado);
+
+    public void agregarParadaEnEdicionTemporal(String direccion, double precio);
 
 }
