@@ -38,9 +38,9 @@ public class ControlViaje {
      * public void crearParada(ViajeDTO viaje, ParadaDTO parada) {
         viajeBO.registrarParada(viaje, parada);
     }
-     * @param conductor
-     * @return   
+   
      */
+    
     public List<VehiculoDTO> obtenerVehiculos(ConductorDTO conductor) {
         return conductorBO.obtenerVehiculos();
     }
@@ -53,13 +53,11 @@ public class ControlViaje {
     }
 
     // Gestión de datos del viaje
-    public void guardarDatosViaje(String origen, String destino, LocalDate fecha, LocalTime hora, double precioBase) {
+    public void guardarDatosViaje(String origen, String destino, LocalDate fecha, LocalTime hora) {
         this.viajeTemporal.setOrigen(origen);
         this.viajeTemporal.setDestino(destino);
         this.viajeTemporal.setFecha(fecha);
         this.viajeTemporal.setHora(hora);
-        this.viajeTemporal.setPrecioTotal(precioBase);
-        paradasTemporales.add(0, new ParadaDTO(viajeTemporal.getOrigen(), precioBase));
     }
     
     // Gestion de Paradas
@@ -98,7 +96,12 @@ public class ControlViaje {
         if (vehiculoSeleccionado == null) {
             throw new IllegalStateException("Debe seleccionar un vehiiculo antes de registrar el viaje.");
         }
+
+        double precioTotal = paradasTemporales.stream()
+            .mapToDouble(ParadaDTO::getPrecio)
+            .sum(); // calcula la suma total de los precios de todas las paradas
         
+        viajeTemporal.setPrecioTotal(precioTotal);
         viajeTemporal.setParadas(paradasTemporales);
         viajeTemporal.setVehiculo(vehiculoSeleccionado);
 

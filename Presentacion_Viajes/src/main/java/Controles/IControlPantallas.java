@@ -40,9 +40,6 @@ public interface IControlPantallas {
 
     public void guardarDatosViaje(String origen, String destino, LocalDate fecha, LocalTime hora);
 
-    
-    public void guardarDatosViaje(String origen, String destino, LocalDate fecha, LocalTime hora, double precioBase);
-    
     public void confirmarViaje();
 
     public void agregarParada(String direccion, double precio);
@@ -105,16 +102,4 @@ public interface IControlPantallas {
     public List<ParadaDTO> obtenerParadasTempoRuta();
 
     public RutaFrecuenteDTO ConfirmarRuta();
-    
-    //public void mostrarParadasRuta();
- 
-    // Métodos para cancelar viaje
-    public void mostrarDetallesViaje();
-
-    public ViajeDTO obtenerViajeTemporal();
-
-    public void confirmarCancelacionViaje();
-
-    public int obtenerAdeudoPendiente(String idViaje);
-
 }

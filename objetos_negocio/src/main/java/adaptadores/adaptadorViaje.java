@@ -26,7 +26,7 @@ public class adaptadorViaje {
         );
 
         if (dto.getId() != null) {
-            entidad.setId(new ObjectId(dto.getId()));
+            entidad.setId(new ObjectId(dto.getId())); // id del viaje
         }
 
         entidad.setConductorId(idConductor);
@@ -56,11 +56,6 @@ public class adaptadorViaje {
         dto.setOrigen(entidad.getOrigen());
         dto.setDestino(entidad.getDestino());
         dto.setPrecioTotal(entidad.getPrecioTotal());
-
-        // Copiar los campos nuevos
-        dto.setEstaActivo(entidad.isEstaActivo());
-        dto.setCantidadPasajeros(entidad.getCantidadPasajeros());
-        
 
         if (entidad.getParadas() != null) {
             List<ParadaDTO> paradasDTO = entidad.getParadas().stream()

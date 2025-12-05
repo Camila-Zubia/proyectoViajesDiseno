@@ -7,8 +7,6 @@ package dto;
 import java.time.Duration;
 import static java.time.LocalDateTime.now;
 import java.time.LocalDateTime;
-import java.time.format.TextStyle;
-import java.util.Locale;
 
 /**
  *
@@ -86,12 +84,7 @@ public class ReservacionDTO {
     
     @Override
     public String toString() {
-        return String.format(viaje.getOrigen() + "--->" + viaje.getDestino()
-        + ", " + parada.getDirección()
-        + "     " + viaje.getFecha().getDayOfMonth() + "/" + viaje.getFecha().getMonth().getDisplayName(TextStyle.SHORT, Locale.ITALY)
-        + ", " + viaje.getHora()
-        + "     $" + precioTotal
-        + "     " + estatus);
+        return "ReservacionDTO{" + "viaje=" + viaje + ", precioTotal=" + precioTotal + ", parada=" + parada + ", estatus=" + estatus + '}';
     }
     
 }
