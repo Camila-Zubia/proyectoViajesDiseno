@@ -30,6 +30,10 @@ public class adaptadorReservacion {
                 dto.getTiempoRestante(),
                 estatusEntidad
         );
+        
+        if (dto.getId() != null && !dto.getId().isBlank()) {
+            entidad.setId(new ObjectId(dto.getId()));
+        }
 
         if (dto.getViaje() != null && dto.getViaje().getId() != null) {
             entidad.setViajeId(new ObjectId(dto.getViaje().getId()));
