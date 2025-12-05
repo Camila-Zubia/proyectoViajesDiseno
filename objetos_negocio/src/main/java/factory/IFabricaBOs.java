@@ -6,10 +6,10 @@ package factory;
 
 import interfaces.IConductorNegocio;
 import interfaces_solicitarReservacion.IPasajeroNegocio;
-import interfaces_solicitarReservacion.IReservacionNegocio;
 import interfaces.IUsuarioNegocio;
 import interfaces.IViajeNegocio;
 import interface_crearRutaFrecuente.ICrearRutaFrecuenteNegocio;
+import interfaces_cancelarViaje.IAdeudoNegocio;
 
 /**
  *
@@ -24,11 +24,13 @@ public interface IFabricaBOs {
     public IViajeNegocio crearViajeNegocio();
     
     
-    //metodos del caso de uso "Solicitar Reservacion"
-    public IReservacionNegocio crearReservacionNegocio();
-    
+    //metodos del caso de uso "Solicitar Reservacion" y "Cancelar Reservacion"
     public IPasajeroNegocio crearPasajeroNegocio();
     
     //metodo para el caso de uso crear ruta frecuente
     public ICrearRutaFrecuenteNegocio crearRutaFrecuenteNegocio();
+
+    //metodos del caso de uso "Cancelar Viaje"
+    public IAdeudoNegocio crearAdeudoNegocio();
+
 }

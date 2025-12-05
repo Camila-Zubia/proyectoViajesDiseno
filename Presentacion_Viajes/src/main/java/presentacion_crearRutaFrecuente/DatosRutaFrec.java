@@ -279,6 +279,10 @@ public class DatosRutaFrec extends javax.swing.JPanel {
         // Navegar a la siguiente pantalla
         controlPantallas.agregarParadaRuta(origen, precioBase);
         controlPantallas.mostrarParadasRuta();
+        controlPantallas.guardarDatosViaje(origen, destino, fecha, hora, precioBase);
+
+        // Navegar a la siguiente pantalla
+        controlPantallas.mostrarDatosParada();
     }//GEN-LAST:event_confirmarViajeBtnActionPerformed
 
     private void regresarMenuVehiculosBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarMenuVehiculosBtnActionPerformed
