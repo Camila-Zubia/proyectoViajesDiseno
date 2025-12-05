@@ -43,12 +43,12 @@ public class controlRutaFrecuente {
         this.rutaFrecuente.setHora(hora);
 
     }
-    
-    protected List<RutaFrecuenteDTO> obtenerRutaPorConductor(ConductorDTO conductor){
-       // conductorBO.obtenerRutasFrecuentes();
-        return null;
+
+    protected List<RutaFrecuenteDTO> obtenerRutaPorConductor(ConductorDTO conductor) {
+
+        return conductorBO.obtenerRutas();
     }
-    
+
     //paradas
     protected void agregarParada(String direccion, double precio) {
         ParadaDTO parada = new ParadaDTO(direccion, precio);
