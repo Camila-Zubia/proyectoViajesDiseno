@@ -17,7 +17,7 @@ import java.util.List;
  */
 public interface ICrearRutaFrecuente {
 
-    public void GuardarDatosRutaFrec(String origen, String destino, LocalDate fecha, LocalTime hora);
+    public void GuardarDatosRutaFrec(String nombre, String origen, String destino, LocalDate fecha, LocalTime hora);
 
     public List<RutaFrecuenteDTO> obtenerRutaPorConductor(ConductorDTO conductor);
 
