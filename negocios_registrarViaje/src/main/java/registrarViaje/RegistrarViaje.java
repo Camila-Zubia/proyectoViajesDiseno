@@ -35,8 +35,8 @@ public class RegistrarViaje implements IRegistrarViaje{
     }
 
     @Override
-    public void guardarDatosViaje(String origen, String destino, LocalDate fecha, LocalTime hora) {
-        control.guardarDatosViaje(origen, destino, fecha, hora);
+    public void guardarDatosViaje(String origen, String destino, LocalDate fecha, LocalTime hora, double precio) {
+        control.guardarDatosViaje(origen, destino, fecha, hora, precio);
     }
 
     @Override

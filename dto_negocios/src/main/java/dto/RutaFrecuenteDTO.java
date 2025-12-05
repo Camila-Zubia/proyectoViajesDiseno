@@ -126,8 +126,8 @@ public class RutaFrecuenteDTO {
 
     @Override
     public String toString() {
-       // return "RutaFrecuenteDTO{" + "nombre=" + nombre + ", origen=" + origen + ", destino=" + destino + ", fecha=" + fecha + ", hora=" + hora + ", precioTotal=" + precioTotal + '}';
-        return "Ruta:" + nombre + "--> " +"Origen:" +origen + "  " + "Destino:" + destino + "  "+"Fecha y hora:" + fecha +" "+ hora + "Precio:" + precioTotal ;
+        // return "RutaFrecuenteDTO{" + "nombre=" + nombre + ", origen=" + origen + ", destino=" + destino + ", fecha=" + fecha + ", hora=" + hora + ", precioTotal=" + precioTotal + '}';
+        return "Ruta:" + nombre + "--> " + "Origen:" + origen + "  " + "Destino:" + destino + "  " + "Fecha y hora:" + fecha + " " + hora + "Precio:" + precioTotal;
     }
 
 }

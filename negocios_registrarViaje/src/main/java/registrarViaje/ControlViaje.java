@@ -53,11 +53,12 @@ public class ControlViaje {
     }
 
     // Gestión de datos del viaje
-    public void guardarDatosViaje(String origen, String destino, LocalDate fecha, LocalTime hora) {
+    public void guardarDatosViaje(String origen, String destino, LocalDate fecha, LocalTime hora, double precio) {
         this.viajeTemporal.setOrigen(origen);
         this.viajeTemporal.setDestino(destino);
         this.viajeTemporal.setFecha(fecha);
         this.viajeTemporal.setHora(hora);
+        this.viajeTemporal.setPrecioTotal(precio);
     }
     
     // Gestion de Paradas

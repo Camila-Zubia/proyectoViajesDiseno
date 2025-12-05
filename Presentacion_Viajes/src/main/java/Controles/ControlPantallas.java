@@ -141,8 +141,8 @@ public class ControlPantallas implements IControlPantallas {
     }
 
     @Override
-    public void guardarDatosViaje(String origen, String destino, LocalDate fecha, LocalTime hora) {
-        interfazRegistrarViaje.guardarDatosViaje(origen, destino, fecha, hora);
+    public void guardarDatosViaje(String origen, String destino, LocalDate fecha, LocalTime hora, double precio) {
+        interfazRegistrarViaje.guardarDatosViaje(origen, destino, fecha, hora, precio);
     }
 
     @Override

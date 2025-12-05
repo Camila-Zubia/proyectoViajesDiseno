@@ -38,7 +38,7 @@ public interface IControlPantallas {
 
     public void seleccionarVehiculo(dto.VehiculoDTO vehiculo);
 
-    public void guardarDatosViaje(String origen, String destino, LocalDate fecha, LocalTime hora);
+    public void guardarDatosViaje(String origen, String destino, LocalDate fecha, LocalTime hora, double precio);
 
     public void confirmarViaje();
 
@@ -93,7 +93,7 @@ public interface IControlPantallas {
 
     public void mostrarMenuRutasFrecuentes();
 
-    public void GuardarDatosRutaFrec(String nombre,String origen, String destino, LocalDate fecha, LocalTime hora);
+    public void GuardarDatosRutaFrec(String nombre, String origen, String destino, LocalDate fecha, LocalTime hora);
 
     public void agregarParadaRuta(String direccion, double precio);
 
