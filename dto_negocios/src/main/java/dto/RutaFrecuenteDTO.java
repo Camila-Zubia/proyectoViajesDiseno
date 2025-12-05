@@ -40,8 +40,9 @@ public class RutaFrecuenteDTO {
         this.precioTotal = precioTotal;
         this.paradas = paradas;
     }
-    
-    public RutaFrecuenteDTO(String origen, String destino, LocalDate fecha, LocalTime hora, double precioTotal, List<ParadaDTO> paradas) {
+
+    public RutaFrecuenteDTO(String nombre, String origen, String destino, LocalDate fecha, LocalTime hora, double precioTotal, List<ParadaDTO> paradas) {
+        this.nombre = nombre;
         this.origen = origen;
         this.destino = destino;
         this.fecha = fecha;
@@ -50,8 +51,7 @@ public class RutaFrecuenteDTO {
         this.paradas = paradas;
     }
 
-    public RutaFrecuenteDTO(String id, String origen, String destino, LocalDate fecha, LocalTime hora, double precioTotal, List<ParadaDTO> paradas) {
-        this.id = id;
+    public RutaFrecuenteDTO(String origen, String destino, LocalDate fecha, LocalTime hora, double precioTotal, List<ParadaDTO> paradas) {
         this.origen = origen;
         this.destino = destino;
         this.fecha = fecha;
@@ -123,7 +123,10 @@ public class RutaFrecuenteDTO {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "RutaFrecuenteDTO{" + "nombre=" + nombre + ", origen=" + origen + ", destino=" + destino + ", fecha=" + fecha + ", hora=" + hora + ", precioTotal=" + precioTotal + '}';
+    }
 
 }

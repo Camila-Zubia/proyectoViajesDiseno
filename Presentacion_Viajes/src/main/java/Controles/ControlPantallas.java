@@ -36,7 +36,7 @@ import presentacion_SolicitarReservacion.menuPrincipalPasajero;
 import presentacion_SolicitarReservacion.seleccionarParada;
 import presentacion_cancelarReservacion.cancelarReservacion;
 import presentacion_cancelarReservacion.seleccionarReservacion;
-import presentacion_crearRutaFrecuente.DatosParadas;
+import presentacion_crearRutaFrecuente.DatosParadasRuta;
 import presentacion_crearRutaFrecuente.DatosRutaFrec;
 import presentacion_crearRutaFrecuente.MenuRutasFrecuentes;
 import registrarViaje.IRegistrarViaje;
@@ -280,7 +280,7 @@ public class ControlPantallas implements IControlPantallas {
     @Override
     public void mostrarParadasRuta() {
         List paradasRuta = interfazCrearRutaFrecuente.obtenerParadasTemp();
-        DatosParadas datosParadasRutas = new DatosParadas(this, paradasRuta);
+        DatosParadasRuta datosParadasRutas = new DatosParadasRuta(this, paradasRuta);
         configurarPanel(datosParadasRutas);
     }
 
@@ -293,8 +293,8 @@ public class ControlPantallas implements IControlPantallas {
     }
 
     @Override
-    public void GuardarDatosRutaFrec(String origen, String destino, LocalDate fecha, LocalTime hora) {
-        interfazCrearRutaFrecuente.GuardarDatosRutaFrec(origen, destino, fecha, hora);
+    public void GuardarDatosRutaFrec(String nombre, String origen, String destino, LocalDate fecha, LocalTime hora) {
+        interfazCrearRutaFrecuente.GuardarDatosRutaFrec(nombre, origen, destino, fecha, hora);
     }
 
     @Override
