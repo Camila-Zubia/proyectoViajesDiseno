@@ -7,20 +7,7 @@ package presentacion_crearRutaFrecuente;
 import Controles.ControlPantallas;
 import Controles.IControlPantallas;
 import dto.RutaFrecuenteDTO;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.HeadlessException;
 import java.util.List;
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.SwingConstants;
 
 /**
  *
@@ -35,13 +22,8 @@ public class MenuRutasFrecuentes extends javax.swing.JPanel {
      */
     public MenuRutasFrecuentes(IControlPantallas controlPantallas, List<RutaFrecuenteDTO> rutas) {
         this.controlPantallas = controlPantallas;
-       
-        
-        
+
         initComponents();
-        mostrarRutas(rutas);
-        
-        
     }
 
     /**
@@ -53,40 +35,50 @@ public class MenuRutasFrecuentes extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        siguienteTField = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        TituloLbl = new javax.swing.JLabel();
-        panelContenedorRutas = new javax.swing.JPanel();
-        registrarRutaBtn = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        panelContenedorVehiculos = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(1080, 640));
+
+        siguienteTField.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        siguienteTField.setText("Siguiente");
+        siguienteTField.setBorder(null);
+        siguienteTField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                siguienteTFieldActionPerformed(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(0, 109, 182));
         jPanel1.setMinimumSize(new java.awt.Dimension(1080, 648));
         jPanel1.setPreferredSize(new java.awt.Dimension(1080, 640));
 
-        TituloLbl.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
-        TituloLbl.setForeground(new java.awt.Color(255, 255, 255));
-        TituloLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        TituloLbl.setText("RUTAS GUARDADAS");
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("RUTAS GUARDADAS");
 
-        panelContenedorRutas.setBackground(new java.awt.Color(255, 255, 255));
+        panelContenedorVehiculos.setBackground(new java.awt.Color(255, 255, 255));
 
-        javax.swing.GroupLayout panelContenedorRutasLayout = new javax.swing.GroupLayout(panelContenedorRutas);
-        panelContenedorRutas.setLayout(panelContenedorRutasLayout);
-        panelContenedorRutasLayout.setHorizontalGroup(
-            panelContenedorRutasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout panelContenedorVehiculosLayout = new javax.swing.GroupLayout(panelContenedorVehiculos);
+        panelContenedorVehiculos.setLayout(panelContenedorVehiculosLayout);
+        panelContenedorVehiculosLayout.setHorizontalGroup(
+            panelContenedorVehiculosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 725, Short.MAX_VALUE)
         );
-        panelContenedorRutasLayout.setVerticalGroup(
-            panelContenedorRutasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelContenedorVehiculosLayout.setVerticalGroup(
+            panelContenedorVehiculosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        registrarRutaBtn.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        registrarRutaBtn.setText("Registrar Ruta");
-        registrarRutaBtn.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jButton1.setText("Registrar Ruta");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                registrarRutaBtnActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -98,26 +90,26 @@ public class MenuRutasFrecuentes extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(49, 49, 49)
-                        .addComponent(registrarRutaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(28, 28, 28)
-                        .addComponent(panelContenedorRutas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(panelContenedorVehiculos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(209, 209, 209)
-                        .addComponent(TituloLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 596, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 596, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(66, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(TituloLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(424, 424, 424)
-                        .addComponent(registrarRutaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(panelContenedorRutas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(panelContenedorVehiculos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -129,6 +121,11 @@ public class MenuRutasFrecuentes extends javax.swing.JPanel {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(462, 462, 462)
+                    .addComponent(siguienteTField, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(462, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -136,69 +133,36 @@ public class MenuRutasFrecuentes extends javax.swing.JPanel {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(287, 287, 287)
+                    .addComponent(siguienteTField, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(287, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void registrarRutaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarRutaBtnActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         controlPantallas.mostrarDatosRutasFrecuente();
-    }//GEN-LAST:event_registrarRutaBtnActionPerformed
-    
-    private void mostrarRutas(List listaRutas) {
-        try {
-            if (listaRutas != null) {
+    }//GEN-LAST:event_jButton1ActionPerformed
 
-                JPanel panelInterno = new JPanel();
-                panelInterno.setBackground(Color.WHITE);
-                panelInterno.setLayout(new BoxLayout(panelInterno, BoxLayout.Y_AXIS));
-                panelInterno.setPreferredSize(new Dimension(680, listaRutas.size() * 50));
+    private void siguienteTFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguienteTFieldActionPerformed
+        // validacion, verificar si se selecciono un vehiculo
+     //   if (this.vehiculoSeleccionadoDTO == null) {
+       //     JOptionPane.showMessageDialog(this, "Debe seleccionar un vehiculo para continuar.", "Seleccion Requerida", JOptionPane.ERROR_MESSAGE);
+        //    return;
+        //}
 
-                for (Object ruta : listaRutas) {
-                    JPanel panelElemento = new JPanel();
-                    panelElemento.setLayout(new BoxLayout(panelElemento, BoxLayout.X_AXIS));
-                    panelElemento.setPreferredSize(new Dimension(660, 50));
-                    panelElemento.setMaximumSize(new Dimension(660, 50));
-                    panelElemento.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
-                    panelElemento.setBackground(new Color(255, 255, 255));
+        //controlPantallas.seleccionarVehiculo(this.vehiculoSeleccionadoDTO);
+        //controlPantallas.mostrarDatosViaje();
+    }//GEN-LAST:event_siguienteTFieldActionPerformed
 
-                    JButton btnInfo = new JButton();
-                    btnInfo.setFont(new Font("Dialog", Font.PLAIN, 14));
-                    btnInfo.setBackground(Color.WHITE);
-                    btnInfo.setAlignmentX(Component.CENTER_ALIGNMENT);
-                    btnInfo.setHorizontalAlignment(SwingConstants.CENTER);
-                    btnInfo.setPreferredSize(new Dimension(650, 40));
-                    btnInfo.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
-                    btnInfo.setText(ruta.toString());
-
-                    panelElemento.add(btnInfo);
-                    panelInterno.add(panelElemento);
-                }
-                JScrollPane scrollPane = new JScrollPane(panelInterno);
-                scrollPane.setBackground(Color.WHITE);
-                scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-                scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-                scrollPane.setPreferredSize(new Dimension(680, 458));
-                panelContenedorRutas.removeAll();
-                panelContenedorRutas.setLayout(new BorderLayout());
-                panelContenedorRutas.add(scrollPane, BorderLayout.CENTER);
-                panelContenedorRutas.revalidate();
-                panelContenedorRutas.repaint();
-            } else {
-                JOptionPane.showMessageDialog(this, "No hay rutas registradas");
-            }
-        } catch (HeadlessException e) {
-            JOptionPane.showMessageDialog(this,
-                    "Error al cargar viajes: " + e.getMessage(),
-                    "Error",
-                    JOptionPane.ERROR_MESSAGE);
-        }
-    }
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel TituloLbl;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel panelContenedorRutas;
-    private javax.swing.JButton registrarRutaBtn;
+    private javax.swing.JPanel panelContenedorVehiculos;
+    private javax.swing.JButton siguienteTField;
     // End of variables declaration//GEN-END:variables
 }

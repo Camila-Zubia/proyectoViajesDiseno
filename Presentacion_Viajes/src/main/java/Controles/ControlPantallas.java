@@ -15,7 +15,6 @@ import dto.ConductorDTO;
 import dto.ParadaDTO;
 import dto.PasajeroDTO;
 import dto.ReservacionDTO;
-import dto.RutaFrecuenteDTO;
 import dto.UsuarioDTO;
 import dto.ViajeDTO;
 import iniciarSesion.IIniciarSesion;
@@ -39,7 +38,7 @@ import presentacion_SolicitarReservacion.menuPrincipalPasajero;
 import presentacion_SolicitarReservacion.seleccionarParada;
 import presentacion_cancelarReservacion.cancelarReservacion;
 import presentacion_cancelarReservacion.seleccionarReservacion;
-import presentacion_crearRutaFrecuente.DatosParadasRuta;
+import presentacion_crearRutaFrecuente.DatosParadas;
 import presentacion_crearRutaFrecuente.DatosRutaFrec;
 import presentacion_crearRutaFrecuente.MenuRutasFrecuentes;
 import registrarViaje.IRegistrarViaje;
@@ -287,11 +286,11 @@ public class ControlPantallas implements IControlPantallas {
     @Override
     public void mostrarParadasRuta() {
         List paradasRuta = interfazCrearRutaFrecuente.obtenerParadasTemp();
-        DatosParadasRuta datosParadasRutas = new DatosParadasRuta(this, paradasRuta);
+        DatosParadas datosParadasRutas = new DatosParadas(this, paradasRuta);
         configurarPanel(datosParadasRutas);
     }
 
-    @Override
+    //@Override
     public void mostrarMenuRutasFrecuentes() {
         UsuarioDTO usuario = sesion.obtenerUsuario();
         List RutasFrecuentes = interfazCrearRutaFrecuente.obtenerRutaPorConductor(usuario.getConductor());
@@ -338,30 +337,4 @@ public class ControlPantallas implements IControlPantallas {
         return interfazCancelarViaje.obtenerAdeudoPendiente(idViaje);
     }
 
-    @Override
-    public void GuardarDatosRutaFrec(String nombre, String origen, String destino, LocalDate fecha, LocalTime hora) {
-        interfazCrearRutaFrecuente.GuardarDatosRutaFrec(nombre, origen, destino, fecha, hora);
-    }
-
-    @Override
-    public void agregarParadaRuta(String direccion, double precio) {
-
-        interfazCrearRutaFrecuente.agregarParada(direccion, precio);
-    }
-
-    @Override
-    public List<ParadaDTO> obtenerParadasRuta(RutaFrecuenteDTO ruta) {
-
-        return interfazCrearRutaFrecuente.obtenerParadas(ruta);
-    }
-
-    @Override
-    public List<ParadaDTO> obtenerParadasTempoRuta() {
-        return interfazCrearRutaFrecuente.obtenerParadasTemp();
-    }
-
-    @Override
-    public RutaFrecuenteDTO ConfirmarRuta() {
-        return interfazCrearRutaFrecuente.confirmaRuta();
-    }
 }

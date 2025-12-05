@@ -10,9 +10,6 @@ import interface_crearRutaFrecuente.ICrearRutaFrecuenteNegocio;
 import org.base_datos_viajes.dao.interfaces.IRutaFrecuenteDAO;
 
 import java.util.List;
-import org.base_datos_viajes.model.RutaFrecuente;
-import org.bson.types.ObjectId;
-import utilidades.SesionUsuario;
 
 /**
  *
@@ -28,15 +25,14 @@ public class RutaFrecuenteNegocio implements ICrearRutaFrecuenteNegocio {
 
     @Override
     public void registrarRuta(RutaFrecuenteDTO ruta) {
-        ObjectId idConductor = new ObjectId(SesionUsuario.obtenerConductor().getId());
-
-        RutaFrecuente entity = adaptadores.adaptadorRutaFrecuente.toEntity(ruta, idConductor);
-        rutaDAO.save(entity);
+        //falta añadir adaptador para convertir la ruta a la entity
+        // rutaDAO.save(entity);
     }
 
     @Override
     public List<ParadaDTO> obtenerParadasDTO(RutaFrecuenteDTO ruta) {
         return ruta.getParadas();
+        // throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override

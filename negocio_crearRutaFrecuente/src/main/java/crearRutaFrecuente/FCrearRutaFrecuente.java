@@ -24,8 +24,8 @@ public class FCrearRutaFrecuente implements ICrearRutaFrecuente {
     }
 
     @Override
-    public void GuardarDatosRutaFrec(String nombre, String origen, String destino, LocalDate fecha, LocalTime hora) {
-        controlRuta.GuardarDatosRutaFrec(nombre, origen, destino, fecha, hora);
+    public void GuardarDatosRutaFrec(String origen, String destino, LocalDate fecha, LocalTime hora) {
+        controlRuta.GuardarDatosRutaFrec(origen, destino, fecha, hora);
     }
 
     @Override
