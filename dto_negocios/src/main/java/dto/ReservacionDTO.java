@@ -7,6 +7,8 @@ package dto;
 import java.time.Duration;
 import static java.time.LocalDateTime.now;
 import java.time.LocalDateTime;
+import java.time.format.TextStyle;
+import java.util.Locale;
 
 /**
  *
@@ -14,15 +16,12 @@ import java.time.LocalDateTime;
  */
 public class ReservacionDTO {
     
-    public enum Estatus{
-        ESPERA, ACEPTADA, RECHAZADA, CANCELADA, TERMINADA;
-    }
-    
+    private String Id;
     private ViajeDTO viaje;
     private double precioTotal;
     private ParadaDTO parada;
-    private Estatus estatus;
-    private Duration tiempoRestante;
+    private EstatusReservacion estatus;
+    private Long tiempoRestante;
 
     public ReservacionDTO() {
     }
@@ -32,8 +31,9 @@ public class ReservacionDTO {
         this.parada = parada;
         this.precioTotal = 0;
         LocalDateTime tiempo = LocalDateTime.of(viaje.getFecha(), viaje.getHora());
-        this.tiempoRestante = Duration.between(now(), tiempo);
-        this.estatus = Estatus.ESPERA;
+        Duration diferencia = Duration.between(now(), tiempo);
+        this.tiempoRestante = diferencia.toSeconds();
+        this.estatus = EstatusReservacion.ESPERA;
     }
 
     public ViajeDTO getViaje() {
@@ -60,25 +60,38 @@ public class ReservacionDTO {
         this.parada = parada;
     }
 
-    public Estatus getEstatus() {
+    public EstatusReservacion getEstatus() {
         return estatus;
     }
 
-    public void setEstatus(Estatus estatus) {
+    public void setEstatus(EstatusReservacion estatus) {
         this.estatus = estatus;
     }
 
-    public Duration getTiempoRestante() {
+    public Long getTiempoRestante() {
         return tiempoRestante;
     }
 
-    public void setTiempoRestante(Duration tiempoRestante) {
+    public void setTiempoRestante(Long tiempoRestante) {
         this.tiempoRestante = tiempoRestante;
+    }
+
+    public String getId() {
+        return Id;
+    }
+
+    public void setId(String Id) {
+        this.Id = Id;
     }
     
     @Override
     public String toString() {
-        return "ReservacionDTO{" + "viaje=" + viaje + ", precioTotal=" + precioTotal + ", parada=" + parada + ", estatus=" + estatus + '}';
+        return String.format(viaje.getOrigen() + "--->" + viaje.getDestino()
+        + ", " + parada.getDirección()
+        + "     " + viaje.getFecha().getDayOfMonth() + "/" + viaje.getFecha().getMonth().getDisplayName(TextStyle.SHORT, Locale.ITALY)
+        + ", " + viaje.getHora()
+        + "     $" + precioTotal
+        + "     " + estatus);
     }
     
 }

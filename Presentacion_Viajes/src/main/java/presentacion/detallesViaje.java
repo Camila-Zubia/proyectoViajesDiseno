@@ -8,7 +8,6 @@ import Controles.IControlPantallas;
 import dto.ViajeDTO;
 import java.awt.HeadlessException;
 import javax.swing.JOptionPane;
-import presentacion_editarViaje.editarViaje;
 
 /**
  *

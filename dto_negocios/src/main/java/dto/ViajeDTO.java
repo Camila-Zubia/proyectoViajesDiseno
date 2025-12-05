@@ -16,7 +16,8 @@ import java.util.Locale;
  * @author Camila Zubia 00000244825
  */
 public class ViajeDTO {
-    
+
+    private String id;
     private String origen;
     private String destino;
     private LocalDate fecha;
@@ -24,9 +25,13 @@ public class ViajeDTO {
     private double precioTotal;
     private List<ParadaDTO> paradas;
     private VehiculoDTO vehiculo;
+    private boolean estaActivo;
+    private int cantidadPasajeros;
 
     public ViajeDTO() {
         this.paradas = new ArrayList<>();
+        this.estaActivo = true;
+        this.cantidadPasajeros = 0;
     }
 
     public ViajeDTO(String origen, String destino, LocalDate fecha, LocalTime hora, double precioTotal) {
@@ -36,6 +41,8 @@ public class ViajeDTO {
         this.hora = hora;
         this.precioTotal = precioTotal;
         this.paradas = new ArrayList<>();
+        this.estaActivo = true;
+        this.cantidadPasajeros = 0;
     }
 
     public ViajeDTO(String origen, String destino, LocalDate fecha, LocalTime hora, double precioTotal, List<ParadaDTO> paradas) {
@@ -45,6 +52,8 @@ public class ViajeDTO {
         this.hora = hora;
         this.precioTotal = precioTotal;
         this.paradas = paradas;
+        this.estaActivo = true;
+        this.cantidadPasajeros = 0;
     }
 
     public ViajeDTO(String origen, String destino, LocalDate fecha, LocalTime hora, double precioTotal, List<ParadaDTO> paradas, VehiculoDTO vehiculo) {
@@ -55,6 +64,8 @@ public class ViajeDTO {
         this.precioTotal = precioTotal;
         this.paradas = paradas;
         this.vehiculo = vehiculo;
+        this.estaActivo = true;
+        this.cantidadPasajeros = 0;
     }
     
     
@@ -114,6 +125,31 @@ public class ViajeDTO {
         this.vehiculo = vehiculo;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public boolean isEstaActivo() {
+        return estaActivo;
+    }
+
+    public void setEstaActivo(boolean estaActivo) {
+        this.estaActivo = estaActivo;
+    }
+
+    public int getCantidadPasajeros() {
+        return cantidadPasajeros;
+    }
+
+    public void setCantidadPasajeros(int cantidadPasajeros) {
+        this.cantidadPasajeros = cantidadPasajeros;
+    }
+
+
     @Override
     public String toString() {
         return String.format(origen + " ---> " + destino
@@ -121,5 +157,7 @@ public class ViajeDTO {
                 + ", hora = " + hora
                 + "     $" + precioTotal);
     }
+
+   
 
 }

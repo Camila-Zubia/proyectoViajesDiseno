@@ -13,12 +13,15 @@ import java.util.List;
  */
 public class ConductorDTO {
     
+    private String id;
     private String nombre;
     private int calificación;
     private List<VehiculoDTO> vehiculos;
     private List<ViajeDTO> viajes;
+    private List<AdeudoDTO> adeudos;
 
     public ConductorDTO() {
+        this.adeudos = new ArrayList<>();
     }
 
     public ConductorDTO(String nombre) {
@@ -26,6 +29,7 @@ public class ConductorDTO {
         this.calificación = 100;
         this.vehiculos = new ArrayList<>();
         this.viajes = new ArrayList<>();
+        this.adeudos = new ArrayList<>();
     }
 
     public ConductorDTO(String nombre, int calificación) {
@@ -67,6 +71,23 @@ public class ConductorDTO {
     public void setViajes(List<ViajeDTO> viajes) {
         this.viajes = viajes;
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public List<AdeudoDTO> getAdeudos() {
+        return adeudos;
+    }
+
+    public void setAdeudos(List<AdeudoDTO> adeudos) {
+        this.adeudos = adeudos;
+    }
+
 
     @Override
     public String toString() {

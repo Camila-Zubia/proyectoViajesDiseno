@@ -4,18 +4,19 @@
  */
 package objetosNegocio;
 
-import dto.ConductorDTO;
-import dto.ParadaDTO;
-import dto.PasajeroDTO;
-import dto.ReservacionDTO;
+import adaptadores.adaptadorConductor;
+import adaptadores.adaptadorPasajero;
+import adaptadores.adaptadorUsuario;
 import dto.UsuarioDTO;
-import dto.VehiculoDTO;
-import dto.ViajeDTO;
 import interfaces.IUsuarioNegocio;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Optional;
+import org.base_datos_viajes.dao.impl.UsuarioDAO;
+import org.base_datos_viajes.dao.interfaces.IConductorDAO;
+import org.base_datos_viajes.dao.interfaces.IPasajeroDAO;
+import org.base_datos_viajes.exception.DatabaseException;
+import org.base_datos_viajes.model.Conductor;
+import org.base_datos_viajes.model.Pasajero;
+import org.base_datos_viajes.model.Usuario;
 import utilidades.SesionUsuario;
 
 /**
@@ -24,7 +25,14 @@ import utilidades.SesionUsuario;
  */
 public class UsuarioNegocio implements IUsuarioNegocio{
 
-    public UsuarioNegocio() {
+    private final UsuarioDAO usuarioDAO; 
+    private final IConductorDAO conductorDAO;
+    private final IPasajeroDAO pasajeroDAO;
+    
+    public UsuarioNegocio(UsuarioDAO usuarioDAO, IConductorDAO conductorDAO, IPasajeroDAO pasajeroDAO) { 
+        this.usuarioDAO = usuarioDAO;
+        this.conductorDAO = conductorDAO;
+        this.pasajeroDAO = pasajeroDAO;
     }
 
     @Override
@@ -33,38 +41,44 @@ public class UsuarioNegocio implements IUsuarioNegocio{
     }
 
     @Override
-    public boolean validarUsuario(UsuarioDTO usuario) {
-        UsuarioDTO usuarioMock = new UsuarioDTO("cperez", "1234");
-        ConductorDTO conductor =  new ConductorDTO("Carlos Pérez");
-        PasajeroDTO pasajero = new PasajeroDTO("Carlos Perez");
-        List<VehiculoDTO> vehiculos = new ArrayList<>();
-        vehiculos.add(new VehiculoDTO("Civic 2020", "ABC-123", "Honda", "Blanco", 4));
-        vehiculos.add(new VehiculoDTO("Corolla 2021", "XYZ-789", "Toyota", "Gris", 4));
-        vehiculos.add(new VehiculoDTO("Jetta 2019", "DEF-456", "Volkswagen", "Negro", 4));
-        conductor.setVehiculos(vehiculos);
-        List<ViajeDTO> viajes = new ArrayList<>();
-        ViajeDTO viaje1 = new ViajeDTO("Obregon", "Navojoa", LocalDate.now(), LocalTime.of(10, 30), 250.0);
-        ViajeDTO viaje2 = new ViajeDTO("Obregon", "Esperanza", LocalDate.now(), LocalTime.of(14, 0), 70.0);
-        viaje1.getParadas().add(new ParadaDTO("Tutuli", 50.0));
-        viaje1.getParadas().add(new ParadaDTO("ITSON", 30.0));
-        viaje2.getParadas().add(new ParadaDTO("Central Camiones", 40.0));
-        viajes.add(viaje1);
-        viajes.add(viaje2);
-        conductor.setViajes(viajes);
-        List<ReservacionDTO> reservaciones = new ArrayList<>();
-        reservaciones.add(new ReservacionDTO(viaje1, viaje1.getParadas().get(0)));
-        reservaciones.add(new ReservacionDTO(viaje2, viaje1.getParadas().get(0)));
-        pasajero.setReservaciones(reservaciones);
-        usuario = usuarioMock;
-        usuario.setConductor(conductor);
-        usuario.setPasajero(pasajero);
-        boolean usuarioValido = usuarioMock.getUsuario().equals(usuario.getUsuario());
-        boolean contraseñaValida = usuarioMock.getContraseñaHaseada().equals(usuario.getContraseñaHaseada());
-        if (contraseñaValida && usuarioValido) {
-            SesionUsuario.iniciarSesion(usuarioMock);
-            return true;
+    public boolean validarUsuario(UsuarioDTO usuarioDto) {
+       try {
+            String contrasena = new String(usuarioDto.getContraseña());
+            
+            // Consulta la BD por credenciales usuario contra
+            Optional<Usuario> optionalEntidad = usuarioDAO.consultarPorCredenciales(
+                    usuarioDto.getUsuario(),
+                    contrasena
+            );
+
+            if (optionalEntidad.isPresent()) {
+                Usuario entidad = optionalEntidad.get();
+                UsuarioDTO usuarioLogueado = adaptadorUsuario.toDTO(entidad);
+                
+                //Cargar Perfil Conductor 
+                if (entidad.getConductorId() != null) { 
+                    Optional<Conductor> optionalConductor = conductorDAO.findById(entidad.getConductorId());
+                    if (optionalConductor.isPresent()) {
+                         usuarioLogueado.setConductor(adaptadorConductor.toDTO(optionalConductor.get()));
+                    }
+                }
+                
+                //Carga Perfil Conductor
+                if (entidad.getPasajeroId() != null) {
+                    Optional<Pasajero> optionalPasajero = pasajeroDAO.findById(entidad.getPasajeroId());
+                    if (optionalPasajero.isPresent()) {
+                        usuarioLogueado.setPasajero(adaptadorPasajero.toDTO(optionalPasajero.get()));
+                    }
+                }
+
+                SesionUsuario.iniciarSesion(usuarioLogueado);
+                return true;
+            }
+            return false;
+        } catch (DatabaseException e) {
+            System.err.println("Error de BD al validar usuario: " + e.getMessage());
+            return false;
         }
-        return false;
     }
 
     @Override

@@ -195,16 +195,34 @@ public class datosViaje extends javax.swing.JPanel {
         String destino = destinoTField.getText().trim();
         LocalDate fecha = fechaHora.getDatePicker().getDate();
         LocalTime hora = fechaHora.getTimePicker().getTime();
-        double precioBase = Double.parseDouble(PrecioTextField.getText());
-        
-        if (origen.isEmpty() || destino.isEmpty()) {
+        String precioStr = PrecioTextField.getText().trim();
+
+        double precioBase;
+        if (precioStr.isEmpty()) {
             JOptionPane.showMessageDialog(this,
-                "Por favor complete todos los campos",
-                "Campos incompletos",
-                JOptionPane.WARNING_MESSAGE);
+                    "Por favor ingrese un precio.",
+                    "Campo Requerido",
+                    JOptionPane.WARNING_MESSAGE);
             return;
         }
-        
+        try {
+            precioBase = Double.parseDouble(precioStr); 
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this,
+                    "El precio debe ser un numero valido.",
+                    "Error de Formato",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (origen.isEmpty() || destino.isEmpty()) {
+            JOptionPane.showMessageDialog(this,
+                    "Por favor complete todos los campos",
+                    "Campos incompletos",
+                    JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
         //validacion, origen y destino iguales
         if (origen.equalsIgnoreCase(destino)) {
         JOptionPane.showMessageDialog(this, "El Origen y el Destino no pueden ser la misma ubicacion.", "Dato Invalido", JOptionPane.ERROR_MESSAGE);
@@ -236,10 +254,9 @@ public class datosViaje extends javax.swing.JPanel {
         }
 
         // Guardar los datos del viaje temporalmente (precio base 0, se calcula después)
-        controlPantallas.guardarDatosViaje(origen, destino, fecha, hora);
+        controlPantallas.guardarDatosViaje(origen, destino, fecha, hora, precioBase);
 
         // Navegar a la siguiente pantalla
-        controlPantallas.agregarParada(origen, precioBase);
         controlPantallas.mostrarDatosParada();
     }//GEN-LAST:event_confirmarViajeBtnActionPerformed
 

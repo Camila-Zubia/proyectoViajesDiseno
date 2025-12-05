@@ -13,6 +13,7 @@ import java.util.List;
  */
 public class PasajeroDTO {
     
+    private String Id;
     private String nombre;
     private double calificacion;
     private List<ReservacionDTO> reservaciones;
@@ -50,6 +51,14 @@ public class PasajeroDTO {
         this.reservaciones = reservaciones;
     }
 
+    public String getId() {
+        return Id;
+    }
+
+    public void setId(String Id) {
+        this.Id = Id;
+    }
+    
     @Override
     public String toString() {
         return String.format("Nombre = " + nombre +

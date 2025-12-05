@@ -37,7 +37,7 @@ public interface IControlPantallas {
     
     public void seleccionarVehiculo(dto.VehiculoDTO vehiculo);
     
-    public void guardarDatosViaje(String origen, String destino, LocalDate fecha, LocalTime hora);
+    public void guardarDatosViaje(String origen, String destino, LocalDate fecha, LocalTime hora, double precioBase);
     
     public void confirmarViaje();
     
@@ -84,9 +84,7 @@ public interface IControlPantallas {
     public ReservacionDTO confirmarCancelacion();
 
     public ReservacionDTO obtenerReservacion();
-    
-<<<<<<< Updated upstream
-=======
+
     //metodos susbsitema crear ruta frecuente
     public void mostrarDatosRutasFrecuente();
     
@@ -116,5 +114,4 @@ public interface IControlPantallas {
 
     public void agregarParadaEnEdicionTemporal(String direccion, double precio);
 
->>>>>>> Stashed changes
 }

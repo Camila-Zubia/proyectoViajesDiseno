@@ -154,10 +154,10 @@ public class iniciarSesion extends javax.swing.JPanel {
     private void iniciarSesionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarSesionBtnActionPerformed
         // TODO add your handling code here:
         String usuario = usuarioField.getText();
-        String contraseña = contraseñaField.getText();
+        char[] contraseña = contraseñaField.getPassword();
 
         // ejecuta metodo de validacion para los datos de inicio de sesion
-        if (!validarEntradas(usuario, contraseña)){
+        if (!validarEntradas(usuario, new String(contraseña))){
             return;
         }
 
