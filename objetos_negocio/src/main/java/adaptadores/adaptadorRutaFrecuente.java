@@ -4,7 +4,11 @@
  */
 package adaptadores;
 
+import dto.ParadaDTO;
 import dto.RutaFrecuenteDTO;
+import java.util.List;
+import java.util.stream.Collectors;
+import org.base_datos_viajes.model.Parada;
 import org.base_datos_viajes.model.RutaFrecuente;
 import org.bson.types.ObjectId;
 
@@ -13,24 +17,24 @@ import org.bson.types.ObjectId;
  * @author adell
  */
 public class adaptadorRutaFrecuente {
-    public static RutaFrecuente toEntity(RutaFrecuenteDTO dto, ObjectId idConductor) {
 
+    public static RutaFrecuente toEntity(RutaFrecuenteDTO dto, ObjectId idConductor) {
+        
         RutaFrecuente entidad = new RutaFrecuente(
                 dto.getNombre(),
-                "Viaje de " + dto.getOrigen() + " a " + dto.getDestino(),
                 dto.getDestino(),
                 dto.getOrigen(),
                 dto.getFecha(),
                 dto.getHora(),
                 dto.getPrecioTotal()
         );
-
+        
         if (dto.getId() != null) {
-            entidad.setId(new ObjectId(dto.getId())); // id del viaje
+            entidad.setId(new ObjectId(dto.getId())); // crea un id para la ruta
         }
-
+        
         entidad.setConductorId(idConductor);
-
+        
         if (dto.getParadas() != null) {
             List<Parada> paradasEntidad = dto.getParadas().stream()
                     .map(adaptadorParada::toEntity)
@@ -41,21 +45,22 @@ public class adaptadorRutaFrecuente {
         }
         return entidad;
     }
-
-    public static ViajeDTO toDTO(Viaje entidad) {
-        ViajeDTO dto = new ViajeDTO();
-
+    
+    public static RutaFrecuenteDTO toDTO(RutaFrecuente entidad) {
+        RutaFrecuenteDTO dto = new RutaFrecuenteDTO();
+        
         if (entidad.getId() != null) {
             dto.setId(entidad.getId().toString());
         }
-
+        
+        dto.setNombre(entidad.getNombre());
         dto.setFecha(entidad.getFecha());
         dto.setHora(entidad.getHora());
-
+        
         dto.setOrigen(entidad.getOrigen());
         dto.setDestino(entidad.getDestino());
         dto.setPrecioTotal(entidad.getPrecioTotal());
-
+        
         if (entidad.getParadas() != null) {
             List<ParadaDTO> paradasDTO = entidad.getParadas().stream()
                     .map(adaptadorParada::toDTO)
@@ -64,7 +69,7 @@ public class adaptadorRutaFrecuente {
         } else {
             dto.setParadas(new java.util.ArrayList<>());
         }
-
+        
         return dto;
     }
 }
