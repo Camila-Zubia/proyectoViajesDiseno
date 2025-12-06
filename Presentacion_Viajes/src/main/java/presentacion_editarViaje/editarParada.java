@@ -21,6 +21,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -210,9 +211,9 @@ private final IControlPantallas controlPantallas;
       
       mostrarParadasPanel.removeAll();
 
-      int rowHeight = 60;
-      int minVisibleHeight = 308;
-      int preferredHeight = Math.max(minVisibleHeight + 1, paradasEditables.size() * rowHeight);
+      final int ROW_HEIGHT = 60;
+      final int PANEL_WIDTH = 540; 
+      int preferredHeight = paradasEditables.size() * ROW_HEIGHT;
       
       mostrarParadasPanel.setPreferredSize(new Dimension(549, preferredHeight));
       
@@ -225,10 +226,9 @@ private final IControlPantallas controlPantallas;
             JPanel panelElemento = new JPanel(new FlowLayout(FlowLayout.LEFT, 5, 5));
             panelElemento.setBackground(new Color(255, 255, 255));
 
-            final int PANEL_WIDTH = 540; 
-            panelElemento.setMaximumSize(new Dimension(PANEL_WIDTH, rowHeight)); 
-            panelElemento.setMinimumSize(new Dimension(PANEL_WIDTH, rowHeight));
-            panelElemento.setPreferredSize(new Dimension(PANEL_WIDTH, rowHeight));
+            panelElemento.setMaximumSize(new Dimension(PANEL_WIDTH, ROW_HEIGHT)); 
+            panelElemento.setMinimumSize(new Dimension(PANEL_WIDTH, ROW_HEIGHT));
+            panelElemento.setPreferredSize(new Dimension(PANEL_WIDTH, ROW_HEIGHT));
             panelElemento.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(204, 204, 204)));
 
             // Etiqueta
@@ -246,7 +246,7 @@ private final IControlPantallas controlPantallas;
             txtPrecio.setPreferredSize(new Dimension(70, 30));
             txtPrecio.setName("txtPrecio-" + i); 
 
-            // Boton Eliminar
+            // Botón Eliminar
             JButton btnEliminar = new JButton(isOrigin ? "Fijo" : "Eliminar");
             btnEliminar.setBackground(isOrigin ? Color.LIGHT_GRAY : new Color(200, 0, 0));
             btnEliminar.setForeground(Color.WHITE);
@@ -272,10 +272,12 @@ private final IControlPantallas controlPantallas;
             
             mostrarParadasPanel.add(panelElemento);
         }
+        
 
         mostrarParadasPanel.revalidate();
         mostrarParadasPanel.repaint();
-        scrollPaneParadas.getVerticalScrollBar().setValue(0);
+        
+        SwingUtilities.invokeLater(() -> scrollPaneParadas.getVerticalScrollBar().setValue(0));
     }
     
     /**
@@ -298,22 +300,11 @@ private final IControlPantallas controlPantallas;
         }
     }
     
-    private void agregarParadaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarParadaBtnActionPerformed
-
-        controlPantallas.mostrarAgregarParada();
-    }//GEN-LAST:event_agregarParadaBtnActionPerformed
-
-    private void regresarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarBtnActionPerformed
-        // Vuelve a la pantalla de edicion de viaje.
-    
-        controlPantallas.mostrarEditarViaje();
-       
-    }//GEN-LAST:event_regresarBtnActionPerformed
-
-    private void guardarParadasBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarParadasBtn1ActionPerformed
-      try {
+    private void guardarParadasTemporalmente() {
+         try {
             List<ParadaDTO> nuevasParadas = new ArrayList<>();
             
+            // Recoleccion de datos de la UI
             for (Component comp : mostrarParadasPanel.getComponents()) {
                 if (comp instanceof JPanel) {
                     JPanel panelParada = (JPanel) comp;
@@ -336,7 +327,65 @@ private final IControlPantallas controlPantallas;
                     
                     if (direccion == null || precioStr == null) continue;
 
-                    //Validacion y Extraccion
+                    double precio = Double.parseDouble(precioStr);
+                    
+                    ParadaDTO paradaEditada = new ParadaDTO(direccion, precio);
+                    if (nuevasParadas.isEmpty() && !paradasEditables.isEmpty() && paradasEditables.get(0).getId() != null) {
+                        paradaEditada.setId(paradasEditables.get(0).getId());
+                    }
+                    
+                    nuevasParadas.add(paradaEditada);
+                }
+            }
+            
+            // Sincroniza el ViajeDTO temporal en el controlador con los cambios (eliminaciones/ediciones)
+            controlPantallas.actualizarParadasViaje(nuevasParadas);
+            
+            // Resincroniza la lista local (paradasEditables) para estar limpia si el usuario navega
+            this.paradasEditables = new ArrayList<>(controlPantallas.obtenerViajeParaEdicion().getParadas());
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Error de formato. Asegurese de que todos los precios sean numeros validos.", "Error de Formato", JOptionPane.ERROR_MESSAGE);
+        }}
+    
+    private void agregarParadaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarParadaBtnActionPerformed
+        guardarParadasTemporalmente();
+        controlPantallas.mostrarAgregarParada();
+    }//GEN-LAST:event_agregarParadaBtnActionPerformed
+
+    private void regresarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarBtnActionPerformed
+        // Vuelve a la pantalla de edicion de viaje.
+    
+        controlPantallas.mostrarEditarViaje();
+       
+    }//GEN-LAST:event_regresarBtnActionPerformed
+
+    private void guardarParadasBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarParadasBtn1ActionPerformed
+      try {
+            List<ParadaDTO> paradasApersisitir = new ArrayList<>();
+
+            for (Component comp : mostrarParadasPanel.getComponents()) {
+                if (comp instanceof JPanel) {
+                    JPanel panelParada = (JPanel) comp;
+                    
+                    String direccion = null;
+                    String precioStr = null;
+                    
+                    for (Component innerComp : panelParada.getComponents()) {
+                        if (innerComp instanceof JTextField) {
+                            JTextField textField = (JTextField) innerComp;
+                            if (textField.getName() != null) {
+                                if (textField.getName().startsWith("txtDireccion")) {
+                                    direccion = textField.getText().trim();
+                                } else if (textField.getName().startsWith("txtPrecio")) {
+                                    precioStr = textField.getText().trim();
+                                }
+                            }
+                        }
+                    }
+                    
+                    if (direccion == null || precioStr == null) continue;
+
                     if (direccion.isEmpty()) {
                         JOptionPane.showMessageDialog(this, "La direccion de una parada no puede estar vacía.", "Error de Validacion", JOptionPane.ERROR_MESSAGE);
                         return;
@@ -348,34 +397,35 @@ private final IControlPantallas controlPantallas;
                     }
                     
                     ParadaDTO paradaEditada = new ParadaDTO(direccion, precio);
-                    if (nuevasParadas.isEmpty() && !paradasEditables.isEmpty() && paradasEditables.get(0).getId() != null) {
+                    if (paradasApersisitir.isEmpty() && !paradasEditables.isEmpty() && paradasEditables.get(0).getId() != null) {
                         paradaEditada.setId(paradasEditables.get(0).getId());
                     }
                     
-                    nuevasParadas.add(paradaEditada);
+                    paradasApersisitir.add(paradaEditada);
                 }
             }
             
-            if (nuevasParadas.isEmpty()) {
+            if (paradasApersisitir.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "El viaje debe tener al menos una parada (Origen).", "Validacion", JOptionPane.WARNING_MESSAGE);
                 return;
             }
 
-            // Llama a la capa de control para actualizar el ViajeDTO 
-            controlPantallas.actualizarParadasViaje(nuevasParadas);
-            
+            // Llama a la capa de control para actualizar el ViajeDTO temporal
+            controlPantallas.actualizarParadasViaje(paradasApersisitir);
+
             this.paradasEditables = new ArrayList<>(this.viajeActual.getParadas());
             mostrarParadasEditables();
             
             JOptionPane.showMessageDialog(this,
-                    "¡Paradas guardadas con exito! Los cambios se reflejarán al guardar el viaje.",
+                    "¡Paradas guardadas con exito! Los cambios se reflejaran al guardar el viaje.",
                     "Exito",
                     JOptionPane.INFORMATION_MESSAGE);
             
+            // Navegar a la pantalla de edicion de viaje
             controlPantallas.mostrarEditarViaje();
             
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Error de formato. Asegurese de que todos los precios sean números validos.", "Error de Formato", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Error de formato. Asegurese de que todos los precios sean numeros validos.", "Error de Formato", JOptionPane.ERROR_MESSAGE);
         } catch (HeadlessException e) {
             JOptionPane.showMessageDialog(this, "Error al guardar paradas: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }

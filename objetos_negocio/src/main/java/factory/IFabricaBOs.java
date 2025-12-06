@@ -10,6 +10,7 @@ import interfaces.IUsuarioNegocio;
 import interfaces.IViajeNegocio;
 import interface_crearRutaFrecuente.ICrearRutaFrecuenteNegocio;
 import interfaces_cancelarViaje.IAdeudoNegocio;
+import interfaces_editarViaje.IEditarViajeNegocio;
 
 /**
  *
@@ -32,5 +33,8 @@ public interface IFabricaBOs {
 
     //metodos del caso de uso "Cancelar Viaje"
     public IAdeudoNegocio crearAdeudoNegocio();
+    
+    //metodos par el caso de uso editarViaje
+     public IEditarViajeNegocio crearEditarViajeNegocio();
 
 }

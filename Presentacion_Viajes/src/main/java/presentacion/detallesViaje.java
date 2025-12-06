@@ -275,7 +275,25 @@ public class detallesViaje extends javax.swing.JPanel {
     
     //boton del caso de uso de editarViaje
     private void btnEditarViajeActionPerformed(java.awt.event.ActionEvent evt) {
-        controlPantallas.mostrarEditarViaje();
+        try {
+            // Llama a la Fachada para validar si la edicion es segura
+            boolean esEdicionSegura = controlPantallas.validarEdicionSegura(); 
+        
+            if (!esEdicionSegura) {
+                 JOptionPane.showMessageDialog(this, 
+                         "ERROR: No se puede editar el viaje porque tiene reservaciones activas (ACEPTADAS o EN ESPERA).", 
+                         "Edicion Bloqueada", JOptionPane.ERROR_MESSAGE);
+                 return; // Bloquea la navegación
+            }
+            
+            // Si es seguro, navega a la pantalla de edicion.
+            controlPantallas.mostrarEditarViaje();
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, 
+                     "Error al verificar la edicion: " + e.getMessage(), 
+                     "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     private void mostrarDatosViaje(ViajeDTO viaje) {

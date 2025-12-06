@@ -356,17 +356,24 @@ public class editarViaje extends javax.swing.JPanel {
         viajeModificado.setHora(hora);
         viajeModificado.setPrecioTotal(precioBase);
         
-        // Llamar al Control para guardar los cambios generales
-        controlPantallas.guardarCambiosViaje(viajeModificado);
+         try {
+            // Llama al Control para guardar los cambios generales en el DTO temporal
+            controlPantallas.guardarCambiosViaje(viajeModificado);
 
-        //  Mostrar el mensaje de confirmacion solicitado
-        JOptionPane.showMessageDialog(this,
-                "El viaje ha sido modificado con exito!!\nPor favor presione Aceptar para volver al menu principal.",
-                "Cambios guardados con exito",
-                JOptionPane.INFORMATION_MESSAGE);
-        
-        // 4. Navegar de vuelta al menú
-        controlPantallas.mostrarMenuConductor();
+            // Persistir la edicion completa 
+            ViajeDTO viajePersistido = controlPantallas.confirmarEdicion();
+            
+            // Mostrar el mensaje de confirmacion
+            JOptionPane.showMessageDialog(this,
+                    "El viaje ha sido modificado con exito!!",
+                    "Cambios guardados con exito",
+                    JOptionPane.INFORMATION_MESSAGE);
+            
+            // Navegar de vuelta al menu
+            controlPantallas.mostrarMenuConductor();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Error de Persistencia", JOptionPane.ERROR_MESSAGE);
+        }
 
     }//GEN-LAST:event_guardarCambiosViajeBtnActionPerformed
 
