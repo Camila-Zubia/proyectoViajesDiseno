@@ -27,6 +27,8 @@ public class adaptadorParada {
         );
         if (dto.getId() != null && !dto.getId().isBlank()) {
             entidad.setId(new ObjectId(dto.getId()));
+        }else{
+            entidad.setId(new ObjectId());
         }
         return entidad;
     }

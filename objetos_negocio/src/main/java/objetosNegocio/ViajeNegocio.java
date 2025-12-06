@@ -48,7 +48,6 @@ public class ViajeNegocio implements IViajeNegocio{
     public void registrarViaje(ViajeDTO viaje){
         try {
             ObjectId idConductor = new ObjectId(SesionUsuario.obtenerConductor().getId());
-            String placasVehiculo = viaje.getVehiculo().getPlacas();
             
             // Buscar Conductor en BD para obtener el id del vehiculo 
             Optional<Conductor> optionalConductor = conductorDAO.findById(idConductor);
@@ -63,6 +62,8 @@ public class ViajeNegocio implements IViajeNegocio{
                     .findFirst()
                     .map(Vehiculo::getId) // usa el ID del Vehiculo Eque fue persistido
                     .orElseThrow(() -> new IllegalStateException("Vehiculo seleccionado no tiene ID de persistencia."));
+            
+            
 
             // Validar no existencia
             if (!validarNoExisteBD(viaje, idConductor)) {
