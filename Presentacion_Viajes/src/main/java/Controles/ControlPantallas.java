@@ -17,6 +17,8 @@ import dto.PasajeroDTO;
 import dto.ReservacionDTO;
 import dto.UsuarioDTO;
 import dto.ViajeDTO;
+import editarViaje.EditarViaje;
+import editarViaje.IEditarViaje;
 import iniciarSesion.IIniciarSesion;
 import iniciarSesion.IniciarSesion;
 import java.awt.BorderLayout;
@@ -62,6 +64,7 @@ public class ControlPantallas implements IControlPantallas {
     private final ICancelarReservacion interfazCancelarReservacion = new CancelarReservacion();
     private final ICrearRutaFrecuente interfazCrearRutaFrecuente = new FCrearRutaFrecuente();
     private final ICancelarViaje interfazCancelarViaje = new CancelarViaje();
+    private final IEditarViaje interfazEditarViaje = new EditarViaje();
 
     private ViajeDTO viajeTemporal;
 
@@ -213,6 +216,8 @@ public class ControlPantallas implements IControlPantallas {
     @Override
     public void seleccionarViaje(ViajeDTO viaje) {
         interfazSolicitarReservacion.seleccionarViaje(viaje);
+        //metodo de editarViaje para inicializar el DTO para su edicion
+        interfazEditarViaje.setViajeTemporal(viaje);
         this.viajeTemporal = viaje;
     }
 
@@ -361,45 +366,39 @@ public class ControlPantallas implements IControlPantallas {
 
     @Override
     public ViajeDTO obtenerViajeParaEdicion() {
-        return viajeTemporal;
+        return interfazEditarViaje.obtenerViajeTemporal();
     }
 
     @Override
     public void actualizarParadasViaje(List<ParadaDTO> paradas) {
-        if (viajeTemporal != null) {
-            viajeTemporal.setParadas(new ArrayList<>(paradas));
-            
-            // Aquí va la llamada a tu capa de negocio real:
-            // interfazEditarViaje.actualizarParadas(viajeTemporal.getId(), paradas);
+        // Actualizamos la lista de paradas en el DTO temporal en la Fachada
+           interfazEditarViaje.guardarParadasTemporales(paradas);
         }
-    }
+    
 
     @Override
     public void agregarParadaEnEdicionTemporal(String direccion, double precio) {
-        // Agrega una nueva parada al DTO 
-        if (viajeTemporal != null) {
-            ParadaDTO nuevaParada = new ParadaDTO(direccion, precio);
-
-            if (viajeTemporal.getParadas() == null) {
-                viajeTemporal.setParadas(new ArrayList<>());
-            }
-
-            // Agregamos la parada al final del DTO
-            viajeTemporal.getParadas().add(nuevaParada);
+        ViajeDTO viaje = interfazEditarViaje.obtenerViajeTemporal();
+        if (viaje != null) {
+             ParadaDTO nuevaParada = new ParadaDTO(direccion, precio);
+             List<ParadaDTO> paradas = viaje.getParadas() != null ? viaje.getParadas() : new ArrayList<>();
+             paradas.add(nuevaParada);
+             interfazEditarViaje.guardarParadasTemporales(paradas);
         }
     }
 
     @Override
     public void guardarCambiosViaje(ViajeDTO viajeModificado) {
-        if (this.viajeTemporal != null && this.viajeTemporal.getId().equals(viajeModificado.getId())) {
-            this.viajeTemporal.setDestino(viajeModificado.getDestino());
-            this.viajeTemporal.setFecha(viajeModificado.getFecha());
-            this.viajeTemporal.setHora(viajeModificado.getHora());
-            this.viajeTemporal.setPrecioTotal(viajeModificado.getPrecioTotal());
-            
-            // Aquí va la llamada a la capa de negocio real:
-            // interfazEditarViaje.actualizarDatosGenerales(viajeModificado);
+        interfazEditarViaje.guardarDatosGenerales(viajeModificado);
         }
+
+    @Override
+    public ViajeDTO confirmarEdicion() {
+        return interfazEditarViaje.confirmarEdicion();
     }
 
-}
+    @Override
+    public boolean validarEdicionSegura() {
+         return interfazEditarViaje.validarEdicionSegura();
+    }
+    }
