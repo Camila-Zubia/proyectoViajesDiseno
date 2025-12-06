@@ -6,6 +6,7 @@ package presentacion_crearRutaFrecuente;
 
 import Controles.ControlPantallas;
 import Controles.IControlPantallas;
+import dto.ParadaDTO;
 import dto.RutaFrecuenteDTO;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -13,6 +14,8 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.HeadlessException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -29,19 +32,17 @@ import javax.swing.SwingConstants;
 public class MenuRutasFrecuentes extends javax.swing.JPanel {
 
     private final IControlPantallas controlPantallas;
+    private RutaFrecuenteDTO RutaFrecuenteSeleccionadaDTO;
 
     /**
      * Creates new form MenuRutasFrecuentes
      */
     public MenuRutasFrecuentes(IControlPantallas controlPantallas, List<RutaFrecuenteDTO> rutas) {
         this.controlPantallas = controlPantallas;
-       
-        
-        
+
         initComponents();
         mostrarRutas(rutas);
-        
-        
+
     }
 
     /**
@@ -143,7 +144,7 @@ public class MenuRutasFrecuentes extends javax.swing.JPanel {
         // TODO add your handling code here:
         controlPantallas.mostrarDatosRutasFrecuente();
     }//GEN-LAST:event_registrarRutaBtnActionPerformed
-    
+
     private void mostrarRutas(List listaRutas) {
         try {
             if (listaRutas != null) {
@@ -169,7 +170,28 @@ public class MenuRutasFrecuentes extends javax.swing.JPanel {
                     btnInfo.setPreferredSize(new Dimension(650, 40));
                     btnInfo.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
                     btnInfo.setText(ruta.toString());
+                    btnInfo.addActionListener(e -> {
+                        
+                        
+                        this.RutaFrecuenteSeleccionadaDTO = (dto.RutaFrecuenteDTO) ruta;
+                        String origen = RutaFrecuenteSeleccionadaDTO.getOrigen();
+                        String destino = RutaFrecuenteSeleccionadaDTO.getDestino();
+                        LocalDate fecha = RutaFrecuenteSeleccionadaDTO.getFecha();
+                        LocalTime hora = RutaFrecuenteSeleccionadaDTO.getHora();
+                        double precioBase = RutaFrecuenteSeleccionadaDTO.getPrecioTotal();
+                        controlPantallas.guardarDatosViaje(origen, destino, fecha, hora, precioBase);
 
+                        List<ParadaDTO> paradas = RutaFrecuenteSeleccionadaDTO.getParadas();
+                        for (ParadaDTO p : paradas) {
+                            String destinoParada = p.getDirección();
+                            double precioParada = p.getPrecio();
+
+                            controlPantallas.agregarParada(destinoParada, precioParada);
+
+                        }
+                        
+                        controlPantallas.mostrarSeleccionarVehiculoRuta();
+                    });
                     panelElemento.add(btnInfo);
                     panelInterno.add(panelElemento);
                 }
@@ -193,7 +215,7 @@ public class MenuRutasFrecuentes extends javax.swing.JPanel {
                     JOptionPane.ERROR_MESSAGE);
         }
     }
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel TituloLbl;
