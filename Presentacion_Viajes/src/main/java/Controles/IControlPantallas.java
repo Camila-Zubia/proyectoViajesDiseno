@@ -8,7 +8,6 @@ import dto.ConductorDTO;
 import dto.ParadaDTO;
 import dto.PasajeroDTO;
 import dto.ReservacionDTO;
-import dto.RutaFrecuenteDTO;
 import dto.UsuarioDTO;
 import dto.ViajeDTO;
 import java.time.LocalDate;
@@ -37,14 +36,9 @@ public interface IControlPantallas {
     public void mostrarSeleccionarPerfil();
     
     public void seleccionarVehiculo(dto.VehiculoDTO vehiculo);
-
-
-    public void guardarDatosViaje(String origen, String destino, LocalDate fecha, LocalTime hora, double precio);
-
-
     
+    public void guardarDatosViaje(String origen, String destino, LocalDate fecha, LocalTime hora, double precioBase);
     
-
     public void confirmarViaje();
     
     public void agregarParada(String direccion, double precio);
@@ -93,23 +87,8 @@ public interface IControlPantallas {
 
     //metodos susbsitema crear ruta frecuente
     public void mostrarDatosRutasFrecuente();
-
+    
     public void mostrarParadasRuta();
-
-    public void mostrarMenuRutasFrecuentes();
-
-    public void GuardarDatosRutaFrec(String nombre, String origen, String destino, LocalDate fecha, LocalTime hora);
-
-    public void agregarParadaRuta(String direccion, double precio);
-
-    public List<ParadaDTO> obtenerParadasRuta(RutaFrecuenteDTO ruta);
-
-    public List<ParadaDTO> obtenerParadasTempoRuta();
-
-    public RutaFrecuenteDTO ConfirmarRuta();
-
-    
-    
  
     // Métodos para cancelar viaje
     public void mostrarDetallesViaje();

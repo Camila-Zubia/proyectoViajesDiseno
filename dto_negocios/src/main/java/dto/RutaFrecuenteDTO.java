@@ -15,7 +15,6 @@ import java.util.List;
 public class RutaFrecuenteDTO {
 
     private String id;
-    private String nombre;
     private String origen;
     private String destino;
     private LocalDate fecha;
@@ -104,21 +103,5 @@ public class RutaFrecuenteDTO {
     public void setParadas(List<ParadaDTO> paradas) {
         this.paradas = paradas;
     }
-
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    @Override
-    public String toString() {
-        // return "RutaFrecuenteDTO{" + "nombre=" + nombre + ", origen=" + origen + ", destino=" + destino + ", fecha=" + fecha + ", hora=" + hora + ", precioTotal=" + precioTotal + '}';
-        return "Ruta:" + nombre + "--> " + "Origen:" + origen + "  " + "Destino:" + destino + "  " + "Fecha y hora:" + fecha + " " + hora + "Precio:" + precioTotal;
-    }
-
 
 }

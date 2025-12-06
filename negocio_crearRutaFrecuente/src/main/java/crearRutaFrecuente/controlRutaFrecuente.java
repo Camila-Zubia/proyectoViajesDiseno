@@ -36,8 +36,7 @@ public class controlRutaFrecuente {
     }
 
     //rutas frecc
-    protected void GuardarDatosRutaFrec(String nombre, String origen, String destino, LocalDate fecha, LocalTime hora) {
-        this.rutaFrecuente.setNombre(nombre);
+    protected void GuardarDatosRutaFrec(String origen, String destino, LocalDate fecha, LocalTime hora) {
         this.rutaFrecuente.setOrigen(origen);
         this.rutaFrecuente.setDestino(destino);
         this.rutaFrecuente.setFecha(fecha);

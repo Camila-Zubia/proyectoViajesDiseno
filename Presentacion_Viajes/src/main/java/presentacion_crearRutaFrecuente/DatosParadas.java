@@ -272,7 +272,7 @@ public class DatosParadas extends javax.swing.JPanel {
         if (!direccion.isEmpty() && !precioStr.isEmpty()) {
             try {
                 double precio = Double.parseDouble(precioStr);
-                controlPantallas.agregarParadaRuta(direccion, precio);
+                controlPantallas.agregarParada(direccion, precio);
                 direccionTField.setText("");
                 precioTField.setText("");
 

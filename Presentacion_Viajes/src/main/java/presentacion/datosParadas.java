@@ -295,7 +295,7 @@ public class datosParadas extends javax.swing.JPanel {
 
             JPanel panelInterno = new JPanel();
             panelInterno.setLayout(new BoxLayout(panelInterno, BoxLayout.Y_AXIS));
-            panelInterno.setPreferredSize(new Dimension(490, paradas.size() * 50)); //[510, 173]
+            panelInterno.setPreferredSize(new Dimension(490, paradas.size() * 50));
             panelInterno.setBackground(Color.WHITE);
 
             for (Object parada : paradas) {
