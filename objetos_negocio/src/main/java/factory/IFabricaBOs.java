@@ -10,6 +10,7 @@ import interfaces_solicitarReservacion.IReservacionNegocio;
 import interfaces.IUsuarioNegocio;
 import interfaces.IViajeNegocio;
 import interface_crearRutaFrecuente.ICrearRutaFrecuenteNegocio;
+import interfaces_cancelarViaje.IAdeudoNegocio;
 
 /**
  *
@@ -31,4 +32,8 @@ public interface IFabricaBOs {
     
     //metodo para el caso de uso crear ruta frecuente
     public ICrearRutaFrecuenteNegocio crearRutaFrecuenteNegocio();
+    
+    
+    //cancelar viaje
+    public IAdeudoNegocio crearAdeudoNegocio();
 }
