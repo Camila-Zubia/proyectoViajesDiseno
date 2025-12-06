@@ -43,9 +43,9 @@ import presentacion_SolicitarReservacion.seleccionarParada;
 import presentacion_cancelarReservacion.cancelarReservacion;
 import presentacion_cancelarReservacion.seleccionarReservacion;
 import presentacion_crearRutaFrecuente.DatosParadasRuta;
-import presentacion_crearRutaFrecuente.DatosParadasRuta;
 import presentacion_crearRutaFrecuente.DatosRutaFrec;
 import presentacion_crearRutaFrecuente.MenuRutasFrecuentes;
+import presentacion_crearRutaFrecuente.SeleccionarVehiculoRuta;
 import registrarViaje.IRegistrarViaje;
 import registrarViaje.RegistrarViaje;
 import solicitarReservacion.ISolicitarReservacion;
@@ -305,6 +305,14 @@ public class ControlPantallas implements IControlPantallas {
         MenuRutasFrecuentes menuRutas = new MenuRutasFrecuentes(this, RutasFrecuentes);
         configurarPanel(menuRutas);
     }
+    
+     public void mostrarSeleccionarVehiculoRuta() {
+        UsuarioDTO usuario = sesion.obtenerUsuario();
+        List vehiculos = interfazRegistrarViaje.obtenerVehiculosDisponibles(usuario.getConductor());
+        SeleccionarVehiculoRuta menuVehiculos = new SeleccionarVehiculoRuta(this, vehiculos);
+        configurarPanel(menuVehiculos);
+    }
+
     
     @Override
     public void GuardarDatosRutaFrec(String nombre, String origen, String destino, LocalDate fecha, LocalTime hora) {
