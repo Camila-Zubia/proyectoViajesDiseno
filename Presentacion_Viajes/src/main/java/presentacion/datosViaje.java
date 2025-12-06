@@ -196,7 +196,7 @@ public class datosViaje extends javax.swing.JPanel {
         LocalDate fecha = fechaHora.getDatePicker().getDate();
         LocalTime hora = fechaHora.getTimePicker().getTime();
         String precioStr = PrecioTextField.getText().trim();
-
+        double precio = Double.parseDouble(precioStr);
         double precioBase;
         if (precioStr.isEmpty()) {
             JOptionPane.showMessageDialog(this,
@@ -254,9 +254,10 @@ public class datosViaje extends javax.swing.JPanel {
         }
 
         // Guardar los datos del viaje temporalmente (precio base 0, se calcula después)
-        controlPantallas.guardarDatosViaje(origen, destino, fecha, hora, precioBase);
+        controlPantallas.guardarDatosViaje(origen, destino, fecha, hora, precio);
 
         // Navegar a la siguiente pantalla
+        controlPantallas.agregarParada(origen, precioBase);
         controlPantallas.mostrarDatosParada();
     }//GEN-LAST:event_confirmarViajeBtnActionPerformed
 

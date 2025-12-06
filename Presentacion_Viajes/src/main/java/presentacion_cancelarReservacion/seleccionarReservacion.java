@@ -122,7 +122,7 @@ public class seleccionarReservacion extends javax.swing.JPanel {
                     btnInfo.setHorizontalAlignment(SwingConstants.CENTER);
                     btnInfo.setPreferredSize(new Dimension(700, 40));
                     btnInfo.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
-                    btnInfo.setText(reservacion.toString());
+                    btnInfo.setText(reservacion.toString().formatted());
                     btnInfo.addActionListener(e -> {
                         controlPantallas.seleccionarReservacion((ReservacionDTO) reservacion);
                         controlPantallas.mostrarCancelarReservacion();

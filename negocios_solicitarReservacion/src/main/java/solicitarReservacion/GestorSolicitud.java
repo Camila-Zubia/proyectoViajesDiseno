@@ -41,9 +41,6 @@ public class GestorSolicitud {
     }
     
     public List<ParadaDTO> obtenerParadas() {
-        if (viajeSeleccionado == null) {
-            throw new IllegalStateException("No se ha seleccionado un viaje para ver sus paradas.");
-        }
         return viajeSeleccionado.getParadas();
     }
     
@@ -62,34 +59,26 @@ public class GestorSolicitud {
     }
     
     public ReservacionDTO obtenerReservacionTemporal(){
-        if (viajeSeleccionado == null) {
-            throw new IllegalStateException("Error: No hay viaje seleccionado en el gestor.");
-        }
-        if (paradaSeleccionada == null) {
-            throw new IllegalStateException("Error: No hay parada seleccionada en el gestor.");
-        }
-
         reservacionTemporal.setViaje(viajeSeleccionado);
         reservacionTemporal.setParada(paradaSeleccionada);
-
-        double precioFinal = viajeSeleccionado.getPrecioTotal();
-
-        if (!paradaSeleccionada.getDirección().equalsIgnoreCase(viajeSeleccionado.getOrigen())) {
-            precioFinal = precioFinal + paradaSeleccionada.getPrecio();
+        if (viajeSeleccionado.getParadas().get(0).getDirección() == null ? paradaSeleccionada.getDirección() != null : !viajeSeleccionado.getParadas().get(0).getDirección().equals(paradaSeleccionada.getDirección())) {
+            double precio = viajeSeleccionado.getPrecioTotal() + paradaSeleccionada.getPrecio();
+            reservacionTemporal.setPrecioTotal(precio);
+        } else {
+            reservacionTemporal.setPrecioTotal(viajeSeleccionado.getPrecioTotal());
         }
-
-        reservacionTemporal.setPrecioTotal(precioFinal);
-
         LocalDateTime tiempo = LocalDateTime.of(viajeSeleccionado.getFecha(), viajeSeleccionado.getHora());
         reservacionTemporal.setTiempoRestante(Duration.between(now(), tiempo).toSeconds());
         reservacionTemporal.setEstatus(EstatusReservacion.ESPERA);
-
         return reservacionTemporal;
     }
     
     public ReservacionDTO confirmarReservacion(){
-        if (reservacionTemporal.getViaje() == null || reservacionTemporal.getParada() == null) {
-            obtenerReservacionTemporal();
+        if (viajeSeleccionado == null) {
+            throw new IllegalStateException("Debe seleccionar un viaje antes de realizar la reservación");
+        }
+        if (paradaSeleccionada == null) {
+            throw new IllegalStateException("Debe seleccionar una parada antes de realizar la reservación");
         }
         pasajeroBO.agregarReservacion(reservacionTemporal);
         return reservacionTemporal;

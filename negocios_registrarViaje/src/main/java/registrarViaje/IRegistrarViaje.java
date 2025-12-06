@@ -37,9 +37,8 @@ public interface IRegistrarViaje {
      * @param destino 
      * @param fecha 
      * @param hora 
-     * @param precioBase 
      */
-    public void guardarDatosViaje(String origen, String destino, LocalDate fecha, LocalTime hora, double precioBase);
+    public void guardarDatosViaje(String origen, String destino, LocalDate fecha, LocalTime hora, double precio);
     
     /**
      * crea una parada y la agrega a la lista de paradas

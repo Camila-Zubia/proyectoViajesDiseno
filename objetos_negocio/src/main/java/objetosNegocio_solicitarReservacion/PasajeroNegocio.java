@@ -89,8 +89,6 @@ public class PasajeroNegocio implements IPasajeroNegocio{
     @Override
     public List<ReservacionDTO> removerReservacion(ReservacionDTO reservacion) {
         reservacion.setEstatus(EstatusReservacion.CANCELADA);
-        Reservacion r = adaptadorReservacion.toEntity(reservacion);
-        reservacionDAO.update(r);
         return obtenerReservaciones();
     }
     

@@ -30,8 +30,6 @@ public class ViajeDTO {
 
     public ViajeDTO() {
         this.paradas = new ArrayList<>();
-        this.estaActivo = true;
-        this.cantidadPasajeros = 0;
     }
 
     public ViajeDTO(String origen, String destino, LocalDate fecha, LocalTime hora, double precioTotal) {
@@ -41,8 +39,6 @@ public class ViajeDTO {
         this.hora = hora;
         this.precioTotal = precioTotal;
         this.paradas = new ArrayList<>();
-        this.estaActivo = true;
-        this.cantidadPasajeros = 0;
     }
 
     public ViajeDTO(String origen, String destino, LocalDate fecha, LocalTime hora, double precioTotal, List<ParadaDTO> paradas) {
@@ -52,8 +48,6 @@ public class ViajeDTO {
         this.hora = hora;
         this.precioTotal = precioTotal;
         this.paradas = paradas;
-        this.estaActivo = true;
-        this.cantidadPasajeros = 0;
     }
 
     public ViajeDTO(String origen, String destino, LocalDate fecha, LocalTime hora, double precioTotal, List<ParadaDTO> paradas, VehiculoDTO vehiculo) {
@@ -64,11 +58,8 @@ public class ViajeDTO {
         this.precioTotal = precioTotal;
         this.paradas = paradas;
         this.vehiculo = vehiculo;
-        this.estaActivo = true;
-        this.cantidadPasajeros = 0;
     }
-    
-    
+
     public String getOrigen() {
         return origen;
     }
@@ -149,15 +140,12 @@ public class ViajeDTO {
         this.cantidadPasajeros = cantidadPasajeros;
     }
 
-
     @Override
     public String toString() {
         return String.format(origen + " ---> " + destino
-                + "     fecha = " + fecha.getDayOfMonth() + "/" + fecha.getMonth().getDisplayName(TextStyle.SHORT, Locale.ITALY) 
+                + "     fecha = " + fecha.getDayOfMonth() + "/" + fecha.getMonth().getDisplayName(TextStyle.SHORT, Locale.ITALY)
                 + ", hora = " + hora
                 + "     $" + precioTotal);
     }
-
-   
 
 }

@@ -7,14 +7,15 @@ package Controles;
 import org.base_datos_viajes.initializer.InicializadorDatosPrueba;
 import cancelarReservacion.CancelarReservacion;
 import cancelarReservacion.ICancelarReservacion;
-import crearRutaFrecuente.FCrearRutaFrecuente;
-import crearRutaFrecuente.ICrearRutaFrecuente;
 import cancelarViaje.CancelarViaje;
 import cancelarViaje.ICancelarViaje;
+import crearRutaFrecuente.FCrearRutaFrecuente;
+import crearRutaFrecuente.ICrearRutaFrecuente;
 import dto.ConductorDTO;
 import dto.ParadaDTO;
 import dto.PasajeroDTO;
 import dto.ReservacionDTO;
+import dto.RutaFrecuenteDTO;
 import dto.UsuarioDTO;
 import dto.ViajeDTO;
 import iniciarSesion.IIniciarSesion;
@@ -62,8 +63,8 @@ public class ControlPantallas implements IControlPantallas {
     private final ICancelarReservacion interfazCancelarReservacion = new CancelarReservacion();
     private final ICrearRutaFrecuente interfazCrearRutaFrecuente = new FCrearRutaFrecuente();
     private final ICancelarViaje interfazCancelarViaje = new CancelarViaje();
-
-    private ViajeDTO viajeTemporal;
+    
+    private ViajeDTO viajeTemporal = new ViajeDTO();
 
     private ControlPantallas(JFrame frame, JMenu menu) {
         this.frame = frame;
@@ -147,8 +148,8 @@ public class ControlPantallas implements IControlPantallas {
     }
 
     @Override
-    public void guardarDatosViaje(String origen, String destino, LocalDate fecha, LocalTime hora, double precioBase) {
-        interfazRegistrarViaje.guardarDatosViaje(origen, destino, fecha, hora, precioBase);
+    public void guardarDatosViaje(String origen, String destino, LocalDate fecha, LocalTime hora, double precio) {
+        interfazRegistrarViaje.guardarDatosViaje(origen, destino, fecha, hora, precio);
     }
 
     @Override
@@ -213,7 +214,6 @@ public class ControlPantallas implements IControlPantallas {
     @Override
     public void seleccionarViaje(ViajeDTO viaje) {
         interfazSolicitarReservacion.seleccionarViaje(viaje);
-        this.viajeTemporal = viaje;
     }
 
     @Override
@@ -298,45 +298,6 @@ public class ControlPantallas implements IControlPantallas {
         MenuRutasFrecuentes menuRutas = new MenuRutasFrecuentes(this, RutasFrecuentes);
         configurarPanel(menuRutas);
     }
-    // Métodos para cancelar viaje
-    @Override
-    public void mostrarDetallesViaje() {
-        ViajeDTO viaje = obtenerViajeTemporal();
-        detallesViaje detalles = new detallesViaje(this, viaje);
-        configurarPanel(detalles);
-    };
-
-    @Override
-    public ViajeDTO obtenerViajeTemporal() {
-        return viajeTemporal;
-    }
-
-    @Override
-    public void confirmarCancelacionViaje() {
-        try {
-            ViajeDTO viaje = obtenerViajeTemporal();
-
-            if (viaje == null || viaje.getId() == null) {
-                throw new IllegalStateException("No hay un viaje seleccionado para cancelar");
-            }
-
-            boolean cancelado = interfazCancelarViaje.cancelarViaje(viaje.getId());
-
-            if (!cancelado) {
-                throw new RuntimeException("No se pudo cancelar el viaje");
-            }
-
-            viajeTemporal = null;
-
-        } catch (RuntimeException e) {
-            throw new RuntimeException("Error al cancelar viaje: " + e.getMessage(), e);
-        }
-    }
-
-    @Override
-    public int obtenerAdeudoPendiente(String idViaje) {
-        return interfazCancelarViaje.obtenerAdeudoPendiente(idViaje);
-    }
 
     //metodos del subsitema editarViaje
     @Override
@@ -348,7 +309,7 @@ public class ControlPantallas implements IControlPantallas {
 
     @Override
     public void mostrarEditarParadas() {
-       ViajeDTO viaje = obtenerViajeParaEdicion();
+        ViajeDTO viaje = obtenerViajeParaEdicion();
         presentacion_editarViaje.editarParada panel = new presentacion_editarViaje.editarParada(this);
         configurarPanel(panel);
     }
@@ -368,7 +329,7 @@ public class ControlPantallas implements IControlPantallas {
     public void actualizarParadasViaje(List<ParadaDTO> paradas) {
         if (viajeTemporal != null) {
             viajeTemporal.setParadas(new ArrayList<>(paradas));
-            
+
             // Aquí va la llamada a tu capa de negocio real:
             // interfazEditarViaje.actualizarParadas(viajeTemporal.getId(), paradas);
         }
@@ -396,10 +357,83 @@ public class ControlPantallas implements IControlPantallas {
             this.viajeTemporal.setFecha(viajeModificado.getFecha());
             this.viajeTemporal.setHora(viajeModificado.getHora());
             this.viajeTemporal.setPrecioTotal(viajeModificado.getPrecioTotal());
-            
+
             // Aquí va la llamada a la capa de negocio real:
             // interfazEditarViaje.actualizarDatosGenerales(viajeModificado);
         }
+    }
+//mios
+
+    @Override
+    public void GuardarDatosRutaFrec(String nombre, String origen, String destino, LocalDate fecha, LocalTime hora) {
+        interfazCrearRutaFrecuente.GuardarDatosRutaFrec(nombre, origen, destino, fecha, hora);
+    }
+
+    @Override
+    public void agregarParadaRuta(String direccion, double precio) {
+        interfazCrearRutaFrecuente.agregarParada(direccion, precio);
+    }
+
+    @Override
+    public List<ParadaDTO> obtenerParadasRuta(RutaFrecuenteDTO ruta) {
+        return interfazCrearRutaFrecuente.obtenerParadas(ruta);
+
+    }
+
+    @Override
+    public List<ParadaDTO> obtenerParadasTempoRuta() {
+        return interfazCrearRutaFrecuente.obtenerParadasTemp();
+
+    }
+
+    @Override
+    public RutaFrecuenteDTO ConfirmarRuta() {
+        return interfazCrearRutaFrecuente.confirmaRuta();
+
+    }
+
+    ///
+    @Override
+    public void mostrarDetallesViaje() {
+        ViajeDTO viaje = obtenerViajeTemporal();
+        detallesViaje detalles = new detallesViaje(this, viaje);
+        configurarPanel(detalles);
+
+    }
+
+    @Override
+    public ViajeDTO obtenerViajeTemporal() {
+        return viajeTemporal;
+
+    }
+
+    @Override
+    public void confirmarCancelacionViaje() {
+        try {
+            ViajeDTO viaje = obtenerViajeTemporal();
+
+            if (viaje == null || viaje.getId() == null) {
+                throw new IllegalStateException("No hay un viaje seleccionado para cancelar");
+            }
+
+            boolean cancelado = interfazCancelarViaje.cancelarViaje(viaje.getId());
+
+            if (!cancelado) {
+                throw new RuntimeException("No se pudo cancelar el viaje");
+            }
+
+            viajeTemporal = null;
+
+        } catch (RuntimeException e) {
+            throw new RuntimeException("Error al cancelar viaje: " + e.getMessage(), e);
+        }
+
+    }
+
+    @Override
+    public int obtenerAdeudoPendiente(String idViaje) {
+        return interfazCancelarViaje.obtenerAdeudoPendiente(idViaje);
+
     }
 
 }

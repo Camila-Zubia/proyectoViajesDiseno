@@ -259,10 +259,6 @@ public class menuPrincipalConductor extends javax.swing.JPanel {
                     btnInfo.setPreferredSize(new Dimension(650, 40));
                     btnInfo.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
                     btnInfo.setText(viaje.toString());
-                    btnInfo.addActionListener(e -> {
-                        controlPantallas.seleccionarViaje((ViajeDTO) viaje);
-                        controlPantallas.mostrarDetallesViaje();
-                    });
 
                     panelElemento.add(btnInfo);
                     panelInterno.add(panelElemento);

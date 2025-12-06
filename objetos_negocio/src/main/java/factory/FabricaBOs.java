@@ -6,19 +6,21 @@ package factory;
 
 import interfaces.IConductorNegocio;
 import interfaces_solicitarReservacion.IPasajeroNegocio;
+import interfaces_solicitarReservacion.IReservacionNegocio;
 import interfaces.IUsuarioNegocio;
 import interfaces.IViajeNegocio;
 import objetoNegocio_crearRutaFrecuente.RutaFrecuenteNegocio;
-import interfaces_cancelarViaje.IAdeudoNegocio;
 import objetosNegocio.ConductorNegocio;
 import objetosNegocio.UsuarioNegocio;
 import objetosNegocio.ViajeNegocio;
 import objetosNegocio_solicitarReservacion.PasajeroNegocio;
-import objetosNegocio_cancelarViaje.AdeudoNegocio;
+import objetosNegocio_solicitarReservacion.ReservacionNegocio;
 import org.base_datos_viajes.dao.impl.ConductorDAO;
 import org.base_datos_viajes.dao.impl.UsuarioDAO;
 import org.base_datos_viajes.dao.impl.ViajeDAO;
 import interface_crearRutaFrecuente.ICrearRutaFrecuenteNegocio;
+import interfaces_cancelarViaje.IAdeudoNegocio;
+import objetosNegocio_cancelarViaje.AdeudoNegocio;
 import org.base_datos_viajes.dao.impl.PasajeroDAO;
 import org.base_datos_viajes.dao.impl.ReservacionDAO;
 import org.base_datos_viajes.dao.impl.RutasFrecuentesDAO;
@@ -56,6 +58,11 @@ public class FabricaBOs implements IFabricaBOs{
 
     //metodos del caso de uso "Solicitar Reservacion"
     @Override
+    public IReservacionNegocio crearReservacionNegocio() {
+        return new ReservacionNegocio();
+    }
+
+    @Override
     public IPasajeroNegocio crearPasajeroNegocio() {
         return new PasajeroNegocio(pasajeroDAO, reservacionDAO);
     }
@@ -65,10 +72,8 @@ public class FabricaBOs implements IFabricaBOs{
     public ICrearRutaFrecuenteNegocio crearRutaFrecuenteNegocio(){
         return new  RutaFrecuenteNegocio(rutaDAO);
     }
-
-    //metodos del caso de uso "Cancelar Viaje"
-    @Override
-    public IAdeudoNegocio crearAdeudoNegocio() {
+    
+     public IAdeudoNegocio crearAdeudoNegocio() {
         return new AdeudoNegocio();
-    }
+     }
 }
