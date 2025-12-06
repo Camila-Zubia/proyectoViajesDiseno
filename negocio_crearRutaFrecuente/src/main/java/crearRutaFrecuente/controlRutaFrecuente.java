@@ -36,7 +36,8 @@ public class controlRutaFrecuente {
     }
 
     //rutas frecc
-    protected void GuardarDatosRutaFrec(String origen, String destino, LocalDate fecha, LocalTime hora) {
+    protected void GuardarDatosRutaFrec(String nombre, String origen, String destino, LocalDate fecha, LocalTime hora) {
+        this.rutaFrecuente.setNombre(nombre);
         this.rutaFrecuente.setOrigen(origen);
         this.rutaFrecuente.setDestino(destino);
         this.rutaFrecuente.setFecha(fecha);
@@ -45,8 +46,7 @@ public class controlRutaFrecuente {
     }
     
     protected List<RutaFrecuenteDTO> obtenerRutaPorConductor(ConductorDTO conductor){
-       // conductorBO.obtenerRutasFrecuentes();
-        return null;
+        return conductorBO.obtenerRutas();
     }
     
     //paradas

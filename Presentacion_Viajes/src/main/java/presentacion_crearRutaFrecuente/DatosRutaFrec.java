@@ -44,7 +44,7 @@ public class DatosRutaFrec extends javax.swing.JPanel {
         fechaHora = new com.github.lgooddatepicker.components.DateTimePicker();
         jLabel1 = new javax.swing.JLabel();
         confirmarViajeBtn = new javax.swing.JButton();
-        regresarMenuVehiculosBtn = new javax.swing.JButton();
+        regresarMenuRutasBtn = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         PrecioTextField = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
@@ -93,12 +93,12 @@ public class DatosRutaFrec extends javax.swing.JPanel {
             }
         });
 
-        regresarMenuVehiculosBtn.setText("Regresar");
-        regresarMenuVehiculosBtn.setBorder(null);
-        regresarMenuVehiculosBtn.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        regresarMenuVehiculosBtn.addActionListener(new java.awt.event.ActionListener() {
+        regresarMenuRutasBtn.setText("Regresar");
+        regresarMenuRutasBtn.setBorder(null);
+        regresarMenuRutasBtn.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        regresarMenuRutasBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                regresarMenuVehiculosBtnActionPerformed(evt);
+                regresarMenuRutasBtnActionPerformed(evt);
             }
         });
 
@@ -124,7 +124,7 @@ public class DatosRutaFrec extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addComponent(regresarMenuVehiculosBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(regresarMenuRutasBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(confirmarViajeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
@@ -176,7 +176,7 @@ public class DatosRutaFrec extends javax.swing.JPanel {
                 .addGap(64, 64, 64)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(confirmarViajeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(regresarMenuVehiculosBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(regresarMenuRutasBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30))
         );
 
@@ -281,10 +281,11 @@ public class DatosRutaFrec extends javax.swing.JPanel {
         controlPantallas.mostrarParadasRuta();
     }//GEN-LAST:event_confirmarViajeBtnActionPerformed
 
-    private void regresarMenuVehiculosBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarMenuVehiculosBtnActionPerformed
+    private void regresarMenuRutasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarMenuRutasBtnActionPerformed
         // TODO add your handling code here:
-        controlPantallas.mostrarMenuRutasFrecuentes();
-    }//GEN-LAST:event_regresarMenuVehiculosBtnActionPerformed
+              controlPantallas.mostrarMenuRutasFrecuentes();
+
+    }//GEN-LAST:event_regresarMenuRutasBtnActionPerformed
 
     private void PrecioTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PrecioTextFieldActionPerformed
         // TODO add your handling code here:
@@ -306,6 +307,6 @@ public class DatosRutaFrec extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField nombreTField;
     private javax.swing.JTextField origenTField1;
-    private javax.swing.JButton regresarMenuVehiculosBtn;
+    private javax.swing.JButton regresarMenuRutasBtn;
     // End of variables declaration//GEN-END:variables
 }
