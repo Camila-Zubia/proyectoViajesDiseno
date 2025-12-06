@@ -24,7 +24,7 @@ import javax.swing.SwingConstants;
  *
  * @author adell
  */
-public class DatosParadasRuta extends javax.swing.JPanel {
+public class DatosParadas extends javax.swing.JPanel {
 
     private final IControlPantallas controlPantallas;
     private List paradas;
@@ -32,7 +32,7 @@ public class DatosParadasRuta extends javax.swing.JPanel {
     /**
      * Creates new form DatosParadas
      */
-    public DatosParadasRuta(IControlPantallas controlPantallas, List paradas) {
+    public DatosParadas(IControlPantallas controlPantallas, List paradas) {
         initComponents();
         this.controlPantallas = controlPantallas;
         this.paradas = paradas;
@@ -100,9 +100,9 @@ public class DatosParadasRuta extends javax.swing.JPanel {
             }
         });
 
+        confirmarViajeBtn.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         confirmarViajeBtn.setText("Confirmar Viaje");
         confirmarViajeBtn.setBorder(null);
-        confirmarViajeBtn.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         confirmarViajeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 confirmarViajeBtnActionPerformed(evt);
@@ -220,7 +220,7 @@ public class DatosParadasRuta extends javax.swing.JPanel {
 
             // Registrar el viaje con todos los datos guardados
             if (!paradas.isEmpty()) {
-                controlPantallas.ConfirmarRuta();
+                controlPantallas.confirmarViaje();
 
                 JOptionPane.showMessageDialog(this,
                         "Viaje registrado exitosamente",
@@ -228,7 +228,7 @@ public class DatosParadasRuta extends javax.swing.JPanel {
                         JOptionPane.INFORMATION_MESSAGE);
 
                 // Mostrar menú conductor
-                controlPantallas.mostrarMenuRutasFrecuentes();
+                controlPantallas.mostrarMenuConductor();
             } else {
                 JOptionPane.showMessageDialog(this,
                         "Error no hay paradas registradas",

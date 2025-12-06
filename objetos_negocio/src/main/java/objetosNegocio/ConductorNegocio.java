@@ -69,8 +69,9 @@ public class ConductorNegocio implements IConductorNegocio{
             throw new IllegalStateException("Error al obtener viajes de la base de datos: " + e.getMessage());
         }
     }
+
     
-    @Override
+    //@Override
     public List<RutaFrecuenteDTO> obtenerRutas(){
          try {
             ObjectId conductorId = new ObjectId(SesionUsuario.obtenerConductor().getId());
@@ -84,4 +85,7 @@ public class ConductorNegocio implements IConductorNegocio{
         }
     
     }
+    
+    
+
 }

@@ -3,6 +3,7 @@ package adaptadores;
 
 import dto.ParadaDTO;
 import org.base_datos_viajes.model.Parada;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -22,6 +23,13 @@ public class adaptadorParada {
             dto.getDirección(),
             dto.getPrecio()
         );
+
+        if (dto.getId() != null && !dto.getId().isBlank()) {
+            entidad.setId(new ObjectId(dto.getId()));
+        }else{
+            entidad.setId(new ObjectId());
+        }
+
         return entidad;
     }
 }
