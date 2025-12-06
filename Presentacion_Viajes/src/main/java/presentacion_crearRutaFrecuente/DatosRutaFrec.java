@@ -14,8 +14,9 @@ import javax.swing.JOptionPane;
  * @author adell
  */
 public class DatosRutaFrec extends javax.swing.JPanel {
-    
+
     private final IControlPantallas controlPantallas;
+
     /**
      * Creates new form DatosRutaFrec
      */
@@ -35,7 +36,7 @@ public class DatosRutaFrec extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        origenTField = new javax.swing.JTextField();
+        nombreTField = new javax.swing.JTextField();
         destinoTField = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -43,9 +44,11 @@ public class DatosRutaFrec extends javax.swing.JPanel {
         fechaHora = new com.github.lgooddatepicker.components.DateTimePicker();
         jLabel1 = new javax.swing.JLabel();
         confirmarViajeBtn = new javax.swing.JButton();
-        regresarMenuVehiculosBtn = new javax.swing.JButton();
+        regresarMenuRutasBtn = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         PrecioTextField = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        origenTField1 = new javax.swing.JTextField();
 
         jPanel1.setBackground(new java.awt.Color(0, 109, 182));
         jPanel1.setPreferredSize(new java.awt.Dimension(1080, 640));
@@ -77,7 +80,7 @@ public class DatosRutaFrec extends javax.swing.JPanel {
         fechaHora.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("VIAJE");
+        jLabel1.setText("RUTA");
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
 
@@ -90,12 +93,12 @@ public class DatosRutaFrec extends javax.swing.JPanel {
             }
         });
 
-        regresarMenuVehiculosBtn.setText("Regresar");
-        regresarMenuVehiculosBtn.setBorder(null);
-        regresarMenuVehiculosBtn.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        regresarMenuVehiculosBtn.addActionListener(new java.awt.event.ActionListener() {
+        regresarMenuRutasBtn.setText("Regresar");
+        regresarMenuRutasBtn.setBorder(null);
+        regresarMenuRutasBtn.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        regresarMenuRutasBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                regresarMenuVehiculosBtnActionPerformed(evt);
+                regresarMenuRutasBtnActionPerformed(evt);
             }
         });
 
@@ -110,51 +113,59 @@ public class DatosRutaFrec extends javax.swing.JPanel {
             }
         });
 
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel6.setText("Nombre:");
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addComponent(regresarMenuVehiculosBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(regresarMenuRutasBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(confirmarViajeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(165, 165, 165)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel5))
+                .addGap(33, 33, 33)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(165, 165, 165)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel5))
-                        .addGap(33, 33, 33)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(origenTField, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(destinoTField, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(fechaHora, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(PrecioTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(333, 333, 333)
-                        .addComponent(jLabel1)))
+                    .addComponent(nombreTField, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(destinoTField, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fechaHora, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PrecioTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(origenTField1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(112, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(41, 41, 41)
+                .addGap(31, 31, 31)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(nombreTField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel3)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(origenTField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
-                        .addGap(26, 26, 26)
-                        .addComponent(destinoTField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                            .addComponent(jLabel2)
+                            .addComponent(origenTField1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(11, 11, 11)
+                        .addComponent(destinoTField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(PrecioTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -165,7 +176,7 @@ public class DatosRutaFrec extends javax.swing.JPanel {
                 .addGap(64, 64, 64)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(confirmarViajeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(regresarMenuVehiculosBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(regresarMenuRutasBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30))
         );
 
@@ -199,8 +210,8 @@ public class DatosRutaFrec extends javax.swing.JPanel {
 
     private void confirmarViajeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarViajeBtnActionPerformed
         // Validar y guardar los datos del viaje antes de continuar
-
-        String origen = origenTField.getText().trim();
+        String nombre = nombreTField.getText().trim();
+        String origen = origenTField1.getText().trim();
         String destino = destinoTField.getText().trim();
         LocalDate fecha = fechaHora.getDatePicker().getDate();
         LocalTime hora = fechaHora.getTimePicker().getTime();
@@ -209,26 +220,26 @@ public class DatosRutaFrec extends javax.swing.JPanel {
         double precioBase;
         if (precioStr.isEmpty()) {
             JOptionPane.showMessageDialog(this,
-                "Por favor ingrese un precio.",
-                "Campo Requerido",
-                JOptionPane.WARNING_MESSAGE);
+                    "Por favor ingrese un precio.",
+                    "Campo Requerido",
+                    JOptionPane.WARNING_MESSAGE);
             return;
         }
         try {
             precioBase = Double.parseDouble(precioStr);
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this,
-                "El precio debe ser un numero valido.",
-                "Error de Formato",
-                JOptionPane.ERROR_MESSAGE);
+                    "El precio debe ser un numero valido.",
+                    "Error de Formato",
+                    JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         if (origen.isEmpty() || destino.isEmpty()) {
             JOptionPane.showMessageDialog(this,
-                "Por favor complete todos los campos",
-                "Campos incompletos",
-                JOptionPane.WARNING_MESSAGE);
+                    "Por favor complete todos los campos",
+                    "Campos incompletos",
+                    JOptionPane.WARNING_MESSAGE);
             return;
         }
 
@@ -247,32 +258,34 @@ public class DatosRutaFrec extends javax.swing.JPanel {
         // Validar fecha y hora
         if (fechaHora.getDateTimeStrict() == null) {
             JOptionPane.showMessageDialog(this,
-                "Por favor seleccione una fecha y hora válida",
-                "Fecha inválida",
-                JOptionPane.WARNING_MESSAGE);
+                    "Por favor seleccione una fecha y hora válida",
+                    "Fecha inválida",
+                    JOptionPane.WARNING_MESSAGE);
             return;
         }
 
         // Validar que la fecha no sea en el pasado
         if (fechaHora.getDateTimeStrict().isBefore(java.time.LocalDateTime.now())) {
             JOptionPane.showMessageDialog(this,
-                "La fecha y hora del viaje no puede ser en el pasado",
-                "Fecha inválida",
-                JOptionPane.WARNING_MESSAGE);
+                    "La fecha y hora del viaje no puede ser en el pasado",
+                    "Fecha inválida",
+                    JOptionPane.WARNING_MESSAGE);
             return;
         }
 
         // Guardar los datos del viaje temporalmente (precio base 0, se calcula después)
-        controlPantallas.guardarDatosViaje(origen, destino, fecha, hora, precioBase);
+        controlPantallas.GuardarDatosRutaFrec(nombre,origen, destino, fecha, hora);
 
         // Navegar a la siguiente pantalla
-        controlPantallas.mostrarDatosParada();
+        controlPantallas.agregarParadaRuta(origen, precioBase);
+        controlPantallas.mostrarParadasRuta();
     }//GEN-LAST:event_confirmarViajeBtnActionPerformed
 
-    private void regresarMenuVehiculosBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarMenuVehiculosBtnActionPerformed
+    private void regresarMenuRutasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarMenuRutasBtnActionPerformed
         // TODO add your handling code here:
-        controlPantallas.mostrarMenuVehiculos();
-    }//GEN-LAST:event_regresarMenuVehiculosBtnActionPerformed
+              controlPantallas.mostrarMenuRutasFrecuentes();
+
+    }//GEN-LAST:event_regresarMenuRutasBtnActionPerformed
 
     private void PrecioTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PrecioTextFieldActionPerformed
         // TODO add your handling code here:
@@ -289,9 +302,11 @@ public class DatosRutaFrec extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField origenTField;
-    private javax.swing.JButton regresarMenuVehiculosBtn;
+    private javax.swing.JTextField nombreTField;
+    private javax.swing.JTextField origenTField1;
+    private javax.swing.JButton regresarMenuRutasBtn;
     // End of variables declaration//GEN-END:variables
 }

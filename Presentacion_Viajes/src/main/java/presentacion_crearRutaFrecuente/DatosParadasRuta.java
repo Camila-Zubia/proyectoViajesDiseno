@@ -24,7 +24,7 @@ import javax.swing.SwingConstants;
  *
  * @author adell
  */
-public class DatosParadas extends javax.swing.JPanel {
+public class DatosParadasRuta extends javax.swing.JPanel {
 
     private final IControlPantallas controlPantallas;
     private List paradas;
@@ -32,7 +32,7 @@ public class DatosParadas extends javax.swing.JPanel {
     /**
      * Creates new form DatosParadas
      */
-    public DatosParadas(IControlPantallas controlPantallas, List paradas) {
+    public DatosParadasRuta(IControlPantallas controlPantallas, List paradas) {
         initComponents();
         this.controlPantallas = controlPantallas;
         this.paradas = paradas;
@@ -81,15 +81,15 @@ public class DatosParadas extends javax.swing.JPanel {
             .addGap(0, 173, Short.MAX_VALUE)
         );
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("Direccion:");
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("Precio:");
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
 
         agregarParadaBtn.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         agregarParadaBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/boton.jpg"))); // NOI18N
@@ -100,18 +100,18 @@ public class DatosParadas extends javax.swing.JPanel {
             }
         });
 
-        confirmarViajeBtn.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         confirmarViajeBtn.setText("Confirmar Viaje");
         confirmarViajeBtn.setBorder(null);
+        confirmarViajeBtn.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         confirmarViajeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 confirmarViajeBtnActionPerformed(evt);
             }
         });
 
+        jLabel3.setText("PARADAS REGISTRADAS");
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("PARADAS REGISTRADAS");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -220,7 +220,7 @@ public class DatosParadas extends javax.swing.JPanel {
 
             // Registrar el viaje con todos los datos guardados
             if (!paradas.isEmpty()) {
-                controlPantallas.confirmarViaje();
+                controlPantallas.ConfirmarRuta();
 
                 JOptionPane.showMessageDialog(this,
                         "Viaje registrado exitosamente",
@@ -228,7 +228,7 @@ public class DatosParadas extends javax.swing.JPanel {
                         JOptionPane.INFORMATION_MESSAGE);
 
                 // Mostrar menú conductor
-                controlPantallas.mostrarMenuConductor();
+                controlPantallas.mostrarMenuRutasFrecuentes();
             } else {
                 JOptionPane.showMessageDialog(this,
                         "Error no hay paradas registradas",
@@ -272,7 +272,7 @@ public class DatosParadas extends javax.swing.JPanel {
         if (!direccion.isEmpty() && !precioStr.isEmpty()) {
             try {
                 double precio = Double.parseDouble(precioStr);
-                controlPantallas.agregarParada(direccion, precio);
+                controlPantallas.agregarParadaRuta(direccion, precio);
                 direccionTField.setText("");
                 precioTField.setText("");
 
