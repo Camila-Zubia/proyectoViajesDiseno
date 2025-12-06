@@ -6,8 +6,20 @@ package presentacion_crearRutaFrecuente;
 
 import Controles.IControlPantallas;
 import dto.VehiculoDTO;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.HeadlessException;
 import java.util.List;
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.SwingConstants;
 
 /**
  *
@@ -21,12 +33,16 @@ public class SeleccionarVehiculoRuta extends javax.swing.JPanel {
 
     /**
      * Creates new form SeleccionarVehiculoRuta
+     *
+     * @param controlPantallas
+     * @param vehiculos
      */
     public SeleccionarVehiculoRuta(IControlPantallas controlPantallas, List vehiculos) {
         this.controlPantallas = controlPantallas;
         this.vehiculos = vehiculos;
 
         initComponents();
+        mostrarVehiculos(vehiculos);
     }
 
     /**
@@ -134,7 +150,57 @@ public class SeleccionarVehiculoRuta extends javax.swing.JPanel {
         controlPantallas.seleccionarVehiculo(this.vehiculoSeleccionadoDTO);
         controlPantallas.mostrarDatosViaje();
     }//GEN-LAST:event_siguienteTFieldActionPerformed
+    private void mostrarVehiculos(List listaVehiculos) {
+        try {
+            if (listaVehiculos != null) {
 
+                JPanel panelInterno = new JPanel();
+                panelInterno.setLayout(new BoxLayout(panelInterno, BoxLayout.Y_AXIS));
+                panelInterno.setPreferredSize(new Dimension(740, listaVehiculos.size() * 50));
+                panelInterno.setBackground(Color.WHITE);
+                for (Object vehiculo : listaVehiculos) {
+                    JPanel panelElemento = new JPanel();
+                    panelElemento.setLayout(new BoxLayout(panelElemento, BoxLayout.X_AXIS));
+                    panelElemento.setPreferredSize(new Dimension(740, 50));
+                    panelElemento.setMaximumSize(new Dimension(740, 50));
+                    panelElemento.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+                    panelElemento.setBackground(new Color(255, 255, 255));
+
+                    JButton btnInfo = new JButton();
+                    btnInfo.setFont(new Font("Dialog", Font.PLAIN, 14));
+                    btnInfo.setBackground(Color.WHITE);
+                    btnInfo.setAlignmentX(Component.CENTER_ALIGNMENT);
+                    btnInfo.setHorizontalAlignment(SwingConstants.CENTER);
+                    btnInfo.setPreferredSize(new Dimension(700, 40));
+                    btnInfo.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
+                    btnInfo.setText(vehiculo.toString().formatted());
+                    btnInfo.addActionListener(e -> {
+                        this.vehiculoSeleccionadoDTO = (dto.VehiculoDTO) vehiculo;
+                    });
+
+                    panelElemento.add(btnInfo);
+                    panelInterno.add(panelElemento);
+                }
+                JScrollPane scrollPane = new JScrollPane(panelInterno);
+                scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+                scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+                scrollPane.setPreferredSize(new Dimension(770, 362));
+                scrollPane.setBackground(Color.WHITE);
+                panelContenedorVehiculos.removeAll();
+                panelContenedorVehiculos.setLayout(new BorderLayout());
+                panelContenedorVehiculos.add(scrollPane, BorderLayout.CENTER);
+                panelContenedorVehiculos.revalidate();
+                panelContenedorVehiculos.repaint();
+            } else {
+                JOptionPane.showMessageDialog(this, "No hay vehiculos registrados");
+            }
+        } catch (HeadlessException e) {
+            JOptionPane.showMessageDialog(this,
+                    "Error al cargar vehículos: " + e.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;

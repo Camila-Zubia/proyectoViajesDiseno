@@ -102,6 +102,8 @@ public interface IControlPantallas {
     public RutaFrecuenteDTO ConfirmarRuta();
     
     public void mostrarMenuRutasFrecuentes();
+    
+    public void mostrarSeleccionarVehiculoRuta();
 
     // Métodos para cancelar viaje
     public void mostrarDetallesViaje();

@@ -171,6 +171,8 @@ public class MenuRutasFrecuentes extends javax.swing.JPanel {
                     btnInfo.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
                     btnInfo.setText(ruta.toString());
                     btnInfo.addActionListener(e -> {
+                        
+                        
                         this.RutaFrecuenteSeleccionadaDTO = (dto.RutaFrecuenteDTO) ruta;
                         String origen = RutaFrecuenteSeleccionadaDTO.getOrigen();
                         String destino = RutaFrecuenteSeleccionadaDTO.getDestino();
@@ -188,8 +190,7 @@ public class MenuRutasFrecuentes extends javax.swing.JPanel {
 
                         }
                         
-                        controlPantallas.seleccionarVehiculoRuta(vehiculo);
-
+                        controlPantallas.mostrarSeleccionarVehiculoRuta();
                     });
                     panelElemento.add(btnInfo);
                     panelInterno.add(panelElemento);

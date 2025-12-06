@@ -25,6 +25,7 @@ presentacion_crearRutaFrecuente\DatosRutaFrec$1.class
 presentacion\datosViaje.class
 presentacion\menuPrincipalConductor.class
 presentacion_crearRutaFrecuente\DatosParadasRuta$1.class
+presentacion_crearRutaFrecuente\SeleccionarVehiculoRuta$1.class
 presentacion\FramePrincipal$2.class
 presentacion\detallesViaje.class
 presentacion_cancelarReservacion\cancelarReservacion.class
@@ -55,3 +56,4 @@ presentacion_crearRutaFrecuente\MenuRutasFrecuentes$1.class
 presentacion\detallesViaje$1.class
 presentacion\datosParadas$2.class
 presentacion\iniciarSesion$2.class
+presentacion_crearRutaFrecuente\SeleccionarVehiculoRuta.class
