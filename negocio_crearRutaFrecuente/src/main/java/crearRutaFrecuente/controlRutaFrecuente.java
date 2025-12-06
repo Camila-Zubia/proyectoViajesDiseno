@@ -67,7 +67,7 @@ public class controlRutaFrecuente {
     protected RutaFrecuenteDTO confirmaRuta() {
         double contador = 0;
         for (ParadaDTO p : paradasTemp) {
-            contador = p.getPrecio() + p.getPrecio();
+            contador +=  p.getPrecio();
         }
         rutaFrecuente.setPrecioTotal(contador);
         rutaFrecuente.setParadas(paradasTemp);
