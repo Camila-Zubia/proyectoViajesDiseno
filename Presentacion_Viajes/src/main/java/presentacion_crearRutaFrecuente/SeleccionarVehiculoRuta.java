@@ -148,7 +148,7 @@ public class SeleccionarVehiculoRuta extends javax.swing.JPanel {
         }
 
         controlPantallas.seleccionarVehiculo(this.vehiculoSeleccionadoDTO);
-        controlPantallas.mostrarDatosViaje();
+        controlPantallas.confirmarViaje();
     }//GEN-LAST:event_siguienteTFieldActionPerformed
     private void mostrarVehiculos(List listaVehiculos) {
         try {
