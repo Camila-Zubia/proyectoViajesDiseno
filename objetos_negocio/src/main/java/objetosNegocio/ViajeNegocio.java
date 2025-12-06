@@ -6,12 +6,10 @@ package objetosNegocio;
 
 import adaptadores.adaptadorViaje;
 import dto.ParadaDTO;
-import dto.PasajeroDTO;
 import dto.ReservacionDTO;
 import dto.ViajeDTO;
 import interfaces.IViajeNegocio;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -31,23 +29,22 @@ import utilidades.SesionUsuario;
  *
  * @author Camila Zubia 00000244825
  */
-public class ViajeNegocio implements IViajeNegocio {
-
-    private final ViajeDAO viajeDAO;
+public class ViajeNegocio implements IViajeNegocio{
+    private final ViajeDAO viajeDAO;  
     private final IConductorDAO conductorDAO;
-    private final IReservacionDAO reservacionDAO;
-
+    private final IReservacionDAO reservacionDAO;  
+    
     public ViajeNegocio(ViajeDAO viajeDAO, IConductorDAO conductorDAO) {
         this.viajeDAO = viajeDAO;
         this.conductorDAO = conductorDAO;
         this.reservacionDAO = new ReservacionDAO();
     }
-
+    
     @Override
-    public void registrarViaje(ViajeDTO viaje) {
+    public void registrarViaje(ViajeDTO viaje){
         try {
             ObjectId idConductor = new ObjectId(SesionUsuario.obtenerConductor().getId());
-
+            
             // Buscar Conductor en BD para obtener el id del vehiculo 
             Optional<Conductor> optionalConductor = conductorDAO.findById(idConductor);
             if (!optionalConductor.isPresent()) {
@@ -56,10 +53,13 @@ public class ViajeNegocio implements IViajeNegocio {
 
             // Filtra y obtiene el ObjectId del vehiculo
             ObjectId idVehiculo = optionalConductor.get().getVehiculos().stream()
+             
                     .filter(v -> v.getPlacas().equals(viaje.getVehiculo().getPlacas()))
                     .findFirst()
                     .map(Vehiculo::getId) // usa el ID del Vehiculo Eque fue persistido
                     .orElseThrow(() -> new IllegalStateException("Vehiculo seleccionado no tiene ID de persistencia."));
+            
+            
 
             // Validar no existencia
             if (!validarNoExisteBD(viaje, idConductor)) {
@@ -68,26 +68,26 @@ public class ViajeNegocio implements IViajeNegocio {
 
             // Mapear DTO a entidad
             Viaje viajeEntidad = adaptadorViaje.toEntity(viaje, idConductor, idVehiculo);
-
+            
             // Guardar la entidad en la BD 
-            viajeDAO.save(viajeEntidad);
-
+            viajeDAO.save(viajeEntidad); 
+            
         } catch (DatabaseException | IllegalStateException e) {
             throw new IllegalStateException("Error al registrar viaje: " + e.getMessage());
         }
     }
-
+    
     @Override
-    public List<ParadaDTO> obtenerParadas(ViajeDTO viaje) {
+    public List<ParadaDTO> obtenerParadas(ViajeDTO viaje){
         return viaje.getParadas();
     }
-
+    
     @Override
-    public void registrarParada(ViajeDTO viaje, ParadaDTO parada) {
+    public void registrarParada(ViajeDTO viaje, ParadaDTO parada){
         viaje.getParadas().add(parada);
     }
-
-    private boolean validarNoExiste(List<ViajeDTO> viajes, ViajeDTO viaje) {
+    
+    private boolean validarNoExiste(List<ViajeDTO> viajes, ViajeDTO viaje){
         for (ViajeDTO v : viajes) {
             if (v == viaje) {
                 return false;
@@ -95,17 +95,17 @@ public class ViajeNegocio implements IViajeNegocio {
         }
         return true;
     }
-
+    
     private boolean validarNoExisteBD(ViajeDTO viaje, ObjectId idConductor) throws DatabaseException {
 
         List<Viaje> viajesExistentes = conductorDAO.obtenerViajes(idConductor.toHexString());
         //comparamos la fecha y hora del viaje
         return viajesExistentes.stream().noneMatch(v -> {
-            return v.getFecha().equals(viaje.getFecha())
-                    && v.getHora().equals(viaje.getHora());
-        });
+        return v.getFecha().equals(viaje.getFecha()) 
+            && v.getHora().equals(viaje.getHora());
+    });
     }
-
+    
     // metodos para el caso de Solicitar Reservación
     @Override
     public List<ViajeDTO> obtenerTodosLosViajesDisponibles() {
@@ -141,58 +141,6 @@ public class ViajeNegocio implements IViajeNegocio {
 
         } catch (Exception e) {
             throw new IllegalStateException("Error al obtener reservaciones del viaje: " + e.getMessage());
-        }
-    }
-
-    public ViajeDTO obtenerDetalleViaje(String idViaje) {
-        try {
-            Optional<Viaje> optionalViaje = viajeDAO.findById(new ObjectId(idViaje));
-
-            if (!optionalViaje.isPresent()) {
-                return null;
-            }
-
-            return adaptadorViaje.toDTO(optionalViaje.get());
-        } catch (Exception e) {
-            throw new RuntimeException("Error al obtener detalles del viaje: " + e.getMessage(), e);
-        }
-    }
-
-    public List<PasajeroDTO> obtenerPasajeros(String idViaje) {
-        try {
-            Optional<Viaje> optionalViaje = viajeDAO.findById(new ObjectId(idViaje));
-
-            if (!optionalViaje.isPresent() || optionalViaje.get().getParadas() == null) {
-                return new ArrayList<>();
-            }
-
-            // Por ahora retornar lista vacía
-            // En el futuro, cuando exista relación Viaje->Reservaciones->Pasajeros
-            return new ArrayList<>();
-        } catch (Exception e) {
-            throw new RuntimeException("Error al obtener pasajeros: " + e.getMessage(), e);
-        
-        }
-    }
-    
-    public boolean eliminarViaje(String idViaje) {
-        try {
-            // Obtener el viaje de la base de datos
-            Optional<Viaje> optionalViaje = viajeDAO.findById(new ObjectId(idViaje));
-
-            if (!optionalViaje.isPresent()) {
-                return false;
-            }
-
-            Viaje viaje = optionalViaje.get();
-
-            // Marcar como inactivo en lugar de eliminar
-            viaje.setEstaActivo(false);
-            viajeDAO.update(viaje);
-
-            return true;
-        } catch (Exception e) {
-            throw new RuntimeException("Error al eliminar viaje: " + e.getMessage(), e);
         }
     }
 
