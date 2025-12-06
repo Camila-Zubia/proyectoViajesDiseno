@@ -14,9 +14,8 @@ import javax.swing.JOptionPane;
  * @author adell
  */
 public class DatosRutaFrec extends javax.swing.JPanel {
-
+    
     private final IControlPantallas controlPantallas;
-
     /**
      * Creates new form DatosRutaFrec
      */
@@ -201,8 +200,6 @@ public class DatosRutaFrec extends javax.swing.JPanel {
     private void confirmarViajeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarViajeBtnActionPerformed
         // Validar y guardar los datos del viaje antes de continuar
 
-        String nombre = origenTField.getText().trim();
-
         String origen = origenTField.getText().trim();
         String destino = destinoTField.getText().trim();
         LocalDate fecha = fechaHora.getDatePicker().getDate();
@@ -212,26 +209,26 @@ public class DatosRutaFrec extends javax.swing.JPanel {
         double precioBase;
         if (precioStr.isEmpty()) {
             JOptionPane.showMessageDialog(this,
-                    "Por favor ingrese un precio.",
-                    "Campo Requerido",
-                    JOptionPane.WARNING_MESSAGE);
+                "Por favor ingrese un precio.",
+                "Campo Requerido",
+                JOptionPane.WARNING_MESSAGE);
             return;
         }
         try {
             precioBase = Double.parseDouble(precioStr);
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this,
-                    "El precio debe ser un numero valido.",
-                    "Error de Formato",
-                    JOptionPane.ERROR_MESSAGE);
+                "El precio debe ser un numero valido.",
+                "Error de Formato",
+                JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         if (origen.isEmpty() || destino.isEmpty()) {
             JOptionPane.showMessageDialog(this,
-                    "Por favor complete todos los campos",
-                    "Campos incompletos",
-                    JOptionPane.WARNING_MESSAGE);
+                "Por favor complete todos los campos",
+                "Campos incompletos",
+                JOptionPane.WARNING_MESSAGE);
             return;
         }
 
@@ -250,28 +247,22 @@ public class DatosRutaFrec extends javax.swing.JPanel {
         // Validar fecha y hora
         if (fechaHora.getDateTimeStrict() == null) {
             JOptionPane.showMessageDialog(this,
-                    "Por favor seleccione una fecha y hora válida",
-                    "Fecha inválida",
-                    JOptionPane.WARNING_MESSAGE);
+                "Por favor seleccione una fecha y hora válida",
+                "Fecha inválida",
+                JOptionPane.WARNING_MESSAGE);
             return;
         }
 
         // Validar que la fecha no sea en el pasado
         if (fechaHora.getDateTimeStrict().isBefore(java.time.LocalDateTime.now())) {
             JOptionPane.showMessageDialog(this,
-                    "La fecha y hora del viaje no puede ser en el pasado",
-                    "Fecha inválida",
-                    JOptionPane.WARNING_MESSAGE);
+                "La fecha y hora del viaje no puede ser en el pasado",
+                "Fecha inválida",
+                JOptionPane.WARNING_MESSAGE);
             return;
         }
 
         // Guardar los datos del viaje temporalmente (precio base 0, se calcula después)
-        controlPantallas.GuardarDatosRutaFrec(nombre, origen, destino, fecha, hora);
-
-        // Navegar a la siguiente pantalla
-        controlPantallas.agregarParadaRuta(origen, precioBase);
-        controlPantallas.mostrarParadasRuta();
-
         controlPantallas.guardarDatosViaje(origen, destino, fecha, hora, precioBase);
 
         // Navegar a la siguiente pantalla
