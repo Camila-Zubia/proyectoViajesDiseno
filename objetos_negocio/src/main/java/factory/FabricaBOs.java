@@ -19,6 +19,8 @@ import org.base_datos_viajes.dao.impl.ConductorDAO;
 import org.base_datos_viajes.dao.impl.UsuarioDAO;
 import org.base_datos_viajes.dao.impl.ViajeDAO;
 import interface_crearRutaFrecuente.ICrearRutaFrecuenteNegocio;
+import interfaces_editarViaje.IEditarViajeNegocio;
+import objetosNegocio_editarViaje.EditarViajeNegocio;
 import org.base_datos_viajes.dao.impl.PasajeroDAO;
 import org.base_datos_viajes.dao.impl.ReservacionDAO;
 import org.base_datos_viajes.dao.impl.RutasFrecuentesDAO;
@@ -70,5 +72,11 @@ public class FabricaBOs implements IFabricaBOs{
     @Override
     public IAdeudoNegocio crearAdeudoNegocio() {
         return new AdeudoNegocio();
+    }
+
+    //metodos del caso de uso editar viaje
+    @Override
+    public IEditarViajeNegocio crearEditarViajeNegocio() {
+       return new EditarViajeNegocio(viajeDAO, reservacionDAO); 
     }
 }

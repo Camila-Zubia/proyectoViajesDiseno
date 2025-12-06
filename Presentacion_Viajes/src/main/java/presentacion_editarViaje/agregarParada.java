@@ -192,7 +192,7 @@ public class agregarParada extends javax.swing.JPanel {
             // Llama a la capa de control para guardar la parada temporal
             controlPantallas.agregarParadaEnEdicionTemporal(direccion, precio);
 
-            // 3. Regresa a la pantalla de edicion de paradas
+            // Regresa a la pantalla de edicion de paradas
            controlPantallas.mostrarEditarParadas();
            
 

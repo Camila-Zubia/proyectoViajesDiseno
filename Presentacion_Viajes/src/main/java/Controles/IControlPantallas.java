@@ -113,5 +113,9 @@ public interface IControlPantallas {
     public void guardarCambiosViaje(ViajeDTO viajeModificado);
 
     public void agregarParadaEnEdicionTemporal(String direccion, double precio);
+    
+    public ViajeDTO confirmarEdicion();
+    
+    public boolean validarEdicionSegura();
 
 }
