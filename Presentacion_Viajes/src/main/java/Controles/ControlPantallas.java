@@ -305,15 +305,20 @@ public class ControlPantallas implements IControlPantallas {
         MenuRutasFrecuentes menuRutas = new MenuRutasFrecuentes(this, RutasFrecuentes);
         configurarPanel(menuRutas);
     }
-    
-     public void mostrarSeleccionarVehiculoRuta() {
+
+    @Override
+    public void mostrarSeleccionarVehiculoRuta() {
         UsuarioDTO usuario = sesion.obtenerUsuario();
         List vehiculos = interfazRegistrarViaje.obtenerVehiculosDisponibles(usuario.getConductor());
         SeleccionarVehiculoRuta menuVehiculos = new SeleccionarVehiculoRuta(this, vehiculos);
         configurarPanel(menuVehiculos);
     }
 
-    
+    public ViajeDTO getViajeTemporal() {
+
+        return interfazRegistrarViaje.getViajeTemporal();
+    }
+
     @Override
     public void GuardarDatosRutaFrec(String nombre, String origen, String destino, LocalDate fecha, LocalTime hora) {
         interfazCrearRutaFrecuente.GuardarDatosRutaFrec(nombre, origen, destino, fecha, hora);
@@ -340,16 +345,16 @@ public class ControlPantallas implements IControlPantallas {
     public RutaFrecuenteDTO ConfirmarRuta() {
         return interfazCrearRutaFrecuente.confirmaRuta();
     }
-    
-    
-    
+
     // Métodos para cancelar viaje
     @Override
     public void mostrarDetallesViaje() {
         ViajeDTO viaje = obtenerViajeTemporal();
         detallesViaje detalles = new detallesViaje(this, viaje);
         configurarPanel(detalles);
-    };
+    }
+
+    ;
 
     @Override
     public ViajeDTO obtenerViajeTemporal() {
@@ -393,7 +398,7 @@ public class ControlPantallas implements IControlPantallas {
 
     @Override
     public void mostrarEditarParadas() {
-       ViajeDTO viaje = obtenerViajeParaEdicion();
+        ViajeDTO viaje = obtenerViajeParaEdicion();
         presentacion_editarViaje.editarParada panel = new presentacion_editarViaje.editarParada(this);
         configurarPanel(panel);
     }
@@ -412,25 +417,24 @@ public class ControlPantallas implements IControlPantallas {
     @Override
     public void actualizarParadasViaje(List<ParadaDTO> paradas) {
         // Actualizamos la lista de paradas en el DTO temporal en la Fachada
-           interfazEditarViaje.guardarParadasTemporales(paradas);
-        }
-    
+        interfazEditarViaje.guardarParadasTemporales(paradas);
+    }
 
     @Override
     public void agregarParadaEnEdicionTemporal(String direccion, double precio) {
         ViajeDTO viaje = interfazEditarViaje.obtenerViajeTemporal();
         if (viaje != null) {
-             ParadaDTO nuevaParada = new ParadaDTO(direccion, precio);
-             List<ParadaDTO> paradas = viaje.getParadas() != null ? viaje.getParadas() : new ArrayList<>();
-             paradas.add(nuevaParada);
-             interfazEditarViaje.guardarParadasTemporales(paradas);
+            ParadaDTO nuevaParada = new ParadaDTO(direccion, precio);
+            List<ParadaDTO> paradas = viaje.getParadas() != null ? viaje.getParadas() : new ArrayList<>();
+            paradas.add(nuevaParada);
+            interfazEditarViaje.guardarParadasTemporales(paradas);
         }
     }
 
     @Override
     public void guardarCambiosViaje(ViajeDTO viajeModificado) {
         interfazEditarViaje.guardarDatosGenerales(viajeModificado);
-        }
+    }
 
     @Override
     public ViajeDTO confirmarEdicion() {
@@ -439,6 +443,6 @@ public class ControlPantallas implements IControlPantallas {
 
     @Override
     public boolean validarEdicionSegura() {
-         return interfazEditarViaje.validarEdicionSegura();
+        return interfazEditarViaje.validarEdicionSegura();
     }
-    }
+}

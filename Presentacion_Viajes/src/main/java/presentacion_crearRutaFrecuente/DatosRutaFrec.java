@@ -209,7 +209,7 @@ public class DatosRutaFrec extends javax.swing.JPanel {
     }//GEN-LAST:event_destinoTFieldActionPerformed
 
     private void confirmarViajeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarViajeBtnActionPerformed
-        // Validar y guardar los datos del viaje antes de continuar
+       
         String nombre = nombreTField.getText().trim();
         String origen = origenTField1.getText().trim();
         String destino = destinoTField.getText().trim();
@@ -267,7 +267,7 @@ public class DatosRutaFrec extends javax.swing.JPanel {
         // Validar que la fecha no sea en el pasado
         if (fechaHora.getDateTimeStrict().isBefore(java.time.LocalDateTime.now())) {
             JOptionPane.showMessageDialog(this,
-                    "La fecha y hora del viaje no puede ser en el pasado",
+                    "La fecha y hora de la ruta no puede ser en el pasado",
                     "Fecha inválida",
                     JOptionPane.WARNING_MESSAGE);
             return;

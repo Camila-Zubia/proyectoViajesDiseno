@@ -58,5 +58,11 @@ public class RegistrarViaje implements IRegistrarViaje{
     public List<ParadaDTO> obtenerParadasTemporales() {
         return control.obtenerParadasTemporales();
     }
-
+    
+    @Override
+    public ViajeDTO getViajeTemporal() {
+        return control.getViajeTemporal();
+    }
+    
+    
 }

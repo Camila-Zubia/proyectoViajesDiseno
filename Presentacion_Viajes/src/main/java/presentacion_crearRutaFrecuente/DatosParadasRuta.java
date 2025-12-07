@@ -56,7 +56,7 @@ public class DatosParadasRuta extends javax.swing.JPanel {
         precioTField = new javax.swing.JTextField();
         direccionTField = new javax.swing.JTextField();
         agregarParadaBtn = new javax.swing.JButton();
-        confirmarViajeBtn = new javax.swing.JButton();
+        confirmarRutaBtn = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(1080, 640));
@@ -81,15 +81,15 @@ public class DatosParadasRuta extends javax.swing.JPanel {
             .addGap(0, 173, Short.MAX_VALUE)
         );
 
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel1.setText("Direccion:");
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel1.setText("Direccion:");
 
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel2.setText("Precio:");
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel2.setText("Precio:");
 
         agregarParadaBtn.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         agregarParadaBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/boton.jpg"))); // NOI18N
@@ -100,18 +100,18 @@ public class DatosParadasRuta extends javax.swing.JPanel {
             }
         });
 
-        confirmarViajeBtn.setText("Confirmar Viaje");
-        confirmarViajeBtn.setBorder(null);
-        confirmarViajeBtn.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        confirmarViajeBtn.addActionListener(new java.awt.event.ActionListener() {
+        confirmarRutaBtn.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        confirmarRutaBtn.setText("Confirmar Ruta");
+        confirmarRutaBtn.setBorder(null);
+        confirmarRutaBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                confirmarViajeBtnActionPerformed(evt);
+                confirmarRutaBtnActionPerformed(evt);
             }
         });
 
-        jLabel3.setText("PARADAS REGISTRADAS");
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("PARADAS REGISTRADAS");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -119,7 +119,7 @@ public class DatosParadasRuta extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(0, 632, Short.MAX_VALUE)
-                .addComponent(confirmarViajeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(confirmarRutaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(207, 207, 207)
@@ -167,7 +167,7 @@ public class DatosParadasRuta extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(confirmarViajeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(confirmarRutaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(29, 29, 29))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(48, 48, 48)
@@ -207,12 +207,12 @@ public class DatosParadasRuta extends javax.swing.JPanel {
         mostrarParadasPanel.repaint();
     }//GEN-LAST:event_agregarParadaBtnActionPerformed
 
-    private void confirmarViajeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarViajeBtnActionPerformed
+    private void confirmarRutaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarRutaBtnActionPerformed
         try {
             // Validar que haya al menos una parada registrada
             if (paradas.isEmpty()) {
                 JOptionPane.showMessageDialog(this,
-                        "Debe agregar al menos una parada al viaje",
+                        "Debe agregar al menos una parada a la ruta",
                         "Parada requerida",
                         JOptionPane.WARNING_MESSAGE);
                 return;
@@ -223,7 +223,7 @@ public class DatosParadasRuta extends javax.swing.JPanel {
                 controlPantallas.ConfirmarRuta();
 
                 JOptionPane.showMessageDialog(this,
-                        "Viaje registrado exitosamente",
+                        "Ruta registrada exitosamente",
                         "Éxito",
                         JOptionPane.INFORMATION_MESSAGE);
 
@@ -238,11 +238,11 @@ public class DatosParadasRuta extends javax.swing.JPanel {
 
         } catch (HeadlessException e) {
             JOptionPane.showMessageDialog(this,
-                    "Error al registrar el viaje: " + e.getMessage(),
+                    "Error al registrar la ruta: " + e.getMessage(),
                     "Error",
                     JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_confirmarViajeBtnActionPerformed
+    }//GEN-LAST:event_confirmarRutaBtnActionPerformed
 
     private void agregarParada() {
         // Agregar parada y confirmar viaje
@@ -261,7 +261,7 @@ public class DatosParadasRuta extends javax.swing.JPanel {
             // comparamos la direccion ingresada con las direcciones existentes
             if (paradaExistente.getDirección().trim().equalsIgnoreCase(direccion.trim())) {
                 JOptionPane.showMessageDialog(this,
-                        "La parada que quiere registrar ya existe en este viaje, intente con una diferente.",
+                        "La parada que quiere registrar ya existe en esta ruta, intente con una diferente.",
                         "Parada Duplicada",
                         JOptionPane.ERROR_MESSAGE);
                 return;
@@ -293,7 +293,7 @@ public class DatosParadasRuta extends javax.swing.JPanel {
         }
 
         JOptionPane.showMessageDialog(this,
-                "Viaje registrado exitosamente con " + paradas.size()
+                "Ruta registrada exitosamente con " + paradas.size()
                 + " paradas",
                 "Éxito",
                 JOptionPane.INFORMATION_MESSAGE);
@@ -351,7 +351,7 @@ public class DatosParadasRuta extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregarParadaBtn;
-    private javax.swing.JButton confirmarViajeBtn;
+    private javax.swing.JButton confirmarRutaBtn;
     private javax.swing.JTextField direccionTField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

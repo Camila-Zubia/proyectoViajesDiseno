@@ -210,7 +210,7 @@ public class MenuRutasFrecuentes extends javax.swing.JPanel {
             }
         } catch (HeadlessException e) {
             JOptionPane.showMessageDialog(this,
-                    "Error al cargar viajes: " + e.getMessage(),
+                    "Error al cargar rutas: " + e.getMessage(),
                     "Error",
                     JOptionPane.ERROR_MESSAGE);
         }

@@ -107,4 +107,11 @@ public class ControlViaje {
 
         return viajeTemporal;
     }
+
+    public ViajeDTO getViajeTemporal() {
+        return viajeTemporal;
+    }
+    
+    
+    
 }

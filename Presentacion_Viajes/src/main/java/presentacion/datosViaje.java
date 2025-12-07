@@ -16,8 +16,10 @@ import javax.swing.JOptionPane;
 public class datosViaje extends javax.swing.JPanel {
 
     private final IControlPantallas controlPantallas;
+
     /**
      * Creates new form datosViaje
+     *
      * @param controlPantallas
      */
     public datosViaje(IControlPantallas controlPantallas) {
@@ -206,7 +208,7 @@ public class datosViaje extends javax.swing.JPanel {
             return;
         }
         try {
-            precioBase = Double.parseDouble(precioStr); 
+            precioBase = Double.parseDouble(precioStr);
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this,
                     "El precio debe ser un numero valido.",
@@ -225,31 +227,31 @@ public class datosViaje extends javax.swing.JPanel {
 
         //validacion, origen y destino iguales
         if (origen.equalsIgnoreCase(destino)) {
-        JOptionPane.showMessageDialog(this, "El Origen y el Destino no pueden ser la misma ubicacion.", "Dato Invalido", JOptionPane.ERROR_MESSAGE);
-        return; 
-    }
-        
+            JOptionPane.showMessageDialog(this, "El Origen y el Destino no pueden ser la misma ubicacion.", "Dato Invalido", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         // validacion de tipo de dato origen y destino solo con texto
-    if (origen.matches(".*\\d.*") || destino.matches(".*\\d.*")) {
-        JOptionPane.showMessageDialog(this, "El Origen y Destino no deben contener números. Ingrese solo texto.", "Dato Invalido", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
+        if (origen.matches(".*\\d.*") || destino.matches(".*\\d.*")) {
+            JOptionPane.showMessageDialog(this, "El Origen y Destino no deben contener números. Ingrese solo texto.", "Dato Invalido", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
         // Validar fecha y hora
         if (fechaHora.getDateTimeStrict() == null) {
             JOptionPane.showMessageDialog(this,
-                "Por favor seleccione una fecha y hora válida",
-                "Fecha inválida",
-                JOptionPane.WARNING_MESSAGE);
+                    "Por favor seleccione una fecha y hora válida",
+                    "Fecha inválida",
+                    JOptionPane.WARNING_MESSAGE);
             return;
         }
 
         // Validar que la fecha no sea en el pasado
         if (fechaHora.getDateTimeStrict().isBefore(java.time.LocalDateTime.now())) {
             JOptionPane.showMessageDialog(this,
-                "La fecha y hora del viaje no puede ser en el pasado",
-                "Fecha inválida",
-                JOptionPane.WARNING_MESSAGE);
+                    "La fecha y hora del viaje no puede ser en el pasado",
+                    "Fecha inválida",
+                    JOptionPane.WARNING_MESSAGE);
             return;
         }
 

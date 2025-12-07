@@ -6,6 +6,7 @@ package presentacion_crearRutaFrecuente;
 
 import Controles.IControlPantallas;
 import dto.VehiculoDTO;
+import dto.ViajeDTO;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -64,7 +65,7 @@ public class SeleccionarVehiculoRuta extends javax.swing.JPanel {
         jPanel1.setPreferredSize(new java.awt.Dimension(1080, 640));
 
         siguienteTField.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        siguienteTField.setText("Siguiente");
+        siguienteTField.setText("ConfirmarViaje");
         siguienteTField.setBorder(null);
         siguienteTField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,7 +101,7 @@ public class SeleccionarVehiculoRuta extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(panelContenedorVehiculos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(siguienteTField, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(siguienteTField, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(152, 152, 152))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 596, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -145,10 +146,24 @@ public class SeleccionarVehiculoRuta extends javax.swing.JPanel {
         if (this.vehiculoSeleccionadoDTO == null) {
             JOptionPane.showMessageDialog(this, "Debe seleccionar un vehiculo para continuar.", "Seleccion Requerida", JOptionPane.ERROR_MESSAGE);
             return;
-        }
+        } else {
 
-        controlPantallas.seleccionarVehiculo(this.vehiculoSeleccionadoDTO);
-        controlPantallas.confirmarViaje();
+            controlPantallas.seleccionarVehiculo(this.vehiculoSeleccionadoDTO);
+            for (int i = 0; i < controlPantallas.obtenerViajes().size(); i++) {
+                ViajeDTO viaje = controlPantallas.obtenerViajes().get(i);
+                if (controlPantallas.getViajeTemporal().equals(viaje)) {
+                    JOptionPane.showMessageDialog(this, "Ya existe un viaje creado con esta ruta", "Elige otra ruta", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+            }
+
+            controlPantallas.confirmarViaje();
+
+            JOptionPane.showMessageDialog(this,
+                    "Viaje registrado exitosamente",
+                    "Éxito",
+                    JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_siguienteTFieldActionPerformed
     private void mostrarVehiculos(List listaVehiculos) {
         try {
