@@ -5,6 +5,7 @@
 package objetoNegocio_registrarVehiculo;
 
 import dto.VehiculoDTO;
+import interface_registrarVehiculo.IVehiculoNegocio;
 import org.base_datos_viajes.dao.interfaces.IVehiculoDAO;
 import org.base_datos_viajes.model.Vehiculo;
 
@@ -12,7 +13,7 @@ import org.base_datos_viajes.model.Vehiculo;
  *
  * @author adell
  */
-public class vehiculoNegocio {
+public class vehiculoNegocio implements IVehiculoNegocio {
 
     private final IVehiculoDAO vehiculoDAO;
 

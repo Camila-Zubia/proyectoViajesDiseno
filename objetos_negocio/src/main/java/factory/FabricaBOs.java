@@ -19,31 +19,39 @@ import org.base_datos_viajes.dao.impl.ConductorDAO;
 import org.base_datos_viajes.dao.impl.UsuarioDAO;
 import org.base_datos_viajes.dao.impl.ViajeDAO;
 import interface_crearRutaFrecuente.ICrearRutaFrecuenteNegocio;
+import interface_registrarVehiculo.IPropietarioNegocio;
+import interface_registrarVehiculo.IVehiculoNegocio;
 import interfaces_editarViaje.IEditarViajeNegocio;
+import objetoNegocio_registrarVehiculo.propietarioNegocio;
+import objetoNegocio_registrarVehiculo.vehiculoNegocio;
 import objetosNegocio_editarViaje.EditarViajeNegocio;
 import org.base_datos_viajes.dao.impl.PasajeroDAO;
+import org.base_datos_viajes.dao.impl.PropietarioDAO;
 import org.base_datos_viajes.dao.impl.ReservacionDAO;
 import org.base_datos_viajes.dao.impl.RutasFrecuentesDAO;
+import org.base_datos_viajes.dao.impl.VehiculoDAO;
 
 /**
  *
  * @author Camila Zubia 00000244825
  */
-public class FabricaBOs implements IFabricaBOs{
-    
+public class FabricaBOs implements IFabricaBOs {
+
     private final UsuarioDAO usuarioDAO = new UsuarioDAO();
     private final ViajeDAO viajeDAO = new ViajeDAO();
     private final ConductorDAO conductorDAO = new ConductorDAO();
     private final PasajeroDAO pasajeroDAO = new PasajeroDAO();
     private final ReservacionDAO reservacionDAO = new ReservacionDAO();
     private final RutasFrecuentesDAO rutaDAO = new RutasFrecuentesDAO();
+    private final VehiculoDAO vehiculoDAO = new VehiculoDAO();
+    private final PropietarioDAO propietarioDAO = new PropietarioDAO();
 
     public FabricaBOs() {
     }
 
     @Override
     public IUsuarioNegocio crearUsuarioNegocio() {
-          return new UsuarioNegocio(usuarioDAO, conductorDAO, pasajeroDAO);
+        return new UsuarioNegocio(usuarioDAO, conductorDAO, pasajeroDAO);
     }
 
     @Override
@@ -61,11 +69,11 @@ public class FabricaBOs implements IFabricaBOs{
     public IPasajeroNegocio crearPasajeroNegocio() {
         return new PasajeroNegocio(pasajeroDAO, reservacionDAO);
     }
-    
+
     //metodos del caso de uso registrar ruta frecuente
     @Override
-    public ICrearRutaFrecuenteNegocio crearRutaFrecuenteNegocio(){
-        return new  RutaFrecuenteNegocio(rutaDAO);
+    public ICrearRutaFrecuenteNegocio crearRutaFrecuenteNegocio() {
+        return new RutaFrecuenteNegocio(rutaDAO);
     }
 
     //metodos del caso de uso "Cancelar Viaje"
@@ -77,6 +85,15 @@ public class FabricaBOs implements IFabricaBOs{
     //metodos del caso de uso editar viaje
     @Override
     public IEditarViajeNegocio crearEditarViajeNegocio() {
-       return new EditarViajeNegocio(viajeDAO, reservacionDAO); 
+        return new EditarViajeNegocio(viajeDAO, reservacionDAO);
+    }
+
+    //metodos del caso de uso registra vehiculo
+    public IPropietarioNegocio crearPropietarioNegocio() {
+        return new propietarioNegocio(propietarioDAO);
+    }
+
+    public IVehiculoNegocio crearVehiculoNegocio() {
+        return new vehiculoNegocio(vehiculoDAO);
     }
 }
