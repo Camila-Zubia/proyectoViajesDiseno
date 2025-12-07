@@ -10,6 +10,7 @@ import factory.FabricaBOs;
 import factory.IFabricaBOs;
 import interface_registrarVehiculo.IPropietarioNegocio;
 import interface_registrarVehiculo.IVehiculoNegocio;
+import interfaces.IConductorNegocio;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +22,8 @@ public class controlRegistrarVehiculo {
     
     private final IPropietarioNegocio propietarioBO;
     private final IVehiculoNegocio vehiculoBO;
+    private final IConductorNegocio conductorBO;
+    
     private final VehiculoDTO vehiculoTemp;
     private final PropietarioDTO propietarioTemp;
     private final List<VehiculoDTO> ListaVehiculosTemp;
@@ -29,6 +32,7 @@ public class controlRegistrarVehiculo {
         IFabricaBOs fabrica = new FabricaBOs();
         this.propietarioBO = fabrica.crearPropietarioNegocio();
         this.vehiculoBO = fabrica.crearVehiculoNegocio();
+        this.conductorBO = fabrica.crearConductorNegocio();
         
         this.vehiculoTemp = new VehiculoDTO();
         this.propietarioTemp = new PropietarioDTO();
@@ -40,7 +44,7 @@ public class controlRegistrarVehiculo {
         this.vehiculoTemp.setPlacas(placas);
         this.vehiculoTemp.setMarca(marca);
         this.vehiculoTemp.setColor(color);
-        this.vehiculoTemp.setCapacidad(capacidad);  
+        this.vehiculoTemp.setCapacidad(capacidad);        
     }
     
     protected void guardarDatosPropietario(String nombre, String curp, String rfc, String nss) {
@@ -50,12 +54,13 @@ public class controlRegistrarVehiculo {
         this.propietarioTemp.setNss(nss);
     }
     
-    protected void confirmarRegistroVehiculoPropietario(){
+    protected void confirmarRegistroVehiculoPropietario() {
         this.ListaVehiculosTemp.add(vehiculoTemp);
         this.propietarioTemp.setListaVehiculos(ListaVehiculosTemp);
         
+        conductorBO.agregarVehiculo(vehiculoTemp);
         vehiculoBO.registrarVehiculo(vehiculoTemp);
         propietarioBO.registrarPropietario(propietarioTemp);
-    
+        
     }
 }

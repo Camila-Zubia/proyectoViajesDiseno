@@ -11,9 +11,9 @@ import Controles.ControlPantallas;
  * @author adell
  */
 public class FramePrincipal extends javax.swing.JFrame {
-    
+
     private final ControlPantallas controlPantallas;
-    
+
     /**
      * Creates new form iniciarSesion
      */
@@ -38,6 +38,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         opcionMenuPrincipal = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
+        regVehiculoMItem = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         opcionCerrarSesión = new javax.swing.JMenuItem();
 
@@ -73,6 +74,14 @@ public class FramePrincipal extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jMenuItem1);
+
+        regVehiculoMItem.setText("Registrar Vehiculo");
+        regVehiculoMItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                regVehiculoMItemActionPerformed(evt);
+            }
+        });
+        jMenu1.add(regVehiculoMItem);
         jMenu1.add(jSeparator1);
 
         opcionCerrarSesión.setText("Cerrar Sesión");
@@ -107,6 +116,11 @@ public class FramePrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         controlPantallas.mostrarMenuRutasFrecuentes();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void regVehiculoMItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regVehiculoMItemActionPerformed
+        // TODO add your handling code here:
+        controlPantallas.mostrarMenuVehiculosConductor();
+    }//GEN-LAST:event_regVehiculoMItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -150,5 +164,6 @@ public class FramePrincipal extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JMenuItem opcionCerrarSesión;
     private javax.swing.JMenuItem opcionMenuPrincipal;
+    private javax.swing.JMenuItem regVehiculoMItem;
     // End of variables declaration//GEN-END:variables
 }

@@ -15,7 +15,6 @@ public class VehiculoDTO {
     private String placas;
     private String marca;
     private String color;
-    //private PropietarioDTO propietario;
     private int capacidad;
 
     public VehiculoDTO() {
