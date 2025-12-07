@@ -47,6 +47,8 @@ public interface IControlPantallas {
     public boolean validarUsuario(UsuarioDTO usuario);
 
     public ConductorDTO nombreConductor();
+    
+    public ViajeDTO getViajeTemporal();
 
     public void cerrarSesion();
 

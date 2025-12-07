@@ -10,6 +10,7 @@ import java.time.format.TextStyle;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 /**
  *
@@ -156,6 +157,36 @@ public class ViajeDTO {
                 + "     fecha = " + fecha.getDayOfMonth() + "/" + fecha.getMonth().getDisplayName(TextStyle.SHORT, Locale.ITALY) 
                 + ", hora = " + hora
                 + "     $" + precioTotal);
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final ViajeDTO other = (ViajeDTO) obj;
+        if (!Objects.equals(this.origen, other.origen)) {
+            return false;
+        }
+        if (!Objects.equals(this.destino, other.destino)) {
+            return false;
+        }
+        if (!Objects.equals(this.fecha, other.fecha)) {
+            return false;
+        }
+        return Objects.equals(this.hora, other.hora);
     }
 
    

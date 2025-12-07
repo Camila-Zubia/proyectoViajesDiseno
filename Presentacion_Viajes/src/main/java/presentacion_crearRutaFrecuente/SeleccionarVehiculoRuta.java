@@ -6,6 +6,7 @@ package presentacion_crearRutaFrecuente;
 
 import Controles.IControlPantallas;
 import dto.VehiculoDTO;
+import dto.ViajeDTO;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -148,6 +149,13 @@ public class SeleccionarVehiculoRuta extends javax.swing.JPanel {
         } else {
 
             controlPantallas.seleccionarVehiculo(this.vehiculoSeleccionadoDTO);
+            for (int i = 0; i < controlPantallas.obtenerViajes().size(); i++) {
+                ViajeDTO viaje = controlPantallas.obtenerViajes().get(i);
+                if (controlPantallas.getViajeTemporal().equals(viaje)) {
+                    JOptionPane.showMessageDialog(this, "Ya existe un viaje creado con esta ruta", "Elige otra ruta", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+            }
 
             controlPantallas.confirmarViaje();
 
