@@ -236,14 +236,16 @@ public class detallesViaje extends javax.swing.JPanel {
                         String.format("Viaje cancelado exitosamente.\n\nSe ha registrado un adeudo de $%d pesos.", montoAdeudo),
                         "Viaje Cancelado",
                         JOptionPane.INFORMATION_MESSAGE);
+
+                    controlPantallas.mostrarMenuAdeudos();
                 } else {
                     JOptionPane.showMessageDialog(this,
                         "Viaje cancelado exitosamente.",
                         "Éxito",
                         JOptionPane.INFORMATION_MESSAGE);
-                }
 
-                controlPantallas.mostrarMenuConductor();
+                    controlPantallas.mostrarMenuConductor();
+                }
             }
         } catch (HeadlessException e) {
             JOptionPane.showMessageDialog(this,
