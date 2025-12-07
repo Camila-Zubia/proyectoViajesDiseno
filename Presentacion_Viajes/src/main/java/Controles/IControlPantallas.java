@@ -47,7 +47,7 @@ public interface IControlPantallas {
     public boolean validarUsuario(UsuarioDTO usuario);
 
     public ConductorDTO nombreConductor();
-    
+
     public ViajeDTO getViajeTemporal();
 
     public void cerrarSesion();
@@ -102,9 +102,9 @@ public interface IControlPantallas {
     public List<ParadaDTO> obtenerParadasTempoRuta();
 
     public RutaFrecuenteDTO ConfirmarRuta();
-    
+
     public void mostrarMenuRutasFrecuentes();
-    
+
     public void mostrarSeleccionarVehiculoRuta();
 
     // Métodos para cancelar viaje
@@ -135,4 +135,10 @@ public interface IControlPantallas {
 
     public boolean validarEdicionSegura();
 
+    // metodos para registra vehiculo
+    public void mostrarMenuVehiculosConductor();
+
+    public void mostrarDatosVehiculo();
+
+    public void mostrarDatosPropietario();
 }
