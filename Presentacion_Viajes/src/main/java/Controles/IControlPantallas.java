@@ -100,4 +100,13 @@ public interface IControlPantallas {
 
     public int obtenerAdeudoPendiente(String idViaje);
 
+    public ViajeDTO obtenerDetallesViaje(String idViaje);
+
+    // Métodos para pagar adeudos
+    public void mostrarMenuAdeudos();
+
+    public List<dto.AdeudoDTO> obtenerAdeudosPendientes();
+
+    public void marcarAdeudoComoPagado(String idAdeudo);
+
 }

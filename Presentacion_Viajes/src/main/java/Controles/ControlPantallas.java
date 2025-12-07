@@ -11,6 +11,7 @@ import crearRutaFrecuente.FCrearRutaFrecuente;
 import crearRutaFrecuente.ICrearRutaFrecuente;
 import cancelarViaje.CancelarViaje;
 import cancelarViaje.ICancelarViaje;
+import dto.AdeudoDTO;
 import dto.ConductorDTO;
 import dto.ParadaDTO;
 import dto.PasajeroDTO;
@@ -30,6 +31,7 @@ import presentacion.datosParadas;
 import presentacion.datosViaje;
 import presentacion.detallesViaje;
 import presentacion.iniciarSesion;
+import presentacion.menuAdeudos;
 import presentacion.menuPrincipalConductor;
 import presentacion.menuVehiculos;
 import presentacion.seleccionarPerfilConductor;
@@ -61,6 +63,7 @@ public class ControlPantallas implements IControlPantallas {
     private final ICancelarReservacion interfazCancelarReservacion = new CancelarReservacion();
     private final ICrearRutaFrecuente interfazCrearRutaFrecuente = new FCrearRutaFrecuente();
     private final ICancelarViaje interfazCancelarViaje = new CancelarViaje();
+    private final pagarAdeudo.IPagarAdeudo interfazPagarAdeudo = new pagarAdeudo.PagarAdeudo();
 
     private ViajeDTO viajeTemporal;
 
@@ -296,6 +299,8 @@ public class ControlPantallas implements IControlPantallas {
         List RutasFrecuentes = interfazCrearRutaFrecuente.obtenerRutaPorConductor(usuario.getConductor());
         MenuRutasFrecuentes menuRutas = new MenuRutasFrecuentes(this, RutasFrecuentes);
         configurarPanel(menuRutas);
+    }
+
     // Métodos para cancelar viaje
     @Override
     public void mostrarDetallesViaje() {
@@ -334,6 +339,34 @@ public class ControlPantallas implements IControlPantallas {
     @Override
     public int obtenerAdeudoPendiente(String idViaje) {
         return interfazCancelarViaje.obtenerAdeudoPendiente(idViaje);
+    }
+
+    @Override
+    public ViajeDTO obtenerDetallesViaje(String idViaje) {
+        return interfazPagarAdeudo.obtenerDetallesViaje(idViaje);
+    }
+
+    // Métodos para pagar adeudos
+    @Override
+    public void mostrarMenuAdeudos() {
+        List<AdeudoDTO> adeudos = obtenerAdeudosPendientes();
+        menuAdeudos menu = new menuAdeudos(this, adeudos);
+        configurarPanel(menu);
+    }
+
+    @Override
+    public List<AdeudoDTO> obtenerAdeudosPendientes() {
+        ConductorDTO conductor = nombreConductor();
+        if (conductor == null) {
+            throw new IllegalStateException("No hay un conductor en sesión");
+        }
+
+        return interfazPagarAdeudo.obtenerAdeudosPendientes(conductor.getId());
+    }
+
+    @Override
+    public void marcarAdeudoComoPagado(String idAdeudo) {
+        interfazPagarAdeudo.pagarAdeudo(idAdeudo);
     }
 
 }
