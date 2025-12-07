@@ -454,6 +454,7 @@ public class ControlPantallas implements IControlPantallas {
 
     // metodos para registra vehiculo
     //@Override
+    @Override
     public void mostrarMenuVehiculosConductor() {
         UsuarioDTO usuario = sesion.obtenerUsuario();
         List vehiculos = interfazRegistrarViaje.obtenerVehiculosDisponibles(usuario.getConductor());
@@ -462,14 +463,35 @@ public class ControlPantallas implements IControlPantallas {
     }
 
     //@Override
+    @Override
     public void mostrarDatosVehiculo() {
         datosVehiculo datosVehiculo = new datosVehiculo(this);
         configurarPanel(datosVehiculo);
     }
 
+    @Override
     public void mostrarDatosPropietario() {
         datosPropietario datosPropietario = new datosPropietario(this);
         configurarPanel(datosPropietario);
+    }
+
+    @Override
+    public void guardarDatosVehiculo(String modelo, String placas, String marca, String color, int CantidadPasajeros) {
+
+        interfazRegistrarVehiculo.guardarDatosVehiculo(modelo, placas, marca, color, CantidadPasajeros);
+
+    }
+
+    @Override
+    public void guardarDatosPropietario(String nombre, String curp, String rfc, String nss) {
+
+        interfazRegistrarVehiculo.guardarDatosPropietario(nombre, curp, rfc, nss);
+    }
+
+    @Override
+    public void ConfirmarDatosVehiculoPropietario() {
+
+        interfazRegistrarVehiculo.confirmarRegistroVehiculoPropietario();
     }
 
 }

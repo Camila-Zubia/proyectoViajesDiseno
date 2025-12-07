@@ -7,7 +7,20 @@ package presentacion_registrarVehiculo;
 import Controles.IControlPantallas;
 import dto.VehiculoDTO;
 import dto.ViajeDTO;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.HeadlessException;
 import java.util.List;
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.SwingConstants;
 
 /**
  *
@@ -16,6 +29,7 @@ import java.util.List;
 public class menuVehiculosConductor extends javax.swing.JPanel {
 
     private final IControlPantallas controlPantallas;
+    private VehiculoDTO vehiculoSeleccionadoDTO;
 
     /**
      * Creates new form menuVehiculosConductor
@@ -23,6 +37,7 @@ public class menuVehiculosConductor extends javax.swing.JPanel {
     public menuVehiculosConductor(IControlPantallas controlPantallas, List<VehiculoDTO> vehiculo) {
         this.controlPantallas = controlPantallas;
         initComponents();
+        mostrarVehiculos(vehiculo);
     }
 
     /**
@@ -37,7 +52,7 @@ public class menuVehiculosConductor extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         TituloLbl = new javax.swing.JLabel();
-        panelContenedorRutas = new javax.swing.JPanel();
+        panelContenedorVehiculos = new javax.swing.JPanel();
         registrarRutaBtn = new javax.swing.JButton();
 
         jPanel1.setPreferredSize(new java.awt.Dimension(1080, 640));
@@ -51,16 +66,16 @@ public class menuVehiculosConductor extends javax.swing.JPanel {
         TituloLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         TituloLbl.setText("VEHICULOS GUARDADOS");
 
-        panelContenedorRutas.setBackground(new java.awt.Color(255, 255, 255));
+        panelContenedorVehiculos.setBackground(new java.awt.Color(255, 255, 255));
 
-        javax.swing.GroupLayout panelContenedorRutasLayout = new javax.swing.GroupLayout(panelContenedorRutas);
-        panelContenedorRutas.setLayout(panelContenedorRutasLayout);
-        panelContenedorRutasLayout.setHorizontalGroup(
-            panelContenedorRutasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout panelContenedorVehiculosLayout = new javax.swing.GroupLayout(panelContenedorVehiculos);
+        panelContenedorVehiculos.setLayout(panelContenedorVehiculosLayout);
+        panelContenedorVehiculosLayout.setHorizontalGroup(
+            panelContenedorVehiculosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 725, Short.MAX_VALUE)
         );
-        panelContenedorRutasLayout.setVerticalGroup(
-            panelContenedorRutasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelContenedorVehiculosLayout.setVerticalGroup(
+            panelContenedorVehiculosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
@@ -82,7 +97,7 @@ public class menuVehiculosConductor extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(TituloLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 596, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(panelContenedorRutas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(panelContenedorVehiculos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(66, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -96,7 +111,7 @@ public class menuVehiculosConductor extends javax.swing.JPanel {
                         .addGap(12, 12, 12)
                         .addComponent(TituloLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(panelContenedorRutas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(panelContenedorVehiculos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -141,15 +156,66 @@ public class menuVehiculosConductor extends javax.swing.JPanel {
 
     private void registrarRutaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarRutaBtnActionPerformed
         // TODO add your handling code here:
-        controlPantallas.mostrarDatosRutasFrecuente();
+        controlPantallas.mostrarDatosVehiculo();
     }//GEN-LAST:event_registrarRutaBtnActionPerformed
 
+    private void mostrarVehiculos(List listaVehiculos) {
+        try {
+            if (listaVehiculos != null) {
+
+                JPanel panelInterno = new JPanel();
+                panelInterno.setLayout(new BoxLayout(panelInterno, BoxLayout.Y_AXIS));
+                panelInterno.setPreferredSize(new Dimension(740, listaVehiculos.size() * 50));
+                panelInterno.setBackground(Color.WHITE);
+                for (Object vehiculo : listaVehiculos) {
+                    JPanel panelElemento = new JPanel();
+                    panelElemento.setLayout(new BoxLayout(panelElemento, BoxLayout.X_AXIS));
+                    panelElemento.setPreferredSize(new Dimension(740, 50));
+                    panelElemento.setMaximumSize(new Dimension(740, 50));
+                    panelElemento.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+                    panelElemento.setBackground(new Color(255, 255, 255));
+
+                    JButton btnInfo = new JButton();
+                    btnInfo.setFont(new Font("Dialog", Font.PLAIN, 14));
+                    btnInfo.setBackground(Color.WHITE);
+                    btnInfo.setAlignmentX(Component.CENTER_ALIGNMENT);
+                    btnInfo.setHorizontalAlignment(SwingConstants.CENTER);
+                    btnInfo.setPreferredSize(new Dimension(700, 40));
+                    btnInfo.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
+                    btnInfo.setText(vehiculo.toString().formatted());
+                    btnInfo.addActionListener(e -> {
+                        this.vehiculoSeleccionadoDTO = (dto.VehiculoDTO) vehiculo;
+                    });
+
+                    panelElemento.add(btnInfo);
+                    panelInterno.add(panelElemento);
+                }
+                JScrollPane scrollPane = new JScrollPane(panelInterno);
+                scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+                scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+                scrollPane.setPreferredSize(new Dimension(770, 362));
+                scrollPane.setBackground(Color.WHITE);
+                panelContenedorVehiculos.removeAll();
+                panelContenedorVehiculos.setLayout(new BorderLayout());
+                panelContenedorVehiculos.add(scrollPane, BorderLayout.CENTER);
+                panelContenedorVehiculos.revalidate();
+                panelContenedorVehiculos.repaint();
+            } else {
+                JOptionPane.showMessageDialog(this, "No hay vehiculos registrados");
+            }
+        } catch (HeadlessException e) {
+            JOptionPane.showMessageDialog(this,
+                    "Error al cargar vehículos: " + e.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel TituloLbl;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel panelContenedorRutas;
+    private javax.swing.JPanel panelContenedorVehiculos;
     private javax.swing.JButton registrarRutaBtn;
     // End of variables declaration//GEN-END:variables
 }

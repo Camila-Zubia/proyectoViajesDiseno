@@ -245,7 +245,7 @@ public class datosVehiculo extends javax.swing.JPanel {
     }//GEN-LAST:event_destinoTFieldActionPerformed
 
     private void confirmarViajeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarViajeBtnActionPerformed
-
+        controlPantallas.mostrarDatosPropietario();
 
     }//GEN-LAST:event_confirmarViajeBtnActionPerformed
 

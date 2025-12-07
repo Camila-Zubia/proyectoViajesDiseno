@@ -141,4 +141,10 @@ public interface IControlPantallas {
     public void mostrarDatosVehiculo();
 
     public void mostrarDatosPropietario();
+
+    public void guardarDatosVehiculo(String modelo, String placas, String marca, String color, int CantidadPasajeros);
+
+    public void guardarDatosPropietario(String nombre, String curp, String rfc, String nss);
+
+    public void ConfirmarDatosVehiculoPropietario();
 }
