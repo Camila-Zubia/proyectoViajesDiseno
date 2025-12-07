@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 public class AdeudoDTO {
 
     private String id;
+    private String idViaje;
     private int monto;
     private String concepto;
     private LocalDateTime fecha;
@@ -29,9 +30,20 @@ public class AdeudoDTO {
         this.pagado = false;
     }
 
+    public AdeudoDTO(String idViaje, int monto, String concepto, LocalDateTime fecha) {
+        this.idViaje = idViaje;
+        this.monto = monto;
+        this.concepto = concepto;
+        this.fecha = fecha;
+        this.pagado = false;
+    }
+
     // Getters y Setters
     public String getId() { return id; }
     public void setId(String id) { this.id = id; }
+
+    public String getIdViaje() { return idViaje; }
+    public void setIdViaje(String idViaje) { this.idViaje = idViaje; }
 
     public int getMonto() { return monto; }
     public void setMonto(int monto) { this.monto = monto; }
