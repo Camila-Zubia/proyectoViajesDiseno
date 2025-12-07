@@ -239,11 +239,11 @@ public class datosVehiculo extends javax.swing.JPanel {
 
     private void confirmarViajeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarViajeBtnActionPerformed
         String placas = placasTField.getText().trim();
-
+        String color = colorTextField.getText().trim();
         String marca = marcaTField.getText().trim();
         String modelo = modeloTextField1.getText().trim();
         int capacidad = Integer.parseInt(capacidadTextField2.getText().trim());
-        controlPantallas.guardarDatosVehiculo(modelo, placas, marca, modelo, capacidad);
+        controlPantallas.guardarDatosVehiculo(modelo, placas, color, modelo, capacidad);
         controlPantallas.mostrarDatosPropietario();
 
     }//GEN-LAST:event_confirmarViajeBtnActionPerformed

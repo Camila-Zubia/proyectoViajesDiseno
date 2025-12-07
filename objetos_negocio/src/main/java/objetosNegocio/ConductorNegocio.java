@@ -24,24 +24,25 @@ import utilidades.SesionUsuario;
  *
  * @author Camila Zubia 00000244825
  */
-public class ConductorNegocio implements IConductorNegocio{
+public class ConductorNegocio implements IConductorNegocio {
+
     private final IConductorDAO conductorDAO;
-    
+
     public ConductorNegocio(IConductorDAO conductorDAO, UsuarioDAO usuarioDAO, ViajeDAO viajeDAO) {
-        this.conductorDAO = conductorDAO; 
+        this.conductorDAO = conductorDAO;
     }
-    
+
     @Override
-    public void agregarVehiculo(VehiculoDTO vehiculo){
-        SesionUsuario.obtenerConductor().getVehiculos().add(vehiculo);
+    public void agregarVehiculo(VehiculoDTO vehiculo) {
+        conductorDAO.agregarVehiculoAConductor(SesionUsuario.obtenerConductor().getId(), adaptadorVehiculo.toEntity(vehiculo));
     }
-    
+
     @Override
-    public List<VehiculoDTO> obtenerVehiculos(){
+    public List<VehiculoDTO> obtenerVehiculos() {
         try {
             // Se usa el id del conductor activo
             ObjectId conductorId = new ObjectId(SesionUsuario.obtenerConductor().getId());
-            
+
             // 1. Consulta en la BD para obtener la lista de vehiculos 
             return conductorDAO.obtenerVehiculos(conductorId.toHexString()).stream()
                     .map(adaptadorVehiculo::toDTO)
@@ -50,17 +51,17 @@ public class ConductorNegocio implements IConductorNegocio{
             throw new IllegalStateException("Error al obtener vehiculos de la base de datos: " + e.getMessage());
         }
     }
-    
+
     @Override
-    public void agregarViaje(ViajeDTO viaje){
+    public void agregarViaje(ViajeDTO viaje) {
         SesionUsuario.obtenerConductor().getViajes().add(viaje);
     }
-    
+
     @Override
-    public List<ViajeDTO> obtenerViajes(){
+    public List<ViajeDTO> obtenerViajes() {
         try {
             ObjectId conductorId = new ObjectId(SesionUsuario.obtenerConductor().getId());
-            
+
             // 2. Consulta en la BD para obtener la lista de viajes guardados
             return conductorDAO.obtenerViajes(conductorId.toHexString()).stream()
                     .map(adaptadorViaje::toDTO)
@@ -69,20 +70,18 @@ public class ConductorNegocio implements IConductorNegocio{
             throw new IllegalStateException("Error al obtener viajes de la base de datos: " + e.getMessage());
         }
     }
-    
-    
+
     @Override
-    public List<RutaFrecuenteDTO> obtenerRutas(){
-         try {
+    public List<RutaFrecuenteDTO> obtenerRutas() {
+        try {
             ObjectId conductorId = new ObjectId(SesionUsuario.obtenerConductor().getId());
-            
-      
-            return  conductorDAO.obtenerRutasFrecuentes(conductorId.toHexString()).stream()
+
+            return conductorDAO.obtenerRutasFrecuentes(conductorId.toHexString()).stream()
                     .map(adaptadorRutaFrecuente::toDTO)
-                   .collect(Collectors.toList());
+                    .collect(Collectors.toList());
         } catch (DatabaseException e) {
             throw new IllegalStateException("Error al obtener las rutas frecuentes de la base de datos: " + e.getMessage());
         }
-    
+
     }
 }
