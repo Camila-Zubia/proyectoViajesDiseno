@@ -28,7 +28,6 @@ public class controlRegistrarVehiculo {
     private final PropietarioDTO propietarioTemp;
     private final List<VehiculoDTO> ListaVehiculosTemp;
     
-            
     public controlRegistrarVehiculo() {
         IFabricaBOs fabrica = new FabricaBOs();
         this.propietarioBO = fabrica.crearPropietarioNegocio();
@@ -45,7 +44,7 @@ public class controlRegistrarVehiculo {
         this.vehiculoTemp.setPlacas(placas);
         this.vehiculoTemp.setMarca(marca);
         this.vehiculoTemp.setColor(color);
-        this.vehiculoTemp.setCapacidad(capacidad);  
+        this.vehiculoTemp.setCapacidad(capacidad);        
     }
     
     protected void guardarDatosPropietario(String nombre, String curp, String rfc, String nss) {
@@ -55,14 +54,13 @@ public class controlRegistrarVehiculo {
         this.propietarioTemp.setNss(nss);
     }
     
-    protected void confirmarRegistroVehiculoPropietario(){
+    protected void confirmarRegistroVehiculoPropietario() {
         this.ListaVehiculosTemp.add(vehiculoTemp);
         this.propietarioTemp.setListaVehiculos(ListaVehiculosTemp);
-        
         
         conductorBO.agregarVehiculo(vehiculoTemp);
         vehiculoBO.registrarVehiculo(vehiculoTemp);
         propietarioBO.registrarPropietario(propietarioTemp);
-    
+        
     }
 }

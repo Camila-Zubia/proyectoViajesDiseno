@@ -19,7 +19,6 @@ public class datosPropietario extends javax.swing.JPanel {
      */
     public datosPropietario(IControlPantallas controlPantallas) {
         this.controlPantallas = controlPantallas;
-
         initComponents();
     }
 
@@ -36,16 +35,16 @@ public class datosPropietario extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         nombreTField = new javax.swing.JTextField();
-        destinoTField = new javax.swing.JTextField();
+        rfcTField = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        confirmarViajeBtn = new javax.swing.JButton();
+        confirmarPropietarioBtn = new javax.swing.JButton();
         regresarMenuRutasBtn = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        PrecioTextField = new javax.swing.JTextField();
+        nssTextField = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        origenTField1 = new javax.swing.JTextField();
+        curpTField1 = new javax.swing.JTextField();
 
         jPanel2.setBackground(new java.awt.Color(0, 109, 182));
         jPanel2.setPreferredSize(new java.awt.Dimension(1080, 640));
@@ -53,60 +52,60 @@ public class datosPropietario extends javax.swing.JPanel {
 
         jPanel3.setBackground(new java.awt.Color(0, 109, 182));
 
-        destinoTField.addActionListener(new java.awt.event.ActionListener() {
+        rfcTField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                destinoTFieldActionPerformed(evt);
+                rfcTFieldActionPerformed(evt);
             }
         });
 
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel3.setText("RFC:");
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel3.setText("RFC:");
 
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel2.setText("CURP:");
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel2.setText("CURP:");
 
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("PROPIETARIO");
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("PROPIETARIO");
 
-        confirmarViajeBtn.setText("Siguiente");
-        confirmarViajeBtn.setBorder(null);
-        confirmarViajeBtn.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        confirmarViajeBtn.addActionListener(new java.awt.event.ActionListener() {
+        confirmarPropietarioBtn.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        confirmarPropietarioBtn.setText("Siguiente");
+        confirmarPropietarioBtn.setBorder(null);
+        confirmarPropietarioBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                confirmarViajeBtnActionPerformed(evt);
+                confirmarPropietarioBtnActionPerformed(evt);
             }
         });
 
+        regresarMenuRutasBtn.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         regresarMenuRutasBtn.setText("Regresar");
         regresarMenuRutasBtn.setBorder(null);
-        regresarMenuRutasBtn.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         regresarMenuRutasBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 regresarMenuRutasBtnActionPerformed(evt);
             }
         });
 
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel5.setText("NSS:");
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel5.setText("NSS:");
 
-        PrecioTextField.addActionListener(new java.awt.event.ActionListener() {
+        nssTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PrecioTextFieldActionPerformed(evt);
+                nssTextFieldActionPerformed(evt);
             }
         });
 
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel6.setText("Nombre:");
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel6.setText("Nombre:");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -116,7 +115,7 @@ public class datosPropietario extends javax.swing.JPanel {
                 .addGap(24, 24, 24)
                 .addComponent(regresarMenuRutasBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(confirmarViajeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(confirmarPropietarioBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(214, 214, 214)
@@ -128,9 +127,9 @@ public class datosPropietario extends javax.swing.JPanel {
                 .addGap(33, 33, 33)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(nombreTField, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(destinoTField, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(PrecioTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(origenTField1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(rfcTField, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nssTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(curpTField1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(183, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -152,17 +151,17 @@ public class datosPropietario extends javax.swing.JPanel {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel2)
-                            .addComponent(origenTField1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(curpTField1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(11, 11, 11)
-                        .addComponent(destinoTField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(rfcTField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(6, 6, 6)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(PrecioTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nssTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(127, 127, 127)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(confirmarViajeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(confirmarPropietarioBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(regresarMenuRutasBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30))
         );
@@ -212,29 +211,40 @@ public class datosPropietario extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void destinoTFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_destinoTFieldActionPerformed
+
+    private void rfcTFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rfcTFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_destinoTFieldActionPerformed
-
-    private void confirmarViajeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarViajeBtnActionPerformed
+       
 
 
-    }//GEN-LAST:event_confirmarViajeBtnActionPerformed
+    }//GEN-LAST:event_rfcTFieldActionPerformed
+
+    private void confirmarPropietarioBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarPropietarioBtnActionPerformed
+
+        String nombre = nombreTField.getText().trim();
+        String curp = curpTField1.getText().trim();
+        String rfc = rfcTField.getText().trim();
+        String nss = nssTextField.getText().trim();
+        controlPantallas.guardarDatosPropietario(nombre, curp, rfc, nss);
+        
+        controlPantallas.ConfirmarDatosVehiculoPropietario();
+        controlPantallas.mostrarMenuVehiculosConductor();
+        
+    }//GEN-LAST:event_confirmarPropietarioBtnActionPerformed
 
     private void regresarMenuRutasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarMenuRutasBtnActionPerformed
         // TODO add your handling code here:
 
     }//GEN-LAST:event_regresarMenuRutasBtnActionPerformed
 
-    private void PrecioTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PrecioTextFieldActionPerformed
+    private void nssTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nssTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_PrecioTextFieldActionPerformed
+    }//GEN-LAST:event_nssTextFieldActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField PrecioTextField;
-    private javax.swing.JButton confirmarViajeBtn;
-    private javax.swing.JTextField destinoTField;
+    private javax.swing.JButton confirmarPropietarioBtn;
+    private javax.swing.JTextField curpTField1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -244,7 +254,8 @@ public class datosPropietario extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField nombreTField;
-    private javax.swing.JTextField origenTField1;
+    private javax.swing.JTextField nssTextField;
     private javax.swing.JButton regresarMenuRutasBtn;
+    private javax.swing.JTextField rfcTField;
     // End of variables declaration//GEN-END:variables
 }

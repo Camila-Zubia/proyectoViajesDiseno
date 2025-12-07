@@ -22,6 +22,7 @@ public class vehiculoNegocio implements IVehiculoNegocio {
     }
 
     
+    @Override
     public void registrarVehiculo(VehiculoDTO vehiculo) {
         Vehiculo entity = adaptadores.adaptadorVehiculo.toEntity(vehiculo);
         vehiculoDAO.save(entity);
