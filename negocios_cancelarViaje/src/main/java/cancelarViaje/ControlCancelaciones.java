@@ -73,11 +73,7 @@ public class ControlCancelaciones {
 
     /**
      * Calcula el adeudo por cancelación del viaje seleccionado
-     * Reglas de negocio:
-     * - Menos de 24 horas: 100% del costo total
-     * - Entre 24-48 horas: 50% del costo total
-     * - Más de 48 horas: 0% (sin penalización)
-     * - Multiplicado por cantidad de pasajeros
+     * Regla de negocio: $20 pesos por pasajero si faltan menos de 24 horas
      */
     public int calcularAdeudo() {
         if (viajeSeleccionado == null) {
@@ -93,22 +89,12 @@ public class ControlCancelaciones {
         Duration duracion = Duration.between(ahora, fechaHoraViaje);
         long horasRestantes = duracion.toHours();
 
-        double porcentajePenalizacion;
-        if (horasRestantes < 24) {
-            porcentajePenalizacion = 1.0; // 100%
-        } else if (horasRestantes < 48) {
-            porcentajePenalizacion = 0.5; // 50%
-        } else {
-            porcentajePenalizacion = 0.0; // Sin penalización
+        if (horasRestantes >= 24) {
+            return 0;
         }
 
-        // Obtener cantidad exacta de pasajeros del campo
         int cantidadPasajeros = viajeSeleccionado.getCantidadPasajeros();
-
-        double montoBase = viajeSeleccionado.getPrecioTotal();
-        double adeudoTotal = montoBase * porcentajePenalizacion * cantidadPasajeros;
-
-        return (int) Math.round(adeudoTotal);
+        return 20 * cantidadPasajeros;
     }
 
     /**
@@ -141,6 +127,7 @@ public class ControlCancelaciones {
         if (cancelado && montoAdeudo > 0) {
             // Registrar adeudo para el conductor en sesión
             AdeudoDTO adeudo = new AdeudoDTO(
+                idViaje,
                 montoAdeudo,
                 "Cancelación de viaje: " + viajeSeleccionado.getOrigen() +
                     " → " + viajeSeleccionado.getDestino(),
