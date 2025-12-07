@@ -64,8 +64,8 @@ public class menuVehiculosConductor extends javax.swing.JPanel {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        registrarRutaBtn.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        registrarRutaBtn.setText("Registrar Ruta");
+        registrarRutaBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        registrarRutaBtn.setText("Registrar Vehiculo");
         registrarRutaBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 registrarRutaBtnActionPerformed(evt);
@@ -78,8 +78,8 @@ public class menuVehiculosConductor extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(49, 49, 49)
-                .addComponent(registrarRutaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addComponent(registrarRutaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(TituloLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 596, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(panelContenedorRutas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
