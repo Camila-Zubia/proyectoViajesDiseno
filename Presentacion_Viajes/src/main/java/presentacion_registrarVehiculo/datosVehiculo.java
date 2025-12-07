@@ -4,16 +4,22 @@
  */
 package presentacion_registrarVehiculo;
 
+import Controles.IControlPantallas;
+
 /**
  *
  * @author adell
  */
 public class datosVehiculo extends javax.swing.JPanel {
 
+    private final IControlPantallas controlPantallas;
+
     /**
      * Creates new form datosVehiculo
      */
-    public datosVehiculo() {
+    public datosVehiculo(IControlPantallas controlPantallas) {
+        this.controlPantallas = controlPantallas;
+
         initComponents();
     }
 

@@ -4,10 +4,12 @@
  */
 package interface_registrarVehiculo;
 
+import dto.VehiculoDTO;
+
 /**
  *
  * @author adell
  */
 public interface IVehiculoNegocio {
-    
+    public void registrarVehiculo(VehiculoDTO vehiculo);
 }

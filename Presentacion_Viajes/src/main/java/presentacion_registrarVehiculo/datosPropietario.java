@@ -4,16 +4,22 @@
  */
 package presentacion_registrarVehiculo;
 
+import Controles.IControlPantallas;
+
 /**
  *
  * @author adell
  */
 public class datosPropietario extends javax.swing.JPanel {
 
+    private final IControlPantallas controlPantallas;
+
     /**
      * Creates new form datosPropietario
      */
-    public datosPropietario() {
+    public datosPropietario(IControlPantallas controlPantallas) {
+        this.controlPantallas = controlPantallas;
+
         initComponents();
     }
 
@@ -212,14 +218,12 @@ public class datosPropietario extends javax.swing.JPanel {
 
     private void confirmarViajeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarViajeBtnActionPerformed
 
-      
 
-      
     }//GEN-LAST:event_confirmarViajeBtnActionPerformed
 
     private void regresarMenuRutasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarMenuRutasBtnActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_regresarMenuRutasBtnActionPerformed
 
     private void PrecioTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PrecioTextFieldActionPerformed

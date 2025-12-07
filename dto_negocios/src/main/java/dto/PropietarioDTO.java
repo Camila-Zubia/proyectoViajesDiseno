@@ -18,12 +18,12 @@ public class PropietarioDTO {
     String curp;
     String rfc;
     String nss;
-    List<Vehiculo> listaVehiculos;
+    List<VehiculoDTO> listaVehiculos;
 
     public PropietarioDTO() {
     }
 
-    public PropietarioDTO(String nombre, String curp, String rfc, String nss, List<Vehiculo> listaVehiculos) {
+    public PropietarioDTO(String nombre, String curp, String rfc, String nss, List<VehiculoDTO> listaVehiculos) {
         this.nombre = nombre;
         this.curp = curp;
         this.rfc = rfc;
@@ -38,7 +38,7 @@ public class PropietarioDTO {
         this.nss = nss;
     }
 
-    public PropietarioDTO(String id, String nombre, String curp, String rfc, String nss, List<Vehiculo> listaVehiculos) {
+    public PropietarioDTO(String id, String nombre, String curp, String rfc, String nss, List<VehiculoDTO> listaVehiculos) {
         this.id = id;
         this.nombre = nombre;
         this.curp = curp;
@@ -87,11 +87,11 @@ public class PropietarioDTO {
         this.nss = nss;
     }
 
-    public List<Vehiculo> getListaVehiculos() {
+    public List<VehiculoDTO> getListaVehiculos() {
         return listaVehiculos;
     }
 
-    public void setListaVehiculos(List<Vehiculo> listaVehiculos) {
+    public void setListaVehiculos(List<VehiculoDTO> listaVehiculos) {
         this.listaVehiculos = listaVehiculos;
     }
 

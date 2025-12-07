@@ -46,6 +46,11 @@ import presentacion_crearRutaFrecuente.DatosParadasRuta;
 import presentacion_crearRutaFrecuente.DatosRutaFrec;
 import presentacion_crearRutaFrecuente.MenuRutasFrecuentes;
 import presentacion_crearRutaFrecuente.SeleccionarVehiculoRuta;
+import presentacion_registrarVehiculo.datosPropietario;
+import presentacion_registrarVehiculo.datosVehiculo;
+import presentacion_registrarVehiculo.menuVehiculosConductor;
+import registrarVehiculo.FRegistrarVehiculo;
+import registrarVehiculo.IRegistrarVehiculo;
 import registrarViaje.IRegistrarViaje;
 import registrarViaje.RegistrarViaje;
 import solicitarReservacion.ISolicitarReservacion;
@@ -67,6 +72,7 @@ public class ControlPantallas implements IControlPantallas {
     private final ICrearRutaFrecuente interfazCrearRutaFrecuente = new FCrearRutaFrecuente();
     private final ICancelarViaje interfazCancelarViaje = new CancelarViaje();
     private final IEditarViaje interfazEditarViaje = new EditarViaje();
+    private final IRegistrarVehiculo interfazRegistrarVehiculo = new FRegistrarVehiculo();
 
     private ViajeDTO viajeTemporal;
 
@@ -445,4 +451,25 @@ public class ControlPantallas implements IControlPantallas {
     public boolean validarEdicionSegura() {
         return interfazEditarViaje.validarEdicionSegura();
     }
+
+    // metodos para registra vehiculo
+    //@Override
+    public void mostrarMenuVehiculosConductor() {
+        UsuarioDTO usuario = sesion.obtenerUsuario();
+        List vehiculos = interfazRegistrarViaje.obtenerVehiculosDisponibles(usuario.getConductor());
+        menuVehiculosConductor menuVehiculosConductor = new menuVehiculosConductor(this, vehiculos);
+        configurarPanel(menuVehiculosConductor);
+    }
+
+    //@Override
+    public void mostrarDatosVehiculo() {
+        datosVehiculo datosVehiculo = new datosVehiculo(this);
+        configurarPanel(datosVehiculo);
+    }
+
+    public void mostrarDatosPropietario() {
+        datosPropietario datosPropietario = new datosPropietario(this);
+        configurarPanel(datosPropietario);
+    }
+
 }

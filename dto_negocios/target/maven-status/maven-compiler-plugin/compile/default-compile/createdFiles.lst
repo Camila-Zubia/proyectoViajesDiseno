@@ -1,5 +1,6 @@
 dto\EstatusReservacion.class
 dto\ReservacionDTO.class
+dto\PropietarioDTO.class
 dto\UsuarioDTO.class
 dto\ParadaDTO.class
 dto\ViajeDTO.class
