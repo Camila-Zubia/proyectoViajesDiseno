@@ -254,7 +254,7 @@ public class datosPropietario extends javax.swing.JPanel {
 
     private boolean validarCamposPropietario() {
 
-        // --- 1. VALIDACIÓN DE CAMPOS REQUERIDOS (NO VACÍOS) ---
+       
         if (nombreTField.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "El Nombre es obligatorio.", "Error de Validación", JOptionPane.WARNING_MESSAGE);
             nombreTField.requestFocus();
@@ -273,10 +273,7 @@ public class datosPropietario extends javax.swing.JPanel {
             return false;
         }
 
-        // El NSS (Número de Seguridad Social) a veces es opcional,
-        // pero si lo requieres, pon la validación aquí:
-        // if (nssTextField.getText().trim().isEmpty()) { ... }
-        // --- 2. VALIDACIÓN DE FORMATO/LONGITUD (CRÍTICO PARA HACIENDA) ---
+        
         String curp = curpTField1.getText().trim();
         String rfc = rfcTField.getText().trim();
 
