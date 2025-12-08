@@ -31,9 +31,15 @@ mvnw.cmd
 # Logs
 *.log
 
-# Archivos de configuración local
-*.properties
-!src/main/resources/*.properties
+# Ignorar solo archivos de propiedades que son secretos o locales (p. ej., que no tienen el sufijo -example)
+# La carpeta de resources SÍ se debe subir.
+
+# Ignora archivos de propiedades que están en la raíz del proyecto (a menudo temporales o locales)
+/*.properties
+
+# Ignora archivos de propiedades que contienen información sensible (si usas este nombre)
+# ¡Asegúrate de que sí subes application.properties, application-dev.properties, etc.!
+# Si usas un archivo para secretos, renéutralo a algo como 'secrets.properties' y solo ignora ese.
 
 # Archivos compilados
 *.class
