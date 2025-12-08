@@ -32,18 +32,18 @@ public class SolicitarReservacion implements ISolicitarReservacion{
     }
 
     @Override
-    public void seleccionarViaje(ViajeDTO viaje) {
-        gestor.seleccionarViaje(viaje);
+    public ViajeDTO seleccionarViaje(ViajeDTO viaje) {
+        return gestor.seleccionarViaje(viaje);
     }
 
     @Override
-    public void seleccionarParada(ParadaDTO parada) {
-        gestor.seleccionarParada(parada);
+    public ParadaDTO seleccionarParada(ParadaDTO parada) {
+        return gestor.seleccionarParada(parada);
     }
 
     @Override
-    public void solicitarParada(String direccion) {
-        gestor.solicitarParada(direccion);
+    public ParadaDTO solicitarParada(String direccion) {
+        return gestor.solicitarParada(direccion);
     }
 
     @Override

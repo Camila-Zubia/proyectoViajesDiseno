@@ -19,11 +19,11 @@ public interface ISolicitarReservacion {
     
     public List<ParadaDTO> obtenerParadas();
     
-    public void seleccionarViaje(ViajeDTO viaje);
+    public ViajeDTO seleccionarViaje(ViajeDTO viaje);
     
-    public void seleccionarParada(ParadaDTO parada);
+    public ParadaDTO seleccionarParada(ParadaDTO parada);
     
-    public void solicitarParada(String direccion);
+    public ParadaDTO solicitarParada(String direccion);
     
     public ReservacionDTO confirmarReservacion();
     
