@@ -69,15 +69,12 @@ public class controlRegistrarVehiculo {
         this.ListaVehiculosTemp.add(vehiculoTemp);
         this.propietarioTemp.setListaVehiculos(ListaVehiculosTemp);
 
-        System.out.println("DTO ENTRADA CURP: " + propietarioTemp.getCurp());
-        System.out.println("DTO ENTRADA SERIE: " + vehiculoTemp.getNumeroSerie());
-        
         PropietarioHaciendaDTO propHaciendaDTO = toPropietarioHaciendaDTO(propietarioTemp);
         VehiculoHaciendaDTO vehHaciendaDTO = toVehiculoHaciendaDTO(vehiculoTemp);
-        
+
         System.out.println(propHaciendaDTO.getCurp());
         System.out.println(vehHaciendaDTO.getNumeroSerie());
-        
+
         boolean datosValidos = validacionHaciendaService.verificarCoincidencia(
                 propHaciendaDTO, // DTO del Propietario
                 vehHaciendaDTO // DTO del Vehículo

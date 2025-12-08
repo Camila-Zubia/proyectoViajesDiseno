@@ -228,7 +228,7 @@ public class detallesViaje extends javax.swing.JPanel {
 
             int montoAdeudo = controlPantallas.obtenerAdeudoPendiente(viaje.getId());
 
-            String mensaje;
+            String mensaje = null;
             if (montoAdeudo > 0) {
                 JOptionPane.showMessageDialog(this,
                     String.format("Viaje cancelado exitosamente.\n\nSe ha registrado un adeudo de $%d pesos.", montoAdeudo),

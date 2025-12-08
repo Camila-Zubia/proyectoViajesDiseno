@@ -256,7 +256,7 @@ public class datosVehiculo extends javax.swing.JPanel {
     private void confirmarViajeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarViajeBtnActionPerformed
         String numeroSerie = nSerieTextField.getText().trim();
         String placas = placasTField.getText().trim();
-        String color = nSerieTextField.getText().trim();
+        String color = colorTextField1.getText().trim();
         String marca = marcaTField.getText().trim();
         String modelo = modeloTextField1.getText().trim();
         int capacidad = Integer.parseInt(capacidadTextField2.getText().trim());

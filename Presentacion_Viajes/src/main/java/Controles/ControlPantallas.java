@@ -525,7 +525,8 @@ public class ControlPantallas implements IControlPantallas {
     public void ConfirmarDatosVehiculoPropietario() {
 
         interfazRegistrarVehiculo.confirmarRegistroVehiculoPropietario();
-    @Override
+    }
+        @Override
     public ViajeDTO obtenerDetallesViaje(String idViaje) {
         return interfazPagarAdeudo.obtenerDetallesViaje(idViaje);
     }
