@@ -65,11 +65,11 @@ public interface IControlPantallas {
 
     public List<ParadaDTO> obtenerParadas();
 
-    public void seleccionarViaje(ViajeDTO viaje);
+    public ViajeDTO seleccionarViajeReservacion(ViajeDTO viaje);
 
-    public void seleccionarParada(ParadaDTO parada);
+    public ParadaDTO seleccionarParada(ParadaDTO parada);
 
-    public void solicitarParada(String direccion);
+    public ParadaDTO solicitarParada(String direccion);
 
     public ReservacionDTO confirmarReservacion();
 
@@ -121,6 +121,8 @@ public interface IControlPantallas {
     public int obtenerAdeudoPendiente(String idViaje);
 
     //metodos para editarViaje
+    public void seleccionarViaje(ViajeDTO viaje);
+    
     public void mostrarEditarViaje();
 
     public void mostrarEditarParadas();

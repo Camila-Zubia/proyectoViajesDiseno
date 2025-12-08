@@ -251,7 +251,7 @@ public class menuPrincipalPasajero extends javax.swing.JPanel {
                     btnInfo.setText(viaje.toString());
                     
                     btnInfo.addActionListener(e -> {
-                        controlPantallas.seleccionarViaje((ViajeDTO) viaje);
+                        controlPantallas.seleccionarViajeReservacion((ViajeDTO) viaje);
                         controlPantallas.mostrarParadasViaje();
                     });
 

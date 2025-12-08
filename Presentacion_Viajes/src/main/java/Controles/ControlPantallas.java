@@ -234,21 +234,18 @@ public class ControlPantallas implements IControlPantallas {
     }
 
     @Override
-    public void seleccionarViaje(ViajeDTO viaje) {
-        interfazSolicitarReservacion.seleccionarViaje(viaje);
-        //metodo de editarViaje para inicializar el DTO para su edicion
-        interfazEditarViaje.setViajeTemporal(viaje);
-        this.viajeTemporal = viaje;
+    public ViajeDTO seleccionarViajeReservacion(ViajeDTO viaje) {
+        return interfazSolicitarReservacion.seleccionarViaje(viaje);
     }
 
     @Override
-    public void seleccionarParada(ParadaDTO parada) {
-        interfazSolicitarReservacion.seleccionarParada(parada);
+    public ParadaDTO seleccionarParada(ParadaDTO parada) {
+        return interfazSolicitarReservacion.seleccionarParada(parada);
     }
 
     @Override
-    public void solicitarParada(String direccion) {
-        interfazSolicitarReservacion.solicitarParada(direccion);
+    public ParadaDTO solicitarParada(String direccion) {
+        return interfazSolicitarReservacion.solicitarParada(direccion);
     }
 
     @Override
@@ -428,6 +425,13 @@ public class ControlPantallas implements IControlPantallas {
     }
 
     //metodos del subsitema editarViaje
+    @Override
+    public void seleccionarViaje(ViajeDTO viaje) {
+        //metodo de editarViaje para inicializar el DTO para su edicion
+        interfazEditarViaje.setViajeTemporal(viaje);
+        this.viajeTemporal = viaje;
+    }
+    
     @Override
     public void mostrarEditarViaje() {
         ViajeDTO viaje = obtenerViajeParaEdicion();
