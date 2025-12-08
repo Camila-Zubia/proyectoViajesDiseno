@@ -253,7 +253,10 @@ public class datosVehiculo extends javax.swing.JPanel {
     private void marcaTFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_marcaTFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_marcaTFieldActionPerformed
-
+    /**
+     *  boton que recolecta los datos del vehiculo y te mueve a la siguiente pantalla de datos propietario
+     * @param evt 
+     */
     private void confirmarViajeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarViajeBtnActionPerformed
         // 1. Validar la calidad y existencia de los datos
         if (!validarCamposVehiculo()) {
@@ -281,7 +284,10 @@ public class datosVehiculo extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Error de formato numérico: revise la capacidad.", "Error de Entrada", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_confirmarViajeBtnActionPerformed
-
+    /**
+     * validaciones para el llenado de datos
+     * @return true or false dependiendo de los datos recibidos
+     */
     private boolean validarCamposVehiculo() {
 
         // --- 1. VALIDACIÓN DE CAMPOS REQUERIDOS (NO VACÍOS) ---

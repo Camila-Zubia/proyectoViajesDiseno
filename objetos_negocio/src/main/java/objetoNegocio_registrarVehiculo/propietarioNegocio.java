@@ -9,7 +9,7 @@ import org.base_datos_viajes.model.Propietario;
 import org.base_datos_viajes.dao.interfaces.IPropietarioDAO;
 
 /**
- *
+ * clase que implementa la interfaz para persistir un objeto propietario
  * @author adell
  */
 public class propietarioNegocio implements interface_registrarVehiculo.IPropietarioNegocio {

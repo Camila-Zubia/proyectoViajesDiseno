@@ -10,7 +10,7 @@ import java.time.LocalTime;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * pantalla que recolecta los datos proporcionados por el usuario para persistir una ruta frecuente
  * @author adell
  */
 public class DatosRutaFrec extends javax.swing.JPanel {
@@ -207,7 +207,10 @@ public class DatosRutaFrec extends javax.swing.JPanel {
     private void destinoTFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_destinoTFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_destinoTFieldActionPerformed
-
+    /**
+     * boton que dispara el evento de confirmar viaje guardando los datos de la ruta frecuente
+     * @param evt 
+     */
     private void confirmarViajeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarViajeBtnActionPerformed
        
         String nombre = nombreTField.getText().trim();
@@ -280,7 +283,10 @@ public class DatosRutaFrec extends javax.swing.JPanel {
         controlPantallas.agregarParadaRuta(origen, precioBase);
         controlPantallas.mostrarParadasRuta();
     }//GEN-LAST:event_confirmarViajeBtnActionPerformed
-
+    /**
+     * boton que dispara el evento de devolver al usuario a la pantalla de menu rutas frecuente
+     * @param evt 
+     */
     private void regresarMenuRutasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarMenuRutasBtnActionPerformed
         // TODO add your handling code here:
               controlPantallas.mostrarMenuRutasFrecuentes();

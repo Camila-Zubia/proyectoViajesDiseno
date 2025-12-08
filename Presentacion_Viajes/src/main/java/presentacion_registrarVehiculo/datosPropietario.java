@@ -8,6 +8,8 @@ import Controles.IControlPantallas;
 import javax.swing.JOptionPane;
 
 /**
+ * pantalla que se encarga de recolectar los datos del propietario y
+ * confirmarlos para despues guardarlos junto con el vehiculo
  *
  * @author adell
  */
@@ -251,10 +253,12 @@ public class datosPropietario extends javax.swing.JPanel {
         }
 
     }//GEN-LAST:event_confirmarPropietarioBtnActionPerformed
-
+    /**
+     * metodo que se encarga de la validacion de cada uno de los campos requeridos
+     * @return true o false estado que valida los datos recolectados
+     */
     private boolean validarCamposPropietario() {
 
-       
         if (nombreTField.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "El Nombre es obligatorio.", "Error de Validación", JOptionPane.WARNING_MESSAGE);
             nombreTField.requestFocus();
@@ -273,7 +277,6 @@ public class datosPropietario extends javax.swing.JPanel {
             return false;
         }
 
-        
         String curp = curpTField1.getText().trim();
         String rfc = rfcTField.getText().trim();
 

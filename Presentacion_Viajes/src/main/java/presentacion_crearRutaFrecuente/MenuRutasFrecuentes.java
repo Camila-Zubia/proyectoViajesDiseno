@@ -26,7 +26,7 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
 /**
- *
+ * Clase que se encarga de mostrarle al usuario las rutas frecuentes registradas asi como la opcion de empezar un nuevo registro
  * @author adell
  */
 public class MenuRutasFrecuentes extends javax.swing.JPanel {
@@ -139,12 +139,19 @@ public class MenuRutasFrecuentes extends javax.swing.JPanel {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * boton que dispara el eventos de mostrar la pantalla de datos rutas frecuentes 
+     * @param evt 
+     */
     private void registrarRutaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarRutaBtnActionPerformed
         // TODO add your handling code here:
         controlPantallas.mostrarDatosRutasFrecuente();
     }//GEN-LAST:event_registrarRutaBtnActionPerformed
-
+    
+    /**
+     * muesstra las rutas registradas del conductor
+     * @param listaRutas lista de rutas a mostrar
+     */
     private void mostrarRutas(List listaRutas) {
         try {
             if (listaRutas != null) {

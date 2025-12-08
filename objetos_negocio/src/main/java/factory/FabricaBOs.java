@@ -81,7 +81,14 @@ public class FabricaBOs implements IFabricaBOs {
         return new ReservacionNegocio(reservacionDAO);
     }
 
-    //metodos del caso de uso registrar ruta frecuente
+    /**
+     * Crea una nueva instancia del objeto de la capa de Negocio (Servicio) para
+     * el caso de uso 'Registrar Ruta Frecuente'. * Este método se encarga de
+     * inyectar el objeto DAO necesario para que la lógica de negocio pueda
+     * interactuar con la persistencia.
+     *
+     * * @return Implementación de la interfaz ICrearRutaFrecuenteNegocio.
+     */
     @Override
     public ICrearRutaFrecuenteNegocio crearRutaFrecuenteNegocio() {
         return new RutaFrecuenteNegocio(rutaDAO);
@@ -110,12 +117,16 @@ public class FabricaBOs implements IFabricaBOs {
         return new vehiculoNegocio(vehiculoDAO);
     }
 
+    /**
+     * Implementa el patrón Factory Method para crear una instancia del servicio
+     * de validación de Hacienda. * 
+     * * @return Una interfaz (IValidacionPropietarioVehiculoServicio) que
+     * contiene los métodos para interactuar con la simulación de la API de
+     * validación externa.
+     */
     @Override
     public IValidacionPropietarioVehiculoServicio crearValidacionHaciendaServicio() {
-        // 1. Obtener la implementación del repositorio (DAO)
-        // NOTA: Esto requiere que el Proyecto Externo tenga visibilidad sobre el DAO.
 
-        // 2. Inyectar la dependencia en el servicio de Negocio de Hacienda
         return new ValidacionPropietarioVehiculoServicio();
     }
 }
