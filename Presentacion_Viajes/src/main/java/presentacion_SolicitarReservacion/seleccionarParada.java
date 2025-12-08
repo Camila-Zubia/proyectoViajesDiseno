@@ -49,12 +49,22 @@ public class seleccionarParada extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnSolicitarParada = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         panelContenedorVehiculos = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(0, 109, 182));
         setMinimumSize(new java.awt.Dimension(1080, 648));
         setPreferredSize(new java.awt.Dimension(1080, 640));
+
+        btnSolicitarParada.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        btnSolicitarParada.setText("Solicitar Parada");
+        btnSolicitarParada.setBorder(null);
+        btnSolicitarParada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSolicitarParadaActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -87,6 +97,11 @@ public class seleccionarParada extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 596, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(232, 232, 232))))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(409, 409, 409)
+                    .addComponent(btnSolicitarParada, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(409, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -96,8 +111,27 @@ public class seleccionarParada extends javax.swing.JPanel {
                 .addGap(41, 41, 41)
                 .addComponent(panelContenedorVehiculos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(203, 203, 203))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(500, 500, 500)
+                    .addComponent(btnSolicitarParada, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(87, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSolicitarParadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSolicitarParadaActionPerformed
+        String direccion = JOptionPane.showInputDialog(
+            this,
+            "Introduce la dirección de la parada que quieres solicitar:",
+            "Solicitar Parada",
+            JOptionPane.QUESTION_MESSAGE
+        );
+        ParadaDTO parada = new ParadaDTO(direccion, 0.0);
+        if (direccion != null && !direccion.trim().isEmpty()) {
+            controlPantallas.seleccionarParada((ParadaDTO) parada);
+        }
+        controlPantallas.solicitarParada(direccion);
+    }//GEN-LAST:event_btnSolicitarParadaActionPerformed
 
     private void mostrarParadas(List listaParadas) {
         try {
@@ -156,6 +190,7 @@ public class seleccionarParada extends javax.swing.JPanel {
     
   
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnSolicitarParada;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel panelContenedorVehiculos;
     // End of variables declaration//GEN-END:variables
