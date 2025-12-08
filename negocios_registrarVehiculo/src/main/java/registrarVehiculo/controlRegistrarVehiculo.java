@@ -112,6 +112,7 @@ public class controlRegistrarVehiculo {
      * Hacienda.
      *
      * * @param vehiculoDTO El DTO del vehículo desde el Control/UI.
+     * @param vehiculoDTO
      * @return El DTO específico para la capa de Hacienda.
      */
     public static VehiculoHaciendaDTO toVehiculoHaciendaDTO(VehiculoDTO vehiculoDTO) {
