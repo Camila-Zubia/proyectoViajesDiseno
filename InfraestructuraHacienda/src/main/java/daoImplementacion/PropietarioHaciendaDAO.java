@@ -9,7 +9,6 @@ package daoImplementacion;
  * @author adell
  */
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import org.bson.Document;
 import java.util.Optional;
