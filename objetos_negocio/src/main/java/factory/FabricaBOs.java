@@ -22,9 +22,11 @@ import interface_crearRutaFrecuente.ICrearRutaFrecuenteNegocio;
 import interface_registrarVehiculo.IPropietarioNegocio;
 import interface_registrarVehiculo.IVehiculoNegocio;
 import interfaces_editarViaje.IEditarViajeNegocio;
+import interfaces_solicitarReservacion.IReservacionNegocio;
 import objetoNegocio_registrarVehiculo.propietarioNegocio;
 import objetoNegocio_registrarVehiculo.vehiculoNegocio;
 import objetosNegocio_editarViaje.EditarViajeNegocio;
+import objetosNegocio_solicitarReservacion.ReservacionNegocio;
 import org.base_datos_viajes.dao.impl.PasajeroDAO;
 import org.base_datos_viajes.dao.impl.PropietarioDAO;
 import org.base_datos_viajes.dao.impl.ReservacionDAO;
@@ -68,6 +70,11 @@ public class FabricaBOs implements IFabricaBOs {
     @Override
     public IPasajeroNegocio crearPasajeroNegocio() {
         return new PasajeroNegocio(pasajeroDAO, reservacionDAO);
+    }
+    
+    @Override
+    public IReservacionNegocio crearReservacionNegocio() {
+        return new ReservacionNegocio(reservacionDAO);
     }
 
     //metodos del caso de uso registrar ruta frecuente

@@ -142,7 +142,7 @@ public class seleccionarParada extends javax.swing.JPanel {
                 panelContenedorVehiculos.revalidate();
                 panelContenedorVehiculos.repaint();
             }else{
-                JOptionPane.showMessageDialog(this, "No hay vehiculos registrados");
+                JOptionPane.showMessageDialog(this, "No hay paradas registradas");
             }
         } catch (HeadlessException e) {
             JOptionPane.showMessageDialog(this,

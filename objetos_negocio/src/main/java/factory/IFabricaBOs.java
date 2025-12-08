@@ -13,6 +13,7 @@ import interface_registrarVehiculo.IPropietarioNegocio;
 import interface_registrarVehiculo.IVehiculoNegocio;
 import interfaces_cancelarViaje.IAdeudoNegocio;
 import interfaces_editarViaje.IEditarViajeNegocio;
+import interfaces_solicitarReservacion.IReservacionNegocio;
 
 /**
  *
@@ -28,6 +29,8 @@ public interface IFabricaBOs {
 
     //metodos del caso de uso "Solicitar Reservacion" y "Cancelar Reservacion"
     public IPasajeroNegocio crearPasajeroNegocio();
+    
+    public IReservacionNegocio crearReservacionNegocio();
 
     //metodo para el caso de uso crear ruta frecuente
     public ICrearRutaFrecuenteNegocio crearRutaFrecuenteNegocio();

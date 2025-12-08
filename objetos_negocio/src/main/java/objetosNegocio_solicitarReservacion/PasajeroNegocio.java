@@ -4,14 +4,18 @@
  */
 package objetosNegocio_solicitarReservacion;
 
+import adaptadores.adaptadorPasajero;
 import adaptadores.adaptadorReservacion;
 import dto.EstatusReservacion;
+import dto.PasajeroDTO;
 import dto.ReservacionDTO;
 import interfaces_solicitarReservacion.IPasajeroNegocio;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.base_datos_viajes.dao.interfaces.IPasajeroDAO;
 import org.base_datos_viajes.dao.interfaces.IReservacionDAO;
+import org.base_datos_viajes.exception.DatabaseException;
+import org.base_datos_viajes.model.Pasajero;
 import org.base_datos_viajes.model.Reservacion;
 import org.base_datos_viajes.model.Reservacion.Estatus;
 import org.bson.types.ObjectId;
@@ -25,7 +29,7 @@ public class PasajeroNegocio implements IPasajeroNegocio{
 
     private final IPasajeroDAO pasajeroDAO;
     private final IReservacionDAO reservacionDAO;
-    
+
     public PasajeroNegocio(IPasajeroDAO pasajeroDAO, IReservacionDAO reservacionDAO) {
         this.pasajeroDAO = pasajeroDAO;
         this.reservacionDAO = reservacionDAO;
@@ -85,13 +89,25 @@ public class PasajeroNegocio implements IPasajeroNegocio{
 
         return reservacionesDisponibles;
     }
-    
+
     @Override
     public List<ReservacionDTO> removerReservacion(ReservacionDTO reservacion) {
+        if (reservacion.getTiempoRestante() < 7200) {
+            PasajeroDTO pasajeroActual = SesionUsuario.obtenerPasajero();
+            double nuevaCalificacion = pasajeroActual.getCalificacion() - 10;
+            pasajeroActual.setCalificacion(nuevaCalificacion);
+
+            try {
+                Pasajero entidadPasajero = adaptadorPasajero.toEntity(pasajeroActual);
+                pasajeroDAO.update(entidadPasajero);
+            } catch (DatabaseException e) {
+                System.err.println("Error al penalizar pasajero: " + e.getMessage());
+            }
+        }
         reservacion.setEstatus(EstatusReservacion.CANCELADA);
         Reservacion r = adaptadorReservacion.toEntity(reservacion);
         reservacionDAO.update(r);
         return obtenerReservaciones();
     }
-    
+
 }

@@ -61,6 +61,11 @@ public class GestorSolicitud {
         this.paradaSeleccionada = parada;
     }
     
+    public void solicitarParada(String direccion) {
+        ParadaDTO paradaSolicitada = new ParadaDTO(direccion, 0.0);
+        this.paradaSeleccionada = paradaSolicitada;
+    }
+    
     public ReservacionDTO obtenerReservacionTemporal(){
         if (viajeSeleccionado == null) {
             throw new IllegalStateException("Error: No hay viaje seleccionado en el gestor.");
@@ -93,12 +98,6 @@ public class GestorSolicitud {
         }
         pasajeroBO.agregarReservacion(reservacionTemporal);
         return reservacionTemporal;
-    }
-    
-    public void solicitarParada(String direccion){
-        ParadaDTO paradaSolicitada = new ParadaDTO();
-        paradaSolicitada.setDirección(direccion);
-        this.paradaSeleccionada = paradaSolicitada;
     }
     
 }

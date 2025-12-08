@@ -5,6 +5,7 @@
 package interfaces_solicitarReservacion;
 
 import dto.ReservacionDTO;
+import java.util.List;
 
 /**
  *
@@ -12,5 +13,8 @@ import dto.ReservacionDTO;
  */
 public interface IReservacionNegocio {
     
+    public void gestionarSolicitud(ReservacionDTO reservacion, double precioAsignadoAParada, boolean aceptar);
+
+    public List<ReservacionDTO> obtenerSolicitudesPendientes(String idViaje);
     
 }

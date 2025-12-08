@@ -203,11 +203,11 @@ public class cancelarReservacion extends javax.swing.JPanel {
         try {
             costoTField.setText("$" + reservacion.getPrecioTotal());
             destinoTField.setText(reservacion.getViaje().getDestino());
-            tiempoTField.setText(reservacion.getTiempoRestante().toString());
+            tiempoTField.setText(controlPantallas.formatearTiempoRestante(reservacion.getTiempoRestante()));
             origenTField.setText(reservacion.getViaje().getOrigen());
         } catch (HeadlessException e) {
             JOptionPane.showMessageDialog(this,
-                "Error al cargar vehículos: " + e.getMessage(),
+                "Error al cargar reservacion: " + e.getMessage(),
                 "Error",
                 JOptionPane.ERROR_MESSAGE);
         }

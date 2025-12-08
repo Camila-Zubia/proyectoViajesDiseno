@@ -23,6 +23,8 @@ import javax.swing.JPanel;
 public interface IControlPantallas {
 
     public void configurarPanel(JPanel panel);
+    
+    public boolean obtenerPerfil();
 
     public void mostrarMenuVehiculos();
 
@@ -74,6 +76,8 @@ public interface IControlPantallas {
     public ReservacionDTO obtenerReservacionTemporal();
 
     public PasajeroDTO nombrePasajero();
+    
+    public String formatearTiempoRestante(Long tiempoSegundos);
 
     //metodos subsistema "CancelarReservacion"
     public void mostrarReservaciones();
