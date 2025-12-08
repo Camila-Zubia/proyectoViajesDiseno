@@ -72,9 +72,6 @@ public class controlRegistrarVehiculo {
         PropietarioHaciendaDTO propHaciendaDTO = toPropietarioHaciendaDTO(propietarioTemp);
         VehiculoHaciendaDTO vehHaciendaDTO = toVehiculoHaciendaDTO(vehiculoTemp);
 
-        System.out.println(propHaciendaDTO.getCurp());
-        System.out.println(vehHaciendaDTO.getNumeroSerie());
-
         boolean datosValidos = validacionHaciendaService.verificarCoincidencia(
                 propHaciendaDTO, // DTO del Propietario
                 vehHaciendaDTO // DTO del Vehículo

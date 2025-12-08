@@ -30,7 +30,7 @@ public class ValidacionPropietarioVehiculoServicio implements IValidacionPropiet
 
     @Override
     public boolean verificarCoincidencia(PropietarioHaciendaDTO propietarioDTO, VehiculoHaciendaDTO vehiculoDTO) {
-        System.err.println("=== INICIO DIAGNÓSTICO HACIENDA ===");
+        System.err.println("=== INICIO DIAGNOSTICO HACIENDA ===");
 
         // 1. Validar entradas básicas
         if (propietarioDTO == null || vehiculoDTO == null || propietarioDTO.getCurp() == null) {
@@ -70,11 +70,11 @@ public class ValidacionPropietarioVehiculoServicio implements IValidacionPropiet
 
             try {
                 propietarioDAO.save(nuevo);
-                System.out.println("✅ Datos insertados. Re-intentando búsqueda...");
+                System.out.println(" Datos insertados. Re-intentando búsqueda...");
                 // Volvemos a buscar
                 optionalProp = propietarioDAO.findByCurp(propietarioDTO.getCurp());
             } catch (Exception e) {
-                System.out.println("❌ Error al intentar auto-insertar: " + e.getMessage());
+                System.out.println(" Error al intentar auto-insertar: " + e.getMessage());
             }
         }
 // FIN BLOQUE
@@ -105,16 +105,16 @@ public class ValidacionPropietarioVehiculoServicio implements IValidacionPropiet
         }
 
         // 4. IMPRESIÓN DE VEHÍCULOS
-        System.err.println("--- DATOS VEHÍCULOS ---");
+        System.err.println("--- DATOS VEHICULOS ---");
         List<VehiculoHacienda> listaVehiculos = db.getVehiculos();
 
         if (listaVehiculos == null) {
-            System.err.println("FALLO CRÍTICO: La lista de vehículos es NULL.");
+            System.err.println("FALLO CRITICO: La lista de vehículos es NULL.");
             return false;
         }
 
         // IMPORTANTE: Imprimimos el tamaño para ver si Hibernate los cargó
-        System.err.println("Cantidad de vehículos en BD para este usuario: " + listaVehiculos.size());
+        System.err.println("Cantidad de vehiculos en BD para este usuario: " + listaVehiculos.size());
 
         if (listaVehiculos.isEmpty()) {
             System.err.println("FALLO: El usuario existe, pero NO TIENE VEHÍCULOS registrados en BD.");
@@ -132,7 +132,7 @@ public class ValidacionPropietarioVehiculoServicio implements IValidacionPropiet
         });
 
         if (vehiculoEncontrado) {
-            System.err.println("=== ÉXITO: COINCIDENCIA ENCONTRADA ===");
+            System.err.println("=== EXITO: COINCIDENCIA ENCONTRADA ===");
             return true;
         } else {
             System.err.println("FALLO: Ningún vehículo de la lista coincide con la serie.");

@@ -5,6 +5,7 @@
 package presentacion_registrarVehiculo;
 
 import Controles.IControlPantallas;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -254,21 +255,88 @@ public class datosVehiculo extends javax.swing.JPanel {
     }//GEN-LAST:event_marcaTFieldActionPerformed
 
     private void confirmarViajeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarViajeBtnActionPerformed
-        String numeroSerie = nSerieTextField.getText().trim();
-        String placas = placasTField.getText().trim();
-        String color = colorTextField1.getText().trim();
-        String marca = marcaTField.getText().trim();
-        String modelo = modeloTextField1.getText().trim();
-        int capacidad = Integer.parseInt(capacidadTextField2.getText().trim());
-        controlPantallas.guardarDatosVehiculo(numeroSerie, modelo, placas, marca, color, capacidad);
+        // 1. Validar la calidad y existencia de los datos
+        if (!validarCamposVehiculo()) {
+            // Si la validación falla, la función ya mostró un mensaje de error.
+            return; // Salimos del método sin guardar.
+        }
 
-        controlPantallas.mostrarDatosPropietario();
+        try {
+            // 2. Extracción y conversión de datos (ahora que sabemos que son válidos)
+            String numeroSerie = nSerieTextField.getText().trim();
+            String placas = placasTField.getText().trim();
+            String color = colorTextField1.getText().trim();
+            String marca = marcaTField.getText().trim();
+            String modelo = modeloTextField1.getText().trim();
 
+            // La conversión a int es segura porque ya la validamos en validarCamposVehiculo()
+            int capacidad = Integer.parseInt(capacidadTextField2.getText().trim());
+
+            // 3. Llamada al controlador solo si todo fue exitoso
+            controlPantallas.guardarDatosVehiculo(numeroSerie, modelo, placas, marca, color, capacidad);
+            controlPantallas.mostrarDatosPropietario();
+
+        } catch (NumberFormatException e) {
+            // Esto solo atraparía un error si la validación falló de forma inesperada.
+            JOptionPane.showMessageDialog(this, "Error de formato numérico: revise la capacidad.", "Error de Entrada", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_confirmarViajeBtnActionPerformed
 
+    private boolean validarCamposVehiculo() {
+
+        // --- 1. VALIDACIÓN DE CAMPOS REQUERIDOS (NO VACÍOS) ---
+        if (nSerieTextField.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "El Número de Serie es obligatorio.", "Error de Validación", JOptionPane.WARNING_MESSAGE);
+            nSerieTextField.requestFocus(); // Enfocar el campo para corrección
+            return false;
+        }
+
+        if (placasTField.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Las Placas son obligatorias.", "Error de Validación", JOptionPane.WARNING_MESSAGE);
+            placasTField.requestFocus();
+            return false;
+        }
+
+        if (marcaTField.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "La Marca del vehículo es obligatoria.", "Error de Validación", JOptionPane.WARNING_MESSAGE);
+            marcaTField.requestFocus();
+            return false;
+        }
+
+        // --- 2. VALIDACIÓN DE FORMATO NUMÉRICO (CAPACIDAD) ---
+        String capacidadTexto = capacidadTextField2.getText().trim();
+        if (capacidadTexto.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "La Capacidad (número de pasajeros) es obligatoria.", "Error de Validación", JOptionPane.WARNING_MESSAGE);
+            capacidadTextField2.requestFocus();
+            return false;
+        }
+
+        try {
+            int capacidad = Integer.parseInt(capacidadTexto);
+            if (capacidad <= 0) {
+                JOptionPane.showMessageDialog(this, "La Capacidad debe ser un número entero positivo.", "Error de Validación", JOptionPane.WARNING_MESSAGE);
+                capacidadTextField2.requestFocus();
+                return false;
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "El campo Capacidad debe ser un número entero válido.", "Error de Formato", JOptionPane.WARNING_MESSAGE);
+            capacidadTextField2.requestFocus();
+            return false;
+        }
+
+       
+        if (nSerieTextField.getText().trim().length() < 7) {
+             JOptionPane.showMessageDialog(this, "El Número de Serie debe tener al menos 6 caracteres.", "Error de Formato", JOptionPane.WARNING_MESSAGE);
+             nSerieTextField.requestFocus();
+             return false;
+         }
+        
+        return true;
+    }
+    
     private void regresarMenuRutasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarMenuRutasBtnActionPerformed
         // TODO add your handling code here:
-        //controlPantallas.mostrarMenuRutasFrecuentes();
+        controlPantallas.mostrarMenuRutasFrecuentes();
     }//GEN-LAST:event_regresarMenuRutasBtnActionPerformed
 
     private void nSerieTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nSerieTextFieldActionPerformed
