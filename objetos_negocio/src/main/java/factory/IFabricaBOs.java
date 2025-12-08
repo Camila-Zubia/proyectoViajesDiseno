@@ -4,6 +4,7 @@
  */
 package factory;
 
+import IObjetoNegocio.IValidacionPropietarioVehiculoServicio;
 import interfaces.IConductorNegocio;
 import interfaces_solicitarReservacion.IPasajeroNegocio;
 import interfaces.IUsuarioNegocio;
@@ -45,4 +46,6 @@ public interface IFabricaBOs {
     public IPropietarioNegocio crearPropietarioNegocio();
 
     public IVehiculoNegocio crearVehiculoNegocio();
+    
+    public IValidacionPropietarioVehiculoServicio crearValidacionHaciendaServicio();
 }

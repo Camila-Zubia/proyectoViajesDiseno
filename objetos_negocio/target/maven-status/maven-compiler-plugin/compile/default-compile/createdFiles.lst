@@ -29,4 +29,5 @@ adaptadores\adaptadorReservacion.class
 objetoNegocio_registrarVehiculo\vehiculoNegocio.class
 interfaces_cancelarViaje\IAdeudoNegocio.class
 objetosNegocio_solicitarReservacion\PasajeroNegocio.class
+objetosNegocio_solicitarReservacion\ReservacionNegocio.class
 objetosNegocio_cancelarViaje\AdeudoNegocio.class

@@ -4,6 +4,9 @@
  */
 package registrarVehiculo;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author adell
@@ -17,8 +20,8 @@ public class FRegistrarVehiculo implements IRegistrarVehiculo {
     }
 
     @Override
-    public void guardarDatosVehiculo(String modelo, String placas, String marca, String color, int capacidad) {
-        controlVehiculo.guardarDatosVehiculo(modelo, placas, marca, color, capacidad);
+    public void guardarDatosVehiculo(String numeroSerie, String modelo, String placas, String marca, String color, int capacidad) {
+        controlVehiculo.guardarDatosVehiculo( numeroSerie, modelo, placas, marca, color, capacidad);
     }
 
     @Override
@@ -28,6 +31,10 @@ public class FRegistrarVehiculo implements IRegistrarVehiculo {
 
     @Override
     public void confirmarRegistroVehiculoPropietario() {
-        controlVehiculo.confirmarRegistroVehiculoPropietario();
+        try {
+            controlVehiculo.confirmarRegistroVehiculoPropietario();
+        } catch (Exception ex) {
+            Logger.getLogger(FRegistrarVehiculo.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

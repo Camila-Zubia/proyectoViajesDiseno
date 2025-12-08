@@ -13,7 +13,7 @@ import java.util.Optional;
 import org.base_datos_viajes.dao.impl.UsuarioDAO;
 import org.base_datos_viajes.dao.interfaces.IConductorDAO;
 import org.base_datos_viajes.dao.interfaces.IPasajeroDAO;
-import org.base_datos_viajes.exception.DatabaseException;
+import exceptiones.DatabaseException;
 import org.base_datos_viajes.model.Conductor;
 import org.base_datos_viajes.model.Pasajero;
 import org.base_datos_viajes.model.Usuario;

@@ -15,7 +15,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import org.base_datos_viajes.dao.impl.AdeudoDAO;
 import org.base_datos_viajes.dao.interfaces.IAdeudoDAO;
-import org.base_datos_viajes.exception.DatabaseException;
+import exceptiones.DatabaseException;
 import org.base_datos_viajes.model.Adeudo;
 import org.bson.types.ObjectId;
 import utilidades.SesionUsuario;

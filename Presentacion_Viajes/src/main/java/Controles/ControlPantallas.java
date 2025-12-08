@@ -4,7 +4,6 @@
  */
 package Controles;
 
-import org.base_datos_viajes.initializer.InicializadorDatosPrueba;
 import cancelarReservacion.CancelarReservacion;
 import cancelarReservacion.ICancelarReservacion;
 import crearRutaFrecuente.FCrearRutaFrecuente;
@@ -30,6 +29,7 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JPanel;
+import org.base_datos_viajes.initializer.InicializadorDatosPrueba;
 import presentacion.datosParadas;
 import presentacion.datosViaje;
 import presentacion.detallesViaje;
@@ -506,9 +506,9 @@ public class ControlPantallas implements IControlPantallas {
     }
 
     @Override
-    public void guardarDatosVehiculo(String modelo, String placas, String marca, String color, int CantidadPasajeros) {
+    public void guardarDatosVehiculo(String numeroSerie, String modelo, String placas, String marca, String color, int CantidadPasajeros) {
 
-        interfazRegistrarVehiculo.guardarDatosVehiculo(modelo, placas, marca, color, CantidadPasajeros);
+        interfazRegistrarVehiculo.guardarDatosVehiculo(numeroSerie, modelo, placas, marca, color, CantidadPasajeros);
 
     }
 
