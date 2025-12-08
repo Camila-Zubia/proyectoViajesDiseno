@@ -243,7 +243,8 @@ public class datosVehiculo extends javax.swing.JPanel {
         String marca = marcaTField.getText().trim();
         String modelo = modeloTextField1.getText().trim();
         int capacidad = Integer.parseInt(capacidadTextField2.getText().trim());
-        controlPantallas.guardarDatosVehiculo(modelo, placas, color, modelo, capacidad);
+        controlPantallas.guardarDatosVehiculo(modelo, placas, marca, color, capacidad);
+       
         controlPantallas.mostrarDatosPropietario();
 
     }//GEN-LAST:event_confirmarViajeBtnActionPerformed
