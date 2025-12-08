@@ -29,6 +29,10 @@ public class adaptadorAdeudo {
             dto.setId(entity.getId().toHexString());
         }
 
+        if (entity.getViajeId() != null) {
+            dto.setIdViaje(entity.getViajeId().toHexString());
+        }
+
         dto.setPagado(entity.isPagado());
 
         return dto;
@@ -46,8 +50,14 @@ public class adaptadorAdeudo {
             return null;
         }
 
+        ObjectId viajeObjectId = null;
+        if (dto.getIdViaje() != null && !dto.getIdViaje().isEmpty()) {
+            viajeObjectId = new ObjectId(dto.getIdViaje());
+        }
+
         Adeudo entity = new Adeudo(
             conductorId,
+            viajeObjectId,
             dto.getMonto(),
             dto.getConcepto(),
             dto.getFecha()

@@ -230,12 +230,18 @@ public class detallesViaje extends javax.swing.JPanel {
 
             String mensaje;
             if (montoAdeudo > 0) {
-                mensaje = String.format(
-                    "Al cancelar este viaje se le cobrará un adeudo de $%d pesos.\n\n¿Está seguro de que desea cancelar este viaje?",
-                    montoAdeudo
-                );
+                JOptionPane.showMessageDialog(this,
+                    String.format("Viaje cancelado exitosamente.\n\nSe ha registrado un adeudo de $%d pesos.", montoAdeudo),
+                    "Viaje Cancelado",
+                    JOptionPane.INFORMATION_MESSAGE);
+
+                controlPantallas.mostrarMenuAdeudos();
             } else {
-                mensaje = "¿Está seguro de que desea cancelar este viaje?\n\nNo se generará ningún adeudo.";
+                JOptionPane.showMessageDialog(this,
+                    "Viaje cancelado exitosamente.",
+                    "Éxito",
+                    JOptionPane.INFORMATION_MESSAGE);
+                controlPantallas.mostrarMenuConductor();
             }
 
             int confirmacion = JOptionPane.showConfirmDialog(this,
