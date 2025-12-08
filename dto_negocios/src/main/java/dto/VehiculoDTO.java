@@ -11,6 +11,7 @@ package dto;
 public class VehiculoDTO {
     
     private String id;
+    private String numeroSerie;
     private String modelo;
     private String placas;
     private String marca;
@@ -20,7 +21,8 @@ public class VehiculoDTO {
     public VehiculoDTO() {
     }
 
-    public VehiculoDTO(String modelo, String placas, String marca, String color, int capacidad) {
+    public VehiculoDTO(String numeroSerie,String modelo, String placas, String marca, String color, int capacidad) {
+        this.numeroSerie = numeroSerie;
         this.modelo = modelo;
         this.placas = placas;
         this.marca = marca;
@@ -30,6 +32,14 @@ public class VehiculoDTO {
 
     public String getModelo() {
         return modelo;
+    }
+
+    public String getNumeroSerie() {
+        return numeroSerie;
+    }
+
+    public void setNumeroSerie(String numeroSerie) {
+        this.numeroSerie = numeroSerie;
     }
 
     public void setModelo(String modelo) {

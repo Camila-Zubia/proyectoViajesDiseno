@@ -5,8 +5,8 @@
 package objetoNegocio_registrarVehiculo;
 
 import dto.PropietarioDTO;
-import org.base_datos_viajes.dao.interfaces.IPropietarioDAO;
 import org.base_datos_viajes.model.Propietario;
+import org.base_datos_viajes.dao.interfaces.IPropietarioDAO;
 
 /**
  *
