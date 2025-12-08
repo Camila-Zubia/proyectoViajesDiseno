@@ -73,13 +73,15 @@ public class ControlPantallas implements IControlPantallas {
     private final ICancelarViaje interfazCancelarViaje = new CancelarViaje();
     private final IEditarViaje interfazEditarViaje = new EditarViaje();
     private final IRegistrarVehiculo interfazRegistrarVehiculo = new FRegistrarVehiculo();
+    
+    private boolean perfil;
 
     private ViajeDTO viajeTemporal;
 
     private ControlPantallas(JFrame frame, JMenu menu) {
         this.frame = frame;
         this.menu = menu;
-
+        perfil = false;
         InicializadorDatosPrueba.inicializarSiEsNecesario();
     }
 
@@ -107,6 +109,11 @@ public class ControlPantallas implements IControlPantallas {
         frame.pack();
         frame.setLocationRelativeTo(null);
     }
+    
+    @Override
+    public boolean obtenerPerfil(){
+        return perfil;
+    }
 
     @Override
     public void mostrarMenuVehiculos() {
@@ -124,6 +131,7 @@ public class ControlPantallas implements IControlPantallas {
 
     @Override
     public void mostrarMenuConductor() {
+        perfil = true;
         UsuarioDTO usuario = sesion.obtenerUsuario();
         List viajes = interfazRegistrarViaje.obtenerViajesPorConductor(usuario.getConductor());
         menuPrincipalConductor menuConductor = new menuPrincipalConductor(this, viajes);
@@ -192,6 +200,7 @@ public class ControlPantallas implements IControlPantallas {
     //Estos son los metodos del subsitema "Solicitar Reservacion"
     @Override
     public void mostrarMenuPasajero() {
+        perfil = false;
         List viajes = interfazSolicitarReservacion.obtenerViajesDisponibles();
         menuPrincipalPasajero menuPasajero = new menuPrincipalPasajero(this, viajes);
         configurarPanel(menuPasajero);
@@ -252,6 +261,27 @@ public class ControlPantallas implements IControlPantallas {
     @Override
     public PasajeroDTO nombrePasajero() {
         return sesion.obtenerUsuario().getPasajero();
+    }
+    
+    @Override
+    public String formatearTiempoRestante(Long tiempoSegundos) {
+        if (tiempoSegundos == null) {
+            return "--:--:--";
+        }
+        if (tiempoSegundos < 0) {
+            return "Iniciado/Expirado";
+        }
+        long dias = tiempoSegundos / 86400;
+        long restoDelDia = tiempoSegundos % 86400;
+        long horas = restoDelDia / 3600;
+        long minutos = (restoDelDia % 3600) / 60;
+        long segundos = restoDelDia % 60;
+
+        if (dias > 0) {
+            return String.format("%d días, %02d:%02d:%02d", dias, horas, minutos, segundos);
+        } else {
+            return String.format("%02d:%02d:%02d", horas, minutos, segundos);
+        }
     }
 
     //metodos subsistema "CancelarReservacion"
