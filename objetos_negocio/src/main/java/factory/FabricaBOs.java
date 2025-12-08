@@ -4,6 +4,7 @@
  */
 package factory;
 
+import IObjetoNegocio.IValidacionPropietarioVehiculoServicio;
 import interfaces.IConductorNegocio;
 import interfaces_solicitarReservacion.IPasajeroNegocio;
 import interfaces.IUsuarioNegocio;
@@ -23,15 +24,17 @@ import interface_registrarVehiculo.IPropietarioNegocio;
 import interface_registrarVehiculo.IVehiculoNegocio;
 import interfaces_editarViaje.IEditarViajeNegocio;
 import interfaces_solicitarReservacion.IReservacionNegocio;
+import objetoNegocio.ValidacionPropietarioVehiculoServicio;
 import objetoNegocio_registrarVehiculo.propietarioNegocio;
 import objetoNegocio_registrarVehiculo.vehiculoNegocio;
 import objetosNegocio_editarViaje.EditarViajeNegocio;
 import objetosNegocio_solicitarReservacion.ReservacionNegocio;
 import org.base_datos_viajes.dao.impl.PasajeroDAO;
-import org.base_datos_viajes.dao.impl.PropietarioDAO;
+import daoImplementacion.PropietarioHaciendaDAO;
 import org.base_datos_viajes.dao.impl.ReservacionDAO;
 import org.base_datos_viajes.dao.impl.RutasFrecuentesDAO;
 import org.base_datos_viajes.dao.impl.VehiculoDAO;
+import org.base_datos_viajes.dao.impl.PropietarioDAO;
 
 /**
  *
@@ -47,6 +50,7 @@ public class FabricaBOs implements IFabricaBOs {
     private final RutasFrecuentesDAO rutaDAO = new RutasFrecuentesDAO();
     private final VehiculoDAO vehiculoDAO = new VehiculoDAO();
     private final PropietarioDAO propietarioDAO = new PropietarioDAO();
+    private final PropietarioHaciendaDAO propietarioHaciendaDAO = new PropietarioHaciendaDAO();
 
     public FabricaBOs() {
     }
@@ -71,13 +75,20 @@ public class FabricaBOs implements IFabricaBOs {
     public IPasajeroNegocio crearPasajeroNegocio() {
         return new PasajeroNegocio(pasajeroDAO, reservacionDAO);
     }
-    
+
     @Override
     public IReservacionNegocio crearReservacionNegocio() {
         return new ReservacionNegocio(reservacionDAO);
     }
 
-    //metodos del caso de uso registrar ruta frecuente
+    /**
+     * Crea una nueva instancia del objeto de la capa de Negocio (Servicio) para
+     * el caso de uso 'Registrar Ruta Frecuente'. * Este método se encarga de
+     * inyectar el objeto DAO necesario para que la lógica de negocio pueda
+     * interactuar con la persistencia.
+     *
+     * * @return Implementación de la interfaz ICrearRutaFrecuenteNegocio.
+     */
     @Override
     public ICrearRutaFrecuenteNegocio crearRutaFrecuenteNegocio() {
         return new RutaFrecuenteNegocio(rutaDAO);
@@ -96,11 +107,26 @@ public class FabricaBOs implements IFabricaBOs {
     }
 
     //metodos del caso de uso registra vehiculo
+    @Override
     public IPropietarioNegocio crearPropietarioNegocio() {
         return new propietarioNegocio(propietarioDAO);
     }
 
+    @Override
     public IVehiculoNegocio crearVehiculoNegocio() {
         return new vehiculoNegocio(vehiculoDAO);
+    }
+
+    /**
+     * Implementa el patrón Factory Method para crear una instancia del servicio
+     * de validación de Hacienda. * 
+     * * @return Una interfaz (IValidacionPropietarioVehiculoServicio) que
+     * contiene los métodos para interactuar con la simulación de la API de
+     * validación externa.
+     */
+    @Override
+    public IValidacionPropietarioVehiculoServicio crearValidacionHaciendaServicio() {
+
+        return new ValidacionPropietarioVehiculoServicio();
     }
 }

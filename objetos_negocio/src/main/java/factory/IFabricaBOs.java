@@ -4,6 +4,7 @@
  */
 package factory;
 
+import IObjetoNegocio.IValidacionPropietarioVehiculoServicio;
 import interfaces.IConductorNegocio;
 import interfaces_solicitarReservacion.IPasajeroNegocio;
 import interfaces.IUsuarioNegocio;
@@ -21,28 +22,92 @@ import interfaces_solicitarReservacion.IReservacionNegocio;
  */
 public interface IFabricaBOs {
 
+    /**
+     * Crea y retorna la lógica de negocio para gestionar un Usuario.
+     *
+     * @return Implementación de la interfaz IUsuarioNegocio.
+     */
     public IUsuarioNegocio crearUsuarioNegocio();
 
+    /**
+     * Crea y retorna la lógica de negocio para gestionar un Conductor.
+     *
+     * @return Implementación de la interfaz IConductorNegocio.
+     */
     public IConductorNegocio crearConductorNegocio();
 
+    /**
+     * Crea y retorna la lógica de negocio para gestionar un Viaje.
+     *
+     * @return Implementación de la interfaz IViajeNegocio.
+     */
     public IViajeNegocio crearViajeNegocio();
 
     //metodos del caso de uso "Solicitar Reservacion" y "Cancelar Reservacion"
+    /**
+     * Crea y retorna la lógica de negocio para el caso de uso "Solicitar
+     * Reservación" (Pasajero).
+     *
+     * @return Implementación de la interfaz IPasajeroNegocio.
+     */
     public IPasajeroNegocio crearPasajeroNegocio();
-    
+
+    /**
+     * Crea y retorna la lógica de negocio para gestionar Reservaciones.
+     *
+     * @return Implementación de la interfaz IReservacionNegocio.
+     */
     public IReservacionNegocio crearReservacionNegocio();
 
-    //metodo para el caso de uso crear ruta frecuente
+    /**
+     * Crea y retorna la lógica de negocio para el caso de uso "Crear Ruta
+     * Frecuente".
+     *
+     * @return Implementación de la interfaz ICrearRutaFrecuenteNegocio.
+     */
     public ICrearRutaFrecuenteNegocio crearRutaFrecuenteNegocio();
 
     //metodos del caso de uso "Cancelar Viaje"
+    /**
+     * Crea y retorna la lógica de negocio para el caso de uso "Cancelar Viaje"
+     * (Adeudo).
+     *
+     * @return Implementación de la interfaz IAdeudoNegocio.
+     */
     public IAdeudoNegocio crearAdeudoNegocio();
 
     //metodos par el caso de uso editarViaje
+    /**
+     * Crea y retorna la lógica de negocio para el caso de uso "Editar Viaje".
+     *
+     * @return Implementación de la interfaz IEditarViajeNegocio.
+     */
     public IEditarViajeNegocio crearEditarViajeNegocio();
 
     //metodos para el caso de uso registrar vehiculo
+    /**
+     * Crea y retorna la lógica de negocio para gestionar Propietarios (Registro
+     * de Vehículo).
+     *
+     * @return Implementación de la interfaz IPropietarioNegocio.
+     */
     public IPropietarioNegocio crearPropietarioNegocio();
 
+    /**
+     * Crea y retorna la lógica de negocio para gestionar Vehículos (Registro de
+     * Vehículo).
+     *
+     * @return Implementación de la interfaz IVehiculoNegocio.
+     */
     public IVehiculoNegocio crearVehiculoNegocio();
+
+    /**
+     * Crea y retorna la implementación del Servicio que simula la validación
+     * con la API externa (Hacienda). Este método es crucial para la validación
+     * de datos de propietario y vehículo.
+     *
+     * @return Implementación de la interfaz
+     * IValidacionPropietarioVehiculoServicio.
+     */
+    public IValidacionPropietarioVehiculoServicio crearValidacionHaciendaServicio();
 }

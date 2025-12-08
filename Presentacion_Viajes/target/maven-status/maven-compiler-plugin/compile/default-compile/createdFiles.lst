@@ -1,4 +1,6 @@
 presentacion\iniciarSesion$1.class
+presentacion_registrarVehiculo\datosVehiculo$7.class
+presentacion\menuAdeudos.class
 presentacion_SolicitarReservacion\seleccionarParada.class
 presentacion_cancelarReservacion\seleccionarReservacion.class
 presentacion_cancelarReservacion\cancelarReservacion$1.class
@@ -6,6 +8,7 @@ presentacion\iniciarSesion.class
 presentacion_crearRutaFrecuente\MenuRutasFrecuentes.class
 presentacion_SolicitarReservacion\datosReservacion.class
 presentacion\datosParadas.class
+presentacion\menuPrincipalConductor$3.class
 presentacion_SolicitarReservacion\datosReservacion$3.class
 presentacion_SolicitarReservacion\menuPrincipalPasajero$1.class
 presentacion\menuVehiculos.class
@@ -24,6 +27,7 @@ presentacion\datosViaje$3.class
 presentacion_registrarVehiculo\datosVehiculo$6.class
 presentacion_editarViaje\editarViaje.class
 presentacion_registrarVehiculo\datosPropietario$2.class
+presentacion_SolicitarReservacion\seleccionarParada$1.class
 presentacion\menuPrincipalConductor$2.class
 presentacion_crearRutaFrecuente\DatosRutaFrec$1.class
 presentacion\datosViaje.class

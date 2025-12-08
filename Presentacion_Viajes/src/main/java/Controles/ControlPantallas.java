@@ -4,13 +4,13 @@
  */
 package Controles;
 
-import org.base_datos_viajes.initializer.InicializadorDatosPrueba;
 import cancelarReservacion.CancelarReservacion;
 import cancelarReservacion.ICancelarReservacion;
 import crearRutaFrecuente.FCrearRutaFrecuente;
 import crearRutaFrecuente.ICrearRutaFrecuente;
 import cancelarViaje.CancelarViaje;
 import cancelarViaje.ICancelarViaje;
+import dto.AdeudoDTO;
 import dto.ConductorDTO;
 import dto.ParadaDTO;
 import dto.PasajeroDTO;
@@ -30,10 +30,12 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JPanel;
+import org.base_datos_viajes.initializer.InicializadorDatosPrueba;
 import presentacion.datosParadas;
 import presentacion.datosViaje;
 import presentacion.detallesViaje;
 import presentacion.iniciarSesion;
+import presentacion.menuAdeudos;
 import presentacion.menuPrincipalConductor;
 import presentacion.menuVehiculos;
 import presentacion.seleccionarPerfilConductor;
@@ -75,6 +77,7 @@ public class ControlPantallas implements IControlPantallas {
     private final IRegistrarVehiculo interfazRegistrarVehiculo = new FRegistrarVehiculo();
     
     private boolean perfil;
+    private final pagarAdeudo.IPagarAdeudo interfazPagarAdeudo = new pagarAdeudo.PagarAdeudo();
 
     private ViajeDTO viajeTemporal;
 
@@ -510,9 +513,9 @@ public class ControlPantallas implements IControlPantallas {
     }
 
     @Override
-    public void guardarDatosVehiculo(String modelo, String placas, String marca, String color, int CantidadPasajeros) {
+    public void guardarDatosVehiculo(String numeroSerie, String modelo, String placas, String marca, String color, int CantidadPasajeros) {
 
-        interfazRegistrarVehiculo.guardarDatosVehiculo(modelo, placas, marca, color, CantidadPasajeros);
+        interfazRegistrarVehiculo.guardarDatosVehiculo(numeroSerie, modelo, placas, marca, color, CantidadPasajeros);
 
     }
 
@@ -526,6 +529,33 @@ public class ControlPantallas implements IControlPantallas {
     public void ConfirmarDatosVehiculoPropietario() {
 
         interfazRegistrarVehiculo.confirmarRegistroVehiculoPropietario();
+    }
+        @Override
+    public ViajeDTO obtenerDetallesViaje(String idViaje) {
+        return interfazPagarAdeudo.obtenerDetallesViaje(idViaje);
+    }
+
+    // Métodos para pagar adeudos
+    @Override
+    public void mostrarMenuAdeudos() {
+        List<AdeudoDTO> adeudos = obtenerAdeudosPendientes();
+        menuAdeudos menu = new menuAdeudos(this, adeudos);
+        configurarPanel(menu);
+    }
+
+    @Override
+    public List<AdeudoDTO> obtenerAdeudosPendientes() {
+        ConductorDTO conductor = nombreConductor();
+        if (conductor == null) {
+            throw new IllegalStateException("No hay un conductor en sesión");
+        }
+
+        return interfazPagarAdeudo.obtenerAdeudosPendientes(conductor.getId());
+    }
+
+    @Override
+    public void marcarAdeudoComoPagado(String idAdeudo) {
+        interfazPagarAdeudo.pagarAdeudo(idAdeudo);
     }
 
 }

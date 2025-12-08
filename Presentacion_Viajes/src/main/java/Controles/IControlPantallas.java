@@ -148,9 +148,18 @@ public interface IControlPantallas {
 
     public void mostrarDatosPropietario();
 
-    public void guardarDatosVehiculo(String modelo, String placas, String marca, String color, int CantidadPasajeros);
+    public void guardarDatosVehiculo(String numeroSerie, String modelo, String placas, String marca, String color, int CantidadPasajeros);
 
     public void guardarDatosPropietario(String nombre, String curp, String rfc, String nss);
 
     public void ConfirmarDatosVehiculoPropietario();
+    public ViajeDTO obtenerDetallesViaje(String idViaje);
+
+    // Métodos para pagar adeudos
+    public void mostrarMenuAdeudos();
+
+    public List<dto.AdeudoDTO> obtenerAdeudosPendientes();
+
+    public void marcarAdeudoComoPagado(String idAdeudo);
+
 }

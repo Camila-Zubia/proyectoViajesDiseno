@@ -21,7 +21,7 @@ import org.base_datos_viajes.dao.impl.ReservacionDAO;
 import org.base_datos_viajes.dao.impl.ViajeDAO;
 import org.base_datos_viajes.dao.interfaces.IConductorDAO;
 import org.base_datos_viajes.dao.interfaces.IReservacionDAO;
-import org.base_datos_viajes.exception.DatabaseException;
+import exceptiones.DatabaseException;
 import org.base_datos_viajes.model.Conductor;
 import org.base_datos_viajes.model.Reservacion;
 import org.base_datos_viajes.model.Vehiculo;

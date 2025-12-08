@@ -10,7 +10,7 @@ package registrarVehiculo;
  */
 public interface IRegistrarVehiculo {
 
-    public void guardarDatosVehiculo(String modelo, String placas, String marca, String color, int capacidad);
+    public void guardarDatosVehiculo(String numeroSerie, String modelo, String placas, String marca, String color, int capacidad);
 
     public void guardarDatosPropietario(String nombre, String curp, String rfc, String nss);
 

@@ -38,4 +38,11 @@ public interface ICancelarViaje {
      * @return monto del adeudo en pesos
      */
     public int obtenerAdeudoPendiente(String idViaje);
+
+    /**
+     * Obtiene los detalles completos de un viaje
+     * @param idViaje ID del viaje
+     * @return ViajeDTO con los detalles del viaje
+     */
+    public ViajeDTO obtenerDetallesViaje(String idViaje);
 }

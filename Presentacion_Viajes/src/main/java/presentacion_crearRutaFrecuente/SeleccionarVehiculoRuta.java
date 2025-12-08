@@ -23,7 +23,7 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
 /**
- *
+ * pantalla que permite al usuario poder ver los vehiculos disponibles para iniciar un viaje a partir de una ruta guardada
  * @author adell
  */
 public class SeleccionarVehiculoRuta extends javax.swing.JPanel {
@@ -140,7 +140,11 @@ public class SeleccionarVehiculoRuta extends javax.swing.JPanel {
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    /**
+     * boton que maneja el evento de seleccionar el vehiculo de la ruta y la conversion a viaje
+     * @param evt  evento
+     */
     private void siguienteTFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguienteTFieldActionPerformed
         // validacion, verificar si se selecciono un vehiculo
         if (this.vehiculoSeleccionadoDTO == null) {
@@ -164,7 +168,13 @@ public class SeleccionarVehiculoRuta extends javax.swing.JPanel {
                     "Éxito",
                     JOptionPane.INFORMATION_MESSAGE);
         }
+        
+        controlPantallas.mostrarMenuConductor();
     }//GEN-LAST:event_siguienteTFieldActionPerformed
+    /**
+     * muestra los vehiculos del conductor
+     * @param listaVehiculos lista de vehiculos del conductor
+     */
     private void mostrarVehiculos(List listaVehiculos) {
         try {
             if (listaVehiculos != null) {
