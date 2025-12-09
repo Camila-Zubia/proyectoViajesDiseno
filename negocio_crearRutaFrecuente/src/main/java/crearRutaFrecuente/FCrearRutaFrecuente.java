@@ -29,8 +29,8 @@ public class FCrearRutaFrecuente implements ICrearRutaFrecuente {
     }
 
     @Override
-    public List<RutaFrecuenteDTO> obtenerRutaPorConductor(ConductorDTO conductor) {
-        return controlRuta.obtenerRutaPorConductor(conductor);
+    public List<RutaFrecuenteDTO> obtenerRutaPorConductor() {
+        return controlRuta.obtenerRutaPorConductor();
     }
 
     @Override
@@ -52,5 +52,8 @@ public class FCrearRutaFrecuente implements ICrearRutaFrecuente {
     public RutaFrecuenteDTO confirmaRuta() {
         return controlRuta.confirmaRuta();
     }
-
+    
+    public boolean eliminarRuta(RutaFrecuenteDTO ruta){
+        return controlRuta.eliminarRuta(ruta);
+    }
 }

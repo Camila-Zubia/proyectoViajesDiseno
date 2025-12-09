@@ -90,8 +90,8 @@ public class VehiculoDTO {
     @Override
     public String toString() {
         return String.format(marca + ", " + modelo + ", " + color
-                + "     placas = " + placas
-                + "     capacidad = " + capacidad);
+                + "     placas : " + placas
+                + "     capacidad : " + capacidad);
     }
     
 }

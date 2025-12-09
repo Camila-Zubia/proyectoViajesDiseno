@@ -111,6 +111,9 @@ public interface IControlPantallas {
     public void mostrarMenuRutasFrecuentes();
 
     public void mostrarSeleccionarVehiculoRuta();
+    
+    public boolean eliminarRuta(RutaFrecuenteDTO ruta);
+    public List<RutaFrecuenteDTO> obtenerListaRutas();
 
     // Métodos para cancelar viaje
     public void mostrarDetallesViaje();

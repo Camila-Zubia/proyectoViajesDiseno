@@ -19,7 +19,7 @@ public interface ICrearRutaFrecuente {
 
     public void GuardarDatosRutaFrec(String nombre, String origen, String destino, LocalDate fecha, LocalTime hora);
 
-    public List<RutaFrecuenteDTO> obtenerRutaPorConductor(ConductorDTO conductor);
+    public List<RutaFrecuenteDTO> obtenerRutaPorConductor();
 
     public void agregarParada(String direccion, double precio);
 
@@ -28,5 +28,6 @@ public interface ICrearRutaFrecuente {
     public List<ParadaDTO> obtenerParadasTemp();
 
     public RutaFrecuenteDTO confirmaRuta();
-
+    
+    public boolean eliminarRuta(RutaFrecuenteDTO ruta);
 }

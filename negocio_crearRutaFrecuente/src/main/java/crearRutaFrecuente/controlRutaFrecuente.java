@@ -44,11 +44,11 @@ public class controlRutaFrecuente {
         this.rutaFrecuente.setHora(hora);
 
     }
-    
-    protected List<RutaFrecuenteDTO> obtenerRutaPorConductor(ConductorDTO conductor){
+
+    protected List<RutaFrecuenteDTO> obtenerRutaPorConductor() {
         return conductorBO.obtenerRutas();
     }
-    
+
     //paradas
     protected void agregarParada(String direccion, double precio) {
         ParadaDTO parada = new ParadaDTO(direccion, precio);
@@ -67,13 +67,18 @@ public class controlRutaFrecuente {
     protected RutaFrecuenteDTO confirmaRuta() {
         double contador = 0;
         for (ParadaDTO p : paradasTemp) {
-            contador +=  p.getPrecio();
+            contador += p.getPrecio();
         }
         rutaFrecuente.setPrecioTotal(contador);
         rutaFrecuente.setParadas(paradasTemp);
         rutaFrecuenteBO.registrarRuta(rutaFrecuente);
         paradasTemp.clear();
         return rutaFrecuente;
+    }
+
+    protected boolean eliminarRuta(RutaFrecuenteDTO ruta) {
+
+        return rutaFrecuenteBO.eliminarRuta(ruta);
     }
 
 }
