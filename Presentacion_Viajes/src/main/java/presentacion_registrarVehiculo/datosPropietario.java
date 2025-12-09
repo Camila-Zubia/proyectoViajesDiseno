@@ -301,7 +301,7 @@ public class datosPropietario extends javax.swing.JPanel {
 
     private void regresarMenuRutasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarMenuRutasBtnActionPerformed
         // TODO add your handling code here:
-
+        controlPantallas.mostrarDatosVehiculo();
     }//GEN-LAST:event_regresarMenuRutasBtnActionPerformed
 
     private void nssTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nssTextFieldActionPerformed

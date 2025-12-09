@@ -346,7 +346,7 @@ public class datosVehiculo extends javax.swing.JPanel {
     
     private void regresarMenuRutasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarMenuRutasBtnActionPerformed
         // TODO add your handling code here:
-        controlPantallas.mostrarMenuRutasFrecuentes();
+        controlPantallas.mostrarMenuVehiculosConductor();
     }//GEN-LAST:event_regresarMenuRutasBtnActionPerformed
 
     private void nSerieTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nSerieTextFieldActionPerformed

@@ -16,7 +16,7 @@ public class adaptadorVehiculo {
         if (entidad.getId() != null) { 
              dto.setId(entidad.getId().toString()); 
         }
-        
+        dto.setNumeroSerie(entidad.getNumeroSerie());
         dto.setModelo(entidad.getModelo());
         dto.setPlacas(entidad.getPlacas());
         dto.setMarca(entidad.getMarca());
@@ -30,7 +30,7 @@ public class adaptadorVehiculo {
             dto.getMarca(),
             dto.getModelo(),
             dto.getColor(),
-            null, 
+            dto.getNumeroSerie(), 
             dto.getPlacas(),
             dto.getCapacidad()
         );
