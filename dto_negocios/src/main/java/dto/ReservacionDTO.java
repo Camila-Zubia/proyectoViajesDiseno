@@ -22,6 +22,7 @@ public class ReservacionDTO {
     private ParadaDTO parada;
     private EstatusReservacion estatus;
     private Long tiempoRestante;
+    private PasajeroDTO pasajero;
 
     public ReservacionDTO() {
     }
@@ -83,6 +84,16 @@ public class ReservacionDTO {
     public void setId(String Id) {
         this.Id = Id;
     }
+
+    public PasajeroDTO getPasajero() {
+        return pasajero;
+    }
+
+    public void setPasajero(PasajeroDTO pasajero) {
+        this.pasajero = pasajero;
+    }
+    
+    
     
     @Override
     public String toString() {

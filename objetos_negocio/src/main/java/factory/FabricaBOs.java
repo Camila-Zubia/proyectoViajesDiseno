@@ -22,10 +22,12 @@ import interface_crearRutaFrecuente.ICrearRutaFrecuenteNegocio;
 import interface_registrarVehiculo.IPropietarioNegocio;
 import interface_registrarVehiculo.IVehiculoNegocio;
 import interfaces_editarViaje.IEditarViajeNegocio;
+import interfaces_gestionarSolicitudes.IGestionarSolicitudesNegocio;
 import interfaces_solicitarReservacion.IReservacionNegocio;
 import objetoNegocio_registrarVehiculo.propietarioNegocio;
 import objetoNegocio_registrarVehiculo.vehiculoNegocio;
 import objetosNegocio_editarViaje.EditarViajeNegocio;
+import objetosNegocio_gestionarSolicitudes.GestionarSolicitudesNegocio;
 import objetosNegocio_solicitarReservacion.ReservacionNegocio;
 import org.base_datos_viajes.dao.impl.PasajeroDAO;
 import org.base_datos_viajes.dao.impl.PropietarioDAO;
@@ -96,11 +98,19 @@ public class FabricaBOs implements IFabricaBOs {
     }
 
     //metodos del caso de uso registra vehiculo
+    @Override
     public IPropietarioNegocio crearPropietarioNegocio() {
         return new propietarioNegocio(propietarioDAO);
     }
 
+    @Override
     public IVehiculoNegocio crearVehiculoNegocio() {
         return new vehiculoNegocio(vehiculoDAO);
+    }
+
+    //metodos del caso de uso de gestionar solicitudes
+    @Override
+    public IGestionarSolicitudesNegocio crearGestionarSolicitudesNegocio() {
+        return new GestionarSolicitudesNegocio(viajeDAO, reservacionDAO);
     }
 }

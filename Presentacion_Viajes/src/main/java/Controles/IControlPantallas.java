@@ -151,4 +151,22 @@ public interface IControlPantallas {
     public void guardarDatosPropietario(String nombre, String curp, String rfc, String nss);
 
     public void ConfirmarDatosVehiculoPropietario();
+    
+    //metodos para gestionar solicitudes
+    public void mostrarSeleccionarViajeGestion();
+            
+    public void mostrarGestionSolicitudes(String viajeId);
+  
+    public List<ReservacionDTO> obtenerSolicitudesPendientes(String viajeId);
+
+    public ReservacionDTO aceptarSolicitud(ReservacionDTO reservacion);
+
+    public ReservacionDTO rechazarSolicitud(ReservacionDTO reservacion);
+
+    public ReservacionDTO proponerPrecio(ReservacionDTO reservacion);
+
+    public void mostrarDetalleReservaRuta(ReservacionDTO reserva);
+
+    public void mostrarDetalleReservaEstandar(ReservacionDTO reserva);
+
 }

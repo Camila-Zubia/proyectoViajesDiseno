@@ -13,6 +13,7 @@ import interface_registrarVehiculo.IPropietarioNegocio;
 import interface_registrarVehiculo.IVehiculoNegocio;
 import interfaces_cancelarViaje.IAdeudoNegocio;
 import interfaces_editarViaje.IEditarViajeNegocio;
+import interfaces_gestionarSolicitudes.IGestionarSolicitudesNegocio;
 import interfaces_solicitarReservacion.IReservacionNegocio;
 
 /**
@@ -45,4 +46,7 @@ public interface IFabricaBOs {
     public IPropietarioNegocio crearPropietarioNegocio();
 
     public IVehiculoNegocio crearVehiculoNegocio();
+    
+    //metodos para el caso de uso de gestionar solicitudes
+    public IGestionarSolicitudesNegocio crearGestionarSolicitudesNegocio();
 }
