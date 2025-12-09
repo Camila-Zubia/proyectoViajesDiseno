@@ -13,4 +13,5 @@ import DTO.VehiculoHaciendaDTO;
  */
 public interface IValidacionPropietarioVehiculoServicio {
     boolean verificarCoincidencia(PropietarioHaciendaDTO propietarioDTO, VehiculoHaciendaDTO vehiculoDTO);
+    public boolean existeVehiculoEnBD(VehiculoHaciendaDTO dto);
 }

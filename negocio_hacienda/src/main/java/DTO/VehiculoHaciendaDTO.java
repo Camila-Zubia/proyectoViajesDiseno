@@ -26,6 +26,11 @@ public class VehiculoHaciendaDTO {
         this.capacidad = capacidad;
     }
 
+    public VehiculoHaciendaDTO(String numeroSerie) {
+        this.numeroSerie = numeroSerie;
+    }
+    
+    
     public VehiculoHaciendaDTO(String modelo, String placas, String marca, String color, String numeroSerie, int capacidad) {
         this.modelo = modelo;
         this.placas = placas;

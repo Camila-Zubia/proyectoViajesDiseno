@@ -84,4 +84,10 @@ public class ConductorNegocio implements IConductorNegocio {
         }
 
     }
+    
+    public boolean eliminarVehiculoDeConductor( String numeroSerieVehiculo){
+        ObjectId conductorId = new ObjectId(SesionUsuario.obtenerConductor().getId());
+        
+        return conductorDAO.eliminarVehiculoDeConductor(conductorId.toHexString(), numeroSerieVehiculo);
+    }
 }

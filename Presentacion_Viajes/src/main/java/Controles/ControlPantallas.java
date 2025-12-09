@@ -17,6 +17,7 @@ import dto.PasajeroDTO;
 import dto.ReservacionDTO;
 import dto.RutaFrecuenteDTO;
 import dto.UsuarioDTO;
+import dto.VehiculoDTO;
 import dto.ViajeDTO;
 import editarViaje.EditarViaje;
 import editarViaje.IEditarViaje;
@@ -75,7 +76,7 @@ public class ControlPantallas implements IControlPantallas {
     private final ICancelarViaje interfazCancelarViaje = new CancelarViaje();
     private final IEditarViaje interfazEditarViaje = new EditarViaje();
     private final IRegistrarVehiculo interfazRegistrarVehiculo = new FRegistrarVehiculo();
-    
+
     private boolean perfil;
     private final pagarAdeudo.IPagarAdeudo interfazPagarAdeudo = new pagarAdeudo.PagarAdeudo();
 
@@ -112,9 +113,9 @@ public class ControlPantallas implements IControlPantallas {
         frame.pack();
         frame.setLocationRelativeTo(null);
     }
-    
+
     @Override
-    public boolean obtenerPerfil(){
+    public boolean obtenerPerfil() {
         return perfil;
     }
 
@@ -262,7 +263,7 @@ public class ControlPantallas implements IControlPantallas {
     public PasajeroDTO nombrePasajero() {
         return sesion.obtenerUsuario().getPasajero();
     }
-    
+
     @Override
     public String formatearTiempoRestante(Long tiempoSegundos) {
         if (tiempoSegundos == null) {
@@ -431,7 +432,7 @@ public class ControlPantallas implements IControlPantallas {
         interfazEditarViaje.setViajeTemporal(viaje);
         this.viajeTemporal = viaje;
     }
-    
+
     @Override
     public void mostrarEditarViaje() {
         ViajeDTO viaje = obtenerViajeParaEdicion();
@@ -513,9 +514,9 @@ public class ControlPantallas implements IControlPantallas {
     }
 
     @Override
-    public void guardarDatosVehiculo(String numeroSerie, String modelo, String placas, String marca, String color, int CantidadPasajeros) {
+    public boolean guardarDatosVehiculo(String numeroSerie, String modelo, String placas, String marca, String color, int CantidadPasajeros) {
 
-        interfazRegistrarVehiculo.guardarDatosVehiculo(numeroSerie, modelo, placas, marca, color, CantidadPasajeros);
+        return interfazRegistrarVehiculo.guardarDatosVehiculo(numeroSerie, modelo, placas, marca, color, CantidadPasajeros);
 
     }
 
@@ -530,7 +531,18 @@ public class ControlPantallas implements IControlPantallas {
 
         interfazRegistrarVehiculo.confirmarRegistroVehiculoPropietario();
     }
-        @Override
+    
+    @Override
+    public void eliminarVehiculo(VehiculoDTO dto) throws Exception{
+        interfazRegistrarVehiculo.eliminarVehiculo(dto);
+    }
+    
+    @Override
+    public boolean eliminarVehiculoDeConductor(String numeroSerie){
+        return interfazRegistrarVehiculo.eliminarVehiculoDeConductor(numeroSerie);
+    }
+    
+    @Override
     public ViajeDTO obtenerDetallesViaje(String idViaje) {
         return interfazPagarAdeudo.obtenerDetallesViaje(idViaje);
     }
@@ -557,5 +569,8 @@ public class ControlPantallas implements IControlPantallas {
     public void marcarAdeudoComoPagado(String idAdeudo) {
         interfazPagarAdeudo.pagarAdeudo(idAdeudo);
     }
-
+    
+    public List<VehiculoDTO> obtenerListaVehiculos(){
+       return interfazRegistrarVehiculo.obtenerListaVehiculos();
+    }
 }

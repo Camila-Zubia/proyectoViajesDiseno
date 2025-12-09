@@ -14,6 +14,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.HeadlessException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -53,7 +55,8 @@ public class menuVehiculosConductor extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         TituloLbl = new javax.swing.JLabel();
         panelContenedorVehiculos = new javax.swing.JPanel();
-        registrarRutaBtn = new javax.swing.JButton();
+        eliminarRutaBtn = new javax.swing.JButton();
+        registrarRutaBtn1 = new javax.swing.JButton();
 
         jPanel1.setPreferredSize(new java.awt.Dimension(1080, 640));
 
@@ -79,11 +82,19 @@ public class menuVehiculosConductor extends javax.swing.JPanel {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        registrarRutaBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        registrarRutaBtn.setText("Registrar Vehiculo");
-        registrarRutaBtn.addActionListener(new java.awt.event.ActionListener() {
+        eliminarRutaBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        eliminarRutaBtn.setText("Eliminar vehiculo");
+        eliminarRutaBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                registrarRutaBtnActionPerformed(evt);
+                eliminarRutaBtnActionPerformed(evt);
+            }
+        });
+
+        registrarRutaBtn1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        registrarRutaBtn1.setText("Registrar Vehiculo");
+        registrarRutaBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registrarRutaBtn1ActionPerformed(evt);
             }
         });
 
@@ -92,27 +103,30 @@ public class menuVehiculosConductor extends javax.swing.JPanel {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addComponent(registrarRutaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(81, 81, 81)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(registrarRutaBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(eliminarRutaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(TituloLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 596, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(panelContenedorVehiculos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(66, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(TituloLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(476, 476, 476)
-                        .addComponent(registrarRutaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(TituloLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(panelContenedorVehiculos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(eliminarRutaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(15, 15, 15)
+                        .addComponent(registrarRutaBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(panelContenedorVehiculos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(40, 40, 40))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -154,10 +168,45 @@ public class menuVehiculosConductor extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void registrarRutaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarRutaBtnActionPerformed
+    private void eliminarRutaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarRutaBtnActionPerformed
+        if (vehiculoSeleccionadoDTO == null) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un vehículo de la lista primero.", "Vehículo no seleccionado", JOptionPane.WARNING_MESSAGE);
+            return; // Detiene la ejecución si no hay selección.
+        }
+
+        try {
+            // 2. Ejecución de la lógica de negocio solo si la selección es válida.
+            String numeroSerie = vehiculoSeleccionadoDTO.getNumeroSerie();
+
+            // Se recomienda también pedir confirmación al usuario antes de eliminar.
+            int confirmacion = JOptionPane.showConfirmDialog(this,
+                    "¿Está seguro de que desea eliminar el vehículo con serie: " + numeroSerie + "?",
+                    "Confirmar Eliminación", JOptionPane.YES_NO_OPTION);
+
+            if (confirmacion == JOptionPane.YES_OPTION) {
+
+                // Llama primero a eliminar la relación Conductor-Vehículo (donde ocurrió el error)
+                controlPantallas.eliminarVehiculoDeConductor(numeroSerie);
+
+                // Llama a eliminar el Vehículo del sistema (si esa es la lógica deseada)
+                controlPantallas.eliminarVehiculo(vehiculoSeleccionadoDTO);
+
+               List<VehiculoDTO> listaActualizada = controlPantallas.obtenerListaVehiculos();
+                mostrarVehiculos(listaActualizada);
+                // Lógica para refrescar la lista de vehículos, si es necesario.
+            }
+
+        } catch (Exception ex) {
+            // Si hay una excepción de la base de datos (como la ValidationException), muéstrala.
+            JOptionPane.showMessageDialog(this, "Error al eliminar el vehículo: " + ex.getMessage(), "Error de Eliminación", JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(menuVehiculosConductor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_eliminarRutaBtnActionPerformed
+
+    private void registrarRutaBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarRutaBtn1ActionPerformed
         // TODO add your handling code here:
         controlPantallas.mostrarDatosVehiculo();
-    }//GEN-LAST:event_registrarRutaBtnActionPerformed
+    }//GEN-LAST:event_registrarRutaBtn1ActionPerformed
 
     private void mostrarVehiculos(List listaVehiculos) {
         try {
@@ -185,6 +234,7 @@ public class menuVehiculosConductor extends javax.swing.JPanel {
                     btnInfo.setText(vehiculo.toString().formatted());
                     btnInfo.addActionListener(e -> {
                         this.vehiculoSeleccionadoDTO = (dto.VehiculoDTO) vehiculo;
+                        System.out.println("numeroSerie" + this.vehiculoSeleccionadoDTO.getNumeroSerie());
                     });
 
                     panelElemento.add(btnInfo);
@@ -213,9 +263,10 @@ public class menuVehiculosConductor extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel TituloLbl;
+    private javax.swing.JButton eliminarRutaBtn;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel panelContenedorVehiculos;
-    private javax.swing.JButton registrarRutaBtn;
+    private javax.swing.JButton registrarRutaBtn1;
     // End of variables declaration//GEN-END:variables
 }

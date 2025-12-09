@@ -281,8 +281,8 @@ public class datosPropietario extends javax.swing.JPanel {
         String rfc = rfcTField.getText().trim();
 
         // 18 caracteres fijos para CURP
-        if (curp.length() != 18) {
-            JOptionPane.showMessageDialog(this, "La CURP debe tener exactamente 18 caracteres.", "Error de Formato", JOptionPane.WARNING_MESSAGE);
+        if (curp.length() != 20) {
+            JOptionPane.showMessageDialog(this, "La CURP debe tener exactamente 20 caracteres.", "Error de Formato", JOptionPane.WARNING_MESSAGE);
             curpTField1.requestFocus();
             return false;
         }
@@ -301,7 +301,7 @@ public class datosPropietario extends javax.swing.JPanel {
 
     private void regresarMenuRutasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarMenuRutasBtnActionPerformed
         // TODO add your handling code here:
-
+        controlPantallas.mostrarDatosVehiculo();
     }//GEN-LAST:event_regresarMenuRutasBtnActionPerformed
 
     private void nssTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nssTextFieldActionPerformed

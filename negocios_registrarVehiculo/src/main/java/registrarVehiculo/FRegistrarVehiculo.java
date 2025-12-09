@@ -4,6 +4,8 @@
  */
 package registrarVehiculo;
 
+import dto.VehiculoDTO;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -20,8 +22,8 @@ public class FRegistrarVehiculo implements IRegistrarVehiculo {
     }
 
     @Override
-    public void guardarDatosVehiculo(String numeroSerie, String modelo, String placas, String marca, String color, int capacidad) {
-        controlVehiculo.guardarDatosVehiculo( numeroSerie, modelo, placas, marca, color, capacidad);
+    public boolean guardarDatosVehiculo(String numeroSerie, String modelo, String placas, String marca, String color, int capacidad) {
+        return controlVehiculo.guardarDatosVehiculo( numeroSerie, modelo, placas, marca, color, capacidad);
     }
 
     @Override
@@ -36,5 +38,21 @@ public class FRegistrarVehiculo implements IRegistrarVehiculo {
         } catch (Exception ex) {
             Logger.getLogger(FRegistrarVehiculo.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    @Override
+    public void eliminarVehiculo(VehiculoDTO dto) throws Exception{
+    
+        controlVehiculo.eliminarVehiculo(dto);
+    }
+    
+    @Override
+    public boolean eliminarVehiculoDeConductor (String numeroSerie){
+        return controlVehiculo.eliminarVehiculoDeConductor(numeroSerie);
+    }
+    
+    public List<VehiculoDTO> obtenerListaVehiculos(){
+    
+        return controlVehiculo.obtenerListaVehiculos();
     }
 }

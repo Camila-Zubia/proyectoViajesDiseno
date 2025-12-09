@@ -17,6 +17,7 @@ objetosNegocio\ViajeNegocio.class
 utilidades\SesionUsuario.class
 adaptadores\adaptadorPropietario.class
 interfaces\IConductorNegocio.class
+adaptadores\adaptadorHacienda.class
 adaptadores\adaptadorConductor.class
 interfaces\IViajeNegocio.class
 adaptadores\adaptadorPasajero.class

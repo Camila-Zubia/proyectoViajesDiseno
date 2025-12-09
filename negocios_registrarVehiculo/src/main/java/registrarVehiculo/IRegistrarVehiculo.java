@@ -4,15 +4,24 @@
  */
 package registrarVehiculo;
 
+import dto.VehiculoDTO;
+import java.util.List;
+
 /**
  *
  * @author adell
  */
 public interface IRegistrarVehiculo {
 
-    public void guardarDatosVehiculo(String numeroSerie, String modelo, String placas, String marca, String color, int capacidad);
+    public boolean guardarDatosVehiculo(String numeroSerie, String modelo, String placas, String marca, String color, int capacidad);
 
     public void guardarDatosPropietario(String nombre, String curp, String rfc, String nss);
 
     public void confirmarRegistroVehiculoPropietario();
+
+    public void eliminarVehiculo(VehiculoDTO dto) throws Exception;
+
+    public boolean eliminarVehiculoDeConductor(String numeroSerie);
+    
+    public List<VehiculoDTO> obtenerListaVehiculos();
 }
