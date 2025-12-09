@@ -112,7 +112,8 @@ public class VehiculoHaciendaDAO implements IVehiculoHaciendaDAO {
         entity.setPlacas(mongoDoc.getString("placas"));
         entity.setMarca(mongoDoc.getString("marca"));
         entity.setModelo(mongoDoc.getString("modelo"));
-        // ... (otros campos)
+        entity.setColor(mongoDoc.getString("color"));
+        entity.setCapacidad(mongoDoc.getInteger("capacidad", 0));
         return entity;
     }
 

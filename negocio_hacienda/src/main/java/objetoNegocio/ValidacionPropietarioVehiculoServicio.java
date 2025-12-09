@@ -165,13 +165,31 @@ public class ValidacionPropietarioVehiculoServicio implements IValidacionPropiet
 
         // 3. Si existe por serie, validar que los otros campos coincidan (Marca y Placas)
         VehiculoHacienda vehiculoEncontrado = vehiculoOptional.get();
-        System.out.println(vehiculoEncontrado);
-        boolean placasCoinciden = vehiculoEncontrado.getPlacas().trim().equalsIgnoreCase(dtoPlacas);
-        boolean marcaCoincide = vehiculoEncontrado.getMarca().trim().equalsIgnoreCase(dtoMarca);
-        boolean colorCoincide = vehiculoEncontrado.getColor().trim().equalsIgnoreCase(dtoColor);
-        boolean modeloCoincide = vehiculoEncontrado.getMarca().trim().equalsIgnoreCase(dtoModelo);
+
+        String getPlacasDB = vehiculoEncontrado.getPlacas() != null ? vehiculoEncontrado.getPlacas().trim() : "";
+        boolean placasCoinciden = getPlacasDB.equalsIgnoreCase(dtoPlacas);
+
+        String getMarcaDB = vehiculoEncontrado.getMarca() != null ? vehiculoEncontrado.getMarca().trim() : "";
+        boolean marcaCoincide = getMarcaDB.equalsIgnoreCase(dtoMarca);
+
+        String getColorDB = vehiculoEncontrado.getColor() != null ? vehiculoEncontrado.getColor().trim() : "";
+        boolean colorCoincide = getColorDB.equalsIgnoreCase(dtoColor);
+
+        String getModeloDB = vehiculoEncontrado.getModelo() != null ? vehiculoEncontrado.getModelo().trim() : "";
+        boolean modeloCoincide = getModeloDB.equalsIgnoreCase(dtoModelo);
+
         boolean capacidadCoincide = dtoCapacida == vehiculoEncontrado.getCapacidad();
 
+        System.out.println(vehiculoEncontrado);
+
+        // 3. DEBUG 
+        System.out.println("--- RESULTADO DE VALIDACION ---");
+        System.out.println("Placas DTO vs BD: [" + dtoPlacas + "] vs [" + getPlacasDB + "] -> " + placasCoinciden);
+        System.out.println("Marca DTO vs BD:  [" + dtoMarca + "] vs [" + getMarcaDB + "] -> " + marcaCoincide);
+        System.out.println("Color DTO vs BD:  [" + dtoColor + "] vs [" + getColorDB + "] -> " + colorCoincide);
+        System.out.println("Modelo DTO vs BD: [" + dtoModelo + "] vs [" + getModeloDB + "] -> " + modeloCoincide);
+        System.out.println("Capacidad: " + dtoCapacida + " vs " + vehiculoEncontrado.getCapacidad() + " -> " + capacidadCoincide);
+        System.out.println("---------------------------------");
         return placasCoinciden && marcaCoincide && colorCoincide && modeloCoincide && capacidadCoincide;
     }
 }
