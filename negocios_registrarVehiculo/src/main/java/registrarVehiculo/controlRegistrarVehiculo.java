@@ -62,74 +62,30 @@ public class controlRegistrarVehiculo {
         this.propietarioTemp.setNss(nss);
     }
 
-    protected void confirmarRegistroVehiculoPropietario() throws Exception {
+    protected boolean confirmarRegistroVehiculoPropietario() throws Exception {
         ObjectId vehiculoId = new ObjectId();
         vehiculoTemp.setId(vehiculoId.toHexString());
 
         this.ListaVehiculosTemp.add(vehiculoTemp);
         this.propietarioTemp.setListaVehiculos(ListaVehiculosTemp);
 
-        PropietarioHaciendaDTO propHaciendaDTO = toPropietarioHaciendaDTO(propietarioTemp);
-        VehiculoHaciendaDTO vehHaciendaDTO = toVehiculoHaciendaDTO(vehiculoTemp);
+        PropietarioHaciendaDTO propHaciendaDTO = adaptadores.adaptadorHacienda.toPropietarioHaciendaDTO(propietarioTemp);
+        VehiculoHaciendaDTO vehHaciendaDTO = adaptadores.adaptadorHacienda.toVehiculoHaciendaDTO(vehiculoTemp);
 
         boolean datosValidos = validacionHaciendaService.verificarCoincidencia(
                 propHaciendaDTO, // DTO del Propietario
                 vehHaciendaDTO // DTO del Vehículo
         );
         if (!datosValidos) {
-            throw new Exception("Error de validación: Datos no coinciden con Hacienda.");
+            System.err.println("Error de validación: Datos no coinciden con Hacienda.");
+            return false;
         }
 
         conductorBO.agregarVehiculo(vehiculoTemp);
         vehiculoBO.registrarVehiculo(vehiculoTemp);
         propietarioBO.registrarPropietario(propietarioTemp);
 
+        return true;
     }
 
-    public static PropietarioHaciendaDTO toPropietarioHaciendaDTO(PropietarioDTO propietarioDTO) {
-        if (propietarioDTO == null) {
-            return null;
-        }
-
-        // Creamos el DTO de destino
-        PropietarioHaciendaDTO haciendaDTO = new PropietarioHaciendaDTO();
-
-        // Copiamos los campos relevantes para la validación de Hacienda
-        haciendaDTO.setCurp(propietarioDTO.getCurp());
-        haciendaDTO.setNombre(propietarioDTO.getNombre());
-        haciendaDTO.setRfc(propietarioDTO.getRfc());
-        haciendaDTO.setNss(propietarioDTO.getNss());
-
-        // Nota: Los vehículos se mapean por separado o se asume que solo necesitamos los datos del propietario.
-        // Si HaciendaDTO necesita la lista de vehículos, aquí deberías añadir:
-        // haciendaDTO.setVehiculos(mapVehiculos(propietarioDTO.getListaVehiculos()));
-        return haciendaDTO;
-    }
-
-    /**
-     * Convierte un VehiculoDTO de la capa de Negocio/Control a un
-     * VehiculoHaciendaDTO que es usado por el servicio de validación de
-     * Hacienda.
-     *
-     * * @param vehiculoDTO El DTO del vehículo desde el Control/UI.
-     * @param vehiculoDTO
-     * @return El DTO específico para la capa de Hacienda.
-     */
-    public static VehiculoHaciendaDTO toVehiculoHaciendaDTO(VehiculoDTO vehiculoDTO) {
-        if (vehiculoDTO == null) {
-            return null;
-        }
-
-        VehiculoHaciendaDTO haciendaDTO = new VehiculoHaciendaDTO();
-
-        // Copiamos los campos relevantes para la validación de Hacienda
-        haciendaDTO.setNumeroSerie(vehiculoDTO.getNumeroSerie());
-        haciendaDTO.setPlacas(vehiculoDTO.getPlacas());
-        haciendaDTO.setMarca(vehiculoDTO.getMarca());
-        haciendaDTO.setModelo(vehiculoDTO.getModelo());
-        haciendaDTO.setColor(vehiculoDTO.getColor());
-        haciendaDTO.setCapacidad(vehiculoDTO.getCapacidad());
-
-        return haciendaDTO;
-    }
 }
