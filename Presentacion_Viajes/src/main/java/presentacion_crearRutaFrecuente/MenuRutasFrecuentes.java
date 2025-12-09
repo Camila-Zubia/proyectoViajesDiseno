@@ -11,22 +11,30 @@ import dto.RutaFrecuenteDTO;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import static java.awt.Component.CENTER_ALIGNMENT;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.HeadlessException;
+import java.awt.Image;
+import java.io.File;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
 /**
- * Clase que se encarga de mostrarle al usuario las rutas frecuentes registradas asi como la opcion de empezar un nuevo registro
+ * Clase que se encarga de mostrarle al usuario las rutas frecuentes registradas
+ * asi como la opcion de empezar un nuevo registro
+ *
  * @author adell
  */
 public class MenuRutasFrecuentes extends javax.swing.JPanel {
@@ -41,6 +49,11 @@ public class MenuRutasFrecuentes extends javax.swing.JPanel {
         this.controlPantallas = controlPantallas;
 
         initComponents();
+        ponerImg();
+
+        datosConductor.setText(controlPantallas.nombreConductor().toString());
+        datosConductor.setEditable(false);
+        datosConductor.getCaret().setVisible(false);
         mostrarRutas(rutas);
 
     }
@@ -58,6 +71,11 @@ public class MenuRutasFrecuentes extends javax.swing.JPanel {
         TituloLbl = new javax.swing.JLabel();
         panelContenedorRutas = new javax.swing.JPanel();
         registrarRutaBtn = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        panelFotoPerfil = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        datosConductor = new javax.swing.JTextArea();
+        jButton1 = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(1080, 640));
 
@@ -76,7 +94,7 @@ public class MenuRutasFrecuentes extends javax.swing.JPanel {
         panelContenedorRutas.setLayout(panelContenedorRutasLayout);
         panelContenedorRutasLayout.setHorizontalGroup(
             panelContenedorRutasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 725, Short.MAX_VALUE)
+            .addGap(0, 777, Short.MAX_VALUE)
         );
         panelContenedorRutasLayout.setVerticalGroup(
             panelContenedorRutasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -91,35 +109,102 @@ public class MenuRutasFrecuentes extends javax.swing.JPanel {
             }
         });
 
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel3MouseClicked(evt);
+            }
+        });
+
+        panelFotoPerfil.setBackground(new java.awt.Color(255, 255, 255));
+        panelFotoPerfil.setName(""); // NOI18N
+
+        javax.swing.GroupLayout panelFotoPerfilLayout = new javax.swing.GroupLayout(panelFotoPerfil);
+        panelFotoPerfil.setLayout(panelFotoPerfilLayout);
+        panelFotoPerfilLayout.setHorizontalGroup(
+            panelFotoPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        panelFotoPerfilLayout.setVerticalGroup(
+            panelFotoPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 183, Short.MAX_VALUE)
+        );
+
+        jScrollPane1.setBorder(null);
+        jScrollPane1.setHorizontalScrollBar(null);
+
+        datosConductor.setEditable(false);
+        datosConductor.setBackground(new java.awt.Color(255, 255, 255));
+        datosConductor.setColumns(20);
+        datosConductor.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        datosConductor.setRows(5);
+        datosConductor.setBorder(null);
+        datosConductor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        datosConductor.setFocusable(false);
+        jScrollPane1.setViewportView(datosConductor);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelFotoPerfil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(panelFotoPerfil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17))
+        );
+
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jButton1.setText("Eliminar Ruta");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
-                        .addComponent(registrarRutaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addComponent(panelContenedorRutas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(209, 209, 209)
-                        .addComponent(TituloLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 596, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(66, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(registrarRutaBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(12, 12, 12)))
+                .addComponent(panelContenedorRutas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(209, 209, 209)
+                .addComponent(TituloLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 596, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(82, 82, 82))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(TituloLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(424, 424, 424)
-                        .addComponent(registrarRutaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(panelContenedorRutas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(registrarRutaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(panelContenedorRutas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(48, 48, 48))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -140,16 +225,23 @@ public class MenuRutasFrecuentes extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
     /**
-     * boton que dispara el eventos de mostrar la pantalla de datos rutas frecuentes 
-     * @param evt 
+     * boton que dispara el eventos de mostrar la pantalla de datos rutas
+     * frecuentes
+     *
+     * @param evt
      */
     private void registrarRutaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarRutaBtnActionPerformed
         // TODO add your handling code here:
         controlPantallas.mostrarDatosRutasFrecuente();
     }//GEN-LAST:event_registrarRutaBtnActionPerformed
-    
+
+    private void jPanel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanel3MouseClicked
+
     /**
      * muesstra las rutas registradas del conductor
+     *
      * @param listaRutas lista de rutas a mostrar
      */
     private void mostrarRutas(List listaRutas) {
@@ -178,8 +270,7 @@ public class MenuRutasFrecuentes extends javax.swing.JPanel {
                     btnInfo.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
                     btnInfo.setText(ruta.toString());
                     btnInfo.addActionListener(e -> {
-                        
-                        
+
                         this.RutaFrecuenteSeleccionadaDTO = (dto.RutaFrecuenteDTO) ruta;
                         String origen = RutaFrecuenteSeleccionadaDTO.getOrigen();
                         String destino = RutaFrecuenteSeleccionadaDTO.getDestino();
@@ -196,7 +287,7 @@ public class MenuRutasFrecuentes extends javax.swing.JPanel {
                             controlPantallas.agregarParada(destinoParada, precioParada);
 
                         }
-                        
+
                         controlPantallas.mostrarSeleccionarVehiculoRuta();
                     });
                     panelElemento.add(btnInfo);
@@ -223,11 +314,28 @@ public class MenuRutasFrecuentes extends javax.swing.JPanel {
         }
     }
 
+    private void ponerImg() {
+        File imagenC = new File("src\\main\\resources\\perfil.png");
+        panelFotoPerfil.setLayout(new FlowLayout());
+        ImageIcon icono = new ImageIcon(imagenC.getAbsolutePath());
+        Image imgEscalada = icono.getImage().getScaledInstance(161, 161, Image.SCALE_SMOOTH);
+        JLabel lblImagen = new JLabel(new ImageIcon(imgEscalada));
+        lblImagen.setAlignmentX(CENTER_ALIGNMENT);
+
+        panelFotoPerfil.add(lblImagen);
+        panelFotoPerfil.revalidate();
+        panelFotoPerfil.repaint();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel TituloLbl;
+    private javax.swing.JTextArea datosConductor;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel panelContenedorRutas;
+    private javax.swing.JPanel panelFotoPerfil;
     private javax.swing.JButton registrarRutaBtn;
     // End of variables declaration//GEN-END:variables
 }

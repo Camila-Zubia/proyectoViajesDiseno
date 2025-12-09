@@ -10,15 +10,21 @@ import dto.ViajeDTO;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import static java.awt.Component.CENTER_ALIGNMENT;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.HeadlessException;
+import java.awt.Image;
+import java.io.File;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -39,6 +45,11 @@ public class menuVehiculosConductor extends javax.swing.JPanel {
     public menuVehiculosConductor(IControlPantallas controlPantallas, List<VehiculoDTO> vehiculo) {
         this.controlPantallas = controlPantallas;
         initComponents();
+        ponerImg();
+
+        datosConductor.setText(controlPantallas.nombreConductor().toString());
+        datosConductor.setEditable(false);
+        datosConductor.getCaret().setVisible(false);
         mostrarVehiculos(vehiculo);
     }
 
@@ -57,6 +68,10 @@ public class menuVehiculosConductor extends javax.swing.JPanel {
         panelContenedorVehiculos = new javax.swing.JPanel();
         eliminarRutaBtn = new javax.swing.JButton();
         registrarRutaBtn1 = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        panelFotoPerfil = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        datosConductor = new javax.swing.JTextArea();
 
         jPanel1.setPreferredSize(new java.awt.Dimension(1080, 640));
 
@@ -75,7 +90,7 @@ public class menuVehiculosConductor extends javax.swing.JPanel {
         panelContenedorVehiculos.setLayout(panelContenedorVehiculosLayout);
         panelContenedorVehiculosLayout.setHorizontalGroup(
             panelContenedorVehiculosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 725, Short.MAX_VALUE)
+            .addGap(0, 763, Short.MAX_VALUE)
         );
         panelContenedorVehiculosLayout.setVerticalGroup(
             panelContenedorVehiculosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -98,35 +113,98 @@ public class menuVehiculosConductor extends javax.swing.JPanel {
             }
         });
 
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel3MouseClicked(evt);
+            }
+        });
+
+        panelFotoPerfil.setBackground(new java.awt.Color(255, 255, 255));
+        panelFotoPerfil.setName(""); // NOI18N
+
+        javax.swing.GroupLayout panelFotoPerfilLayout = new javax.swing.GroupLayout(panelFotoPerfil);
+        panelFotoPerfil.setLayout(panelFotoPerfilLayout);
+        panelFotoPerfilLayout.setHorizontalGroup(
+            panelFotoPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        panelFotoPerfilLayout.setVerticalGroup(
+            panelFotoPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jScrollPane1.setBorder(null);
+        jScrollPane1.setHorizontalScrollBar(null);
+
+        datosConductor.setEditable(false);
+        datosConductor.setBackground(new java.awt.Color(255, 255, 255));
+        datosConductor.setColumns(20);
+        datosConductor.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        datosConductor.setRows(5);
+        datosConductor.setBorder(null);
+        datosConductor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        datosConductor.setFocusable(false);
+        jScrollPane1.setViewportView(datosConductor);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 13, Short.MAX_VALUE))
+                    .addComponent(panelFotoPerfil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(panelFotoPerfil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(81, 81, 81)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(registrarRutaBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(eliminarRutaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
+                .addGap(42, 42, 42)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(eliminarRutaBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(registrarRutaBtn1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(TituloLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 596, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(panelContenedorVehiculos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(15, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(TituloLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 596, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(panelContenedorVehiculos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addComponent(TituloLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(eliminarRutaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(15, 15, 15)
+                        .addGap(12, 12, 12)
                         .addComponent(registrarRutaBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(panelContenedorVehiculos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(40, 40, 40))
+                .addGap(37, 37, 37))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -191,7 +269,7 @@ public class menuVehiculosConductor extends javax.swing.JPanel {
                 // Llama a eliminar el Vehículo del sistema (si esa es la lógica deseada)
                 controlPantallas.eliminarVehiculo(vehiculoSeleccionadoDTO);
 
-               List<VehiculoDTO> listaActualizada = controlPantallas.obtenerListaVehiculos();
+                List<VehiculoDTO> listaActualizada = controlPantallas.obtenerListaVehiculos();
                 mostrarVehiculos(listaActualizada);
                 // Lógica para refrescar la lista de vehículos, si es necesario.
             }
@@ -207,6 +285,10 @@ public class menuVehiculosConductor extends javax.swing.JPanel {
         // TODO add your handling code here:
         controlPantallas.mostrarDatosVehiculo();
     }//GEN-LAST:event_registrarRutaBtn1ActionPerformed
+
+    private void jPanel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanel3MouseClicked
 
     private void mostrarVehiculos(List listaVehiculos) {
         try {
@@ -261,12 +343,29 @@ public class menuVehiculosConductor extends javax.swing.JPanel {
         }
     }
 
+    private void ponerImg() {
+        File imagenC = new File("src\\main\\resources\\perfil.png");
+        panelFotoPerfil.setLayout(new FlowLayout());
+        ImageIcon icono = new ImageIcon(imagenC.getAbsolutePath());
+        Image imgEscalada = icono.getImage().getScaledInstance(161, 161, Image.SCALE_SMOOTH);
+        JLabel lblImagen = new JLabel(new ImageIcon(imgEscalada));
+        lblImagen.setAlignmentX(CENTER_ALIGNMENT);
+
+        panelFotoPerfil.add(lblImagen);
+        panelFotoPerfil.revalidate();
+        panelFotoPerfil.repaint();
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel TituloLbl;
+    private javax.swing.JTextArea datosConductor;
     private javax.swing.JButton eliminarRutaBtn;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel panelContenedorVehiculos;
+    private javax.swing.JPanel panelFotoPerfil;
     private javax.swing.JButton registrarRutaBtn1;
     // End of variables declaration//GEN-END:variables
 }
