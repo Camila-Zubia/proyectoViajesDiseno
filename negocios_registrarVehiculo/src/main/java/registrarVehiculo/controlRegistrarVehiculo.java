@@ -55,8 +55,7 @@ public class controlRegistrarVehiculo {
 
         this.vehiculoTemp.setColor(color);
         this.vehiculoTemp.setCapacidad(capacidad);
-        
-        
+
         VehiculoHaciendaDTO vehHaciendaDTO = adaptadores.adaptadorHacienda.toVehiculoHaciendaDTO(vehiculoTemp);
         boolean datosValidos = validacionHaciendaService.existeVehiculoEnBD(vehHaciendaDTO);
 
@@ -65,7 +64,6 @@ public class controlRegistrarVehiculo {
             return false;
         }
 
-        
         return true;
     }
 
@@ -100,6 +98,21 @@ public class controlRegistrarVehiculo {
         propietarioBO.registrarPropietario(propietarioTemp);
 
         return true;
+    }
+
+    protected void eliminarVehiculo(VehiculoDTO dto) throws Exception {
+
+        vehiculoBO.eliminarVehiculo(dto);
+
+    }
+
+    protected boolean eliminarVehiculoDeConductor(String numeroSerie) {
+
+        return conductorBO.eliminarVehiculoDeConductor(numeroSerie);
+    }
+
+    protected List<VehiculoDTO> obtenerListaVehiculos() {
+        return conductorBO.obtenerVehiculos();
     }
 
 }

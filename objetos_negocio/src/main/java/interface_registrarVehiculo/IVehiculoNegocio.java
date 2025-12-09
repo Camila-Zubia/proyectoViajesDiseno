@@ -16,4 +16,6 @@ public interface IVehiculoNegocio {
      * @param vehiculo objeto que se persistira
      */
     public void registrarVehiculo(VehiculoDTO vehiculo);
+    
+    public void eliminarVehiculo(VehiculoDTO vehiculo);
 }

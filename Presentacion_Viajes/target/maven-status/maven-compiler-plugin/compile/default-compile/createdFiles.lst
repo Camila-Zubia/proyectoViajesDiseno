@@ -4,6 +4,7 @@ presentacion\menuAdeudos.class
 presentacion_SolicitarReservacion\seleccionarParada.class
 presentacion_cancelarReservacion\seleccionarReservacion.class
 presentacion_cancelarReservacion\cancelarReservacion$1.class
+presentacion_registrarVehiculo\menuVehiculosConductor$2.class
 presentacion\iniciarSesion.class
 presentacion_crearRutaFrecuente\MenuRutasFrecuentes.class
 presentacion_SolicitarReservacion\datosReservacion.class
