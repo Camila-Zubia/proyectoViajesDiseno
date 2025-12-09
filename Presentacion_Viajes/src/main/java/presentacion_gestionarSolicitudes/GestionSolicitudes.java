@@ -44,7 +44,7 @@ public class GestionSolicitudes extends javax.swing.JPanel {
 
         tituloViajeLabel.setFont(new java.awt.Font("Segoe UI", 1, 36));
         tituloViajeLabel.setForeground(new java.awt.Color(255, 255, 255));
-        tituloViajeLabel.setText("SOLICITUDES PENDIENTES (Viaje: " + viajeId.substring(0, 5) + "...)");
+        tituloViajeLabel.setText("SOLICITUDES PENDIENTES");
 
         panelContenedor.setBackground(java.awt.Color.WHITE);
         panelContenedor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
@@ -97,44 +97,40 @@ public class GestionSolicitudes extends javax.swing.JPanel {
     }
 
     /**
-     * Crea un panel por solicitud con botones de acción.
+     * Crea un panel por solicitud con botones de accion.
      */
     private JPanel crearPanelSolicitud(ReservacionDTO reserva) {
+        Color textColor = Color.BLACK;
 
-        JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 5));
-        panel.setPreferredSize(new Dimension(780, 80));
-        panel.setMaximumSize(new Dimension(780, 80));
-        panel.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.GRAY));
-        panel.setBackground(new Color(255, 255, 255));
-
-        String direccionParada = "ERROR: Sin Parada";
-
-        if (reserva.getParada() != null && reserva.getParada().getDirección() != null) {
-            direccionParada = reserva.getParada().getDirección();
-        }
-        boolean esSolicitudRuta = reserva.getParada() != null && reserva.getParada().getId() == null;
+        JPanel panelItemWrapper = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 5));
+        panelItemWrapper.setPreferredSize(new Dimension(780, 70));
+        panelItemWrapper.setMaximumSize(new Dimension(780, 70));
+        panelItemWrapper.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.GRAY));
+        panelItemWrapper.setBackground(new Color(255, 255, 255));
+        
+        boolean esSolicitudRuta = reserva.getParada() != null && reserva.getParada().getId() == null; 
 
         String tipoSolicitud = esSolicitudRuta ? "RUTA PROPUESTA" : "ESTANDAR";
+        
+        String infoTexto = String.format("Solicitud (%s) | Precio: $%.2f",
+                tipoSolicitud,
+                reserva.getPrecioTotal());
 
-        JPanel panelElemento = new JPanel(new java.awt.BorderLayout());
-        panelElemento.setPreferredSize(new Dimension(780, 50));
-        panelElemento.setMaximumSize(new Dimension(780, 50));
-        panelElemento.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(200, 200, 200)));
+        JPanel panelElemento = new JPanel(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 0, 0)); 
+        panelElemento.setPreferredSize(new Dimension(750, 60)); 
+        panelElemento.setMaximumSize(new Dimension(750, 60));
+        panelElemento.setBorder(BorderFactory.createLineBorder(new Color(200, 200, 200)));
         panelElemento.setBackground(new Color(245, 245, 245));
 
         JButton btnInfo = new JButton();
-        btnInfo.setFont(new Font("Dialog", Font.BOLD, 14));
-        btnInfo.setBackground(Color.WHITE);
-        btnInfo.setForeground(Color.BLACK);
+        btnInfo.setFont(new Font("Dialog", Font.PLAIN, 14));
+        btnInfo.setBackground(new Color(245, 245, 245));
+        btnInfo.setForeground(textColor);
         btnInfo.setHorizontalAlignment(SwingConstants.LEFT);
         btnInfo.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
 
-        String infoTexto = String.format("Solicitud (%s) | Pasajero: %s | Parada: %s | Precio: $%.2f",
-                tipoSolicitud,
-                reserva.getPasajero().getNombre(),
-                direccionParada,
-                reserva.getPrecioTotal());
-        btnInfo.setText("<html><b>" + infoTexto + "</b></html>");
+        btnInfo.setText(infoTexto);
+        btnInfo.setPreferredSize(new Dimension(750, 60)); 
 
         btnInfo.addActionListener(e -> {
             if (esSolicitudRuta) {
@@ -144,9 +140,11 @@ public class GestionSolicitudes extends javax.swing.JPanel {
             }
         });
 
-        panelElemento.add(btnInfo, BorderLayout.CENTER);
-        return panelElemento;
+        panelElemento.add(btnInfo);
+        panelItemWrapper.add(panelElemento); 
+        return panelItemWrapper;
 
+    
     }
 
     
@@ -192,7 +190,7 @@ public class GestionSolicitudes extends javax.swing.JPanel {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(502, Short.MAX_VALUE)
+                .addContainerGap(523, Short.MAX_VALUE)
                 .addComponent(regresarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25))
         );

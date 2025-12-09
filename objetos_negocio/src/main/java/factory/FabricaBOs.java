@@ -111,6 +111,6 @@ public class FabricaBOs implements IFabricaBOs {
     //metodos del caso de uso de gestionar solicitudes
     @Override
     public IGestionarSolicitudesNegocio crearGestionarSolicitudesNegocio() {
-        return new GestionarSolicitudesNegocio(viajeDAO, reservacionDAO);
+        return new GestionarSolicitudesNegocio(viajeDAO, reservacionDAO, conductorDAO);
     }
 }

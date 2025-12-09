@@ -60,7 +60,7 @@ private final IControlPantallas controlPantallas;
                 panelElemento.setBackground(new Color(255, 255, 255)); 
 
                 JButton btnInfo = new JButton();
-                btnInfo.setFont(new Font("Dialog", Font.BOLD, 14)); 
+                btnInfo.setFont(new Font("Dialog", Font.PLAIN, 14)); 
                 btnInfo.setBackground(Color.WHITE);
                 btnInfo.setForeground(Color.BLACK); 
                 btnInfo.setHorizontalAlignment(SwingConstants.LEFT);
@@ -69,7 +69,7 @@ private final IControlPantallas controlPantallas;
                 
                 String infoTexto = String.format("Origen: %s | Destino: %s | Fecha: %s",
                                                 viaje.getOrigen(), viaje.getDestino(), viaje.getFecha());
-                btnInfo.setText("<html><b>" + infoTexto + "</b></html>");
+                btnInfo.setText(infoTexto);
                     btnInfo.addActionListener(e -> {
                         controlPantallas.mostrarGestionSolicitudes(viaje.getId());
                     });
@@ -87,8 +87,8 @@ private final IControlPantallas controlPantallas;
             scrollPane.setBackground(Color.WHITE);
             
             panelContenedorViajes.removeAll();
-            panelContenedorViajes.setLayout(new BorderLayout());
-            panelContenedorViajes.add(scrollPane, BorderLayout.CENTER);
+            panelContenedorViajes.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER));
+            panelContenedorViajes.add(scrollPane);
             panelContenedorViajes.revalidate();
             panelContenedorViajes.repaint();
 
@@ -135,11 +135,11 @@ private final IControlPantallas controlPantallas;
         panelContenedorViajes.setLayout(panelContenedorViajesLayout);
         panelContenedorViajesLayout.setHorizontalGroup(
             panelContenedorViajesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 523, Short.MAX_VALUE)
+            .addGap(0, 616, Short.MAX_VALUE)
         );
         panelContenedorViajesLayout.setVerticalGroup(
             panelContenedorViajesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 322, Short.MAX_VALUE)
+            .addGap(0, 336, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -147,30 +147,30 @@ private final IControlPantallas controlPantallas;
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(panelContenedorViajes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(regresarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addGap(174, 174, 174)
-                            .addComponent(jLabel3))))
-                .addContainerGap(216, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(regresarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(773, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(panelContenedorViajes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(226, 226, 226)
+                .addComponent(jLabel3)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
+                .addGap(46, 46, 46)
                 .addComponent(panelContenedorViajes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                 .addComponent(regresarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15))
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, 870, 570));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 980, 590));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
