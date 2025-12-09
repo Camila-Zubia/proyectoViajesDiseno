@@ -46,13 +46,27 @@ public class controlRegistrarVehiculo {
         this.ListaVehiculosTemp = new ArrayList<>();
     }
 
-    protected void guardarDatosVehiculo(String numeroSerie, String modelo, String placas, String marca, String color, int capacidad) {
+    protected boolean guardarDatosVehiculo(String numeroSerie, String modelo, String placas, String marca, String color, int capacidad) {
+
         this.vehiculoTemp.setNumeroSerie(numeroSerie);
-        this.vehiculoTemp.setModelo(modelo);
         this.vehiculoTemp.setPlacas(placas);
         this.vehiculoTemp.setMarca(marca);
+        this.vehiculoTemp.setModelo(modelo);
+
         this.vehiculoTemp.setColor(color);
         this.vehiculoTemp.setCapacidad(capacidad);
+        
+        
+        VehiculoHaciendaDTO vehHaciendaDTO = adaptadores.adaptadorHacienda.toVehiculoHaciendaDTO(vehiculoTemp);
+        boolean datosValidos = validacionHaciendaService.existeVehiculoEnBD(vehHaciendaDTO);
+
+        if (datosValidos != true) {
+            System.err.println("las placas registradas no coinciden con algun vehiculo en la base de datos de hacienda");
+            return false;
+        }
+
+        
+        return true;
     }
 
     protected void guardarDatosPropietario(String nombre, String curp, String rfc, String nss) {

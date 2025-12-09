@@ -513,9 +513,9 @@ public class ControlPantallas implements IControlPantallas {
     }
 
     @Override
-    public void guardarDatosVehiculo(String numeroSerie, String modelo, String placas, String marca, String color, int CantidadPasajeros) {
+    public boolean guardarDatosVehiculo(String numeroSerie, String modelo, String placas, String marca, String color, int CantidadPasajeros) {
 
-        interfazRegistrarVehiculo.guardarDatosVehiculo(numeroSerie, modelo, placas, marca, color, CantidadPasajeros);
+        return interfazRegistrarVehiculo.guardarDatosVehiculo(numeroSerie, modelo, placas, marca, color, CantidadPasajeros);
 
     }
 

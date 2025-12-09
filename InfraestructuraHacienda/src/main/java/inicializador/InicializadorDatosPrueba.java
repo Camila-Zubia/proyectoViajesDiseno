@@ -8,6 +8,7 @@ import exceptiones.DatabaseException;
 import exceptiones.ValidationException;
 
 import daoImplementacion.PropietarioHaciendaDAO;
+import daoImplementacion.VehiculoHaciendaDAO;
 import java.util.ArrayList;
 import java.util.List;
 import model.PropietarioHacienda;
@@ -23,10 +24,12 @@ public class InicializadorDatosPrueba {
     private static final Logger LOGGER = Logger.getLogger(InicializadorDatosPrueba.class.getName());
 
     private final PropietarioHaciendaDAO propietarioDAO;
+    private final VehiculoHaciendaDAO vehiculoDAO;
 
     public InicializadorDatosPrueba() {
 
         this.propietarioDAO = new PropietarioHaciendaDAO();
+        this.vehiculoDAO = new VehiculoHaciendaDAO();
     }
 
     /**
@@ -48,6 +51,7 @@ public class InicializadorDatosPrueba {
             v_juan.setModelo("Corolla 2020");
             v_juan.setColor("Rojo");
             v_juan.setCapacidad(5);
+            vehiculoDAO.save(v_juan);
             
             PropietarioHacienda juan = new PropietarioHacienda();
             juan.setNombre("Juan Perez");
@@ -69,7 +73,7 @@ public class InicializadorDatosPrueba {
             v_norma1.setModelo("Civic 2019");
             v_norma1.setColor("Azul");
             v_norma1.setCapacidad(4);
-            
+            vehiculoDAO.save(v_norma1);
             // Vehículo 2 de Norma
             VehiculoHacienda v_norma2 = new VehiculoHacienda();
             v_norma2.setNumeroSerie("NBR002SERIEC9012");
@@ -78,7 +82,7 @@ public class InicializadorDatosPrueba {
             v_norma2.setModelo("Explorer 2023");
             v_norma2.setColor("Negro");
             v_norma2.setCapacidad(7);
-            
+            vehiculoDAO.save(v_norma2);
             PropietarioHacienda norma = new PropietarioHacienda();
             norma.setNombre("Norma Beltran");
             norma.setCurp("BELTRN920515MSCRRN02");
@@ -99,7 +103,7 @@ public class InicializadorDatosPrueba {
             v_pedro.setModelo("CX-5 2021");
             v_pedro.setColor("Blanco");
             v_pedro.setCapacidad(5);
-            
+            vehiculoDAO.save(v_pedro);
             PropietarioHacienda pedro = new PropietarioHacienda();
             pedro.setNombre("Pedro Ramirez");
             pedro.setCurp("RAMIRE951020HDFGGM03");
@@ -119,6 +123,8 @@ public class InicializadorDatosPrueba {
             v_laura.setModelo("X5 2022");
             v_laura.setColor("Gris");
             v_laura.setCapacidad(5);
+            vehiculoDAO.save(v_laura);
+            
             
             PropietarioHacienda laura = new PropietarioHacienda();
             laura.setNombre("Laura Garcia");
