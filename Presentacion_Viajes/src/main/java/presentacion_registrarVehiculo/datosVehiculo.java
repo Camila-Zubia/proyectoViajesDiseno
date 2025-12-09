@@ -277,6 +277,10 @@ public class datosVehiculo extends javax.swing.JPanel {
 
             // 3. Llamada al controlador solo si todo fue exitoso
             controlPantallas.guardarDatosVehiculo(numeroSerie, modelo, placas, marca, color, capacidad);
+            if (controlPantallas.guardarDatosVehiculo(numeroSerie, modelo, placas, marca, color, capacidad)!=true) {
+                 JOptionPane.showMessageDialog(this, "El vehiculo no esta registrado en hacienda", "Error de Validación", JOptionPane.WARNING_MESSAGE);
+                 return;
+            }
             controlPantallas.mostrarDatosPropietario();
 
         } catch (NumberFormatException e) {
