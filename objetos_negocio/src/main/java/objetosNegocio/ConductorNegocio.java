@@ -85,6 +85,7 @@ public class ConductorNegocio implements IConductorNegocio {
 
     }
     
+    @Override
     public boolean eliminarVehiculoDeConductor( String numeroSerieVehiculo){
         ObjectId conductorId = new ObjectId(SesionUsuario.obtenerConductor().getId());
         

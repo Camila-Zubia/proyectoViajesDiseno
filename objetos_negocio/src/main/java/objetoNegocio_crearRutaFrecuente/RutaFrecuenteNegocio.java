@@ -72,5 +72,15 @@ public class RutaFrecuenteNegocio implements ICrearRutaFrecuenteNegocio {
         }
         return true;
     }
+    
+    @Override
+    public boolean eliminarRuta(RutaFrecuenteDTO ruta){
+        ObjectId idConductor = new ObjectId(SesionUsuario.obtenerConductor().getId());
+        RutaFrecuente entity = adaptadores.adaptadorRutaFrecuente.toEntity(ruta, idConductor);
+        
+       return rutaDAO.delete(entity);
+    }
+    
+    
 
 }

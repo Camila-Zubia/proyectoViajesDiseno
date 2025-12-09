@@ -75,7 +75,7 @@ public class MenuRutasFrecuentes extends javax.swing.JPanel {
         panelFotoPerfil = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         datosConductor = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
+        eliminarRutaBtn = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(1080, 640));
 
@@ -165,8 +165,13 @@ public class MenuRutasFrecuentes extends javax.swing.JPanel {
                 .addGap(17, 17, 17))
         );
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jButton1.setText("Eliminar Ruta");
+        eliminarRutaBtn.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        eliminarRutaBtn.setText("Eliminar Ruta");
+        eliminarRutaBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarRutaBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -181,7 +186,7 @@ public class MenuRutasFrecuentes extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(registrarRutaBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(eliminarRutaBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(12, 12, 12)))
                 .addComponent(panelContenedorRutas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
@@ -200,7 +205,7 @@ public class MenuRutasFrecuentes extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(eliminarRutaBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(registrarRutaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(panelContenedorRutas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -239,6 +244,29 @@ public class MenuRutasFrecuentes extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jPanel3MouseClicked
 
+    private void eliminarRutaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarRutaBtnActionPerformed
+        // TODO add your handling code here:
+        if (RutaFrecuenteSeleccionadaDTO == null) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar una ruta de la lista primero.", "Ruta no seleccionada", JOptionPane.WARNING_MESSAGE);
+            return; // Detiene la ejecución si no hay selección.
+        }
+        String nombreRuta = RutaFrecuenteSeleccionadaDTO.getNombre();
+        int confirmacion = JOptionPane.showConfirmDialog(this,
+                "¿Está seguro de que desea eliminar la ruta con nombre: " + nombreRuta + "?",
+                "Confirmar Eliminación", JOptionPane.YES_NO_OPTION);
+
+        if (confirmacion == JOptionPane.YES_OPTION) {
+
+            controlPantallas.eliminarRuta(RutaFrecuenteSeleccionadaDTO);
+
+            List<RutaFrecuenteDTO> listaActualizada = controlPantallas.obtenerListaRutas();
+            mostrarRutas(listaActualizada);
+
+        }
+
+
+    }//GEN-LAST:event_eliminarRutaBtnActionPerformed
+
     /**
      * muesstra las rutas registradas del conductor
      *
@@ -274,8 +302,8 @@ public class MenuRutasFrecuentes extends javax.swing.JPanel {
                         this.RutaFrecuenteSeleccionadaDTO = (dto.RutaFrecuenteDTO) ruta;
                         String origen = RutaFrecuenteSeleccionadaDTO.getOrigen();
                         String destino = RutaFrecuenteSeleccionadaDTO.getDestino();
-                        LocalDate fecha = RutaFrecuenteSeleccionadaDTO.getFecha();
-                        LocalTime hora = RutaFrecuenteSeleccionadaDTO.getHora();
+                        LocalDate fecha = LocalDate.now();
+                        LocalTime hora = LocalTime.now();
                         double precioBase = RutaFrecuenteSeleccionadaDTO.getPrecioTotal();
                         controlPantallas.guardarDatosViaje(origen, destino, fecha, hora, precioBase);
 
@@ -330,7 +358,7 @@ public class MenuRutasFrecuentes extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel TituloLbl;
     private javax.swing.JTextArea datosConductor;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton eliminarRutaBtn;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
