@@ -108,7 +108,6 @@ public class menuPrincipalConductor extends javax.swing.JPanel {
         datosConductor.setBackground(new java.awt.Color(255, 255, 255));
         datosConductor.setColumns(20);
         datosConductor.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        datosConductor.setForeground(new java.awt.Color(0, 0, 0));
         datosConductor.setRows(5);
         datosConductor.setBorder(null);
         datosConductor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -136,39 +135,25 @@ public class menuPrincipalConductor extends javax.swing.JPanel {
                 .addContainerGap(35, Short.MAX_VALUE))
         );
 
-        registrarViajeBtn.setBackground(new java.awt.Color(255, 255, 255));
-        registrarViajeBtn.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        registrarViajeBtn.setForeground(new java.awt.Color(0, 0, 0));
         registrarViajeBtn.setText("Registrar Viaje");
         registrarViajeBtn.setBorder(null);
+        registrarViajeBtn.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         registrarViajeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 registrarViajeBtnActionPerformed(evt);
             }
         });
 
-        adeudosBtn = new javax.swing.JButton();
-        adeudosBtn.setBackground(new java.awt.Color(255, 255, 255));
-        adeudosBtn.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        adeudosBtn.setForeground(new java.awt.Color(0, 0, 0));
-        adeudosBtn.setText("Adeudos");
-        adeudosBtn.setBorder(null);
-        adeudosBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                adeudosBtnActionPerformed(evt);
-            }
-        });
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("ITSON");
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
 
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("TUS VIAJES:");
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("TUS VIAJES:");
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -196,7 +181,6 @@ public class menuPrincipalConductor extends javax.swing.JPanel {
                         .addGap(36, 36, 36)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(registrarViajeBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(adeudosBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -216,9 +200,7 @@ public class menuPrincipalConductor extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(registrarViajeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(adeudosBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(registrarViajeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(52, Short.MAX_VALUE))
         );
@@ -315,6 +297,5 @@ public class menuPrincipalConductor extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel panelFotoPerfil;
     private javax.swing.JButton registrarViajeBtn;
-    private javax.swing.JButton adeudosBtn;
     // End of variables declaration//GEN-END:variables
 }
