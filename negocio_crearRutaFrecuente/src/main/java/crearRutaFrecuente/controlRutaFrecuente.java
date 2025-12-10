@@ -9,7 +9,6 @@ import dto.RutaFrecuenteDTO;
 import factory.FabricaBOs;
 import factory.IFabricaBOs;
 import interface_crearRutaFrecuente.ICrearRutaFrecuenteNegocio;
-import interfaces.IConductorNegocio;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -23,13 +22,12 @@ public class controlRutaFrecuente {
 
     private final ICrearRutaFrecuenteNegocio rutaFrecuenteBO;
     private final RutaFrecuenteDTO rutaFrecuente;
-    private final IConductorNegocio conductorBO;
     private final List<ParadaDTO> paradasTemp;
 
     public controlRutaFrecuente() {
         IFabricaBOs fabrica = new FabricaBOs();
         this.rutaFrecuenteBO = fabrica.crearRutaFrecuenteNegocio();
-        this.conductorBO = fabrica.crearConductorNegocio();
+        
         this.rutaFrecuente = new RutaFrecuenteDTO();
         this.paradasTemp = new ArrayList<>();
     }

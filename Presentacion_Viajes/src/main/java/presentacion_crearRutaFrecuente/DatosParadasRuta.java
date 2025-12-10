@@ -27,7 +27,7 @@ import javax.swing.SwingConstants;
 public class DatosParadasRuta extends javax.swing.JPanel {
 
     private final IControlPantallas controlPantallas;
-    private List paradas;
+    private final List paradas;
 
     /**
      * Creates new form DatosParadas
