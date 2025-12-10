@@ -4,7 +4,6 @@
  */
 package crearRutaFrecuente;
 
-import dto.ConductorDTO;
 import dto.ParadaDTO;
 import dto.RutaFrecuenteDTO;
 import factory.FabricaBOs;
@@ -45,9 +44,7 @@ public class controlRutaFrecuente {
 
     }
 
-    protected List<RutaFrecuenteDTO> obtenerRutaPorConductor() {
-        return conductorBO.obtenerRutas();
-    }
+    
 
     //paradas
     protected void agregarParada(String direccion, double precio) {
@@ -79,6 +76,11 @@ public class controlRutaFrecuente {
     protected boolean eliminarRuta(RutaFrecuenteDTO ruta) {
 
         return rutaFrecuenteBO.eliminarRuta(ruta);
+    }
+
+    protected List<RutaFrecuenteDTO> obtenerRutas() {
+
+        return rutaFrecuenteBO.obtenerRutas();
     }
 
 }

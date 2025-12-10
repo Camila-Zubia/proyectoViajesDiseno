@@ -49,5 +49,7 @@ public interface ICrearRutaFrecuenteNegocio {
     public boolean validarNoExisteRuta(List<RutaFrecuenteDTO> rutas, RutaFrecuenteDTO ruta);
 
     public boolean eliminarRuta(RutaFrecuenteDTO ruta);
+    
+    public List<RutaFrecuenteDTO> obtenerRutas();
 
 }

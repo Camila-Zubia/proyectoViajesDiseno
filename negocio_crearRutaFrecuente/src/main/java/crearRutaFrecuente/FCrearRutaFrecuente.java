@@ -28,10 +28,7 @@ public class FCrearRutaFrecuente implements ICrearRutaFrecuente {
         controlRuta.GuardarDatosRutaFrec(nombre, origen, destino, fecha, hora);
     }
 
-    @Override
-    public List<RutaFrecuenteDTO> obtenerRutaPorConductor() {
-        return controlRuta.obtenerRutaPorConductor();
-    }
+    
 
     @Override
     public void agregarParada(String direccion, double precio) {
@@ -53,7 +50,14 @@ public class FCrearRutaFrecuente implements ICrearRutaFrecuente {
         return controlRuta.confirmaRuta();
     }
     
+    @Override
     public boolean eliminarRuta(RutaFrecuenteDTO ruta){
         return controlRuta.eliminarRuta(ruta);
+    }
+    
+    @Override
+    public List<RutaFrecuenteDTO> obtenerRutas(){
+        return controlRuta.obtenerRutas();
+    
     }
 }
