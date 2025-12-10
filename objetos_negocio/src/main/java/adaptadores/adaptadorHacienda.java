@@ -14,7 +14,8 @@ import dto.VehiculoDTO;
  * @author adell
  */
 public class adaptadorHacienda {
-     public static PropietarioHaciendaDTO toPropietarioHaciendaDTO(PropietarioDTO propietarioDTO) {
+
+    public static PropietarioHaciendaDTO toPropietarioHaciendaDTO(PropietarioDTO propietarioDTO) {
         if (propietarioDTO == null) {
             return null;
         }

@@ -554,12 +554,15 @@ public class ControlPantallas implements IControlPantallas {
         return interfazRegistrarVehiculo.eliminarVehiculoDeConductor(numeroSerie);
     }
 
+    
+
+    // //------------------------------Métodos para pagar adeudos//------------------------------
+    
     @Override
     public ViajeDTO obtenerDetallesViaje(String idViaje) {
         return interfazPagarAdeudo.obtenerDetallesViaje(idViaje);
     }
-
-    // //------------------------------Métodos para pagar adeudos//------------------------------
+    
     @Override
     public void mostrarMenuAdeudos() {
         List<AdeudoDTO> adeudos = obtenerAdeudosPendientes();

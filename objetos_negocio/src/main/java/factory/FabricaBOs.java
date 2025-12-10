@@ -57,7 +57,8 @@ public class FabricaBOs implements IFabricaBOs {
     public IUsuarioNegocio crearUsuarioNegocio() {
         return new UsuarioNegocio(usuarioDAO, conductorDAO, pasajeroDAO);
     }
-
+    
+    //tambien lo utiliza registrar vehiculo
     @Override
     public IConductorNegocio crearConductorNegocio() {
         return new ConductorNegocio(conductorDAO, usuarioDAO, viajeDAO);

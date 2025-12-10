@@ -51,6 +51,7 @@ public class FRegistrarVehiculo implements IRegistrarVehiculo {
         return controlVehiculo.eliminarVehiculoDeConductor(numeroSerie);
     }
     
+    @Override
     public List<VehiculoDTO> obtenerListaVehiculos(){
     
         return controlVehiculo.obtenerListaVehiculos();
