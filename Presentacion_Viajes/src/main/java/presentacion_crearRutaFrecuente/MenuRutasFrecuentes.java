@@ -4,7 +4,6 @@
  */
 package presentacion_crearRutaFrecuente;
 
-import Controles.ControlPantallas;
 import Controles.IControlPantallas;
 import dto.ParadaDTO;
 import dto.RutaFrecuenteDTO;

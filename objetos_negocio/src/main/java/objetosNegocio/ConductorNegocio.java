@@ -33,6 +33,33 @@ public class ConductorNegocio implements IConductorNegocio {
     }
 
     @Override
+    public void agregarViaje(ViajeDTO viaje) {
+        SesionUsuario.obtenerConductor().getViajes().add(viaje);
+    }
+
+    @Override
+    public List<ViajeDTO> obtenerViajes() {
+        try {
+            ObjectId conductorId = new ObjectId(SesionUsuario.obtenerConductor().getId());
+
+            // 2. Consulta en la BD para obtener la lista de viajes guardados
+            return conductorDAO.obtenerViajes(conductorId.toHexString()).stream()
+                    .map(adaptadorViaje::toDTO)
+                    .collect(Collectors.toList());
+        } catch (DatabaseException e) {
+            throw new IllegalStateException("Error al obtener viajes de la base de datos: " + e.getMessage());
+        }
+    }
+
+    //metodos que utiliza el caso de uso registrar vehiculo
+    @Override
+    public boolean eliminarVehiculoDeConductor(String numeroSerieVehiculo) {
+        ObjectId conductorId = new ObjectId(SesionUsuario.obtenerConductor().getId());
+
+        return conductorDAO.eliminarVehiculoDeConductor(conductorId.toHexString(), numeroSerieVehiculo);
+    }
+
+    @Override
     public void agregarVehiculo(VehiculoDTO vehiculo) {
         conductorDAO.agregarVehiculoAConductor(SesionUsuario.obtenerConductor().getId(), adaptadorVehiculo.toEntity(vehiculo));
     }
@@ -52,43 +79,4 @@ public class ConductorNegocio implements IConductorNegocio {
         }
     }
 
-    @Override
-    public void agregarViaje(ViajeDTO viaje) {
-        SesionUsuario.obtenerConductor().getViajes().add(viaje);
-    }
-
-    @Override
-    public List<ViajeDTO> obtenerViajes() {
-        try {
-            ObjectId conductorId = new ObjectId(SesionUsuario.obtenerConductor().getId());
-
-            // 2. Consulta en la BD para obtener la lista de viajes guardados
-            return conductorDAO.obtenerViajes(conductorId.toHexString()).stream()
-                    .map(adaptadorViaje::toDTO)
-                    .collect(Collectors.toList());
-        } catch (DatabaseException e) {
-            throw new IllegalStateException("Error al obtener viajes de la base de datos: " + e.getMessage());
-        }
-    }
-
-    @Override
-    public List<RutaFrecuenteDTO> obtenerRutas() {
-        try {
-            ObjectId conductorId = new ObjectId(SesionUsuario.obtenerConductor().getId());
-
-            return conductorDAO.obtenerRutasFrecuentes(conductorId.toHexString()).stream()
-                    .map(adaptadorRutaFrecuente::toDTO)
-                    .collect(Collectors.toList());
-        } catch (DatabaseException e) {
-            throw new IllegalStateException("Error al obtener las rutas frecuentes de la base de datos: " + e.getMessage());
-        }
-
-    }
-    
-    @Override
-    public boolean eliminarVehiculoDeConductor( String numeroSerieVehiculo){
-        ObjectId conductorId = new ObjectId(SesionUsuario.obtenerConductor().getId());
-        
-        return conductorDAO.eliminarVehiculoDeConductor(conductorId.toHexString(), numeroSerieVehiculo);
-    }
 }

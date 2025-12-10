@@ -210,7 +210,7 @@ public class ControlPantallas implements IControlPantallas {
         mostrarInicioSesion();
     }
 
-    //Estos son los metodos del subsitema "Solicitar Reservacion"
+    //------------------------------Estos son los metodos del subsitema "Solicitar Reservacion"------------------------------
     @Override
     public void mostrarMenuPasajero() {
         perfil = false;
@@ -294,7 +294,7 @@ public class ControlPantallas implements IControlPantallas {
         }
     }
 
-    //metodos subsistema "CancelarReservacion"
+    //------------------------------metodos subsistema "CancelarReservacion"//------------------------------
     @Override
     public void mostrarReservaciones() {
         List reservaciones = interfazCancelarReservacion.obtenerReservacionesDisponibles();
@@ -329,7 +329,7 @@ public class ControlPantallas implements IControlPantallas {
         return interfazCancelarReservacion.obtenerReservacion();
     }
 
-    //metodos subsistema crear ruta frecuente
+    //------------------------------metodos subsistema crear ruta frecuente------------------------------
     @Override
     public void mostrarDatosRutasFrecuente() {
 
@@ -346,8 +346,7 @@ public class ControlPantallas implements IControlPantallas {
 
     @Override
     public void mostrarMenuRutasFrecuentes() {
-        UsuarioDTO usuario = sesion.obtenerUsuario();
-        List RutasFrecuentes = interfazCrearRutaFrecuente.obtenerRutaPorConductor();
+        List RutasFrecuentes = interfazCrearRutaFrecuente.obtenerRutas();
         MenuRutasFrecuentes menuRutas = new MenuRutasFrecuentes(this, RutasFrecuentes);
         configurarPanel(menuRutas);
     }
@@ -363,12 +362,6 @@ public class ControlPantallas implements IControlPantallas {
     @Override
     public boolean eliminarRuta(RutaFrecuenteDTO ruta) {
         return interfazCrearRutaFrecuente.eliminarRuta(ruta);
-    }
-
-    @Override
-    public ViajeDTO getViajeTemporal() {
-
-        return interfazRegistrarViaje.getViajeTemporal();
     }
 
     @Override
@@ -398,7 +391,21 @@ public class ControlPantallas implements IControlPantallas {
         return interfazCrearRutaFrecuente.confirmaRuta();
     }
 
-    // Métodos para cancelar viaje
+    @Override
+    public List<RutaFrecuenteDTO> obtenerListaRutas() {
+
+        return interfazCrearRutaFrecuente.obtenerRutas();
+    }
+    
+    
+    
+    // ----------------------------Métodos para cancelar viaje//------------------------------
+    @Override
+    public ViajeDTO getViajeTemporal() {
+
+        return interfazRegistrarViaje.getViajeTemporal();
+    }
+
     @Override
     public void mostrarDetallesViaje() {
         ViajeDTO viaje = obtenerViajeTemporal();
@@ -440,7 +447,7 @@ public class ControlPantallas implements IControlPantallas {
         return interfazCancelarViaje.obtenerAdeudoPendiente(idViaje);
     }
 
-    //metodos del subsitema editarViaje
+    ////------------------------------metodos del subsitema editarViaje//------------------------------
     @Override
     public void seleccionarViaje(ViajeDTO viaje) {
         //metodo de editarViaje para inicializar el DTO para su edicion
@@ -505,8 +512,7 @@ public class ControlPantallas implements IControlPantallas {
         return interfazEditarViaje.validarEdicionSegura();
     }
 
-    // metodos para registra vehiculo
-    //@Override
+    //------------------------------metodos para registra vehiculo//------------------------------
     @Override
     public void mostrarMenuVehiculosConductor() {
         UsuarioDTO usuario = sesion.obtenerUsuario();
@@ -633,7 +639,7 @@ public class ControlPantallas implements IControlPantallas {
         return interfazPagarAdeudo.obtenerDetallesViaje(idViaje);
     }
 
-    // Métodos para pagar adeudos
+    // //------------------------------Métodos para pagar adeudos//------------------------------
     @Override
     public void mostrarMenuAdeudos() {
         List<AdeudoDTO> adeudos = obtenerAdeudosPendientes();
@@ -660,9 +666,5 @@ public class ControlPantallas implements IControlPantallas {
     public List<VehiculoDTO> obtenerListaVehiculos() {
         return interfazRegistrarVehiculo.obtenerListaVehiculos();
     }
-    
-    public List<RutaFrecuenteDTO> obtenerListaRutas(){
-    
-        return interfazCrearRutaFrecuente.obtenerRutaPorConductor();
-    }
+
 }

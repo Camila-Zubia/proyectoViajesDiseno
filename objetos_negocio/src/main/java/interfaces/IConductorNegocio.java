@@ -4,7 +4,6 @@
  */
 package interfaces;
 
-import dto.RutaFrecuenteDTO;
 import dto.VehiculoDTO;
 import dto.ViajeDTO;
 import java.util.List;
@@ -23,7 +22,7 @@ public interface IConductorNegocio {
 
     public List<ViajeDTO> obtenerViajes();
 
-    public List<RutaFrecuenteDTO> obtenerRutas();
+   
 
     public boolean eliminarVehiculoDeConductor(String numeroSerieVehiculo);
 }

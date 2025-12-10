@@ -32,7 +32,6 @@ import objetosNegocio_editarViaje.EditarViajeNegocio;
 import objetosNegocio_gestionarSolicitudes.GestionarSolicitudesNegocio;
 import objetosNegocio_solicitarReservacion.ReservacionNegocio;
 import org.base_datos_viajes.dao.impl.PasajeroDAO;
-import daoImplementacion.PropietarioHaciendaDAO;
 import org.base_datos_viajes.dao.impl.ReservacionDAO;
 import org.base_datos_viajes.dao.impl.RutasFrecuentesDAO;
 import org.base_datos_viajes.dao.impl.VehiculoDAO;
@@ -52,7 +51,6 @@ public class FabricaBOs implements IFabricaBOs {
     private final RutasFrecuentesDAO rutaDAO = new RutasFrecuentesDAO();
     private final VehiculoDAO vehiculoDAO = new VehiculoDAO();
     private final PropietarioDAO propietarioDAO = new PropietarioDAO();
-    private final PropietarioHaciendaDAO propietarioHaciendaDAO = new PropietarioHaciendaDAO();
 
     public FabricaBOs() {
     }
@@ -82,7 +80,8 @@ public class FabricaBOs implements IFabricaBOs {
     public IReservacionNegocio crearReservacionNegocio() {
         return new ReservacionNegocio(reservacionDAO);
     }
-
+    
+    //metodo del caso de uso crear ruta frecuente
     /**
      * Crea una nueva instancia del objeto de la capa de Negocio (Servicio) para
      * el caso de uso 'Registrar Ruta Frecuente'. * Este método se encarga de
@@ -131,6 +130,7 @@ public class FabricaBOs implements IFabricaBOs {
      * contiene los métodos para interactuar con la simulación de la API de
      * validación externa.
      */
+
     @Override
     public IValidacionPropietarioVehiculoServicio crearValidacionHaciendaServicio() {
 
