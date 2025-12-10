@@ -228,7 +228,28 @@ public class detallesViaje extends javax.swing.JPanel {
 
             int montoAdeudo = controlPantallas.obtenerAdeudoPendiente(viaje.getId());
 
-            String mensaje = null;
+            String mensajeAdvertencia;
+            if (montoAdeudo > 0) {
+                mensajeAdvertencia = String.format(
+                    "ATENCIÓN: Se le cobrará un adeudo de $%d pesos por cancelar este viaje.\n\n" +
+                    "¿Está seguro que desea cancelar el viaje?",
+                    montoAdeudo);
+            } else {
+                mensajeAdvertencia = "¿Está seguro que desea cancelar el viaje?";
+            }
+
+            int confirmacion = JOptionPane.showConfirmDialog(this,
+                mensajeAdvertencia,
+                "Confirmar Cancelación",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.WARNING_MESSAGE);
+
+            if (confirmacion != JOptionPane.YES_OPTION) {
+                return;
+            }
+
+            controlPantallas.confirmarCancelacionViaje();
+
             if (montoAdeudo > 0) {
                 JOptionPane.showMessageDialog(this,
                     String.format("Viaje cancelado exitosamente.\n\nSe ha registrado un adeudo de $%d pesos.", montoAdeudo),
@@ -241,30 +262,7 @@ public class detallesViaje extends javax.swing.JPanel {
                     "Viaje cancelado exitosamente.",
                     "Éxito",
                     JOptionPane.INFORMATION_MESSAGE);
-                controlPantallas.mostrarMenuConductor();
-            }
-
-            int confirmacion = JOptionPane.showConfirmDialog(this,
-                mensaje,
-                "Confirmar Cancelación",
-                JOptionPane.YES_NO_OPTION,
-                JOptionPane.WARNING_MESSAGE);
-
-            if (confirmacion == JOptionPane.YES_OPTION) {
-                controlPantallas.confirmarCancelacionViaje();
-
-                if (montoAdeudo > 0) {
-                    JOptionPane.showMessageDialog(this,
-                        String.format("Viaje cancelado exitosamente.\n\nSe ha registrado un adeudo de $%d pesos.", montoAdeudo),
-                        "Viaje Cancelado",
-                        JOptionPane.INFORMATION_MESSAGE);
-                } else {
-                    JOptionPane.showMessageDialog(this,
-                        "Viaje cancelado exitosamente.",
-                        "Éxito",
-                        JOptionPane.INFORMATION_MESSAGE);
-                }
-
+                
                 controlPantallas.mostrarMenuConductor();
             }
         } catch (HeadlessException e) {
