@@ -1,10 +1,7 @@
 presentacion\iniciarSesion$1.class
-<<<<<<< HEAD
-presentacion_gestionarSolicitudes\GestionSolicitudes.class
-=======
 presentacion_registrarVehiculo\datosVehiculo$7.class
 presentacion\menuAdeudos.class
->>>>>>> main
+presentacion_gestionarSolicitudes\GestionSolicitudes.class
 presentacion_SolicitarReservacion\seleccionarParada.class
 presentacion_cancelarReservacion\seleccionarReservacion.class
 presentacion_cancelarReservacion\cancelarReservacion$1.class

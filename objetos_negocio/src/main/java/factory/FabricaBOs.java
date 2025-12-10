@@ -123,6 +123,7 @@ public class FabricaBOs implements IFabricaBOs {
     @Override
     public IGestionarSolicitudesNegocio crearGestionarSolicitudesNegocio() {
         return new GestionarSolicitudesNegocio(viajeDAO, reservacionDAO, conductorDAO);
+        }
     /**
      * Implementa el patrón Factory Method para crear una instancia del servicio
      * de validación de Hacienda. * 
