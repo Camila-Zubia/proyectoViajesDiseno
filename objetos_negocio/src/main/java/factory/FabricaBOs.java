@@ -25,7 +25,7 @@ import interface_registrarVehiculo.IVehiculoNegocio;
 import interfaces_editarViaje.IEditarViajeNegocio;
 import interfaces_gestionarSolicitudes.IGestionarSolicitudesNegocio;
 import interfaces_solicitarReservacion.IReservacionNegocio;
-import objetoNegocio.ValidacionPropietarioVehiculoServicio;
+import objetoNegocio.ControlValidacionPropietarioVehiculoServicio;
 import objetoNegocio_registrarVehiculo.propietarioNegocio;
 import objetoNegocio_registrarVehiculo.vehiculoNegocio;
 import objetosNegocio_editarViaje.EditarViajeNegocio;
@@ -135,7 +135,7 @@ public class FabricaBOs implements IFabricaBOs {
     @Override
     public IValidacionPropietarioVehiculoServicio crearValidacionHaciendaServicio() {
 
-        return new ValidacionPropietarioVehiculoServicio();
+        return new ControlValidacionPropietarioVehiculoServicio();
 
     }
 }

@@ -17,22 +17,22 @@ import model.PropietarioHacienda;
 import model.VehiculoHacienda;
 import daoInterfaces.IPropietarioHaciendaDAO;
 import daoInterfaces.IVehiculoHaciendaDAO;
+import exceptiones.DatabaseException;
 
 /**
  *
  * @author adell
  */
-public class ValidacionPropietarioVehiculoServicio implements IValidacionPropietarioVehiculoServicio {
+public class ControlValidacionPropietarioVehiculoServicio  {
 
     private final IPropietarioHaciendaDAO propietarioDAO;
     private final IVehiculoHaciendaDAO vehiculoDAO;
 
-    public ValidacionPropietarioVehiculoServicio() {
+    public ControlValidacionPropietarioVehiculoServicio() {
         this.propietarioDAO = new PropietarioHaciendaDAO();
         this.vehiculoDAO = new VehiculoHaciendaDAO();
     }
 
-    @Override
     public boolean verificarCoincidencia(PropietarioHaciendaDTO propietarioDTO, VehiculoHaciendaDTO vehiculoDTO) {
         System.err.println("=== INICIO DIAGNOSTICO HACIENDA ===");
 
@@ -73,7 +73,7 @@ public class ValidacionPropietarioVehiculoServicio implements IValidacionPropiet
                 System.out.println(" Datos insertados. Re-intentando búsqueda...");
                 // Volvemos a buscar
                 optionalProp = propietarioDAO.findByCurp(propietarioDTO.getCurp());
-            } catch (Exception e) {
+            } catch (DatabaseException e) {
                 System.out.println(" Error al intentar auto-insertar: " + e.getMessage());
             }
         }
@@ -144,7 +144,6 @@ public class ValidacionPropietarioVehiculoServicio implements IValidacionPropiet
         return s1.equalsIgnoreCase(s2);
     }
 
-    @Override
     public boolean existeVehiculoEnBD(VehiculoHaciendaDTO dto) {
 
         String dtoSerie = dto.getNumeroSerie() != null ? dto.getNumeroSerie().trim() : "";

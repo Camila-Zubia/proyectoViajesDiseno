@@ -3,10 +3,11 @@ dto\ReservacionDTO.class
 dto\PropietarioDTO.class
 dto\UsuarioDTO.class
 dto\ParadaDTO.class
-dto\CalificacionDTO.class
-dto\ViajeDTO.class
+dto\ReporteDTO.class
 dto\RutaFrecuenteDTO.class
 dto\AdeudoDTO.class
 dto\PasajeroDTO.class
 dto\VehiculoDTO.class
 dto\ConductorDTO.class
+dto\CalificacionDTO.class
+dto\ViajeDTO.class
