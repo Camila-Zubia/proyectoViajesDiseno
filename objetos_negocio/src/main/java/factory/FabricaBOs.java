@@ -26,6 +26,7 @@ import interfaces_editarViaje.IEditarViajeNegocio;
 import interfaces_gestionarSolicitudes.IGestionarSolicitudesNegocio;
 import interfaces_solicitarReservacion.IReservacionNegocio;
 import objetoNegocio.ControlValidacionPropietarioVehiculoServicio;
+import objetoNegocio.FValidacionPropietarioVehiculoServicio;
 import objetoNegocio_registrarVehiculo.propietarioNegocio;
 import objetoNegocio_registrarVehiculo.vehiculoNegocio;
 import objetosNegocio_editarViaje.EditarViajeNegocio;
@@ -59,7 +60,7 @@ public class FabricaBOs implements IFabricaBOs {
     public IUsuarioNegocio crearUsuarioNegocio() {
         return new UsuarioNegocio(usuarioDAO, conductorDAO, pasajeroDAO);
     }
-    
+
     //tambien lo utiliza registrar vehiculo
     @Override
     public IConductorNegocio crearConductorNegocio() {
@@ -81,7 +82,7 @@ public class FabricaBOs implements IFabricaBOs {
     public IReservacionNegocio crearReservacionNegocio() {
         return new ReservacionNegocio(reservacionDAO);
     }
-    
+
     //metodo del caso de uso crear ruta frecuente
     /**
      * Crea una nueva instancia del objeto de la capa de Negocio (Servicio) para
@@ -123,10 +124,13 @@ public class FabricaBOs implements IFabricaBOs {
     @Override
     public IGestionarSolicitudesNegocio crearGestionarSolicitudesNegocio() {
         return new GestionarSolicitudesNegocio(viajeDAO, reservacionDAO, conductorDAO);
-        }
+    }
+
     /**
      * Implementa el patrón Factory Method para crear una instancia del servicio
-     * de validación de Hacienda. * 
+     * de validación de Hacienda.
+     *
+     *
      * * @return Una interfaz (IValidacionPropietarioVehiculoServicio) que
      * contiene los métodos para interactuar con la simulación de la API de
      * validación externa.
@@ -135,7 +139,7 @@ public class FabricaBOs implements IFabricaBOs {
     @Override
     public IValidacionPropietarioVehiculoServicio crearValidacionHaciendaServicio() {
 
-        return new ControlValidacionPropietarioVehiculoServicio();
+        return new FValidacionPropietarioVehiculoServicio();
 
     }
 }

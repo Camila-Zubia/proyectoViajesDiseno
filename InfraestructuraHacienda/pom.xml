@@ -24,7 +24,7 @@
     </build>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.release>25</maven.compiler.release>
+        <maven.compiler.release>24</maven.compiler.release>
         <mongodb.version>5.2.1</mongodb.version>
         <junit.version>5.10.2</junit.version>
         <exec.mainClass>com.mycompany.infraestructurahacienda.InfraestructuraHacienda</exec.mainClass>
