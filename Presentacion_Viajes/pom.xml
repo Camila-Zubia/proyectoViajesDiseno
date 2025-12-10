@@ -20,6 +20,12 @@
             <groupId>itson</groupId>
             <artifactId>negocios_registrarViaje</artifactId>
             <version>1.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.mycompany</groupId>
+                    <artifactId>InfraestructuraHacienda</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.netbeans.external</groupId>
@@ -47,6 +53,11 @@
             <version>${project.version}</version>
         </dependency>
         <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>negocios_pagarAdeudo</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
             <groupId>org</groupId>
             <artifactId>base_datos_viajes</artifactId>
             <version>1.0-SNAPSHOT</version>
@@ -71,6 +82,17 @@
             <artifactId>negocios_gestionarSolicitudes</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>InfraestructuraHacienda</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>negocio_hacienda</artifactId>
+            
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -78,3 +100,4 @@
         <exec.mainClass>com.mycompany.presentacion_viajes.Presentacion_Viajes</exec.mainClass>
     </properties>
 </project>
+

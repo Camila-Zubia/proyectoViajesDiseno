@@ -91,8 +91,8 @@ public class ConductorDTO {
 
     @Override
     public String toString() {
-        return String.format("Nombre = " + nombre +
-                "\nCalificaci\u00f3n = " + calificación);
+        return String.format("Nombre : " + nombre +
+                "\nCalificaci\u00f3n : " + calificación);
     }
     
 }

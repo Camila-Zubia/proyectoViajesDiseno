@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 import org.base_datos_viajes.dao.impl.UsuarioDAO;
 import org.base_datos_viajes.dao.impl.ViajeDAO;
 import org.base_datos_viajes.dao.interfaces.IConductorDAO;
-import org.base_datos_viajes.exception.DatabaseException;
+import exceptiones.DatabaseException;
 import org.bson.types.ObjectId;
 import utilidades.SesionUsuario;
 
@@ -83,5 +83,12 @@ public class ConductorNegocio implements IConductorNegocio {
             throw new IllegalStateException("Error al obtener las rutas frecuentes de la base de datos: " + e.getMessage());
         }
 
+    }
+    
+    @Override
+    public boolean eliminarVehiculoDeConductor( String numeroSerieVehiculo){
+        ObjectId conductorId = new ObjectId(SesionUsuario.obtenerConductor().getId());
+        
+        return conductorDAO.eliminarVehiculoDeConductor(conductorId.toHexString(), numeroSerieVehiculo);
     }
 }

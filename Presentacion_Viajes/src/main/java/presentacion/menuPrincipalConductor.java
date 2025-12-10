@@ -108,7 +108,6 @@ public class menuPrincipalConductor extends javax.swing.JPanel {
         datosConductor.setBackground(new java.awt.Color(255, 255, 255));
         datosConductor.setColumns(20);
         datosConductor.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        datosConductor.setForeground(new java.awt.Color(0, 0, 0));
         datosConductor.setRows(5);
         datosConductor.setBorder(null);
         datosConductor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -136,27 +135,25 @@ public class menuPrincipalConductor extends javax.swing.JPanel {
                 .addContainerGap(35, Short.MAX_VALUE))
         );
 
-        registrarViajeBtn.setBackground(new java.awt.Color(255, 255, 255));
-        registrarViajeBtn.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        registrarViajeBtn.setForeground(new java.awt.Color(0, 0, 0));
         registrarViajeBtn.setText("Registrar Viaje");
         registrarViajeBtn.setBorder(null);
+        registrarViajeBtn.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         registrarViajeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 registrarViajeBtnActionPerformed(evt);
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("ITSON");
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
 
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("TUS VIAJES:");
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("TUS VIAJES:");
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -215,10 +212,13 @@ public class menuPrincipalConductor extends javax.swing.JPanel {
 
     private void registrarViajeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarViajeBtnActionPerformed
         // TODO add your handling code here:
-        
+
         controlPantallas.mostrarMenuVehiculos();
 
     }//GEN-LAST:event_registrarViajeBtnActionPerformed
+    private void adeudosBtnActionPerformed(java.awt.event.ActionEvent evt) {
+        controlPantallas.mostrarMenuAdeudos();
+    }
     
     
     private void ponerImg() {

@@ -25,4 +25,5 @@ public interface IConductorNegocio {
 
     public List<RutaFrecuenteDTO> obtenerRutas();
 
+    public boolean eliminarVehiculoDeConductor(String numeroSerieVehiculo);
 }

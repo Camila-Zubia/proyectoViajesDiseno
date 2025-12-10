@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import org.base_datos_viajes.dao.interfaces.IPasajeroDAO;
 import org.base_datos_viajes.dao.interfaces.IReservacionDAO;
-import org.base_datos_viajes.exception.DatabaseException;
+import exceptiones.DatabaseException;
 import org.base_datos_viajes.model.Pasajero;
 import org.base_datos_viajes.model.Reservacion;
 import org.base_datos_viajes.model.Reservacion.Estatus;

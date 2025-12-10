@@ -47,23 +47,23 @@ public class GestorSolicitud {
         return viajeSeleccionado.getParadas();
     }
     
-    public void seleccionarViaje(ViajeDTO viaje){
+    public ViajeDTO seleccionarViaje(ViajeDTO viaje){
         if (viaje == null) {
             throw new IllegalArgumentException("Debe seleccionar un viaje válido.");
         }
-        this.viajeSeleccionado = viaje;
+        return this.viajeSeleccionado = viaje;
     }
     
-    public void seleccionarParada(ParadaDTO parada){
+    public ParadaDTO seleccionarParada(ParadaDTO parada){
         if (parada == null) {
             throw new IllegalArgumentException("Debe seleccionar una parada válida.");
         }
-        this.paradaSeleccionada = parada;
+        return this.paradaSeleccionada = parada;
     }
     
-    public void solicitarParada(String direccion) {
+    public ParadaDTO solicitarParada(String direccion) {
         ParadaDTO paradaSolicitada = new ParadaDTO(direccion, 0.0);
-        this.paradaSeleccionada = paradaSolicitada;
+        return this.paradaSeleccionada = paradaSolicitada;
     }
     
     public ReservacionDTO obtenerReservacionTemporal(){

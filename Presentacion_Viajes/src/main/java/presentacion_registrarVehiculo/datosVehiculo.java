@@ -5,6 +5,7 @@
 package presentacion_registrarVehiculo;
 
 import Controles.IControlPantallas;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -41,11 +42,13 @@ public class datosVehiculo extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        colorTextField = new javax.swing.JTextField();
+        nSerieTextField = new javax.swing.JTextField();
         modeloTextField1 = new javax.swing.JTextField();
         capacidadTextField2 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        colorTextField1 = new javax.swing.JTextField();
         confirmarViajeBtn = new javax.swing.JButton();
         regresarMenuRutasBtn = new javax.swing.JButton();
 
@@ -81,9 +84,9 @@ public class datosVehiculo extends javax.swing.JPanel {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel5.setText("CAPACIDAD:");
 
-        colorTextField.addActionListener(new java.awt.event.ActionListener() {
+        nSerieTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                colorTextFieldActionPerformed(evt);
+                nSerieTextFieldActionPerformed(evt);
             }
         });
 
@@ -107,28 +110,44 @@ public class datosVehiculo extends javax.swing.JPanel {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel6.setText("MARCA:");
+        jLabel6.setText("NUMERO SERIE:");
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel8.setText("MARCA:");
+
+        colorTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                colorTextField1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(239, 239, 239)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6))
-                .addGap(33, 33, 33)
+                .addGap(165, 165, 165)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(88, 88, 88)
+                        .addComponent(jLabel7)))
+                .addGap(105, 105, 105)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(marcaTField, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(colorTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nSerieTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(modeloTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(capacidadTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(placasTField, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(102, Short.MAX_VALUE))
+                    .addComponent(placasTField, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(colorTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(67, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
@@ -139,36 +158,34 @@ public class datosVehiculo extends javax.swing.JPanel {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(jLabel7))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(placasTField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(jLabel6))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(marcaTField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(26, 26, 26)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(modeloTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(placasTField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(marcaTField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(modeloTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
                 .addGap(17, 17, 17)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(capacidadTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(capacidadTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
                 .addGap(17, 17, 17)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(colorTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(94, 94, 94))
+                    .addComponent(colorTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nSerieTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addGap(34, 34, 34))
         );
 
-        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, 800, 450));
+        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 50, 800, 450));
 
         confirmarViajeBtn.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         confirmarViajeBtn.setText("Siguiente");
@@ -236,27 +253,105 @@ public class datosVehiculo extends javax.swing.JPanel {
     private void marcaTFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_marcaTFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_marcaTFieldActionPerformed
-
+    /**
+     *  boton que recolecta los datos del vehiculo y te mueve a la siguiente pantalla de datos propietario
+     * @param evt 
+     */
     private void confirmarViajeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarViajeBtnActionPerformed
-        String placas = placasTField.getText().trim();
-        String color = colorTextField.getText().trim();
-        String marca = marcaTField.getText().trim();
-        String modelo = modeloTextField1.getText().trim();
-        int capacidad = Integer.parseInt(capacidadTextField2.getText().trim());
-        controlPantallas.guardarDatosVehiculo(modelo, placas, marca, color, capacidad);
-       
-        controlPantallas.mostrarDatosPropietario();
+        // 1. Validar la calidad y existencia de los datos
+        if (!validarCamposVehiculo()) {
+            // Si la validación falla, la función ya mostró un mensaje de error.
+            return; // Salimos del método sin guardar.
+        }
 
+        try {
+            // 2. Extracción y conversión de datos (ahora que sabemos que son válidos)
+            String numeroSerie = nSerieTextField.getText().trim();
+            String placas = placasTField.getText().trim();
+            String color = colorTextField1.getText().trim();
+            String marca = marcaTField.getText().trim();
+            String modelo = modeloTextField1.getText().trim();
+
+            // La conversión a int es segura porque ya la validamos en validarCamposVehiculo()
+            int capacidad = Integer.parseInt(capacidadTextField2.getText().trim());
+
+            // 3. Llamada al controlador solo si todo fue exitoso
+            controlPantallas.guardarDatosVehiculo(numeroSerie, modelo, placas, marca, color, capacidad);
+            if (controlPantallas.guardarDatosVehiculo(numeroSerie, modelo, placas, marca, color, capacidad)!=true) {
+                 JOptionPane.showMessageDialog(this, "El vehiculo no esta registrado en hacienda", "Error de Validación", JOptionPane.WARNING_MESSAGE);
+                 return;
+            }
+            controlPantallas.mostrarDatosPropietario();
+
+        } catch (NumberFormatException e) {
+            // Esto solo atraparía un error si la validación falló de forma inesperada.
+            JOptionPane.showMessageDialog(this, "Error de formato numérico: revise la capacidad.", "Error de Entrada", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_confirmarViajeBtnActionPerformed
+    /**
+     * validaciones para el llenado de datos
+     * @return true or false dependiendo de los datos recibidos
+     */
+    private boolean validarCamposVehiculo() {
 
+        // --- 1. VALIDACIÓN DE CAMPOS REQUERIDOS (NO VACÍOS) ---
+        if (nSerieTextField.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "El Número de Serie es obligatorio.", "Error de Validación", JOptionPane.WARNING_MESSAGE);
+            nSerieTextField.requestFocus(); // Enfocar el campo para corrección
+            return false;
+        }
+
+        if (placasTField.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Las Placas son obligatorias.", "Error de Validación", JOptionPane.WARNING_MESSAGE);
+            placasTField.requestFocus();
+            return false;
+        }
+
+        if (marcaTField.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "La Marca del vehículo es obligatoria.", "Error de Validación", JOptionPane.WARNING_MESSAGE);
+            marcaTField.requestFocus();
+            return false;
+        }
+
+        // --- 2. VALIDACIÓN DE FORMATO NUMÉRICO (CAPACIDAD) ---
+        String capacidadTexto = capacidadTextField2.getText().trim();
+        if (capacidadTexto.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "La Capacidad (número de pasajeros) es obligatoria.", "Error de Validación", JOptionPane.WARNING_MESSAGE);
+            capacidadTextField2.requestFocus();
+            return false;
+        }
+
+        try {
+            int capacidad = Integer.parseInt(capacidadTexto);
+            if (capacidad <= 0) {
+                JOptionPane.showMessageDialog(this, "La Capacidad debe ser un número entero positivo.", "Error de Validación", JOptionPane.WARNING_MESSAGE);
+                capacidadTextField2.requestFocus();
+                return false;
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "El campo Capacidad debe ser un número entero válido.", "Error de Formato", JOptionPane.WARNING_MESSAGE);
+            capacidadTextField2.requestFocus();
+            return false;
+        }
+
+       
+        if (nSerieTextField.getText().trim().length() < 7) {
+             JOptionPane.showMessageDialog(this, "El Número de Serie debe tener al menos 6 caracteres.", "Error de Formato", JOptionPane.WARNING_MESSAGE);
+             nSerieTextField.requestFocus();
+             return false;
+         }
+        
+        return true;
+    }
+    
     private void regresarMenuRutasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarMenuRutasBtnActionPerformed
         // TODO add your handling code here:
-        //controlPantallas.mostrarMenuRutasFrecuentes();
+        controlPantallas.mostrarMenuVehiculosConductor();
     }//GEN-LAST:event_regresarMenuRutasBtnActionPerformed
 
-    private void colorTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_colorTextFieldActionPerformed
+    private void nSerieTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nSerieTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_colorTextFieldActionPerformed
+    }//GEN-LAST:event_nSerieTextFieldActionPerformed
 
     private void modeloTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modeloTextField1ActionPerformed
         // TODO add your handling code here:
@@ -266,10 +361,14 @@ public class datosVehiculo extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_capacidadTextField2ActionPerformed
 
+    private void colorTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_colorTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_colorTextField1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField capacidadTextField2;
-    private javax.swing.JTextField colorTextField;
+    private javax.swing.JTextField colorTextField1;
     private javax.swing.JButton confirmarViajeBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -277,11 +376,13 @@ public class datosVehiculo extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField marcaTField;
     private javax.swing.JTextField modeloTextField1;
+    private javax.swing.JTextField nSerieTextField;
     private javax.swing.JTextField placasTField;
     private javax.swing.JButton regresarMenuRutasBtn;
     // End of variables declaration//GEN-END:variables

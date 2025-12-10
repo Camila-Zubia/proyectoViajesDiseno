@@ -221,7 +221,7 @@ public class DatosParadasRuta extends javax.swing.JPanel {
             // Registrar el viaje con todos los datos guardados
             if (!paradas.isEmpty()) {
                 controlPantallas.ConfirmarRuta();
-
+                
                 JOptionPane.showMessageDialog(this,
                         "Ruta registrada exitosamente",
                         "Éxito",

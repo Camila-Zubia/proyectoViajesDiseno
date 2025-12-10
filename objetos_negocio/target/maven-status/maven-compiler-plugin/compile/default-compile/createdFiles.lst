@@ -1,5 +1,6 @@
 objetoNegocio_registrarVehiculo\propietarioNegocio.class
 objetoNegocio_crearRutaFrecuente\RutaFrecuenteNegocio.class
+interfaces_pagarAdeudo\IPagarAdeudoNegocio.class
 adaptadores\adaptadorUsuario.class
 interfaces_solicitarReservacion\IPasajeroNegocio.class
 interfaces_solicitarReservacion\IReservacionNegocio.class
@@ -17,6 +18,7 @@ objetosNegocio\ViajeNegocio.class
 utilidades\SesionUsuario.class
 adaptadores\adaptadorPropietario.class
 interfaces\IConductorNegocio.class
+adaptadores\adaptadorHacienda.class
 adaptadores\adaptadorConductor.class
 interfaces\IViajeNegocio.class
 adaptadores\adaptadorPasajero.class

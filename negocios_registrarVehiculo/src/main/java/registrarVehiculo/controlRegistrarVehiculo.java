@@ -4,6 +4,9 @@
  */
 package registrarVehiculo;
 
+import DTO.PropietarioHaciendaDTO;
+import DTO.VehiculoHaciendaDTO;
+import IObjetoNegocio.IValidacionPropietarioVehiculoServicio;
 import dto.PropietarioDTO;
 import dto.VehiculoDTO;
 import factory.FabricaBOs;
@@ -13,54 +16,103 @@ import interface_registrarVehiculo.IVehiculoNegocio;
 import interfaces.IConductorNegocio;
 import java.util.ArrayList;
 import java.util.List;
+import org.bson.types.ObjectId;
 
 /**
  *
  * @author adell
  */
 public class controlRegistrarVehiculo {
-    
+
     private final IPropietarioNegocio propietarioBO;
     private final IVehiculoNegocio vehiculoBO;
     private final IConductorNegocio conductorBO;
-    
+
     private final VehiculoDTO vehiculoTemp;
     private final PropietarioDTO propietarioTemp;
     private final List<VehiculoDTO> ListaVehiculosTemp;
-    
+    private final IValidacionPropietarioVehiculoServicio validacionHaciendaService;
+
     public controlRegistrarVehiculo() {
         IFabricaBOs fabrica = new FabricaBOs();
         this.propietarioBO = fabrica.crearPropietarioNegocio();
         this.vehiculoBO = fabrica.crearVehiculoNegocio();
         this.conductorBO = fabrica.crearConductorNegocio();
-        
+
+        this.validacionHaciendaService = fabrica.crearValidacionHaciendaServicio();
+
         this.vehiculoTemp = new VehiculoDTO();
         this.propietarioTemp = new PropietarioDTO();
         this.ListaVehiculosTemp = new ArrayList<>();
     }
-    
-    protected void guardarDatosVehiculo(String modelo, String placas, String marca, String color, int capacidad) {
-        this.vehiculoTemp.setModelo(modelo);
+
+    protected boolean guardarDatosVehiculo(String numeroSerie, String modelo, String placas, String marca, String color, int capacidad) {
+
+        this.vehiculoTemp.setNumeroSerie(numeroSerie);
         this.vehiculoTemp.setPlacas(placas);
         this.vehiculoTemp.setMarca(marca);
+        this.vehiculoTemp.setModelo(modelo);
+
         this.vehiculoTemp.setColor(color);
-        this.vehiculoTemp.setCapacidad(capacidad);        
+        this.vehiculoTemp.setCapacidad(capacidad);
+
+        VehiculoHaciendaDTO vehHaciendaDTO = adaptadores.adaptadorHacienda.toVehiculoHaciendaDTO(vehiculoTemp);
+        boolean datosValidos = validacionHaciendaService.existeVehiculoEnBD(vehHaciendaDTO);
+
+        if (datosValidos != true) {
+            System.err.println("las placas registradas no coinciden con algun vehiculo en la base de datos de hacienda");
+            return false;
+        }
+
+        return true;
     }
-    
+
     protected void guardarDatosPropietario(String nombre, String curp, String rfc, String nss) {
         this.propietarioTemp.setNombre(nombre);
         this.propietarioTemp.setCurp(curp);
         this.propietarioTemp.setRfc(rfc);
         this.propietarioTemp.setNss(nss);
     }
-    
-    protected void confirmarRegistroVehiculoPropietario() {
+
+    protected boolean confirmarRegistroVehiculoPropietario() throws Exception {
+        ObjectId vehiculoId = new ObjectId();
+        vehiculoTemp.setId(vehiculoId.toHexString());
+
         this.ListaVehiculosTemp.add(vehiculoTemp);
         this.propietarioTemp.setListaVehiculos(ListaVehiculosTemp);
-        
+
+        PropietarioHaciendaDTO propHaciendaDTO = adaptadores.adaptadorHacienda.toPropietarioHaciendaDTO(propietarioTemp);
+        VehiculoHaciendaDTO vehHaciendaDTO = adaptadores.adaptadorHacienda.toVehiculoHaciendaDTO(vehiculoTemp);
+
+        boolean datosValidos = validacionHaciendaService.verificarCoincidencia(
+                propHaciendaDTO, // DTO del Propietario
+                vehHaciendaDTO // DTO del Vehículo
+        );
+        if (!datosValidos) {
+            System.err.println("Error de validación: Datos no coinciden con Hacienda.");
+            return false;
+        }
+
         conductorBO.agregarVehiculo(vehiculoTemp);
         vehiculoBO.registrarVehiculo(vehiculoTemp);
         propietarioBO.registrarPropietario(propietarioTemp);
-        
+
+        return true;
     }
+
+    protected void eliminarVehiculo(VehiculoDTO dto) throws Exception {
+
+        vehiculoBO.eliminarVehiculo(dto);
+
+    }
+
+    protected boolean eliminarVehiculoDeConductor(String numeroSerie) {
+
+        return conductorBO.eliminarVehiculoDeConductor(numeroSerie);
+    }
+
+    protected List<VehiculoDTO> obtenerListaVehiculos() {
+        return conductorBO.obtenerVehiculos();
+    }
+
 }

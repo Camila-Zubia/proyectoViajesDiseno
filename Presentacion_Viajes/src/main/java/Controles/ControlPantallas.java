@@ -4,19 +4,20 @@
  */
 package Controles;
 
-import org.base_datos_viajes.initializer.InicializadorDatosPrueba;
 import cancelarReservacion.CancelarReservacion;
 import cancelarReservacion.ICancelarReservacion;
 import crearRutaFrecuente.FCrearRutaFrecuente;
 import crearRutaFrecuente.ICrearRutaFrecuente;
 import cancelarViaje.CancelarViaje;
 import cancelarViaje.ICancelarViaje;
+import dto.AdeudoDTO;
 import dto.ConductorDTO;
 import dto.ParadaDTO;
 import dto.PasajeroDTO;
 import dto.ReservacionDTO;
 import dto.RutaFrecuenteDTO;
 import dto.UsuarioDTO;
+import dto.VehiculoDTO;
 import dto.ViajeDTO;
 import editarViaje.EditarViaje;
 import editarViaje.IEditarViaje;
@@ -33,10 +34,12 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import org.base_datos_viajes.initializer.InicializadorDatosPrueba;
 import presentacion.datosParadas;
 import presentacion.datosViaje;
 import presentacion.detallesViaje;
 import presentacion.iniciarSesion;
+import presentacion.menuAdeudos;
 import presentacion.menuPrincipalConductor;
 import presentacion.menuVehiculos;
 import presentacion.seleccionarPerfilConductor;
@@ -82,8 +85,9 @@ public class ControlPantallas implements IControlPantallas {
     private final IEditarViaje interfazEditarViaje = new EditarViaje();
     private final IRegistrarVehiculo interfazRegistrarVehiculo = new FRegistrarVehiculo();
     private final IGestionarSolicitudes interfazGestionarSolicitudes = new GestionarSolicitudes();
-    
+
     private boolean perfil;
+    private final pagarAdeudo.IPagarAdeudo interfazPagarAdeudo = new pagarAdeudo.PagarAdeudo();
 
     private ViajeDTO viajeTemporal;
 
@@ -118,9 +122,9 @@ public class ControlPantallas implements IControlPantallas {
         frame.pack();
         frame.setLocationRelativeTo(null);
     }
-    
+
     @Override
-    public boolean obtenerPerfil(){
+    public boolean obtenerPerfil() {
         return perfil;
     }
 
@@ -240,21 +244,18 @@ public class ControlPantallas implements IControlPantallas {
     }
 
     @Override
-    public void seleccionarViaje(ViajeDTO viaje) {
-        interfazSolicitarReservacion.seleccionarViaje(viaje);
-        //metodo de editarViaje para inicializar el DTO para su edicion
-        interfazEditarViaje.setViajeTemporal(viaje);
-        this.viajeTemporal = viaje;
+    public ViajeDTO seleccionarViajeReservacion(ViajeDTO viaje) {
+        return interfazSolicitarReservacion.seleccionarViaje(viaje);
     }
 
     @Override
-    public void seleccionarParada(ParadaDTO parada) {
-        interfazSolicitarReservacion.seleccionarParada(parada);
+    public ParadaDTO seleccionarParada(ParadaDTO parada) {
+        return interfazSolicitarReservacion.seleccionarParada(parada);
     }
 
     @Override
-    public void solicitarParada(String direccion) {
-        interfazSolicitarReservacion.solicitarParada(direccion);
+    public ParadaDTO solicitarParada(String direccion) {
+        return interfazSolicitarReservacion.solicitarParada(direccion);
     }
 
     @Override
@@ -271,7 +272,7 @@ public class ControlPantallas implements IControlPantallas {
     public PasajeroDTO nombrePasajero() {
         return sesion.obtenerUsuario().getPasajero();
     }
-    
+
     @Override
     public String formatearTiempoRestante(Long tiempoSegundos) {
         if (tiempoSegundos == null) {
@@ -346,7 +347,7 @@ public class ControlPantallas implements IControlPantallas {
     @Override
     public void mostrarMenuRutasFrecuentes() {
         UsuarioDTO usuario = sesion.obtenerUsuario();
-        List RutasFrecuentes = interfazCrearRutaFrecuente.obtenerRutaPorConductor(usuario.getConductor());
+        List RutasFrecuentes = interfazCrearRutaFrecuente.obtenerRutaPorConductor();
         MenuRutasFrecuentes menuRutas = new MenuRutasFrecuentes(this, RutasFrecuentes);
         configurarPanel(menuRutas);
     }
@@ -359,6 +360,12 @@ public class ControlPantallas implements IControlPantallas {
         configurarPanel(menuVehiculos);
     }
 
+    @Override
+    public boolean eliminarRuta(RutaFrecuenteDTO ruta) {
+        return interfazCrearRutaFrecuente.eliminarRuta(ruta);
+    }
+
+    @Override
     public ViajeDTO getViajeTemporal() {
 
         return interfazRegistrarViaje.getViajeTemporal();
@@ -434,6 +441,13 @@ public class ControlPantallas implements IControlPantallas {
     }
 
     //metodos del subsitema editarViaje
+    @Override
+    public void seleccionarViaje(ViajeDTO viaje) {
+        //metodo de editarViaje para inicializar el DTO para su edicion
+        interfazEditarViaje.setViajeTemporal(viaje);
+        this.viajeTemporal = viaje;
+    }
+
     @Override
     public void mostrarEditarViaje() {
         ViajeDTO viaje = obtenerViajeParaEdicion();
@@ -515,9 +529,9 @@ public class ControlPantallas implements IControlPantallas {
     }
 
     @Override
-    public void guardarDatosVehiculo(String modelo, String placas, String marca, String color, int CantidadPasajeros) {
+    public boolean guardarDatosVehiculo(String numeroSerie, String modelo, String placas, String marca, String color, int CantidadPasajeros) {
 
-        interfazRegistrarVehiculo.guardarDatosVehiculo(modelo, placas, marca, color, CantidadPasajeros);
+        return interfazRegistrarVehiculo.guardarDatosVehiculo(numeroSerie, modelo, placas, marca, color, CantidadPasajeros);
 
     }
 
@@ -603,6 +617,52 @@ public class ControlPantallas implements IControlPantallas {
         configurarPanel(panel);
     }
 
-   
 
+    @Override
+    public void eliminarVehiculo(VehiculoDTO dto) throws Exception {
+        interfazRegistrarVehiculo.eliminarVehiculo(dto);
+    }
+
+    @Override
+    public boolean eliminarVehiculoDeConductor(String numeroSerie) {
+        return interfazRegistrarVehiculo.eliminarVehiculoDeConductor(numeroSerie);
+    }
+
+    @Override
+    public ViajeDTO obtenerDetallesViaje(String idViaje) {
+        return interfazPagarAdeudo.obtenerDetallesViaje(idViaje);
+    }
+
+    // Métodos para pagar adeudos
+    @Override
+    public void mostrarMenuAdeudos() {
+        List<AdeudoDTO> adeudos = obtenerAdeudosPendientes();
+        menuAdeudos menu = new menuAdeudos(this, adeudos);
+        configurarPanel(menu);
+    }
+
+    @Override
+    public List<AdeudoDTO> obtenerAdeudosPendientes() {
+        ConductorDTO conductor = nombreConductor();
+        if (conductor == null) {
+            throw new IllegalStateException("No hay un conductor en sesión");
+        }
+
+        return interfazPagarAdeudo.obtenerAdeudosPendientes(conductor.getId());
+    }
+
+    @Override
+    public void marcarAdeudoComoPagado(String idAdeudo) {
+        interfazPagarAdeudo.pagarAdeudo(idAdeudo);
+    }
+
+    @Override
+    public List<VehiculoDTO> obtenerListaVehiculos() {
+        return interfazRegistrarVehiculo.obtenerListaVehiculos();
+    }
+    
+    public List<RutaFrecuenteDTO> obtenerListaRutas(){
+    
+        return interfazCrearRutaFrecuente.obtenerRutaPorConductor();
+    }
 }

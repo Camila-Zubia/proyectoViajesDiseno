@@ -10,6 +10,7 @@ import dto.PasajeroDTO;
 import dto.ReservacionDTO;
 import dto.RutaFrecuenteDTO;
 import dto.UsuarioDTO;
+import dto.VehiculoDTO;
 import dto.ViajeDTO;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -23,7 +24,7 @@ import javax.swing.JPanel;
 public interface IControlPantallas {
 
     public void configurarPanel(JPanel panel);
-    
+
     public boolean obtenerPerfil();
 
     public void mostrarMenuVehiculos();
@@ -65,18 +66,18 @@ public interface IControlPantallas {
 
     public List<ParadaDTO> obtenerParadas();
 
-    public void seleccionarViaje(ViajeDTO viaje);
+    public ViajeDTO seleccionarViajeReservacion(ViajeDTO viaje);
 
-    public void seleccionarParada(ParadaDTO parada);
+    public ParadaDTO seleccionarParada(ParadaDTO parada);
 
-    public void solicitarParada(String direccion);
+    public ParadaDTO solicitarParada(String direccion);
 
     public ReservacionDTO confirmarReservacion();
 
     public ReservacionDTO obtenerReservacionTemporal();
 
     public PasajeroDTO nombrePasajero();
-    
+
     public String formatearTiempoRestante(Long tiempoSegundos);
 
     //metodos subsistema "CancelarReservacion"
@@ -110,6 +111,9 @@ public interface IControlPantallas {
     public void mostrarMenuRutasFrecuentes();
 
     public void mostrarSeleccionarVehiculoRuta();
+    
+    public boolean eliminarRuta(RutaFrecuenteDTO ruta);
+    public List<RutaFrecuenteDTO> obtenerListaRutas();
 
     // Métodos para cancelar viaje
     public void mostrarDetallesViaje();
@@ -121,6 +125,8 @@ public interface IControlPantallas {
     public int obtenerAdeudoPendiente(String idViaje);
 
     //metodos para editarViaje
+    public void seleccionarViaje(ViajeDTO viaje);
+
     public void mostrarEditarViaje();
 
     public void mostrarEditarParadas();
@@ -146,7 +152,7 @@ public interface IControlPantallas {
 
     public void mostrarDatosPropietario();
 
-    public void guardarDatosVehiculo(String modelo, String placas, String marca, String color, int CantidadPasajeros);
+    public boolean guardarDatosVehiculo(String numeroSerie, String modelo, String placas, String marca, String color, int CantidadPasajeros);
 
     public void guardarDatosPropietario(String nombre, String curp, String rfc, String nss);
 
@@ -168,5 +174,21 @@ public interface IControlPantallas {
     public void mostrarDetalleReservaRuta(ReservacionDTO reserva);
 
     public void mostrarDetalleReservaEstandar(ReservacionDTO reserva);
+    
+
+    public void eliminarVehiculo(VehiculoDTO dto) throws Exception;
+
+    public boolean eliminarVehiculoDeConductor(String numeroSerie);
+
+    public ViajeDTO obtenerDetallesViaje(String idViaje);
+
+    public List<VehiculoDTO> obtenerListaVehiculos();
+
+    // Métodos para pagar adeudos
+    public void mostrarMenuAdeudos();
+
+    public List<dto.AdeudoDTO> obtenerAdeudosPendientes();
+
+    public void marcarAdeudoComoPagado(String idAdeudo);
 
 }

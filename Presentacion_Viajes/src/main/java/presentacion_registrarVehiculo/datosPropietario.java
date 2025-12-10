@@ -5,8 +5,11 @@
 package presentacion_registrarVehiculo;
 
 import Controles.IControlPantallas;
+import javax.swing.JOptionPane;
 
 /**
+ * pantalla que se encarga de recolectar los datos del propietario y
+ * confirmarlos para despues guardarlos junto con el vehiculo
  *
  * @author adell
  */
@@ -214,27 +217,91 @@ public class datosPropietario extends javax.swing.JPanel {
 
     private void rfcTFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rfcTFieldActionPerformed
         // TODO add your handling code here:
-       
 
 
     }//GEN-LAST:event_rfcTFieldActionPerformed
 
     private void confirmarPropietarioBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarPropietarioBtnActionPerformed
 
+        // 1. Validar la calidad y existencia de los datos
+        if (!validarCamposPropietario()) {
+            // Si la validación falla, el método ya mostró un mensaje de error.
+            return; // Salimos sin guardar ni pasar a la siguiente pantalla.
+        }
+
+        // 2. Extracción de datos (ahora que sabemos que son válidos)
         String nombre = nombreTField.getText().trim();
         String curp = curpTField1.getText().trim();
         String rfc = rfcTField.getText().trim();
         String nss = nssTextField.getText().trim();
-        controlPantallas.guardarDatosPropietario(nombre, curp, rfc, nss);
-        
-        controlPantallas.ConfirmarDatosVehiculoPropietario();
-        controlPantallas.mostrarMenuVehiculosConductor();
-        
+
+        // 3. Llamada al controlador (Guardar y Validar)
+        try {
+            controlPantallas.guardarDatosPropietario(nombre, curp, rfc, nss);
+
+            // El siguiente paso llama al validador de Hacienda
+            controlPantallas.ConfirmarDatosVehiculoPropietario();
+
+            // Si la validación de Hacienda pasa, mostramos el siguiente menú
+            controlPantallas.mostrarMenuVehiculosConductor();
+
+        } catch (Exception e) {
+            // Capturar cualquier error lanzado por la validación de Hacienda 
+            // (como el "Datos no coinciden con Hacienda")
+            JOptionPane.showMessageDialog(this, "Error de sistema: " + e.getMessage(),
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
     }//GEN-LAST:event_confirmarPropietarioBtnActionPerformed
+    /**
+     * metodo que se encarga de la validacion de cada uno de los campos requeridos
+     * @return true o false estado que valida los datos recolectados
+     */
+    private boolean validarCamposPropietario() {
+
+        if (nombreTField.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "El Nombre es obligatorio.", "Error de Validación", JOptionPane.WARNING_MESSAGE);
+            nombreTField.requestFocus();
+            return false;
+        }
+
+        if (curpTField1.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "La CURP es obligatoria.", "Error de Validación", JOptionPane.WARNING_MESSAGE);
+            curpTField1.requestFocus();
+            return false;
+        }
+
+        if (rfcTField.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "El RFC es obligatorio.", "Error de Validación", JOptionPane.WARNING_MESSAGE);
+            rfcTField.requestFocus();
+            return false;
+        }
+
+        String curp = curpTField1.getText().trim();
+        String rfc = rfcTField.getText().trim();
+
+        // 18 caracteres fijos para CURP
+        if (curp.length() != 20) {
+            JOptionPane.showMessageDialog(this, "La CURP debe tener exactamente 20 caracteres.", "Error de Formato", JOptionPane.WARNING_MESSAGE);
+            curpTField1.requestFocus();
+            return false;
+        }
+
+        // 12 o 13 caracteres fijos para RFC (Físicas 13, Morales 12)
+        if (rfc.length() < 12 || rfc.length() > 13) {
+            JOptionPane.showMessageDialog(this, "El RFC debe tener 12 o 13 caracteres.", "Error de Formato", JOptionPane.WARNING_MESSAGE);
+            rfcTField.requestFocus();
+            return false;
+        }
+
+        // Si llegamos aquí, los datos son válidos
+        return true;
+    }
+
 
     private void regresarMenuRutasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarMenuRutasBtnActionPerformed
         // TODO add your handling code here:
-
+        controlPantallas.mostrarDatosVehiculo();
     }//GEN-LAST:event_regresarMenuRutasBtnActionPerformed
 
     private void nssTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nssTextFieldActionPerformed
