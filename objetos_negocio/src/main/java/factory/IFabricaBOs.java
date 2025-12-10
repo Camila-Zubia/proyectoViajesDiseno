@@ -14,6 +14,7 @@ import interface_registrarVehiculo.IPropietarioNegocio;
 import interface_registrarVehiculo.IVehiculoNegocio;
 import interfaces_cancelarViaje.IAdeudoNegocio;
 import interfaces_editarViaje.IEditarViajeNegocio;
+import interfaces_gestionarSolicitudes.IGestionarSolicitudesNegocio;
 import interfaces_solicitarReservacion.IReservacionNegocio;
 
 /**
@@ -101,6 +102,10 @@ public interface IFabricaBOs {
      */
     public IVehiculoNegocio crearVehiculoNegocio();
 
+    
+    //metodos para el caso de uso de gestionar solicitudes
+    public IGestionarSolicitudesNegocio crearGestionarSolicitudesNegocio();
+
     /**
      * Crea y retorna la implementación del Servicio que simula la validación
      * con la API externa (Hacienda). Este método es crucial para la validación
@@ -110,4 +115,5 @@ public interface IFabricaBOs {
      * IValidacionPropietarioVehiculoServicio.
      */
     public IValidacionPropietarioVehiculoServicio crearValidacionHaciendaServicio();
+
 }

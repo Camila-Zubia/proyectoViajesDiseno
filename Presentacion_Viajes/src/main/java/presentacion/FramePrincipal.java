@@ -39,6 +39,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         regVehiculoMItem = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         opcionCerrarSesión = new javax.swing.JMenuItem();
 
@@ -82,6 +83,14 @@ public class FramePrincipal extends javax.swing.JFrame {
             }
         });
         jMenu1.add(regVehiculoMItem);
+
+        jMenuItem3.setText("GestionarSolicitudes");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem3);
         jMenu1.add(jSeparator1);
 
         opcionCerrarSesión.setText("Cerrar Sesión");
@@ -122,6 +131,10 @@ public class FramePrincipal extends javax.swing.JFrame {
         controlPantallas.mostrarMenuVehiculosConductor();
     }//GEN-LAST:event_regVehiculoMItemActionPerformed
 
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        controlPantallas.mostrarSeleccionarViajeGestion();
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -161,6 +174,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JMenuItem opcionCerrarSesión;
     private javax.swing.JMenuItem opcionMenuPrincipal;

@@ -2,12 +2,16 @@ package adaptadores;
 
 import dto.EstatusReservacion;
 import dto.ParadaDTO;
+import dto.PasajeroDTO;
 import dto.ReservacionDTO;
 import dto.ViajeDTO;
 import java.util.Optional;
 import org.base_datos_viajes.dao.impl.ParadaDAO;
+import org.base_datos_viajes.dao.impl.PasajeroDAO;
 import org.base_datos_viajes.dao.impl.ViajeDAO;
+import org.base_datos_viajes.dao.interfaces.IPasajeroDAO;
 import org.base_datos_viajes.model.Parada;
+import org.base_datos_viajes.model.Pasajero;
 import org.base_datos_viajes.model.Reservacion;
 import org.base_datos_viajes.model.Viaje;
 import org.bson.types.ObjectId;
@@ -20,6 +24,7 @@ public class adaptadorReservacion {
     
     private static final ViajeDAO viajeDAO = new ViajeDAO();
     private static final ParadaDAO paradaDAO = new ParadaDAO();
+    private static final IPasajeroDAO pasajeroDAO = new PasajeroDAO();
 
     public static Reservacion toEntity(ReservacionDTO dto) {
         Reservacion.Estatus estatusEntidad = 
@@ -79,6 +84,15 @@ public class adaptadorReservacion {
                 dto.setParada(paradaDTO);
             }
         }
+        if (entidad.getPasajeroId() != null) {
+            Optional<Pasajero> optionalPasajero = pasajeroDAO.findById(entidad.getPasajeroId());
+            if (optionalPasajero.isPresent()) {
+                PasajeroDTO pasajeroDTO = adaptadorPasajero.toDTO(optionalPasajero.get());
+                dto.setPasajero(pasajeroDTO);
+            }
+        }
+        
+        
 
         return dto;
     }
