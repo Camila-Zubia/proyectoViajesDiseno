@@ -4,6 +4,7 @@
  */
 package dto;
 
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.TextStyle;
@@ -153,10 +154,11 @@ public class ViajeDTO {
 
     @Override
     public String toString() {
+        DecimalFormat df = new DecimalFormat("#,##0.00");
         return String.format(origen + " ---> " + destino
-                + "     fecha = " + fecha.getDayOfMonth() + "/" + fecha.getMonth().getDisplayName(TextStyle.SHORT, Locale.ITALY) 
+                + "     fecha = " + fecha.getDayOfMonth() + "/" + fecha.getMonth().getDisplayName(TextStyle.SHORT, Locale.ITALY)
                 + ", hora = " + hora
-                + "     $" + precioTotal);
+                + "     $" + df.format(precioTotal));
     }
 
     @Override

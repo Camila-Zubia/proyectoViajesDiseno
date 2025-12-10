@@ -8,6 +8,10 @@ import Controles.IControlPantallas;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import javax.swing.JOptionPane;
+import javax.swing.text.AbstractDocument;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.DocumentFilter;
 
 /**
  * pantalla que recolecta los datos proporcionados por el usuario para persistir una ruta frecuente
@@ -23,6 +27,69 @@ public class DatosRutaFrec extends javax.swing.JPanel {
     public DatosRutaFrec(IControlPantallas controlPantallas) {
         this.controlPantallas = controlPantallas;
         initComponents();
+        configurarFiltroPrecio();
+    }
+
+    /**
+     * Configura el filtro para el campo de precio
+     */
+    private void configurarFiltroPrecio() {
+        ((AbstractDocument) PrecioTextField.getDocument()).setDocumentFilter(new DocumentFilter() {
+            @Override
+            public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr) throws BadLocationException {
+                if (string == null) {
+                    return;
+                }
+                if (esEntradaValida(fb, offset, string, 0)) {
+                    super.insertString(fb, offset, string, attr);
+                }
+            }
+
+            @Override
+            public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
+                if (text == null) {
+                    return;
+                }
+                if (esEntradaValida(fb, offset, text, length)) {
+                    super.replace(fb, offset, length, text, attrs);
+                }
+            }
+
+            private boolean esEntradaValida(FilterBypass fb, int offset, String text, int length) throws BadLocationException {
+                String textoActual = fb.getDocument().getText(0, fb.getDocument().getLength());
+                String textoNuevo = textoActual.substring(0, offset) + text + textoActual.substring(offset + length);
+
+                // Permitir vacío o solo punto
+                if (textoNuevo.isEmpty()) {
+                    return true;
+                }
+
+                // Validar que solo contenga dígitos y un punto decimal
+                if (!textoNuevo.matches("^\\d*\\.?\\d*$")) {
+                    return false;
+                }
+
+                // No permitir más de un punto decimal
+                if (textoNuevo.indexOf('.') != textoNuevo.lastIndexOf('.')) {
+                    return false;
+                }
+
+                // Dividir en parte entera y decimal
+                String[] partes = textoNuevo.split("\\.");
+
+                // Limitar a 10 dígitos antes del punto decimal
+                if (partes[0].length() > 10) {
+                    return false;
+                }
+
+                // Limitar a 2 dígitos después del punto decimal
+                if (partes.length > 1 && partes[1].length() > 2) {
+                    return false;
+                }
+
+                return true;
+            }
+        });
     }
 
     /**

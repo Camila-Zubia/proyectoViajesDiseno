@@ -4,6 +4,7 @@
  */
 package dto;
 
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
@@ -115,7 +116,8 @@ public class RutaFrecuenteDTO {
 
     @Override
     public String toString() {
-        return "Ruta:" + nombre + "--> " + "Origen:" + origen + "  " + "Destino:" + destino + "  " + "Precio:" + precioTotal;
+        DecimalFormat df = new DecimalFormat("#,##0.00");
+        return "Ruta:" + nombre + "--> " + "Origen:" + origen + "  " + "Destino:" + destino + "  " + "Precio: $" + df.format(precioTotal);
     }
 
 }

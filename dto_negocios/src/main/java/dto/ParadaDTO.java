@@ -4,6 +4,8 @@
  */
 package dto;
 
+import java.text.DecimalFormat;
+
 /**
  *
  * @author Camila Zubia 00000244825
@@ -48,8 +50,9 @@ public class ParadaDTO {
 
     @Override
     public String toString() {
-        return "Direcci\u00f3n = " + dirección + 
-                ", $" + precio;
+        DecimalFormat df = new DecimalFormat("#,##0.00");
+        return "Direcci\u00f3n = " + dirección +
+                ", $" + df.format(precio);
     }
     
 }
