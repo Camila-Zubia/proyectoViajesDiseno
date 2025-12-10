@@ -83,7 +83,7 @@ private final IControlPantallas controlPantallas;
             JScrollPane scrollPane = new JScrollPane(panelInterno);
             scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
             scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-            scrollPane.setPreferredSize(new Dimension(750, 400));
+            scrollPane.setPreferredSize(new Dimension(750, 300));
             scrollPane.setBackground(Color.WHITE);
             
             panelContenedorViajes.removeAll();
@@ -129,7 +129,7 @@ private final IControlPantallas controlPantallas;
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Viajes con solicitudes");
+        jLabel3.setText("VIAJES CON SOLICITUDES");
 
         javax.swing.GroupLayout panelContenedorViajesLayout = new javax.swing.GroupLayout(panelContenedorViajes);
         panelContenedorViajes.setLayout(panelContenedorViajesLayout);
@@ -155,7 +155,7 @@ private final IControlPantallas controlPantallas;
                 .addComponent(panelContenedorViajes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(226, 226, 226)
+                .addGap(198, 198, 198)
                 .addComponent(jLabel3)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );

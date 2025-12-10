@@ -31,37 +31,45 @@ public class DetalleReservaEstandar extends javax.swing.JPanel {
         
         solicitudEstandarPanel.setBackground(blue);
         jLabel6.setForeground(white); // Pasajero
-        jLabel7.setForeground(white); // Origen
         jLabel8.setForeground(white); // Calificacion
         jLabel9.setForeground(white); // Precio
-        jLabel10.setForeground(white); // Destino
+        jLabel10.setForeground(white); // punto de encuentro
         
         txtPasajero.setBackground(blue);
         txtPasajero.setForeground(white);
         txtCalificacion.setBackground(blue);
         txtCalificacion.setForeground(white);
-        txtOrigen.setBackground(blue);
-        txtOrigen.setForeground(white);
         txtDestino.setBackground(blue);
         txtDestino.setForeground(white);
         txtPrecio.setBackground(blue);
         txtPrecio.setForeground(white);
         
-        String nombrePasajero = (reserva.getPasajero() != null && reserva.getPasajero().getNombre() != null) ? reserva.getPasajero().getNombre() : "ERROR: Pasajero Nulo";
+        String nombrePasajero = (reserva.getPasajero() != null && reserva.getPasajero().getNombre() != null) 
+                                ? reserva.getPasajero().getNombre() 
+                                : "Pasajero Nulo";
         String calificacionPasajero = (reserva.getPasajero() != null) ? String.valueOf(reserva.getPasajero().getCalificacion()) : "N/D";
 
-        String origen = (reserva.getViaje() != null) ? reserva.getViaje().getOrigen() : "Origen N/D";
-        String destinoParada = (reserva.getParada() != null && reserva.getParada().getDirección() != null) ? reserva.getParada().getDirección() : "Destino N/D";
+       // Lógica para el Punto de Encuentro (P. Encuentro)
+        String paradaRecogida;
+        
+        if (reserva.getParada() != null && reserva.getParada().getDirección() != null) {
+            paradaRecogida = reserva.getParada().getDirección();
+            
+        } else if (reserva.getViaje() != null && reserva.getViaje().getOrigen() != null) {
+            paradaRecogida = reserva.getViaje().getOrigen();
+            
+        } else {
+            // Caso 3: Fallback general.
+            paradaRecogida = "Parada No Definida"; 
+        }
 
         txtPasajero.setText(nombrePasajero);
         txtCalificacion.setText(calificacionPasajero);
-        txtOrigen.setText(origen);
-        txtDestino.setText(destinoParada);
+        txtDestino.setText(paradaRecogida);
         txtPrecio.setText(String.format("$%.2f", reserva.getPrecioTotal()));
         
         txtPasajero.setEditable(false);
         txtCalificacion.setEditable(false);
-        txtOrigen.setEditable(false);
         txtDestino.setEditable(false);
         txtPrecio.setEditable(false);
     }
@@ -79,13 +87,11 @@ public class DetalleReservaEstandar extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         solicitudEstandarPanel = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         txtPasajero = new javax.swing.JTextField();
         txtCalificacion = new javax.swing.JTextField();
-        txtOrigen = new javax.swing.JTextField();
         txtDestino = new javax.swing.JTextField();
         txtPrecio = new javax.swing.JTextField();
         btnRechazar = new javax.swing.JButton();
@@ -102,48 +108,39 @@ public class DetalleReservaEstandar extends javax.swing.JPanel {
 
         solicitudEstandarPanel.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Pasajero: ");
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel7.setText("Origen:");
-
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Calificacion:");
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Precio:");
 
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel10.setText("Destino:");
+        jLabel10.setText("P.Encuentro:");
 
         txtPasajero.setBackground(new java.awt.Color(255, 255, 255));
-        txtPasajero.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtPasajero.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         txtPasajero.setForeground(new java.awt.Color(255, 255, 255));
         txtPasajero.setBorder(null);
 
         txtCalificacion.setBackground(new java.awt.Color(255, 255, 255));
-        txtCalificacion.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtCalificacion.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         txtCalificacion.setForeground(new java.awt.Color(0, 0, 0));
         txtCalificacion.setBorder(null);
 
-        txtOrigen.setBackground(new java.awt.Color(255, 255, 255));
-        txtOrigen.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        txtOrigen.setForeground(new java.awt.Color(0, 0, 0));
-        txtOrigen.setBorder(null);
-
         txtDestino.setBackground(new java.awt.Color(255, 255, 255));
-        txtDestino.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtDestino.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         txtDestino.setForeground(new java.awt.Color(0, 0, 0));
         txtDestino.setBorder(null);
 
         txtPrecio.setBackground(new java.awt.Color(255, 255, 255));
-        txtPrecio.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtPrecio.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         txtPrecio.setForeground(new java.awt.Color(0, 0, 0));
         txtPrecio.setBorder(null);
 
@@ -154,30 +151,23 @@ public class DetalleReservaEstandar extends javax.swing.JPanel {
             .addGroup(solicitudEstandarPanelLayout.createSequentialGroup()
                 .addGroup(solicitudEstandarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(solicitudEstandarPanelLayout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addGroup(solicitudEstandarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addGroup(solicitudEstandarPanelLayout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addComponent(jLabel9))
-                            .addComponent(jLabel10))
-                        .addGap(45, 45, 45))
+                        .addGap(56, 56, 56)
+                        .addComponent(jLabel9))
+                    .addGroup(solicitudEstandarPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel10))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, solicitudEstandarPanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(solicitudEstandarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, solicitudEstandarPanelLayout.createSequentialGroup()
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(30, 30, 30))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, solicitudEstandarPanelLayout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addGap(37, 37, 37)))))
-                .addGroup(solicitudEstandarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtCalificacion, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
-                    .addComponent(txtPasajero)
-                    .addComponent(txtOrigen)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING))))
+                .addGap(37, 37, 37)
+                .addGroup(solicitudEstandarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtDestino)
-                    .addComponent(txtPrecio))
-                .addContainerGap(283, Short.MAX_VALUE))
+                    .addComponent(txtPrecio)
+                    .addComponent(txtPasajero, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCalificacion))
+                .addGap(234, 234, 234))
         );
         solicitudEstandarPanelLayout.setVerticalGroup(
             solicitudEstandarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,23 +176,19 @@ public class DetalleReservaEstandar extends javax.swing.JPanel {
                 .addGroup(solicitudEstandarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(txtPasajero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40)
+                .addGap(48, 48, 48)
                 .addGroup(solicitudEstandarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(txtCalificacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
-                .addGroup(solicitudEstandarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(txtOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addGroup(solicitudEstandarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(txtDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
+                .addGap(53, 53, 53)
                 .addGroup(solicitudEstandarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(47, 47, 47))
+                .addGap(84, 84, 84))
         );
 
         btnRechazar.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -236,7 +222,7 @@ public class DetalleReservaEstandar extends javax.swing.JPanel {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(141, 141, 141)
                         .addComponent(solicitudEstandarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(180, Short.MAX_VALUE))
+                .addContainerGap(172, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(184, 184, 184)
                 .addComponent(jLabel3)
@@ -259,7 +245,7 @@ public class DetalleReservaEstandar extends javax.swing.JPanel {
                         .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(38, 38, 38)
                 .addComponent(solicitudEstandarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addComponent(btnRechazar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -300,7 +286,7 @@ public class DetalleReservaEstandar extends javax.swing.JPanel {
     } catch (Exception e) {
         JOptionPane.showMessageDialog(this, "Error al rechazar: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
     }
-    controlPantallas.mostrarGestionSolicitudes(reserva.getViaje().getId());
+    controlPantallas.mostrarSeleccionarViajeGestion();
       
 
     }//GEN-LAST:event_btnRechazarActionPerformed
@@ -312,7 +298,7 @@ public class DetalleReservaEstandar extends javax.swing.JPanel {
     } catch (Exception e) {
         JOptionPane.showMessageDialog(this, "Error al aceptar: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
     }
-    controlPantallas.mostrarGestionSolicitudes(reserva.getViaje().getId());
+    controlPantallas.mostrarSeleccionarViajeGestion();
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
@@ -327,7 +313,6 @@ public class DetalleReservaEstandar extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
@@ -335,7 +320,6 @@ public class DetalleReservaEstandar extends javax.swing.JPanel {
     private javax.swing.JPanel solicitudEstandarPanel;
     private javax.swing.JTextField txtCalificacion;
     private javax.swing.JTextField txtDestino;
-    private javax.swing.JTextField txtOrigen;
     private javax.swing.JTextField txtPasajero;
     private javax.swing.JTextField txtPrecio;
     // End of variables declaration//GEN-END:variables

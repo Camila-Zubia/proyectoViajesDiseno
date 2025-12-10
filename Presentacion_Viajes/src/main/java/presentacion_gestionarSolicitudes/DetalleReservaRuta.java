@@ -279,7 +279,7 @@ public class DetalleReservaRuta extends javax.swing.JPanel {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error al rechazar: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-        controlPantallas.mostrarGestionSolicitudes(reserva.getViaje().getId());
+        controlPantallas.mostrarSeleccionarViajeGestion();
     }//GEN-LAST:event_btnRechazarActionPerformed
 
     private void btnEnviarPropuestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarPropuestaActionPerformed
@@ -320,8 +320,8 @@ public class DetalleReservaRuta extends javax.swing.JPanel {
                     "Propuesta Enviada",
                     JOptionPane.INFORMATION_MESSAGE);
 
-            // 3. Regresa a la pantalla de gestión de solicitudes
-            controlPantallas.mostrarGestionSolicitudes(reserva.getViaje().getId());
+           
+            controlPantallas.mostrarSeleccionarViajeGestion();
 
         } catch (HeadlessException e) {
             JOptionPane.showMessageDialog(this,

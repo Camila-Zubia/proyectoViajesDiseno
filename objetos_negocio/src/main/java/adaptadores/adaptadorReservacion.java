@@ -84,8 +84,6 @@ public class adaptadorReservacion {
                 dto.setParada(paradaDTO);
             }
         }
-        
-
         if (entidad.getPasajeroId() != null) {
             Optional<Pasajero> optionalPasajero = pasajeroDAO.findById(entidad.getPasajeroId());
             if (optionalPasajero.isPresent()) {
@@ -93,6 +91,8 @@ public class adaptadorReservacion {
                 dto.setPasajero(pasajeroDTO);
             }
         }
+        
+        
 
         return dto;
     }

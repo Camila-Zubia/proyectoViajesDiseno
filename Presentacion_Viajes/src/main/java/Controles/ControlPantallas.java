@@ -62,6 +62,7 @@ import registrarViaje.IRegistrarViaje;
 import registrarViaje.RegistrarViaje;
 import solicitarReservacion.ISolicitarReservacion;
 import solicitarReservacion.SolicitarReservacion;
+import utilidades.SesionUsuario;
 
 /**
  *
@@ -535,27 +536,25 @@ public class ControlPantallas implements IControlPantallas {
     //metodos para gestionar solicitudes
     @Override
     public void mostrarSeleccionarViajeGestion() {
-        List<ViajeDTO> todosLosViajes = interfazRegistrarViaje.obtenerViajesPorConductor(nombreConductor());
+    ConductorDTO conductor = nombreConductor();
+    List<ViajeDTO> todosLosViajes = interfazRegistrarViaje.obtenerViajesPorConductor(conductor);
 
-        // crea una nueva lista para almacenar solo los viajes que tienen solicitudes pendientes.
-        List<ViajeDTO> viajesConSolicitudes = new java.util.ArrayList<>();
-
-        // Iterar sobre todos los viajes para filtrar aquellos con solicitudes
-        for (ViajeDTO viaje : todosLosViajes) {
-            // Si la lista de solicitudes no esta vacía, añadimos el viaje a la lista filtrada.
-            if (!obtenerSolicitudesPendientes(viaje.getId()).isEmpty()) {
+    List<ViajeDTO> viajesConSolicitudes = new java.util.ArrayList<>();
+    for (ViajeDTO viaje : todosLosViajes) {
+            if (!interfazGestionarSolicitudes.obtenerSolicitudesPendientes(viaje.getId()).isEmpty()) {
                 viajesConSolicitudes.add(viaje);
             }
         }
+
         if (viajesConSolicitudes.isEmpty()) {
-            JOptionPane.showMessageDialog(frame, "No cuenta con viajes activos con solicitudes pendientes para gestionar.", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(frame, "No cuenta con viajes activos con solicitudes pendientes para gestionar.", "Sin Solicitudes", JOptionPane.INFORMATION_MESSAGE);
             mostrarMenuConductor();
             return;
         }
-
         SeleccionarViajeGestion viaje = new SeleccionarViajeGestion(this, viajesConSolicitudes);
         configurarPanel(viaje);
-     }
+    }
+
     @Override
     public void mostrarGestionSolicitudes(String viajeId) {
        // Obtenemos las solicitudes pendientes  para el viaje específico
