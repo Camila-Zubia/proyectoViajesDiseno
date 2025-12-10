@@ -79,12 +79,18 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
+            <artifactId>negocios_gestionarSolicitudes</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
             <artifactId>InfraestructuraHacienda</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>negocio_hacienda</artifactId>
+            
             <version>${project.version}</version>
         </dependency>
     </dependencies>
@@ -94,3 +100,4 @@
         <exec.mainClass>com.mycompany.presentacion_viajes.Presentacion_Viajes</exec.mainClass>
     </properties>
 </project>
+

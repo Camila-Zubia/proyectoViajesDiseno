@@ -28,14 +28,7 @@ public class adaptadorPasajero {
         dto.setNombre(entidad.getNombre());
         dto.setCalificacion((double) entidad.getCalificacion());
 
-        if (entidad.getReservaciones()!= null) {
-            List<ReservacionDTO> reservacionesDTO = entidad.getReservaciones().stream()
-                    .map(adaptadorReservacion::toDTO)
-                    .collect(Collectors.toList());
-            dto.setReservaciones(reservacionesDTO);
-        } else {
-            dto.setReservaciones(new java.util.ArrayList<>());
-        }
+        dto.setReservaciones(new java.util.ArrayList<>());
 
         return dto;
     }

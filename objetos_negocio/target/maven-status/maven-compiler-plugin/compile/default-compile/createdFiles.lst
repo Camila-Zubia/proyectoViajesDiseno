@@ -5,6 +5,7 @@ adaptadores\adaptadorUsuario.class
 interfaces_solicitarReservacion\IPasajeroNegocio.class
 interfaces_solicitarReservacion\IReservacionNegocio.class
 factory\IFabricaBOs.class
+objetosNegocio_gestionarSolicitudes\GestionarSolicitudesNegocio.class
 interfaces\IUsuarioNegocio.class
 adaptadores\adaptadorRutaFrecuente.class
 adaptadores\adaptadorVehiculo.class
@@ -26,6 +27,7 @@ interface_crearRutaFrecuente\ICrearRutaFrecuenteNegocio.class
 interfaces_editarViaje\IEditarViajeNegocio.class
 adaptadores\adaptadorParada.class
 objetosNegocio\UsuarioNegocio.class
+interfaces_gestionarSolicitudes\IGestionarSolicitudesNegocio.class
 factory\FabricaBOs.class
 adaptadores\adaptadorReservacion.class
 objetoNegocio_registrarVehiculo\vehiculoNegocio.class

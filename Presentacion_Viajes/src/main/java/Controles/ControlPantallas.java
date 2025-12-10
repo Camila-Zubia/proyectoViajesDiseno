@@ -21,6 +21,8 @@ import dto.VehiculoDTO;
 import dto.ViajeDTO;
 import editarViaje.EditarViaje;
 import editarViaje.IEditarViaje;
+import getionarSolicitudes.GestionarSolicitudes;
+import getionarSolicitudes.IGestionarSolicitudes;
 import iniciarSesion.IIniciarSesion;
 import iniciarSesion.IniciarSesion;
 import java.awt.BorderLayout;
@@ -30,6 +32,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import org.base_datos_viajes.initializer.InicializadorDatosPrueba;
 import presentacion.datosParadas;
@@ -49,6 +52,10 @@ import presentacion_crearRutaFrecuente.DatosParadasRuta;
 import presentacion_crearRutaFrecuente.DatosRutaFrec;
 import presentacion_crearRutaFrecuente.MenuRutasFrecuentes;
 import presentacion_crearRutaFrecuente.SeleccionarVehiculoRuta;
+import presentacion_gestionarSolicitudes.DetalleReservaEstandar;
+import presentacion_gestionarSolicitudes.DetalleReservaRuta;
+import presentacion_gestionarSolicitudes.GestionSolicitudes;
+import presentacion_gestionarSolicitudes.SeleccionarViajeGestion;
 import presentacion_registrarVehiculo.datosPropietario;
 import presentacion_registrarVehiculo.datosVehiculo;
 import presentacion_registrarVehiculo.menuVehiculosConductor;
@@ -58,6 +65,7 @@ import registrarViaje.IRegistrarViaje;
 import registrarViaje.RegistrarViaje;
 import solicitarReservacion.ISolicitarReservacion;
 import solicitarReservacion.SolicitarReservacion;
+import utilidades.SesionUsuario;
 
 /**
  *
@@ -76,6 +84,7 @@ public class ControlPantallas implements IControlPantallas {
     private final ICancelarViaje interfazCancelarViaje = new CancelarViaje();
     private final IEditarViaje interfazEditarViaje = new EditarViaje();
     private final IRegistrarVehiculo interfazRegistrarVehiculo = new FRegistrarVehiculo();
+    private final IGestionarSolicitudes interfazGestionarSolicitudes = new GestionarSolicitudes();
 
     private boolean perfil;
     private final pagarAdeudo.IPagarAdeudo interfazPagarAdeudo = new pagarAdeudo.PagarAdeudo();
@@ -543,6 +552,77 @@ public class ControlPantallas implements IControlPantallas {
 
         interfazRegistrarVehiculo.confirmarRegistroVehiculoPropietario();
     }
+
+    //metodos para gestionar solicitudes
+    @Override
+    public void mostrarSeleccionarViajeGestion() {
+    ConductorDTO conductor = nombreConductor();
+    List<ViajeDTO> todosLosViajes = interfazRegistrarViaje.obtenerViajesPorConductor(conductor);
+
+    List<ViajeDTO> viajesConSolicitudes = new java.util.ArrayList<>();
+    for (ViajeDTO viaje : todosLosViajes) {
+            if (!interfazGestionarSolicitudes.obtenerSolicitudesPendientes(viaje.getId()).isEmpty()) {
+                viajesConSolicitudes.add(viaje);
+            }
+        }
+
+        if (viajesConSolicitudes.isEmpty()) {
+            JOptionPane.showMessageDialog(frame, "No cuenta con viajes activos con solicitudes pendientes para gestionar.", "Sin Solicitudes", JOptionPane.INFORMATION_MESSAGE);
+            mostrarMenuConductor();
+            return;
+        }
+        SeleccionarViajeGestion viaje = new SeleccionarViajeGestion(this, viajesConSolicitudes);
+        configurarPanel(viaje);
+    }
+
+    @Override
+    public void mostrarGestionSolicitudes(String viajeId) {
+       // Obtenemos las solicitudes pendientes  para el viaje específico
+        List<ReservacionDTO> solicitudes = obtenerSolicitudesPendientes(viajeId);
+        
+        if (solicitudes.isEmpty()) {
+            JOptionPane.showMessageDialog(frame, "No hay solicitudes pendientes para este viaje.", "Información", JOptionPane.INFORMATION_MESSAGE);
+            mostrarSeleccionarViajeGestion();
+            return;
+        }
+        
+        GestionSolicitudes panel = new GestionSolicitudes(this, viajeId, solicitudes);
+        configurarPanel(panel);
+    }
+    
+   
+    @Override
+    public List<ReservacionDTO> obtenerSolicitudesPendientes(String viajeId) {
+        return interfazGestionarSolicitudes.obtenerSolicitudesPendientes(viajeId);
+    }
+
+    @Override
+    public ReservacionDTO aceptarSolicitud(ReservacionDTO reservacion) {
+        return interfazGestionarSolicitudes.aceptarSolicitud(reservacion);
+    }
+
+    @Override
+    public ReservacionDTO rechazarSolicitud(ReservacionDTO reservacion) {
+       return interfazGestionarSolicitudes.rechazarSolicitud(reservacion);
+    }
+
+    @Override
+    public ReservacionDTO proponerPrecio(ReservacionDTO reservacion) {
+       return interfazGestionarSolicitudes.proponerPrecio(reservacion);
+    }
+
+    @Override
+    public void mostrarDetalleReservaRuta(ReservacionDTO reserva) {
+        DetalleReservaRuta panel = new DetalleReservaRuta(this, reserva);
+        configurarPanel(panel);
+    }
+
+    @Override
+    public void mostrarDetalleReservaEstandar(ReservacionDTO reserva) {
+        DetalleReservaEstandar panel = new DetalleReservaEstandar(this, reserva);
+        configurarPanel(panel);
+    }
+
 
     @Override
     public void eliminarVehiculo(VehiculoDTO dto) throws Exception {

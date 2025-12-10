@@ -11,7 +11,7 @@ import interfaces_solicitarReservacion.IReservacionNegocio;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.base_datos_viajes.dao.interfaces.IReservacionDAO;
-import exceptiones.DatabaseException;
+import org.base_datos_viajes.exception.DatabaseException;
 import org.base_datos_viajes.model.Reservacion;
 import org.bson.types.ObjectId;
 
