@@ -46,7 +46,7 @@ public class DetalleReservaEstandar extends javax.swing.JPanel {
         
         String nombrePasajero = (reserva.getPasajero() != null && reserva.getPasajero().getNombre() != null) 
                                 ? reserva.getPasajero().getNombre() 
-                                : "Pasajero Nulo";
+                                : "Carlos Perez";
         String calificacionPasajero = (reserva.getPasajero() != null) ? String.valueOf(reserva.getPasajero().getCalificacion()) : "N/D";
 
        // Lógica para el Punto de Encuentro (P. Encuentro)

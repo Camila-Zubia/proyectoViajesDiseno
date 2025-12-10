@@ -199,6 +199,42 @@ public class datosViaje extends javax.swing.JPanel {
         LocalTime hora = fechaHora.getTimePicker().getTime();
         String precioStr = PrecioTextField.getText().trim();
 
+        // Validar campos vacíos
+        if (origen.isEmpty() || destino.isEmpty()) {
+            JOptionPane.showMessageDialog(this,
+                    "Por favor complete todos los campos",
+                    "Campos incompletos",
+                    JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // Validación: origen y destino solo deben contener letras, espacios y acentos
+        if (!origen.matches("^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$")) {
+            JOptionPane.showMessageDialog(this,
+                    "El Origen solo debe contener letras.",
+                    "Dato Invalido",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (!destino.matches("^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$")) {
+            JOptionPane.showMessageDialog(this,
+                    "El Destino solo debe contener letras.",
+                    "Dato Invalido",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Validación: origen y destino iguales
+        if (origen.equalsIgnoreCase(destino)) {
+            JOptionPane.showMessageDialog(this,
+                    "El Origen y el Destino no pueden ser la misma ubicacion.",
+                    "Dato Invalido",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Validar precio
         double precioBase;
         if (precioStr.isEmpty()) {
             JOptionPane.showMessageDialog(this,
@@ -207,6 +243,7 @@ public class datosViaje extends javax.swing.JPanel {
                     JOptionPane.WARNING_MESSAGE);
             return;
         }
+
         try {
             precioBase = Double.parseDouble(precioStr);
         } catch (NumberFormatException e) {
@@ -217,23 +254,12 @@ public class datosViaje extends javax.swing.JPanel {
             return;
         }
 
-        if (origen.isEmpty() || destino.isEmpty()) {
+        // Validación: precio no puede ser 0 o negativo
+        if (precioBase <= 0) {
             JOptionPane.showMessageDialog(this,
-                    "Por favor complete todos los campos",
-                    "Campos incompletos",
-                    JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-
-        //validacion, origen y destino iguales
-        if (origen.equalsIgnoreCase(destino)) {
-            JOptionPane.showMessageDialog(this, "El Origen y el Destino no pueden ser la misma ubicacion.", "Dato Invalido", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        // validacion de tipo de dato origen y destino solo con texto
-        if (origen.matches(".*\\d.*") || destino.matches(".*\\d.*")) {
-            JOptionPane.showMessageDialog(this, "El Origen y Destino no deben contener números. Ingrese solo texto.", "Dato Invalido", JOptionPane.ERROR_MESSAGE);
+                    "El precio debe ser mayor a 0.",
+                    "Precio Invalido",
+                    JOptionPane.ERROR_MESSAGE);
             return;
         }
 
