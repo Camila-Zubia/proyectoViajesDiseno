@@ -6,7 +6,7 @@ package registrarVehiculo;
 
 import DTO.PropietarioHaciendaDTO;
 import DTO.VehiculoHaciendaDTO;
-import IObjetoNegocio.IValidacionPropietarioVehiculoServicio;
+import hacienda.IValidacionPropietarioVehiculoServicio;
 import dto.PropietarioDTO;
 import dto.VehiculoDTO;
 import factory.FabricaBOs;

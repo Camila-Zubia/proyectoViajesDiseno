@@ -95,6 +95,7 @@ public class ControlPantallas implements IControlPantallas {
         this.menu = menu;
         perfil = false;
         InicializadorDatosPrueba.inicializarSiEsNecesario();
+        inicializador.InicializadorDatosPrueba.inicializarSiEsNecesariohACIENDA();
     }
 
     public static ControlPantallas getInstancia(JFrame frame, JMenu menu) {

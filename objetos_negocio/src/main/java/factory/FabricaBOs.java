@@ -4,7 +4,7 @@
  */
 package factory;
 
-import IObjetoNegocio.IValidacionPropietarioVehiculoServicio;
+import hacienda.IValidacionPropietarioVehiculoServicio;
 import interfaces.IConductorNegocio;
 import interfaces_solicitarReservacion.IPasajeroNegocio;
 import interfaces.IUsuarioNegocio;
@@ -25,7 +25,7 @@ import interface_registrarVehiculo.IVehiculoNegocio;
 import interfaces_editarViaje.IEditarViajeNegocio;
 import interfaces_gestionarSolicitudes.IGestionarSolicitudesNegocio;
 import interfaces_solicitarReservacion.IReservacionNegocio;
-import objetoNegocio.FValidacionPropietarioVehiculoServicio;
+import hacienda.FValidacionPropietarioVehiculoServicio;
 import objetoNegocio_registrarVehiculo.propietarioNegocio;
 import objetoNegocio_registrarVehiculo.vehiculoNegocio;
 import objetosNegocio_editarViaje.EditarViajeNegocio;

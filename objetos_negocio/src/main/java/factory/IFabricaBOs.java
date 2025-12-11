@@ -4,7 +4,7 @@
  */
 package factory;
 
-import IObjetoNegocio.IValidacionPropietarioVehiculoServicio;
+import hacienda.IValidacionPropietarioVehiculoServicio;
 import interfaces.IConductorNegocio;
 import interfaces_solicitarReservacion.IPasajeroNegocio;
 import interfaces.IUsuarioNegocio;

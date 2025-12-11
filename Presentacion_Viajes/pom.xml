@@ -84,13 +84,13 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>InfraestructuraHacienda</artifactId>
+            <artifactId>negocio_hacienda</artifactId>
+            
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>negocio_hacienda</artifactId>
-            
+            <artifactId>InfraestructuraHacienda</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>
