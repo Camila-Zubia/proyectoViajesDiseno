@@ -70,7 +70,7 @@ public class FabricaBOs implements IFabricaBOs {
 
     @Override
     public IViajeNegocio crearViajeNegocio() {
-        return new ViajeNegocio(viajeDAO, conductorDAO, paradaDAO, reservacionDAO);
+        return new ViajeNegocio(viajeDAO, conductorDAO, reservacionDAO);
     }
 
     //metodos del caso de uso "Solicitar Reservacion"
