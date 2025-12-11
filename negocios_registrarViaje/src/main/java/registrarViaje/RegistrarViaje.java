@@ -30,18 +30,18 @@ public class RegistrarViaje implements IRegistrarViaje{
     }
 
     @Override
-    public void seleccionarVehiculo(VehiculoDTO vehiculo) {
-        control.seleccionarVehiculo(vehiculo);
+    public VehiculoDTO seleccionarVehiculo(VehiculoDTO vehiculo) {
+        return control.seleccionarVehiculo(vehiculo);
     }
 
     @Override
-    public void guardarDatosViaje(String origen, String destino, LocalDate fecha, LocalTime hora, double precioBase) {
-        control.guardarDatosViaje(origen, destino, fecha, hora, precioBase);
+    public boolean guardarDatosViaje(String origen, String destino, LocalDate fecha, LocalTime hora, double precioBase) {
+        return control.guardarDatosViaje(origen, destino, fecha, hora, precioBase);
     }
 
     @Override
-    public void agregarParada(String direccion, double precio) {
-        control.agregarParada(direccion, precio);
+    public ParadaDTO agregarParada(String direccion, double precio) {
+        return control.agregarParada(direccion, precio);
     }
 
     @Override

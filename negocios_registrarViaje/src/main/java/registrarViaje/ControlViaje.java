@@ -45,30 +45,32 @@ public class ControlViaje {
         return conductorBO.obtenerVehiculos();
     }
 
-    public void seleccionarVehiculo(VehiculoDTO vehiculo) {
+    public VehiculoDTO seleccionarVehiculo(VehiculoDTO vehiculo) {
         if (vehiculo == null) {
             throw new IllegalArgumentException("Debe seleccionar un vehículo válido.");
         }
-        this.vehiculoSeleccionado = vehiculo;
+        return this.vehiculoSeleccionado = vehiculo;
     }
 
     // Gestión de datos del viaje
-    public void guardarDatosViaje(String origen, String destino, LocalDate fecha, LocalTime hora, double precioBase) {
+    public boolean guardarDatosViaje(String origen, String destino, LocalDate fecha, LocalTime hora, double precioBase) {
         this.viajeTemporal.setOrigen(origen);
         this.viajeTemporal.setDestino(destino);
         this.viajeTemporal.setFecha(fecha);
         this.viajeTemporal.setHora(hora);
         this.viajeTemporal.setPrecioTotal(precioBase);
         paradasTemporales.add(0, new ParadaDTO(viajeTemporal.getOrigen(), precioBase));
+        return true;
     }
     
     // Gestion de Paradas
-    public void agregarParada(String direccion, double precio) {
+    public ParadaDTO agregarParada(String direccion, double precio) {
         if (direccion == null || direccion.isEmpty() || precio < 0) {
             throw new IllegalArgumentException("La dirección no puede estar vacía y el precio debe ser positivo.");
         }
         ParadaDTO parada = new ParadaDTO(direccion, precio);
         paradasTemporales.add(parada);
+        return parada;
     }
     
     public List<ParadaDTO> obtenerParadas(ViajeDTO viaje) {

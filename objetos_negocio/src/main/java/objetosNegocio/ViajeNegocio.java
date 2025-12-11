@@ -4,12 +4,9 @@
  */
 package objetosNegocio;
 
-import adaptadores.adaptadorParada;
 import adaptadores.adaptadorViaje;
 import dto.ParadaDTO;
 import dto.ReservacionDTO;
-import dto.ViajeDTO;
-import interfaces.IViajeNegocio;
 import java.time.LocalDateTime;
 import dto.PasajeroDTO;
 import dto.ViajeDTO;
@@ -18,14 +15,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import org.base_datos_viajes.dao.impl.ReservacionDAO;
 import org.base_datos_viajes.dao.impl.ViajeDAO;
 import org.base_datos_viajes.dao.interfaces.IConductorDAO;
 import org.base_datos_viajes.dao.interfaces.IReservacionDAO;
 import exceptiones.DatabaseException;
-import org.base_datos_viajes.dao.interfaces.IParadaDAO;
 import org.base_datos_viajes.model.Conductor;
-import org.base_datos_viajes.model.Parada;
 import org.base_datos_viajes.model.Reservacion;
 import org.base_datos_viajes.model.Vehiculo;
 import org.base_datos_viajes.model.Viaje;
@@ -151,21 +145,30 @@ public class ViajeNegocio implements IViajeNegocio{
     @Override
     public boolean eliminarViaje(String idViaje) {
         try {
+            ObjectId objectId = new ObjectId(idViaje);
             // Obtener el viaje de la base de datos
-            Optional<Viaje> optionalViaje = viajeDAO.findById(new ObjectId(idViaje));
+            Optional<Viaje> optionalViaje = viajeDAO.findById(objectId);
 
             if (!optionalViaje.isPresent()) {
                 return false;
             }
 
             Viaje viaje = optionalViaje.get();
+            
+            List<Reservacion> reservaciones = reservacionDAO.encuentraPorIdViaje(objectId);
+            for (Reservacion r : reservaciones) {
+                if (r.getEstatus() == Reservacion.Estatus.ESPERA || r.getEstatus() == Reservacion.Estatus.ACEPTADA) {
+                    r.setEstatus(Reservacion.Estatus.CANCELADA);
+                    reservacionDAO.update(r);
+                }
+            }
 
             // Marcar como inactivo en lugar de eliminar
             viaje.setEstaActivo(false);
             viajeDAO.update(viaje);
 
             return true;
-        } catch (Exception e) {
+        } catch (org.base_datos_viajes.exception.DatabaseException e) {
             throw new RuntimeException("Error al eliminar viaje: " + e.getMessage(), e);
         }
     }
@@ -180,7 +183,7 @@ public class ViajeNegocio implements IViajeNegocio{
             }
 
             return adaptadorViaje.toDTO(optionalViaje.get());
-        } catch (Exception e) {
+        } catch (org.base_datos_viajes.exception.DatabaseException e) {
             throw new RuntimeException("Error al obtener detalles del viaje: " + e.getMessage(), e);
         }
     }
@@ -197,7 +200,7 @@ public class ViajeNegocio implements IViajeNegocio{
             // Por ahora retornar lista vacía
             // En el futuro, cuando exista relación Viaje->Reservaciones->Pasajeros
             return new ArrayList<>();
-        } catch (Exception e) {
+        } catch (org.base_datos_viajes.exception.DatabaseException e) {
             throw new RuntimeException("Error al obtener pasajeros: " + e.getMessage(), e);
         }
     }

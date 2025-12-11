@@ -39,13 +39,13 @@ public interface IControlPantallas {
 
     public void mostrarSeleccionarPerfil();
 
-    public void seleccionarVehiculo(dto.VehiculoDTO vehiculo);
+    public VehiculoDTO seleccionarVehiculo(dto.VehiculoDTO vehiculo);
 
-    public void guardarDatosViaje(String origen, String destino, LocalDate fecha, LocalTime hora, double precioBase);
+    public boolean guardarDatosViaje(String origen, String destino, LocalDate fecha, LocalTime hora, double precioBase);
 
-    public void confirmarViaje();
+    public ViajeDTO confirmarViaje();
 
-    public void agregarParada(String direccion, double precio);
+    public ParadaDTO agregarParada(String direccion, double precio);
 
     public boolean validarUsuario(UsuarioDTO usuario);
 
