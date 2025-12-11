@@ -109,7 +109,11 @@ public class FramePrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void opcionMenuPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcionMenuPrincipalActionPerformed
-        controlPantallas.mostrarMenuConductor();
+        if (controlPantallas.obtenerPerfil()) {
+            controlPantallas.mostrarMenuConductor();
+        }else{
+            controlPantallas.mostrarMenuPasajero();
+        }
     }//GEN-LAST:event_opcionMenuPrincipalActionPerformed
 
     private void opcionCerrarSesiónActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcionCerrarSesiónActionPerformed
