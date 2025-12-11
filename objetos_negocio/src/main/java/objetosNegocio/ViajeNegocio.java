@@ -4,6 +4,7 @@
  */
 package objetosNegocio;
 
+import adaptadores.adaptadorParada;
 import adaptadores.adaptadorViaje;
 import dto.ParadaDTO;
 import dto.ReservacionDTO;
@@ -22,7 +23,9 @@ import org.base_datos_viajes.dao.impl.ViajeDAO;
 import org.base_datos_viajes.dao.interfaces.IConductorDAO;
 import org.base_datos_viajes.dao.interfaces.IReservacionDAO;
 import exceptiones.DatabaseException;
+import org.base_datos_viajes.dao.interfaces.IParadaDAO;
 import org.base_datos_viajes.model.Conductor;
+import org.base_datos_viajes.model.Parada;
 import org.base_datos_viajes.model.Reservacion;
 import org.base_datos_viajes.model.Vehiculo;
 import org.base_datos_viajes.model.Viaje;
@@ -36,12 +39,14 @@ import utilidades.SesionUsuario;
 public class ViajeNegocio implements IViajeNegocio{
     private final ViajeDAO viajeDAO;  
     private final IConductorDAO conductorDAO;
-    private final IReservacionDAO reservacionDAO;  
+    private final IReservacionDAO reservacionDAO;
+    private final IParadaDAO paradaDAO;
     
-    public ViajeNegocio(ViajeDAO viajeDAO, IConductorDAO conductorDAO) {
+    public ViajeNegocio(ViajeDAO viajeDAO, IConductorDAO conductorDAO, IParadaDAO paradaDAO, IReservacionDAO reservacionDAO) {
         this.viajeDAO = viajeDAO;
         this.conductorDAO = conductorDAO;
-        this.reservacionDAO = new ReservacionDAO();
+        this.paradaDAO = paradaDAO;
+        this.reservacionDAO = reservacionDAO;
     }
     
     @Override
@@ -63,7 +68,13 @@ public class ViajeNegocio implements IViajeNegocio{
                     .map(Vehiculo::getId) // usa el ID del Vehiculo Eque fue persistido
                     .orElseThrow(() -> new IllegalStateException("Vehiculo seleccionado no tiene ID de persistencia."));
             
-            
+            if (viaje.getParadas() != null) {
+                for (ParadaDTO pDto : viaje.getParadas()) {
+                    Parada pEntidad = adaptadorParada.toEntity(pDto);
+                    Parada paradaGuardada = paradaDAO.save(pEntidad);
+                    pDto.setId(paradaGuardada.getId().toString());
+                }
+            }
 
             // Validar no existencia
             if (!validarNoExisteBD(viaje, idConductor)) {
