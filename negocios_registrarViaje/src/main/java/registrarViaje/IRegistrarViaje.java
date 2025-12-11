@@ -31,8 +31,9 @@ public interface IRegistrarViaje {
      * obtiene un vehiculo que fue seleccionado de una lista
      *
      * @param vehiculo
+     * @return 
      */
-    public void seleccionarVehiculo(VehiculoDTO vehiculo);
+    public VehiculoDTO seleccionarVehiculo(VehiculoDTO vehiculo);
 
     /**
      * almacena los datos del viaje
@@ -42,16 +43,18 @@ public interface IRegistrarViaje {
      * @param fecha
      * @param hora
      * @param precioBase
+     * @return 
      */
-    public void guardarDatosViaje(String origen, String destino, LocalDate fecha, LocalTime hora, double precioBase);
+    public boolean guardarDatosViaje(String origen, String destino, LocalDate fecha, LocalTime hora, double precioBase);
 
     /**
      * crea una parada y la agrega a la lista de paradas
      *
      * @param direccion
      * @param precio
+     * @return 
      */
-    public void agregarParada(String direccion, double precio);
+    public ParadaDTO agregarParada(String direccion, double precio);
 
     /**
      * obtiene las paradas relacionadas con un viaje

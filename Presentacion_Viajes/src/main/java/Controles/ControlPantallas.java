@@ -173,23 +173,23 @@ public class ControlPantallas implements IControlPantallas {
     }
 
     @Override
-    public void seleccionarVehiculo(dto.VehiculoDTO vehiculo) {
-        interfazRegistrarViaje.seleccionarVehiculo(vehiculo);
+    public VehiculoDTO seleccionarVehiculo(dto.VehiculoDTO vehiculo) {
+        return interfazRegistrarViaje.seleccionarVehiculo(vehiculo);
     }
 
     @Override
-    public void guardarDatosViaje(String origen, String destino, LocalDate fecha, LocalTime hora, double precioBase) {
-        interfazRegistrarViaje.guardarDatosViaje(origen, destino, fecha, hora, precioBase);
+    public boolean guardarDatosViaje(String origen, String destino, LocalDate fecha, LocalTime hora, double precioBase) {
+        return interfazRegistrarViaje.guardarDatosViaje(origen, destino, fecha, hora, precioBase);
     }
 
     @Override
-    public void confirmarViaje() {
-        interfazRegistrarViaje.confirmarViaje();
+    public ViajeDTO confirmarViaje() {
+        return interfazRegistrarViaje.confirmarViaje();
     }
 
     @Override
-    public void agregarParada(String direccion, double precio) {
-        interfazRegistrarViaje.agregarParada(direccion, precio);
+    public ParadaDTO agregarParada(String direccion, double precio) {
+        return interfazRegistrarViaje.agregarParada(direccion, precio);
     }
 
     @Override
