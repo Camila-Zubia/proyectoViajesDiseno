@@ -17,7 +17,7 @@ public interface IRegistrarVehiculo {
 
     public void guardarDatosPropietario(String nombre, String curp, String rfc, String nss);
 
-    public void confirmarRegistroVehiculoPropietario();
+    public boolean confirmarRegistroVehiculoPropietario();
 
     public void eliminarVehiculo(VehiculoDTO dto) throws Exception;
 

@@ -547,12 +547,12 @@ public class ControlPantallas implements IControlPantallas {
     }
 
     @Override
-    public void ConfirmarDatosVehiculoPropietario() {
+    public boolean ConfirmarDatosVehiculoPropietario() {
 
-        interfazRegistrarVehiculo.confirmarRegistroVehiculoPropietario();
+        return interfazRegistrarVehiculo.confirmarRegistroVehiculoPropietario();
     }
 
-    //metodos para gestionar solicitudes
+    //------------------------------metodos para gestionar solicitudes------------------------------
     @Override
     public void mostrarSeleccionarViajeGestion() {
     ConductorDTO conductor = nombreConductor();

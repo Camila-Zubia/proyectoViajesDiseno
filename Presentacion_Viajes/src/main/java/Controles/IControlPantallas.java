@@ -156,7 +156,7 @@ public interface IControlPantallas {
 
     public void guardarDatosPropietario(String nombre, String curp, String rfc, String nss);
 
-    public void ConfirmarDatosVehiculoPropietario();
+    public boolean ConfirmarDatosVehiculoPropietario();
     
     //metodos para gestionar solicitudes
     public void mostrarSeleccionarViajeGestion();

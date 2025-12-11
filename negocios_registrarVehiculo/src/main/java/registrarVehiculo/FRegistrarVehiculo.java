@@ -32,12 +32,13 @@ public class FRegistrarVehiculo implements IRegistrarVehiculo {
     }
 
     @Override
-    public void confirmarRegistroVehiculoPropietario() {
+    public boolean confirmarRegistroVehiculoPropietario() {
         try {
-            controlVehiculo.confirmarRegistroVehiculoPropietario();
+           return controlVehiculo.confirmarRegistroVehiculoPropietario();
         } catch (Exception ex) {
             Logger.getLogger(FRegistrarVehiculo.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return false;
     }
     
     @Override
