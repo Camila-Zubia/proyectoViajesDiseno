@@ -11,6 +11,8 @@ import java.util.List;
 public interface IGestionarSolicitudes {
     /**
      * Obtiene la lista de solicitudes de reservacion pendientes para un viaje dado.
+     * @param viajeId
+     * @return 
      */
     public List<ReservacionDTO> obtenerSolicitudesPendientes(String viajeId);
 

@@ -187,6 +187,11 @@ public class datosReservacion extends javax.swing.JPanel {
                     "Error al solicitar la reservación: " + e.getMessage(),
                     "Error",
                     JOptionPane.ERROR_MESSAGE);
+        }catch (IllegalStateException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Aviso", JOptionPane.WARNING_MESSAGE);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnCancelarActionPerformed
 

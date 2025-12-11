@@ -78,7 +78,7 @@ public class adaptadorReservacion {
         }
         
         if (entidad.getParadaId() != null) {
-            viajeDAO.obtenerParadas().toStream;
+            Optional<Parada> optionalParada = paradaDAO.findById(entidad.getParadaId());
             if (optionalParada.isPresent()) {
                 ParadaDTO paradaDTO = adaptadorParada.toDTO(optionalParada.get());
                 dto.setParada(paradaDTO);
@@ -91,9 +91,6 @@ public class adaptadorReservacion {
                 dto.setPasajero(pasajeroDTO);
             }
         }
-        
-        
-
         return dto;
     }
 }
