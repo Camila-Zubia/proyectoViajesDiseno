@@ -39,13 +39,10 @@ public class PropietarioHaciendaDAO implements IPropietarioHaciendaDAO {
         try {
             ValidationUtil.requireNonNull(entity, "propietario");
 
-            // ⭐ CAMBIO CLAVE: Convertir la entidad a Document antes de insertar
             Document docToInsert = mapToDocument(entity);
 
             collection.insertOne(docToInsert);
 
-            // Si la entidad necesita el _id generado, tendrías que leerlo de docToInsert
-            // y asignarlo a entity, pero por ahora solo retornaremos la entidad original.
             return entity;
         } catch (Exception e) {
             throw new DatabaseException("Error al guardar conductor", e);
@@ -66,15 +63,12 @@ public class PropietarioHaciendaDAO implements IPropietarioHaciendaDAO {
     @Override
     public Optional<PropietarioHacienda> findByCurp(String curp) {
 
-        // 1. CORRECCIÓN CLAVE: Usamos find(filtro, Document.class) y asignamos el resultado a un Document.
-        // Esto obliga al driver a no usar el Codec de POJO, sino a devolver el documento BSON.
         Document mongoDoc = collection
                 .find(Filters.eq("curp", curp), Document.class)
                 .first();
 
-        // 2. Mapear el Documento de Mongo a la Entidad Java
         if (mongoDoc != null) {
-            // Ahora el tipo coincide: le pasamos un Document al método mapToPropietarioDocument(Document)
+
             return Optional.of(mapToPropietarioDocument(mongoDoc));
         }
         return Optional.empty();
@@ -96,8 +90,6 @@ public class PropietarioHaciendaDAO implements IPropietarioHaciendaDAO {
         doc.setRfc(mongoDoc.getString("rfc"));
         doc.setNss(mongoDoc.getString("nss"));
 
-        // Mapear la lista de vehículos embebidos
-        // **ADAPTACIÓN CLAVE:** Usamos la supresión de advertencia para el casting seguro de List<Document>
         List<Document> vehiculosList = (List<Document>) mongoDoc.get("vehiculos");
 
         if (vehiculosList != null) {
@@ -105,7 +97,6 @@ public class PropietarioHaciendaDAO implements IPropietarioHaciendaDAO {
                     .map(this::mapToVehiculoEmbedded)
                     .collect(Collectors.toList());
 
-            // Asumo que el setter para la lista de vehículos es setVehiculos()
             doc.setVehiculos(embeddedList);
         }
         return doc;
@@ -122,7 +113,6 @@ public class PropietarioHaciendaDAO implements IPropietarioHaciendaDAO {
         embedded.setModelo(mongoDoc.getString("modelo"));
         embedded.setColor(mongoDoc.getString("color"));
 
-        // getInteger() es el método correcto para obtener tipos numéricos
         Integer capacidad = mongoDoc.getInteger("capacidad");
         if (capacidad != null) {
             embedded.setCapacidad(capacidad);
@@ -138,16 +128,14 @@ public class PropietarioHaciendaDAO implements IPropietarioHaciendaDAO {
         doc.append("rfc", entity.getRfc());
         doc.append("nss", entity.getNss());
 
-        // --- CORRECCIÓN AQUÍ ---
         List<Document> vehiculosDocs;
         if (entity.getVehiculos() != null) {
             vehiculosDocs = entity.getVehiculos().stream()
                     .map(this::mapVehiculoToDocument)
                     .collect(java.util.stream.Collectors.toList());
         } else {
-            vehiculosDocs = new ArrayList<>(); // Lista vacía segura
+            vehiculosDocs = new ArrayList<>();
         }
-        // -----------------------
 
         doc.append("vehiculos", vehiculosDocs);
         return doc;
