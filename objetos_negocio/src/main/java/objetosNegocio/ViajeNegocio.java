@@ -40,12 +40,10 @@ public class ViajeNegocio implements IViajeNegocio{
     private final ViajeDAO viajeDAO;  
     private final IConductorDAO conductorDAO;
     private final IReservacionDAO reservacionDAO;
-    private final IParadaDAO paradaDAO;
     
-    public ViajeNegocio(ViajeDAO viajeDAO, IConductorDAO conductorDAO, IParadaDAO paradaDAO, IReservacionDAO reservacionDAO) {
+    public ViajeNegocio(ViajeDAO viajeDAO, IConductorDAO conductorDAO, IReservacionDAO reservacionDAO) {
         this.viajeDAO = viajeDAO;
         this.conductorDAO = conductorDAO;
-        this.paradaDAO = paradaDAO;
         this.reservacionDAO = reservacionDAO;
     }
     
@@ -67,14 +65,6 @@ public class ViajeNegocio implements IViajeNegocio{
                     .findFirst()
                     .map(Vehiculo::getId) // usa el ID del Vehiculo Eque fue persistido
                     .orElseThrow(() -> new IllegalStateException("Vehiculo seleccionado no tiene ID de persistencia."));
-            
-            if (viaje.getParadas() != null) {
-                for (ParadaDTO pDto : viaje.getParadas()) {
-                    Parada pEntidad = adaptadorParada.toEntity(pDto);
-                    Parada paradaGuardada = paradaDAO.save(pEntidad);
-                    pDto.setId(paradaGuardada.getId().toString());
-                }
-            }
 
             // Validar no existencia
             if (!validarNoExisteBD(viaje, idConductor)) {
@@ -133,9 +123,8 @@ public class ViajeNegocio implements IViajeNegocio{
                     LocalDateTime fechaHoraViaje = LocalDateTime.of(
                             viaje.getFecha(),
                             viaje.getHora());
-                    return fechaHoraViaje.isAfter(ahora);
-                })
-                .map(v -> adaptadorViaje.toDTO(v))
+                    return fechaHoraViaje.isAfter(ahora) && viaje.isEstaActivo();
+                }).map(v -> adaptadorViaje.toDTO(v))
                 .collect(Collectors.toList());
 
         return viajesDisponibles;
