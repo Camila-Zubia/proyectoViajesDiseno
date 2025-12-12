@@ -44,8 +44,8 @@ public class UsuarioNegocio implements IUsuarioNegocio{
     public boolean validarUsuario(UsuarioDTO usuarioDto) {
        try {
             String contrasena = new String(usuarioDto.getContraseña());
-            
-            // Consulta la BD por credenciales usuario contra
+
+            // Consulta la BD solo por nombre de usuario
             Optional<Usuario> optionalEntidad = usuarioDAO.consultarPorCredenciales(
                     usuarioDto.getUsuario(),
                     contrasena
@@ -53,17 +53,23 @@ public class UsuarioNegocio implements IUsuarioNegocio{
 
             if (optionalEntidad.isPresent()) {
                 Usuario entidad = optionalEntidad.get();
+
+                // Verificar la contraseña usando BCrypt
+                if (!org.base_datos_viajes.util.PasswordUtil.verifyPassword(contrasena, entidad.getContraseña())) {
+                    return false;
+                }
+
                 UsuarioDTO usuarioLogueado = adaptadorUsuario.toDTO(entidad);
-                
-                //Cargar Perfil Conductor 
-                if (entidad.getConductorId() != null) { 
+
+                //Cargar Perfil Conductor
+                if (entidad.getConductorId() != null) {
                     Optional<Conductor> optionalConductor = conductorDAO.findById(entidad.getConductorId());
                     if (optionalConductor.isPresent()) {
                          usuarioLogueado.setConductor(adaptadorConductor.toDTO(optionalConductor.get()));
                     }
                 }
-                
-                //Carga Perfil Conductor
+
+                //Carga Perfil Pasajero
                 if (entidad.getPasajeroId() != null) {
                     Optional<Pasajero> optionalPasajero = pasajeroDAO.findById(entidad.getPasajeroId());
                     if (optionalPasajero.isPresent()) {
